@@ -1,0 +1,237 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-tools"
+version = "0.5.7"
+# ---
+description = "A collection of baseline tools for Rust development use by Veilid and Veilid-enabled Rust applications"
+resolver = "2"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+documentation = "https://docs.rs/veilid-tools"
+homepage = "https://veilid.gitlab.io/developer-book/"
+
+[lib]
+# staticlib for iOS tests, cydlib for android tests, rlib for everything else
+crate-type = ["cdylib", "staticlib", "rlib"]
+path = "src/lib.rs"
+
+[[bin]]
+name = "virtual_router"
+path = "src/bin/virtual_router/main.rs"
+required-features = ["virtual-router-bin"]
+
+[features]
+
+# Choice of executor
+default = ["rt-tokio"]
+rt-tokio = [
+    "tokio",
+    "tokio-util",
+    "tokio-stream",
+    "rtnetlink/tokio_socket",
+    "async_executors/tokio_tp",
+    "async_executors/tokio_io",
+    "async_executors/tokio_timer",
+    "hickory-resolver/tokio",
+]
+rt-async-std = [
+    "async-std",
+    "async-io",
+    "async_executors/async_std",
+    "rtnetlink/smol_socket",
+]
+rt-wasm-bindgen = [
+    "async_executors/bindgen",
+    "async_executors/timer",
+    "ws_stream_wasm",
+]
+
+# Enable tracing instead of log
+tracing = ["dep:tracing", "dep:tracing-subscriber", "tokio/tracing"]
+
+# Reserved for use by future components
+virtual-network = ["dep:postcard", "dep:futures_codec"]
+virtual-network-server = [
+    "dep:async-tungstenite",
+    "dep:futures_codec",
+    "dep:imbl",
+    "dep:indent",
+    "dep:ipnet",
+    "dep:serde_yaml",
+    "dep:validator",
+    "dep:ws_stream_tungstenite",
+    "dep:rand_chacha",
+]
+virtual-router-bin = [
+    "tracing",
+    "virtual-network-server",
+    "dep:chrono",
+    "dep:clap",
+    "dep:time",
+    "tracing-subscriber?/env-filter",
+    "tracing-subscriber?/time",
+]
+
+# Testing
+test-util = []
+veilid_tools_android_tests = ["dep:paranoid-android", "test-util"]
+veilid_tools_ios_tests = [
+    "dep:tracing",
+    "dep:oslog",
+    "dep:tracing-oslog",
+    "test-util",
+]
+# Capture backtraces (diagnostics, lock tracking); off for wasm product builds
+backtrace = ["dep:backtrace"]
+debug-locks = ["parking_lot/deadlock_detection", "backtrace"]
+log-location-quiet = []
+panic-quiet = []
+
+
+[dependencies]
+tracing = { version = "0.1.44", features = [
+    "log",
+    "attributes",
+], optional = true }
+tracing-subscriber = { version = "0.3.22", optional = true }
+log = { version = "0.4.26" }
+serde = { version = "1.0.228", features = ["derive", "rc"] }
+postcard = { version = "1.1.1", features = ["use-std"], optional = true }
+cfg-if = "1.0.4"
+thiserror = "2.0.18"
+futures-util = { version = "0.3.31", default-features = false, features = [
+    "alloc",
+] }
+futures_codec = { version = "0.5.0", optional = true }
+parking_lot = { version = "0.12.5", features = ["arc_lock", "serde"] }
+async-lock = "3.4.0"
+event-listener = "5"
+pin-project-lite = "0.2"
+rand = "0.8.5"
+rand_core = { version = "0.10.1", default-features = false }
+backtrace = { version = "^0.3.76", optional = true }
+fn_name = "0.1.0"
+range-set-blaze = "0.6.0"
+flume = { version = "0.12.0", features = ["async"] }
+imbl = { version = "7.0.0", features = ["serde"], optional = true }
+indent = "0.1.1"
+bytes = { version = "1.11.1", features = ["serde", "std"] }
+shell-words = "1.1.0"
+hex = "0.4.3"
+hashlink = { package = "veilid-hashlink", version = "=0.1.3" }
+
+
+# Dependencies for native builds only
+# Linux, Windows, Mac, iOS, Android
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dependencies]
+async-io = { version = "2.6.0", optional = true }
+async-std = { version = "1.13.2", features = ["unstable"], optional = true }
+time = { version = "0.3.47", features = [
+    "local-offset",
+    "formatting",
+], optional = true }
+chrono = { version = "0.4.43", optional = true }
+ctrlc = "3.5.1"
+futures-util = { version = "0.3.31", default-features = false, features = [
+    "async-await",
+    "sink",
+    "std",
+    "io",
+] }
+indent = { version = "0.1.1", optional = true }
+libc = "0.2.170"
+minreq = { version = "3.0.0", default-features = false }
+hickory-resolver = { version = "0.25.2", default-features = false, features = [
+    "system-config",
+] }
+socket2 = { version = "0.6.2", features = ["all"] }
+tokio = { version = "1.49.0", features = [
+    "rt-multi-thread",
+    "net",
+    "time",
+    "sync",
+    "parking_lot",
+], optional = true }
+tokio-util = { version = "0.7.18", features = ["compat"], optional = true }
+tokio-stream = { version = "0.1.18", features = ["net"], optional = true }
+
+ws_stream_tungstenite = { version = "0.15.0", optional = true }
+async-tungstenite = { version = "0.32.1", optional = true }
+clap = { version = "4", features = ["derive"], optional = true }
+ipnet = { version = "2", features = ["serde"], optional = true }
+serde_yaml = { package = "serde_yaml_ng", version = "^0.10.0", optional = true }
+validator = { version = "0.20.0", features = ["derive"], optional = true }
+rand_chacha = { version = "0.3.1", optional = true }
+
+# Dependencies for WASM builds only
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+js-sys = "0.3.83"
+wasm-bindgen = "0.2.121"
+async_executors = { version = "0.7.0", default-features = false }
+ws_stream_wasm = { version = "0.7.4", optional = true }
+send_wrapper = { version = "0.6.0", features = ["futures"] }
+getrandom = { version = "0.2", features = [
+    "js",
+] } # Remove when rand updates to a newer getrandom
+
+# Dependencies for Linux or Android
+[target.'cfg(any(target_os = "android", target_os = "linux"))'.dependencies]
+rtnetlink = { version = "=0.20.0", default-features = false }
+netlink-sys = { version = "=0.8.8" }
+netlink-packet-route = { version = "=0.28.0" }
+
+# Dependencies for Android
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.22.4"
+paranoid-android = { version = "0.2.2", optional = true }
+android_logger = "0.15.1"
+
+# Dependencies for Windows
+[target.'cfg(target_os = "windows")'.dependencies]
+winapi = { version = "0.3.9", features = [
+    "debugapi",
+    "errhandlingapi",
+    "iphlpapi",
+    "iptypes",
+    "sysinfoapi",
+    "winerror",
+    "winsock2",
+] }
+windows = { version = "0.62.2", features = [
+    "Win32_NetworkManagement_Dns",
+    "Win32_Foundation",
+] }
+# windows-permissions = "0.2.4"
+
+# Dependencies for iOS
+[target.'cfg(target_os = "ios")'.dependencies]
+oslog = { version = "0.2.0", optional = true }
+tracing-oslog = { version = "0.3.0", optional = true }
+
+### DEV DEPENDENCIES
+
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dev-dependencies]
+env_logger = "0.11.8"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
+
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dev-dependencies]
+console_error_panic_hook = "0.1.7"
+wasm-bindgen-test = "0.3.58"
+wasm-logger = "0.2.0"
+
+### BUILD OPTIONS
+
+[package.metadata.ios]
+build_targets = [
+    "aarch64-apple-ios",
+    "aarch64-apple-ios-sim",
+    "x86_64-apple-ios",
+]
+deployment_target = "12.0"
+build_id_prefix = "com.veilid.veilidtools"
+
+[lints]
+workspace = true

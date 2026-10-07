@@ -1,0 +1,132 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-server"
+version = "0.5.7"
+# ---
+description = "Veilid Headless Node"
+resolver = "2"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[[bin]]
+name = "veilid-server"
+path = "src/main.rs"
+
+[features]
+default = ["rt-tokio", "veilid-core/default", "veilid-remote-api/default"]
+
+default-async-std = [
+    "rt-async-std",
+    "veilid-core/default-async-std",
+    "veilid-remote-api/default-async-std",
+]
+
+geolocation = ["veilid-core/geolocation"]
+footgun-nodeid-target = ["veilid-core/footgun-nodeid-target"]
+footgun-settings = ["veilid-core/footgun-config"]
+
+rt-tokio = ["veilid-core/rt-tokio", "tokio", "tokio-util", "signal-hook-tokio"]
+
+rt-async-std = [
+    "veilid-core/rt-async-std",
+    "async-std",
+    "signal-hook-async-std",
+]
+
+# Debugging and testing features
+enable-protocol-wss = ["veilid-core/enable-protocol-wss"]
+crypto-test = ["rt-tokio", "veilid-core/crypto-test"]
+crypto-test-none = ["rt-tokio", "veilid-core/crypto-test-none"]
+debug-json-api = []
+debug-locks = ["veilid-core/debug-locks"]
+flame = ["tracing-flame", "veilid-core/instrument"]
+opentelemetry = [
+    "rt-tokio",
+    "dep:opentelemetry",
+    "opentelemetry_sdk/rt-tokio",
+    "opentelemetry-otlp/grpc-tonic",
+    "opentelemetry-otlp/trace",
+    "veilid-core/instrument",
+]
+perfetto = ["tracing-perfetto", "veilid-core/instrument"]
+tokio-console = [
+    "rt-tokio",
+    "console-subscriber",
+    "tokio/tracing",
+    "veilid-core/instrument",
+]
+tracking = ["veilid-core/tracking"]
+virtual-network = [
+    "veilid-core/virtual-network",
+    "veilid-core/virtual-network-server",
+]
+
+[dependencies]
+veilid-core = { path = "../veilid-core", default-features = false }
+veilid-remote-api = { path = "../veilid-remote-api", default-features = false }
+tracing = { version = "0.1.44", features = ["log", "attributes"] }
+tracing-subscriber = { version = "0.3.23", features = ["env-filter", "time"] }
+tracing-appender = "0.2.4"
+tracing-opentelemetry = "0.32.1"
+
+opentelemetry = { version = "0.31.0", optional = true }
+opentelemetry-otlp = { version = "0.31.0", default-features = false, optional = true }
+opentelemetry_sdk = { version = "0.31.0", optional = true }
+opentelemetry-semantic-conventions = { version = "0.31.0", optional = true }
+
+async-std = { version = "1.13.2", features = ["unstable"], optional = true }
+tokio = { version = "1.49.0", optional = true }
+tokio-util = { version = "0.7.18", features = ["compat"], optional = true }
+console-subscriber = { version = "0.5.0", optional = true }
+color-eyre = { version = "^0.6.3", default-features = false }
+backtrace = "0.3.76"
+clap = { version = "4.5.39", features = ["derive", "string", "wrap_help"] }
+directories = "6.0.0"
+parking_lot = "0.12.5"
+config = { version = "0.15.21", default-features = false, features = ["yaml"] }
+cfg-if = "1.0.4"
+serde = "1.0.218"
+serde_derive = "1.0.218"
+serde_ignored = "0.1.14"
+serde_yaml = { package = "serde_yaml_ng", version = "0.10.0" }
+serde_test = "1.0.177"
+json = { package = "jzon", version = "0.12.5" }
+futures-util = { version = "0.3.32", default-features = false, features = [
+    "alloc",
+] }
+url = "2.5.2"
+lazy_static = "^1"
+flume = { version = "0.12.0", features = ["async"] }
+rpassword = "7.0.0"
+hostname = "0.4.2"
+sysinfo = { version = "0.38.4", default-features = false, features = [
+    "system",
+    "disk",
+] }
+tracing-flame = { version = "0.2.0", optional = true }
+time = { version = "0.3.47", features = ["local-offset"] }
+chrono = "0.4.40"
+
+[target.'cfg(windows)'.dependencies]
+windows-service = "0.8.0"
+ansi_term = "0.12.1"
+ctrlc = "3.5.1"
+
+[target.'cfg(unix)'.dependencies]
+daemonize = "0.5.0"
+signal-hook = "0.4.1"
+signal-hook-tokio = { version = "0.4.0", features = [
+    "futures-v0_3",
+], optional = true }
+signal-hook-async-std = { version = "0.4.0", optional = true }
+tracing-perfetto = { version = "0.1.5", optional = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+tracing-journald = "0.3.1"
+
+[lints]
+workspace = true

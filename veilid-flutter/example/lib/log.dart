@@ -1,0 +1,124 @@
+import 'dart:io' show Platform;
+
+import 'package:ansicolor/ansicolor.dart';
+import 'package:flutter/foundation.dart';
+import 'package:loggy/loggy.dart';
+import 'package:veilid/veilid.dart';
+
+// Loggy tools
+const traceLevel = LogLevel('Trace', 1);
+
+VeilidConfigLogLevel convertToVeilidConfigLogLevel(LogLevel? level) {
+  if (level == null) {
+    return VeilidConfigLogLevel.off;
+  }
+  switch (level) {
+    case LogLevel.error:
+      return VeilidConfigLogLevel.error;
+    case LogLevel.warning:
+      return VeilidConfigLogLevel.warn;
+    case LogLevel.info:
+      return VeilidConfigLogLevel.info;
+    case LogLevel.debug:
+      return VeilidConfigLogLevel.debug;
+    case traceLevel:
+      return VeilidConfigLogLevel.trace;
+  }
+  return VeilidConfigLogLevel.off;
+}
+
+String wrapWithLogColor(LogLevel? level, String text) {
+  if (level == null) {
+    return text;
+  }
+  final pen = AnsiPen();
+  ansiColorDisabled = false;
+  switch (level) {
+    case LogLevel.error:
+      pen
+        ..reset()
+        ..red(bold: true);
+      return pen(text);
+    case LogLevel.warning:
+      pen
+        ..reset()
+        ..yellow(bold: true);
+      return pen(text);
+    case LogLevel.info:
+      pen
+        ..reset()
+        ..white(bold: true);
+      return pen(text);
+    case LogLevel.debug:
+      pen
+        ..reset()
+        ..green(bold: true);
+      return pen(text);
+    case traceLevel:
+      pen
+        ..reset()
+        ..blue(bold: true);
+      return pen(text);
+  }
+  return text;
+}
+
+void setRootLogLevel(LogLevel? level) {
+  Loggy('').level = getLogOptions(level);
+  Veilid.instance.changeLogLevel(
+      'all', '#enabled=${convertToVeilidConfigLogLevel(level).name}');
+}
+
+extension PrettyPrintLogRecord on LogRecord {
+  String pretty() {
+    final lstr =
+        wrapWithLogColor(level, '[${level.toString().substring(0, 1)}]');
+    return '$lstr $message';
+  }
+}
+
+class CallbackPrinter extends LoggyPrinter {
+  void Function(LogRecord)? callback;
+
+  CallbackPrinter() : super();
+
+  @override
+  void onLog(LogRecord record) {
+    final out = record.pretty().replaceAll('\uFFFD', '');
+
+    if (!kIsWeb && Platform.isAndroid) {
+      debugPrint(out);
+    } else {
+      debugPrintSynchronously(out);
+    }
+
+    callback?.call(record);
+  }
+
+  // Keep this as a function
+  // ignore: use_setters_to_change_properties
+  void setCallback(void Function(LogRecord)? cb) {
+    callback = cb;
+  }
+}
+
+var globalTerminalPrinter = CallbackPrinter();
+
+extension TraceLoggy on Loggy {
+  void trace(dynamic message, [Object? error, StackTrace? stackTrace]) =>
+      log(traceLevel, message, error, stackTrace);
+}
+
+LogOptions getLogOptions(LogLevel? level) => LogOptions(
+      level ?? LogLevel.all,
+      stackTraceLevel: LogLevel.error,
+    );
+
+void initLoggy() {
+  Loggy.initLoggy(
+    logPrinter: globalTerminalPrinter,
+    logOptions: getLogOptions(null),
+  );
+
+  setRootLogLevel(LogLevel.info);
+}

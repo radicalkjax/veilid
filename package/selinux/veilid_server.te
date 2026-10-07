@@ -1,0 +1,80 @@
+policy_module(veilid_server, 0.1.0)
+
+########################################
+#
+# Declarations
+#
+
+# Daemon domain, entered from systemd via the labeled binary.
+type veilid_server_t;
+type veilid_server_exec_t;
+init_daemon_domain(veilid_server_t, veilid_server_exec_t)
+# The systemd unit sets NoNewPrivileges=true; permit the transition under NNP.
+# Guarded: the interface is Fedora/RHEL-only (absent in Debian/Ubuntu refpolicy).
+ifdef(`init_nnp_daemon_domain',`
+init_nnp_daemon_domain(veilid_server_t)
+')
+
+# Configuration under /etc/veilid-server.
+type veilid_server_conf_t;
+files_config_file(veilid_server_conf_t)
+
+# State, key stores and IPC sockets under /var/db/veilid-server.
+type veilid_server_var_lib_t;
+files_type(veilid_server_var_lib_t)
+
+########################################
+#
+# Local policy
+#
+
+# tokio runtime: threads, signals, self-pipes, polling.
+allow veilid_server_t self:process { fork getsched setsched signal signull };
+allow veilid_server_t self:fifo_file rw_fifo_file_perms;
+allow veilid_server_t self:tcp_socket { create_stream_socket_perms accept listen };
+allow veilid_server_t self:udp_socket create_socket_perms;
+allow veilid_server_t self:unix_stream_socket { create_stream_socket_perms connectto };
+allow veilid_server_t self:unix_dgram_socket create_socket_perms;
+allow veilid_server_t self:netlink_route_socket r_netlink_socket_perms;
+
+# Read the YAML config (/etc/veilid-server/veilid-server.conf).
+read_files_pattern(veilid_server_t, veilid_server_conf_t, veilid_server_conf_t)
+read_lnk_files_pattern(veilid_server_t, veilid_server_conf_t, veilid_server_conf_t)
+files_search_etc(veilid_server_t)
+
+# Own the state dir; create the client-API IPC sockets it serves there.
+manage_dirs_pattern(veilid_server_t, veilid_server_var_lib_t, veilid_server_var_lib_t)
+manage_files_pattern(veilid_server_t, veilid_server_var_lib_t, veilid_server_var_lib_t)
+manage_lnk_files_pattern(veilid_server_t, veilid_server_var_lib_t, veilid_server_var_lib_t)
+manage_sock_files_pattern(veilid_server_t, veilid_server_var_lib_t, veilid_server_var_lib_t)
+files_var_lib_filetrans(veilid_server_t, veilid_server_var_lib_t, { dir file lnk_file sock_file })
+files_search_var(veilid_server_t)
+files_search_var_lib(veilid_server_t)
+# sqlite memory-maps its WAL/shm table-store files.
+allow veilid_server_t veilid_server_var_lib_t:file map;
+
+# Listen on the node ports (default :5150) and dial arbitrary peers; resolve bootstrap names.
+corenet_tcp_bind_generic_node(veilid_server_t)
+corenet_udp_bind_generic_node(veilid_server_t)
+corenet_tcp_bind_all_unreserved_ports(veilid_server_t)
+corenet_udp_bind_all_unreserved_ports(veilid_server_t)
+corenet_tcp_connect_all_ports(veilid_server_t)
+corenet_tcp_sendrecv_all_ports(veilid_server_t)
+corenet_udp_sendrecv_all_ports(veilid_server_t)
+corenet_all_recvfrom_unlabeled(veilid_server_t)
+sysnet_dns_name_resolve(veilid_server_t)
+
+# Read system/network state, entropy, and local time.
+kernel_read_system_state(veilid_server_t)
+kernel_read_network_state(veilid_server_t)
+
+# sysinfo: read cgroup cpu/memory limits and stat mounted filesystems.
+fs_search_cgroup_dirs(veilid_server_t)
+fs_read_cgroup_files(veilid_server_t)
+fs_getattr_all_fs(veilid_server_t)
+dev_read_rand(veilid_server_t)
+dev_read_urand(veilid_server_t)
+dev_read_sysfs(veilid_server_t)
+
+# Journald/syslog (logging.system is enabled by default).
+logging_send_syslog_msg(veilid_server_t)

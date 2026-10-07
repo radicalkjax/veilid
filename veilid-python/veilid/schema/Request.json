@@ -1,0 +1,2664 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Request",
+  "description": "A single remote API request: an operation paired with a correlation id.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Operation Id (pairs with Response, or empty if unidirectional).",
+      "type": "integer",
+      "format": "uint32",
+      "default": 0,
+      "minimum": 0
+    }
+  },
+  "oneOf": [
+    {
+      "description": "Host-application control command, handled outside veilid-core.",
+      "type": "object",
+      "properties": {
+        "args": {
+          "description": "Control command arguments.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "op": {
+          "type": "string",
+          "const": "Control"
+        }
+      },
+      "required": [
+        "op",
+        "args"
+      ]
+    },
+    {
+      "description": "Get a full copy of the current node state.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "GetState"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Check whether the node has shut down.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "IsShutdown"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Connect to the network.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "Attach"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Disconnect from the network.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "Detach"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Create a new `MemberId` for use in building `DHTSchema`s.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "GenerateMemberId"
+        },
+        "writer_key": {
+          "description": "Writer public key the member id is derived from.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "writer_key"
+      ]
+    },
+    {
+      "description": "Deterministically build the record key for a schema and owner.",
+      "type": "object",
+      "properties": {
+        "encryption_key": {
+          "description": "Optional record encryption key.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "op": {
+          "type": "string",
+          "const": "GetDhtRecordKey"
+        },
+        "owner": {
+          "description": "Owner public key, whose crypto kind selects the record key kind.",
+          "type": "string"
+        },
+        "schema": {
+          "description": "Schema the record uses.",
+          "$ref": "#/$defs/DHTSchema"
+        }
+      },
+      "required": [
+        "op",
+        "schema",
+        "owner"
+      ]
+    },
+    {
+      "description": "Allocate a new private route with default options.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "NewPrivateRoute"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Allocate a new private route with a specified cryptosystem, stability, and sequencing.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "NewCustomPrivateRoute"
+        },
+        "private_spec": {
+          "description": "Route specification: crypto kinds, hop count, stability, sequencing.",
+          "$ref": "#/$defs/PrivateSpec",
+          "default": {
+            "crypto_kinds": [],
+            "hop_count": 0,
+            "sequencing": "PreferOrdered",
+            "stability": "Reliable"
+          }
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Import a private route blob as a remote private route.",
+      "type": "object",
+      "properties": {
+        "blob": {
+          "description": "Published route blob to import.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "ImportRemotePrivateRoute"
+        }
+      },
+      "required": [
+        "op",
+        "blob"
+      ]
+    },
+    {
+      "description": "Release a locally allocated or remotely imported private route.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "ReleasePrivateRoute"
+        },
+        "route_id": {
+          "description": "Route to release.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "route_id"
+      ]
+    },
+    {
+      "description": "Reply to an `AppCall` received over a [VeilidUpdate::AppCall].",
+      "type": "object",
+      "properties": {
+        "call_id": {
+          "description": "Identifies which call to answer.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Answer blob returned to the caller.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "AppCallReply"
+        }
+      },
+      "required": [
+        "op",
+        "call_id",
+        "message"
+      ]
+    },
+    {
+      "description": "Allocate a new routing context with default safety, sequencing, and stability.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "NewRoutingContext"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Operation on an existing routing context.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "RoutingContext"
+        }
+      },
+      "$ref": "#/$defs/RoutingContextRequest",
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Begin a transaction over a set of opened DHT records.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "TransactDhtRecords"
+        },
+        "options": {
+          "description": "Optional transaction options, including a default signing keypair.",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TransactDHTRecordsOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "record_keys": {
+          "description": "Records to enroll in the transaction.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "op",
+        "record_keys"
+      ]
+    },
+    {
+      "description": "Operation on an existing DHT transaction.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "DhtTransaction"
+        }
+      },
+      "$ref": "#/$defs/DhtTransactionRequest",
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Open (creating if absent) a named table store database.",
+      "type": "object",
+      "properties": {
+        "column_count": {
+          "description": "Number of columns.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "name": {
+          "description": "Database name.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "OpenTableDb"
+        }
+      },
+      "required": [
+        "op",
+        "name",
+        "column_count"
+      ]
+    },
+    {
+      "description": "Delete a named table store database.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Database name.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "DeleteTableDb"
+        }
+      },
+      "required": [
+        "op",
+        "name"
+      ]
+    },
+    {
+      "description": "Operation on an open table store database.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "TableDb"
+        }
+      },
+      "$ref": "#/$defs/TableDbRequest",
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Operation on a table store database transaction.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "TableDbTransaction"
+        }
+      },
+      "$ref": "#/$defs/TableDbTransactionRequest",
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get the cryptosystem for a crypto kind.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "description": "Crypto kind to look up.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "GetCryptoSystem"
+        }
+      },
+      "required": [
+        "op",
+        "kind"
+      ]
+    },
+    {
+      "description": "Operation on a cryptosystem.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "CryptoSystem"
+        }
+      },
+      "$ref": "#/$defs/CryptoSystemRequest",
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Verify a set of signatures against node ids over data.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Signed data.",
+          "type": "string"
+        },
+        "node_ids": {
+          "description": "Node ids whose signatures to check.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "op": {
+          "type": "string",
+          "const": "VerifySignatures"
+        },
+        "signatures": {
+          "description": "Signatures to verify, parallel to `node_ids`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "op",
+        "node_ids",
+        "data",
+        "signatures"
+      ]
+    },
+    {
+      "description": "Generate signatures over data with a set of keypairs.",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data to sign.",
+          "type": "string"
+        },
+        "key_pairs": {
+          "description": "Keypairs to sign with.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "op": {
+          "type": "string",
+          "const": "GenerateSignatures"
+        }
+      },
+      "required": [
+        "op",
+        "data",
+        "key_pairs"
+      ]
+    },
+    {
+      "description": "Generate a new keypair of a given crypto kind.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "description": "Crypto kind for the keypair.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "GenerateKeyPair"
+        }
+      },
+      "required": [
+        "op",
+        "kind"
+      ]
+    },
+    {
+      "description": "Get the current timestamp.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "Now"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get a non-decreasing timestamp.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "NowNonDecreasing"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get a strictly increasing timestamp.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "NowIncreasing"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Run a debug command.",
+      "type": "object",
+      "properties": {
+        "command": {
+          "description": "Debug command string.",
+          "type": "string"
+        },
+        "op": {
+          "type": "string",
+          "const": "Debug"
+        }
+      },
+      "required": [
+        "op",
+        "command"
+      ]
+    },
+    {
+      "description": "Get the Veilid version as a string.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "VeilidVersionString"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get the Veilid version as major/minor/patch numbers.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "VeilidVersion"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get the list of compiled-in feature flags.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "VeilidFeatures"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get the default node configuration.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "DefaultVeilidConfig"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "description": "Get the set of supported crypto kinds.",
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "const": "ValidCryptoKinds"
+        }
+      },
+      "required": [
+        "op"
+      ]
+    }
+  ],
+  "$defs": {
+    "AllowOffline": {
+      "description": "Whether a DHT write may be deferred for later when the node is offline. Defaults to true.",
+      "type": "boolean"
+    },
+    "CryptoKind": {
+      "description": "A four-character code",
+      "type": "string"
+    },
+    "CryptoSystemRequest": {
+      "description": "A remote crypto operation request, naming the target cryptosystem handle.",
+      "type": "object",
+      "properties": {
+        "cs_id": {
+          "description": "Handle identifying the cryptosystem instance to operate on.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "oneOf": [
+        {
+          "description": "Release the cryptosystem handle.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "Release"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Get the [`CryptoKind`] fourcc identifying this cryptosystem.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "Kind"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Diffie-Hellman shared secret for the key pair, served from the DH cache.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CachedDh"
+            },
+            "key": {
+              "description": "Peer public key.",
+              "type": "string"
+            },
+            "secret": {
+              "description": "Own secret key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key",
+            "secret"
+          ]
+        },
+        {
+          "description": "Raw Diffie-Hellman shared secret for the key pair, with no caching.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "ComputeDh"
+            },
+            "key": {
+              "description": "Peer public key.",
+              "type": "string"
+            },
+            "secret": {
+              "description": "Own secret key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key",
+            "secret"
+          ]
+        },
+        {
+          "description": "Domain-separated shared secret derived from a key exchange and `domain`.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "GenerateSharedSecret"
+            },
+            "domain": {
+              "description": "Domain separation tag; distinct values yield independent secrets.",
+              "type": "string"
+            },
+            "key": {
+              "description": "Peer public key.",
+              "type": "string"
+            },
+            "secret": {
+              "description": "Own secret key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key",
+            "secret",
+            "domain"
+          ]
+        },
+        {
+          "description": "Seal `plaintext` to a recipient KEM encapsulation key with HPKE base mode (RFC 9180), single-shot.",
+          "type": "object",
+          "properties": {
+            "aad": {
+              "description": "Associated data; authenticated but not encrypted.",
+              "type": "string"
+            },
+            "cs_op": {
+              "type": "string",
+              "const": "HpkeSeal"
+            },
+            "plaintext": {
+              "description": "Plaintext to seal.",
+              "type": "string"
+            },
+            "recipient": {
+              "description": "Recipient KEM encapsulation key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "recipient",
+            "aad",
+            "plaintext"
+          ]
+        },
+        {
+          "description": "Open a sealed blob produced by `HpkeSeal` with the recipient KEM decapsulation key.",
+          "type": "object",
+          "properties": {
+            "aad": {
+              "description": "Associated data; must match what was supplied at seal.",
+              "type": "string"
+            },
+            "cs_op": {
+              "type": "string",
+              "const": "HpkeOpen"
+            },
+            "sealed": {
+              "description": "Sealed blob.",
+              "type": "string"
+            },
+            "secret": {
+              "description": "Recipient KEM decapsulation key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "secret",
+            "aad",
+            "sealed"
+          ]
+        },
+        {
+          "description": "Fill `len` bytes from the cryptographic RNG.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "RandomBytes"
+            },
+            "len": {
+              "description": "Number of bytes to generate.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "cs_op",
+            "len"
+          ]
+        },
+        {
+          "description": "Byte length of a shared secret.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "SharedSecretLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a nonce.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "NonceLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a hash digest.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "HashDigestLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a public key.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "PublicKeyLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a secret key.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "SecretKeyLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a KEM encapsulation key.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "EncapsulationKeyLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a KEM decapsulation key.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "DecapsulationKeyLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Byte length of a signature.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "SignatureLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Default salt length for password hashing and KDF operations.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "DefaultSaltLength"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Bytes an AEAD operation adds to the ciphertext (the tag length).",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "AeadOverhead"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Verify a shared secret carries this cryptosystem's kind and length.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CheckSharedSecret"
+            },
+            "secret": {
+              "description": "Shared secret to check.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "secret"
+          ]
+        },
+        {
+          "description": "Verify a nonce has the correct length.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CheckNonce"
+            },
+            "nonce": {
+              "description": "Nonce to check.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "nonce"
+          ]
+        },
+        {
+          "description": "Verify a hash digest carries this cryptosystem's kind and length.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CheckHashDigest"
+            },
+            "digest": {
+              "description": "Hash digest to check.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "digest"
+          ]
+        },
+        {
+          "description": "Verify a public key carries this cryptosystem's kind and length.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CheckPublicKey"
+            },
+            "key": {
+              "description": "Public key to check.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Verify a secret key carries this cryptosystem's kind and length.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CheckSecretKey"
+            },
+            "key": {
+              "description": "Secret key to check.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Verify a signature carries this cryptosystem's kind and length.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "CheckSignature"
+            },
+            "signature": {
+              "description": "Signature to check.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "signature"
+          ]
+        },
+        {
+          "description": "Hash a password with a salt, returning a PHC hash string.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "HashPassword"
+            },
+            "password": {
+              "description": "Password bytes.",
+              "type": "string"
+            },
+            "salt": {
+              "description": "Salt bytes.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "password",
+            "salt"
+          ]
+        },
+        {
+          "description": "Check a password against a PHC hash string.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "VerifyPassword"
+            },
+            "password": {
+              "description": "Password bytes.",
+              "type": "string"
+            },
+            "password_hash": {
+              "description": "PHC hash string to check against.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "password",
+            "password_hash"
+          ]
+        },
+        {
+          "description": "Derive a deterministic shared secret from a password and salt via KDF.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "DeriveSharedSecret"
+            },
+            "password": {
+              "description": "Password bytes.",
+              "type": "string"
+            },
+            "salt": {
+              "description": "Salt bytes.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "password",
+            "salt"
+          ]
+        },
+        {
+          "description": "A fresh random nonce.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "RandomNonce"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "A fresh random shared secret.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "RandomSharedSecret"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Generate a fresh random signing key pair.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "GenerateKeyPair"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Generate a fresh random KEM key pair for this cryptosystem.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "GenerateKemKeyPair"
+            }
+          },
+          "required": [
+            "cs_op"
+          ]
+        },
+        {
+          "description": "Derive the KEM encapsulation key corresponding to a signing public key (VLD0-only bridge).",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "EncapsulationKeyFromSigningKey"
+            },
+            "key": {
+              "description": "Signing public key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Derive the KEM decapsulation key corresponding to a signing secret key (VLD0-only bridge).",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "DecapsulationKeyFromSigningSecret"
+            },
+            "secret": {
+              "description": "Signing secret key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "secret"
+          ]
+        },
+        {
+          "description": "Hash a byte slice, returning a digest tagged with this kind.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "GenerateHash"
+            },
+            "data": {
+              "description": "Data to hash.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "data"
+          ]
+        },
+        {
+          "description": "Check that a public and secret key form a usable signing pair.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "ValidateKeyPair"
+            },
+            "key": {
+              "description": "Public key.",
+              "type": "string"
+            },
+            "secret": {
+              "description": "Secret key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key",
+            "secret"
+          ]
+        },
+        {
+          "description": "Recompute the hash of `data` and compare it against `hash_digest`.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "ValidateHash"
+            },
+            "data": {
+              "description": "Data to hash.",
+              "type": "string"
+            },
+            "hash_digest": {
+              "description": "Expected digest.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "data",
+            "hash_digest"
+          ]
+        },
+        {
+          "description": "Sign `data` with the key pair, returning a detached signature.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "Sign"
+            },
+            "data": {
+              "description": "Data to sign.",
+              "type": "string"
+            },
+            "key": {
+              "description": "Public key.",
+              "type": "string"
+            },
+            "secret": {
+              "description": "Secret key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key",
+            "secret",
+            "data"
+          ]
+        },
+        {
+          "description": "Verify a detached `signature` over `data` for `key`.",
+          "type": "object",
+          "properties": {
+            "cs_op": {
+              "type": "string",
+              "const": "Verify"
+            },
+            "data": {
+              "description": "Signed data.",
+              "type": "string"
+            },
+            "key": {
+              "description": "Public key.",
+              "type": "string"
+            },
+            "signature": {
+              "description": "Detached signature to verify.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "key",
+            "data",
+            "signature"
+          ]
+        },
+        {
+          "description": "Decrypt and authenticate `body`, returning the plaintext.",
+          "type": "object",
+          "properties": {
+            "associated_data": {
+              "description": "Associated data; must match what was supplied at encryption.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "body": {
+              "description": "Ciphertext with appended authentication tag.",
+              "type": "string"
+            },
+            "cs_op": {
+              "type": "string",
+              "const": "DecryptAead"
+            },
+            "nonce": {
+              "description": "Nonce.",
+              "type": "string"
+            },
+            "shared_secret": {
+              "description": "Shared secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "body",
+            "nonce",
+            "shared_secret"
+          ]
+        },
+        {
+          "description": "Encrypt and authenticate `body`, returning the ciphertext with tag.",
+          "type": "object",
+          "properties": {
+            "associated_data": {
+              "description": "Associated data; authenticated but not encrypted.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "body": {
+              "description": "Plaintext to encrypt.",
+              "type": "string"
+            },
+            "cs_op": {
+              "type": "string",
+              "const": "EncryptAead"
+            },
+            "nonce": {
+              "description": "Nonce; never reuse the same nonce with the same shared secret.",
+              "type": "string"
+            },
+            "shared_secret": {
+              "description": "Shared secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "body",
+            "nonce",
+            "shared_secret"
+          ]
+        },
+        {
+          "description": "Stream-cipher `body`, without authentication (confidentiality only).",
+          "type": "object",
+          "properties": {
+            "body": {
+              "description": "Data to encrypt or decrypt.",
+              "type": "string"
+            },
+            "cs_op": {
+              "type": "string",
+              "const": "CryptNoAuth"
+            },
+            "nonce": {
+              "description": "Nonce.",
+              "type": "string"
+            },
+            "shared_secret": {
+              "description": "Shared secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cs_op",
+            "body",
+            "nonce",
+            "shared_secret"
+          ]
+        }
+      ],
+      "required": [
+        "cs_id"
+      ]
+    },
+    "DHTReportScope": {
+      "description": "DHT Record Report Scope",
+      "oneOf": [
+        {
+          "description": "Return only the local copy sequence numbers\nUseful for seeing what subkeys you have locally and which ones have not been retrieved",
+          "type": "string",
+          "const": "Local"
+        },
+        {
+          "description": "Return the local sequence numbers and the network sequence numbers with GetValue fanout parameters\nProvides an independent view of both the local sequence numbers and the network sequence numbers for nodes that\nwould be reached as if the local copy did not exist locally.\nUseful for determining if the current local copy should be updated from the network.",
+          "type": "string",
+          "const": "SyncGet"
+        },
+        {
+          "description": "Return the local sequence numbers and the network sequence numbers with SetValue fanout parameters\nProvides an independent view of both the local sequence numbers and the network sequence numbers for nodes that\nwould be reached as if the local copy did not exist locally.\nUseful for determining if the unchanged local copy should be pushed to the network.",
+          "type": "string",
+          "const": "SyncSet"
+        },
+        {
+          "description": "Return the local sequence numbers and the network sequence numbers with GetValue fanout parameters\nProvides an view of both the local sequence numbers and the network sequence numbers for nodes that\nwould be reached as if a GetValue operation were being performed, including accepting newer values from the network.\nUseful for determining which subkeys would change with a GetValue operation",
+          "type": "string",
+          "const": "UpdateGet"
+        },
+        {
+          "description": "Return the local sequence numbers and the network sequence numbers with SetValue fanout parameters\nProvides an view of both the local sequence numbers and the network sequence numbers for nodes that\nwould be reached as if a SetValue operation were being performed, including accepting newer values from the network.\nThis simulates a SetValue with the initial sequence number incremented by 1, like a real SetValue would when updating.\nUseful for determine which subkeys would change on an SetValue operation",
+          "type": "string",
+          "const": "UpdateSet"
+        }
+      ]
+    },
+    "DHTSchema": {
+      "description": "Enum over all the supported DHT Schemas",
+      "oneOf": [
+        {
+          "description": "Default schema: a fixed number of owner-writable subkeys.",
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "DFLT"
+            }
+          },
+          "$ref": "#/$defs/DHTSchemaDFLT",
+          "required": [
+            "kind"
+          ]
+        },
+        {
+          "description": "Simple schema: owner subkeys plus per-member writable subkeys.",
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "SMPL"
+            }
+          },
+          "$ref": "#/$defs/DHTSchemaSMPL",
+          "required": [
+            "kind"
+          ]
+        }
+      ]
+    },
+    "DHTSchemaDFLT": {
+      "description": "Default DHT Schema (DFLT)",
+      "type": "object",
+      "properties": {
+        "o_cnt": {
+          "description": "Owner subkey count",
+          "type": "integer",
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0
+        }
+      },
+      "required": [
+        "o_cnt"
+      ]
+    },
+    "DHTSchemaSMPL": {
+      "description": "Simple DHT Schema (SMPL)",
+      "type": "object",
+      "properties": {
+        "members": {
+          "description": "Members",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DHTSchemaSMPLMember"
+          }
+        },
+        "o_cnt": {
+          "description": "Owner subkey count",
+          "type": "integer",
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0
+        }
+      },
+      "required": [
+        "o_cnt",
+        "members"
+      ]
+    },
+    "DHTSchemaSMPLMember": {
+      "description": "Simple DHT Schema (SMPL) Member",
+      "type": "object",
+      "properties": {
+        "m_cnt": {
+          "description": "Member subkey count",
+          "type": "integer",
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0
+        },
+        "m_key": {
+          "description": "Member key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "m_key",
+        "m_cnt"
+      ]
+    },
+    "DHTTransactionSetValueOptions": {
+      "description": "Options that override defaults for DHTTransaction::set",
+      "type": "object",
+      "properties": {
+        "writer": {
+          "description": "Override writer key pair for this operation",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "DhtTransactionRequest": {
+      "description": "Request to operate on a DHT transaction held by the remote node.",
+      "type": "object",
+      "properties": {
+        "dhttx_id": {
+          "description": "Id of the DHT transaction the operation applies to.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "oneOf": [
+        {
+          "description": "Release the transaction handle, rolling back if not yet committed.",
+          "type": "object",
+          "properties": {
+            "dhttx_op": {
+              "type": "string",
+              "const": "Release"
+            }
+          },
+          "required": [
+            "dhttx_op"
+          ]
+        },
+        {
+          "description": "Commit the transaction, applying all write operations atomically.",
+          "type": "object",
+          "properties": {
+            "dhttx_op": {
+              "type": "string",
+              "const": "Commit"
+            }
+          },
+          "required": [
+            "dhttx_op"
+          ]
+        },
+        {
+          "description": "Roll back the transaction, performing no write operations.",
+          "type": "object",
+          "properties": {
+            "dhttx_op": {
+              "type": "string",
+              "const": "Rollback"
+            }
+          },
+          "required": [
+            "dhttx_op"
+          ]
+        },
+        {
+          "description": "Extend the transaction with additional record keys.",
+          "type": "object",
+          "properties": {
+            "dhttx_op": {
+              "type": "string",
+              "const": "Extend"
+            },
+            "options": {
+              "description": "Options for extending the transaction over the records.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TransactDHTRecordsOptions"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "record_keys": {
+              "description": "Record keys to add to the transaction.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "dhttx_op",
+            "record_keys"
+          ]
+        },
+        {
+          "description": "Get a record subkey value inside the transaction, pulling the latest from the network.",
+          "type": "object",
+          "properties": {
+            "dhttx_op": {
+              "type": "string",
+              "const": "Get"
+            },
+            "key": {
+              "description": "Record key to read.",
+              "type": "string"
+            },
+            "subkey": {
+              "description": "Subkey to read.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "dhttx_op",
+            "key",
+            "subkey"
+          ]
+        },
+        {
+          "description": "Set a record subkey value inside the transaction.",
+          "type": "object",
+          "properties": {
+            "data": {
+              "description": "Data to write to the subkey.",
+              "type": "string"
+            },
+            "dhttx_op": {
+              "type": "string",
+              "const": "Set"
+            },
+            "key": {
+              "description": "Record key to write.",
+              "type": "string"
+            },
+            "options": {
+              "description": "Options for setting the value, including an overriding writer.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/DHTTransactionSetValueOptions"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "subkey": {
+              "description": "Subkey to write.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "dhttx_op",
+            "key",
+            "subkey",
+            "data"
+          ]
+        },
+        {
+          "description": "Inspect record subkey state inside the transaction, without network activity.",
+          "type": "object",
+          "properties": {
+            "dhttx_op": {
+              "type": "string",
+              "const": "Inspect"
+            },
+            "key": {
+              "description": "Record key to inspect.",
+              "type": "string"
+            },
+            "scope": {
+              "description": "Scope of the subkey state to report.",
+              "$ref": "#/$defs/DHTReportScope",
+              "default": "Local"
+            },
+            "subkeys": {
+              "description": "Subkey range to inspect, or all subkeys if omitted.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ValueSubkeyRangeSet"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "dhttx_op",
+            "key"
+          ]
+        }
+      ],
+      "required": [
+        "dhttx_id"
+      ]
+    },
+    "PrivateSpec": {
+      "description": "Options for private routes (receiver privacy).",
+      "type": "object",
+      "properties": {
+        "crypto_kinds": {
+          "description": "Empty value here will use all the available crypto kinds",
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CryptoKind"
+          }
+        },
+        "hop_count": {
+          "description": "If zero this will be set to to the default route hop count",
+          "type": "integer",
+          "format": "uint",
+          "default": 0,
+          "minimum": 0
+        },
+        "sequencing": {
+          "description": "Prefer connection-oriented sequenced protocols.",
+          "$ref": "#/$defs/Sequencing",
+          "default": "PreferOrdered"
+        },
+        "stability": {
+          "description": "Prefer reliability over speed.",
+          "$ref": "#/$defs/Stability",
+          "default": "Reliable"
+        }
+      }
+    },
+    "RoutingContextRequest": {
+      "description": "A request to invoke an operation on a remote node's routing context.",
+      "type": "object",
+      "properties": {
+        "rc_id": {
+          "description": "Id of the routing context to operate on.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "oneOf": [
+        {
+          "description": "Release the routing context, freeing its id.",
+          "type": "object",
+          "properties": {
+            "rc_op": {
+              "type": "string",
+              "const": "Release"
+            }
+          },
+          "required": [
+            "rc_op"
+          ]
+        },
+        {
+          "description": "Turn on sender privacy with default hop count, stability, and sequencing.",
+          "type": "object",
+          "properties": {
+            "rc_op": {
+              "type": "string",
+              "const": "WithDefaultSafety"
+            }
+          },
+          "required": [
+            "rc_op"
+          ]
+        },
+        {
+          "description": "Use a custom safety selection, returning a new routing context.",
+          "type": "object",
+          "properties": {
+            "rc_op": {
+              "type": "string",
+              "const": "WithSafety"
+            },
+            "safety_selection": {
+              "description": "Safety routing requirements to apply.",
+              "$ref": "#/$defs/SafetySelection"
+            }
+          },
+          "required": [
+            "rc_op",
+            "safety_selection"
+          ]
+        },
+        {
+          "description": "Use a specified sequencing preference, returning a new routing context.",
+          "type": "object",
+          "properties": {
+            "rc_op": {
+              "type": "string",
+              "const": "WithSequencing"
+            },
+            "sequencing": {
+              "description": "Ordered vs unordered message delivery preference.",
+              "$ref": "#/$defs/Sequencing"
+            }
+          },
+          "required": [
+            "rc_op",
+            "sequencing"
+          ]
+        },
+        {
+          "description": "Get the safety selection in use on this routing context.",
+          "type": "object",
+          "properties": {
+            "rc_op": {
+              "type": "string",
+              "const": "Safety"
+            }
+          },
+          "required": [
+            "rc_op"
+          ]
+        },
+        {
+          "description": "App-level bidirectional call that expects a response to be returned.",
+          "type": "object",
+          "properties": {
+            "message": {
+              "description": "Message blob of up to 32768 bytes.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "AppCall"
+            },
+            "target": {
+              "description": "Destination node id or private route.",
+              "$ref": "#/$defs/Target"
+            }
+          },
+          "required": [
+            "rc_op",
+            "target",
+            "message"
+          ]
+        },
+        {
+          "description": "App-level unidirectional message that does not expect a response.",
+          "type": "object",
+          "properties": {
+            "message": {
+              "description": "Message blob of up to 32768 bytes.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "AppMessage"
+            },
+            "target": {
+              "description": "Destination node id or private route.",
+              "$ref": "#/$defs/Target"
+            }
+          },
+          "required": [
+            "rc_op",
+            "target",
+            "message"
+          ]
+        },
+        {
+          "description": "Create a new DHT record, leaving it open.",
+          "type": "object",
+          "properties": {
+            "kind": {
+              "description": "Cryptosystem kind to use.",
+              "type": "string"
+            },
+            "owner": {
+              "description": "Owner keypair to use, or a random one if None.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "CreateDhtRecord"
+            },
+            "schema": {
+              "description": "Schema to use when creating the record.",
+              "$ref": "#/$defs/DHTSchema"
+            }
+          },
+          "required": [
+            "rc_op",
+            "kind",
+            "schema"
+          ]
+        },
+        {
+          "description": "Open a DHT record at a specific key.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "Record key to open.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "OpenDhtRecord"
+            },
+            "writer": {
+              "description": "Default writer keypair to associate for writer capability.",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Close an opened DHT record, allowing it to be re-opened.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "Record key to close.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "CloseDhtRecord"
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Delete a DHT record from local storage.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "Record key to delete.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "DeleteDhtRecord"
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Get the latest value of a subkey.",
+          "type": "object",
+          "properties": {
+            "force_refresh": {
+              "description": "Force a network data refresh rather than using the local copy.",
+              "type": "boolean"
+            },
+            "key": {
+              "description": "Record key to read.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "GetDhtValue"
+            },
+            "subkey": {
+              "description": "Subkey to read.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "rc_op",
+            "key",
+            "subkey",
+            "force_refresh"
+          ]
+        },
+        {
+          "description": "Push a changed subkey value to the network.",
+          "type": "object",
+          "properties": {
+            "data": {
+              "description": "Value data to set.",
+              "type": "string"
+            },
+            "key": {
+              "description": "Record key to write.",
+              "type": "string"
+            },
+            "options": {
+              "description": "Optional writer override and other set options.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SetDHTValueOptions"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "SetDhtValue"
+            },
+            "subkey": {
+              "description": "Subkey to write.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "rc_op",
+            "key",
+            "subkey",
+            "data"
+          ]
+        },
+        {
+          "description": "Add or update a watch on a DHT record's subkeys.",
+          "type": "object",
+          "properties": {
+            "count": {
+              "description": "Maximum number of change reports, or u32::MAX if None.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "uint32",
+              "minimum": 0
+            },
+            "expiration": {
+              "description": "Desired expiration timestamp, or no expiration if None.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Timestamp"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "description": "Record key to watch.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "WatchDhtValues"
+            },
+            "subkeys": {
+              "description": "Subkey range to watch, or the entire range if None.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ValueSubkeyRangeSet"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Cancel a watch on a range of subkeys.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "Record key whose watch to modify.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "CancelDhtWatch"
+            },
+            "subkeys": {
+              "description": "Subkey range to stop watching, or the entire range if None.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ValueSubkeyRangeSet"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Inspect a DHT record for subkey state.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "Record key to inspect.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "InspectDhtRecord"
+            },
+            "scope": {
+              "description": "Kind of range the inspection covers.",
+              "$ref": "#/$defs/DHTReportScope",
+              "default": "Local"
+            },
+            "subkeys": {
+              "description": "Subkey range to inspect, or the entire range if None.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ValueSubkeyRangeSet"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        },
+        {
+          "description": "Wait for pending offline subkey writes to flush to the network.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "Record key to flush.",
+              "type": "string"
+            },
+            "rc_op": {
+              "type": "string",
+              "const": "FlushDhtRecord"
+            },
+            "timeout_ms": {
+              "description": "Timeout in milliseconds, or wait indefinitely if None.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "uint64",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "rc_op",
+            "key"
+          ]
+        }
+      ],
+      "required": [
+        "rc_id"
+      ]
+    },
+    "SafetySelection": {
+      "description": "The choice of safety route to include in compiled routes.\n* `SafetySelection::Unsafe`: don't use a safety route, only specify the sequencing preference\n* `SafetySelection::Safe`: use a safety route and parameters specified by a SafetySpec.",
+      "oneOf": [
+        {
+          "description": "Don't use a safety route, only specify the sequencing preference.",
+          "type": "object",
+          "properties": {
+            "Unsafe": {
+              "$ref": "#/$defs/Sequencing"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "Unsafe"
+          ]
+        },
+        {
+          "description": "Use a safety route and parameters specified by a SafetySpec.",
+          "type": "object",
+          "properties": {
+            "Safe": {
+              "$ref": "#/$defs/SafetySpec"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "Safe"
+          ]
+        }
+      ]
+    },
+    "SafetySpec": {
+      "description": "Options for safety routes (sender privacy).",
+      "type": "object",
+      "properties": {
+        "hop_count": {
+          "description": "If zero this will be set to to the default route hop count",
+          "type": "integer",
+          "format": "uint",
+          "default": 0,
+          "minimum": 0
+        },
+        "preferred_route": {
+          "description": "Preferred safety route set id if it still exists.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "sequencing": {
+          "description": "Prefer connection-oriented sequenced protocols.",
+          "$ref": "#/$defs/Sequencing",
+          "default": "PreferOrdered"
+        },
+        "stability": {
+          "description": "Prefer reliability over speed.",
+          "$ref": "#/$defs/Stability",
+          "default": "Reliable"
+        }
+      }
+    },
+    "Sequencing": {
+      "description": "Preferred ordering of RPC message delivery over a route or for RPC messages sent to a target\n  * `Sequencing::PreferUnordered`: any `SequenceOrdering` is acceptable, but `SequenceOrdering::Unordered` will be chosen if available\n  * `Sequencing::PreferOrdered`: any `SequenceOrdering` is acceptable, but `SequenceOrdering::Ordered` will be chosen if available\n  * `Sequencing::EnsureOrdered`: only `SequenceOrdering::Ordered` is acceptable, and if not available, the route will not be created or the message will not be sent\n\nNo sequencing preference guarantees delivery under all conditions, as there is no queuing/buffering in the network",
+      "oneOf": [
+        {
+          "description": "Any `SequenceOrdering` is acceptable, but `SequenceOrdering::Unordered` will be chosen if available",
+          "type": "string",
+          "const": "PreferUnordered"
+        },
+        {
+          "description": "Any `SequenceOrdering` is acceptable, but `SequenceOrdering::Ordered` will be chosen if available",
+          "type": "string",
+          "const": "PreferOrdered"
+        },
+        {
+          "description": "Only `SequenceOrdering::Ordered` is acceptable, and if not available, the route will not be created or the message will not be sent",
+          "type": "string",
+          "const": "EnsureOrdered"
+        }
+      ]
+    },
+    "SetDHTValueOptions": {
+      "description": "Options that override defaults for set_dht_value",
+      "type": "object",
+      "properties": {
+        "allow_offline": {
+          "description": "Defaults to true. If false, the value will not be written if the node is offline,\nand a TryAgain error will be returned.",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AllowOffline"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "writer": {
+          "description": "Override writer key pair for this operation",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "Stability": {
+      "description": "Choice of nodes to include in allocated routes\n* `Stability::LowLatency`: prefer nodes with low latency, but may be unreliable and require route reallocation\n* `Stability::Reliable`: prefer nodes with reliable uptime, but may have higher latency",
+      "oneOf": [
+        {
+          "description": "Prefer nodes with low latency, but may be unreliable and require route reallocation",
+          "type": "string",
+          "const": "LowLatency"
+        },
+        {
+          "description": "Prefer nodes with reliable uptime, but may have higher latency",
+          "type": "string",
+          "const": "Reliable"
+        }
+      ]
+    },
+    "TableDbRequest": {
+      "description": "Request addressed to an opened `TableDB` handle.",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "description": "Id of the opened `TableDB` handle to operate on.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "oneOf": [
+        {
+          "description": "Release the handle, dropping its reference to the table.",
+          "type": "object",
+          "properties": {
+            "db_op": {
+              "type": "string",
+              "const": "Release"
+            }
+          },
+          "required": [
+            "db_op"
+          ]
+        },
+        {
+          "description": "Get the total number of columns in the table.",
+          "type": "object",
+          "properties": {
+            "db_op": {
+              "type": "string",
+              "const": "GetColumnCount"
+            }
+          },
+          "required": [
+            "db_op"
+          ]
+        },
+        {
+          "description": "Get the list of keys in a column.",
+          "type": "object",
+          "properties": {
+            "col": {
+              "description": "Column to enumerate.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "db_op": {
+              "type": "string",
+              "const": "GetKeys"
+            }
+          },
+          "required": [
+            "db_op",
+            "col"
+          ]
+        },
+        {
+          "description": "Start a write transaction on the table.",
+          "type": "object",
+          "properties": {
+            "db_op": {
+              "type": "string",
+              "const": "Transact"
+            }
+          },
+          "required": [
+            "db_op"
+          ]
+        },
+        {
+          "description": "Store a value at a key in a column, as a single immediate transaction.",
+          "type": "object",
+          "properties": {
+            "col": {
+              "description": "Column to write to.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "db_op": {
+              "type": "string",
+              "const": "Store"
+            },
+            "key": {
+              "description": "Key to write.",
+              "type": "string"
+            },
+            "value": {
+              "description": "Value to store.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "db_op",
+            "col",
+            "key",
+            "value"
+          ]
+        },
+        {
+          "description": "Read the value at a key in a column.",
+          "type": "object",
+          "properties": {
+            "col": {
+              "description": "Column to read from.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "db_op": {
+              "type": "string",
+              "const": "Load"
+            },
+            "key": {
+              "description": "Key to read.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "db_op",
+            "col",
+            "key"
+          ]
+        },
+        {
+          "description": "Delete a key from a column, returning its prior value if present.",
+          "type": "object",
+          "properties": {
+            "col": {
+              "description": "Column to delete from.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "db_op": {
+              "type": "string",
+              "const": "Delete"
+            },
+            "key": {
+              "description": "Key to delete.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "db_op",
+            "col",
+            "key"
+          ]
+        }
+      ],
+      "required": [
+        "db_id"
+      ]
+    },
+    "TableDbTransactionRequest": {
+      "description": "Request addressed to an open `TableDB` write transaction.",
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "description": "Id of the transaction to operate on.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        }
+      },
+      "oneOf": [
+        {
+          "description": "Commit the transaction's writes atomically and release it.",
+          "type": "object",
+          "properties": {
+            "tx_op": {
+              "type": "string",
+              "const": "Commit"
+            }
+          },
+          "required": [
+            "tx_op"
+          ]
+        },
+        {
+          "description": "Discard the transaction's writes and release it.",
+          "type": "object",
+          "properties": {
+            "tx_op": {
+              "type": "string",
+              "const": "Rollback"
+            }
+          },
+          "required": [
+            "tx_op"
+          ]
+        },
+        {
+          "description": "Queue a store of a value at a key in a column.",
+          "type": "object",
+          "properties": {
+            "col": {
+              "description": "Column to write to.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "key": {
+              "description": "Key to write.",
+              "type": "string"
+            },
+            "tx_op": {
+              "type": "string",
+              "const": "Store"
+            },
+            "value": {
+              "description": "Value to store.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "tx_op",
+            "col",
+            "key",
+            "value"
+          ]
+        },
+        {
+          "description": "Queue a delete of a key in a column.",
+          "type": "object",
+          "properties": {
+            "col": {
+              "description": "Column to delete from.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "key": {
+              "description": "Key to delete.",
+              "type": "string"
+            },
+            "tx_op": {
+              "type": "string",
+              "const": "Delete"
+            }
+          },
+          "required": [
+            "tx_op",
+            "col",
+            "key"
+          ]
+        }
+      ],
+      "required": [
+        "tx_id"
+      ]
+    },
+    "Target": {
+      "description": "Valid destinations for a message sent over a routing context.",
+      "oneOf": [
+        {
+          "description": "Node by its node id",
+          "type": "object",
+          "properties": {
+            "NodeId": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "NodeId"
+          ]
+        },
+        {
+          "description": "Remote private route by its id.",
+          "type": "object",
+          "properties": {
+            "RouteId": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "RouteId"
+          ]
+        }
+      ]
+    },
+    "Timestamp": {
+      "description": "8-byte-aligned `u64` newtype that serializes as a string for JSON safety.",
+      "type": "string"
+    },
+    "TransactDHTRecordsOptions": {
+      "description": "Options for DHT record transactions",
+      "type": "object",
+      "properties": {
+        "default_signing_keypair": {
+          "description": "The signing keypair to use when opening the transaction.\nSetting this does not override any writer keys used by transaction operations.\nIf a record in the transaction is already opened for writing then the writer key will be used.\nThis is only useful if you have records in a transaction that are only open for reading.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "ValueSubkeyRangeSet": {
+      "description": "A set of DHT subkeys stored as inclusive ranges of [ValueSubkey]",
+      "type": "array",
+      "items": {
+        "type": "array",
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "integer",
+            "format": "uint32",
+            "minimum": 0
+          },
+          {
+            "type": "integer",
+            "format": "uint32",
+            "minimum": 0
+          }
+        ]
+      }
+    }
+  }
+}

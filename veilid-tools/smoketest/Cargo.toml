@@ -1,0 +1,29 @@
+[workspace]
+
+[package]
+name = "veilid_tools_smoketest"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+veilid-tools = { version = "0.5.7", path = "..", default-features = false }
+tokio = { version = "1.49.0", features = [
+    "rt-multi-thread",
+    "time",
+], optional = true }
+
+async-std = { version = "1.13.2", optional = true }
+
+wasm-bindgen-futures = { version = "0.4.71", optional = true }
+wasm-bindgen-test = { version = "0.3.56", optional = true }
+wasm-bindgen = { version = "=0.2.121", optional = true }
+
+[features]
+default = ["rt-tokio"]
+rt-tokio = ["tokio", "veilid-tools/rt-tokio"]
+rt-async-std = ["async-std", "veilid-tools/rt-async-std"]
+rt-wasm-bindgen = [
+    "wasm-bindgen",
+    "wasm-bindgen-test",
+    "veilid-tools/rt-wasm-bindgen",
+]

@@ -1,0 +1,17 @@
+timeout: 500s
+
+concurrency: 1
+
+tags:
+  config: {}
+  crypto: {}
+  table_db: {}
+  routing_context: {}
+  dht: {}
+  dht_transactions: {}
+  app_message: {}
+  app_call: {}
+  app_message_big: {}
+  app_call_big: {}
+  stress:
+    skip: true

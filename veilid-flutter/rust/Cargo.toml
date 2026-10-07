@@ -1,0 +1,98 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-flutter"
+version = "0.5.7"
+# ---
+description = "Flutter/Dart bindings for Veilid"
+resolver = "2"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib", "staticlib", "rlib"]
+path = "src/lib.rs"
+
+[features]
+default = ["rt-tokio", "veilid-core/default"]
+default-wasm = ["veilid-core/default-wasm"]
+debug-api = ["veilid-core/debug-api"]
+crypto-test = ["rt-tokio", "veilid-core/crypto-test"]
+rt-async-std = ["veilid-core/rt-async-std", "async-std"]
+rt-tokio = ["veilid-core/rt-tokio", "tokio"]
+debug-load = ["dep:ctor", "dep:libc-print", "dep:android_log-sys"]
+debug-locks = ["veilid-core/debug-locks"]
+enable-protocol-wss = ["veilid-core/enable-protocol-wss"]
+footgun-nodeid-target = ["veilid-core/footgun-nodeid-target"]
+opentelemetry = [
+    "rt-tokio",
+    "dep:opentelemetry",
+    "opentelemetry_sdk/rt-tokio",
+    "opentelemetry-otlp/grpc-tonic",
+    "opentelemetry-otlp/trace",
+    "veilid-core/instrument",
+]
+
+[dependencies]
+veilid-core = { path = "../../veilid-core", default-features = false, features = [
+    "json-camel-case",
+] }
+tracing = { version = "0.1.41", features = ["log", "attributes"] }
+tracing-subscriber = { version = "0.3.23", features = ["time"] }
+parking_lot = "0.12.5"
+backtrace = "^0.3.76"
+serde_json = "1.0.149"
+serde = "1.0.228"
+cfg-if = "1.0.4"
+data-encoding = { version = "2.9.1" }
+tracing-flame = "0.2.0"
+
+# Dependencies for native builds only
+# This does not build for WASM but we still separate the dependencies for the Cargo.lock feature unification
+# Linux, Windows, Mac, iOS, Android
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dependencies]
+tracing-opentelemetry = "0.32.1"
+
+opentelemetry = { version = "0.31.0", optional = true }
+opentelemetry-otlp = { version = "0.31.0", default-features = false, optional = true }
+opentelemetry_sdk = { version = "0.31.0", optional = true }
+opentelemetry-semantic-conventions = { version = "0.31.0", optional = true }
+
+async-std = { version = "1.13.2", features = ["unstable"], optional = true }
+tokio = { version = "1.50.0", optional = true }
+allo-isolate = "0.1.27"
+ffi-support = "0.4.4"
+lazy_static = "1.5.0"
+hostname = "0.4.2"
+ctor = { version = "1.0.6", optional = true }
+libc-print = { version = "0.3.0", optional = true }
+time = { version = "0.3.47", features = ["local-offset"] }
+chrono = "0.4.40"
+
+# Dependencies for Android builds only
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.22.4"
+paranoid-android = "0.2.2"
+android_log-sys = { version = "0.3.2", optional = true }
+
+# Dependencies for iOS builds only
+[target.'cfg(target_os = "ios")'.dependencies]
+# None currently
+
+# Dependencies for WASM builds only (dart-flavored wasm-bindgen bindings)
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+js-sys = "0.3.83"
+wasm-bindgen = "0.2.121"
+wasm-bindgen-futures = "=0.4.71"
+wasm-bindgen-derive = "0.3.0"
+console_error_panic_hook = "0.1.7"
+send_wrapper = "0.6.0"
+futures-util = { version = "0.3.32" }
+gloo-utils = { version = "0.3.0", features = ["serde"] }
+lazy_static = "1.5.0"
+
+[lints]
+workspace = true

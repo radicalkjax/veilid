@@ -1,0 +1,41 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-remote-api"
+version = "0.5.7"
+# ---
+description = "Library that provides the ability to control a Veilid node remotely"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+documentation = "https://docs.rs/veilid-remote-api"
+homepage = "https://veilid.gitlab.io/developer-book/"
+
+[features]
+default = ["default-tokio"]
+
+default-tokio = ["rt-tokio"]
+default-async-std = ["rt-async-std"]
+
+rt-tokio = ["veilid-core/default-tokio"]
+rt-async-std = ["veilid-core/default-async-std"]
+debug-locks = ["veilid-core/debug-locks"]
+
+[lib]
+crate-type = ["staticlib", "rlib"]
+path = "src/lib.rs"
+
+[dependencies]
+veilid-core = { version = "0.5.7", path = "../veilid-core", default-features = false, features = [
+    "schemars",
+] }
+
+tracing = { version = "0.1.44", features = ["log", "attributes"] }
+serde = { version = "1.0.218", features = ["derive", "rc"] }
+serde_json = { version = "1.0.140" }
+schemars = "1.0.3"
+parking_lot = "0.12.3"
+
+[lints]
+workspace = true

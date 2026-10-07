@@ -1,0 +1,547 @@
+pub mod veilid_remote_api
+pub use veilid_remote_api::veilid_core
+pub enum veilid_remote_api::ApiResult<T> where T: core::clone::Clone + core::fmt::Debug + schemars::JsonSchema
+pub veilid_remote_api::ApiResult::Err
+pub veilid_remote_api::ApiResult::Err::error: veilid_core::veilid_api::error::VeilidAPIError
+pub veilid_remote_api::ApiResult::Ok
+pub veilid_remote_api::ApiResult::Ok::value: T
+pub enum veilid_remote_api::ApiResultWithOptVecString<T> where T: core::clone::Clone + core::fmt::Debug
+pub veilid_remote_api::ApiResultWithOptVecString::Err
+pub veilid_remote_api::ApiResultWithOptVecString::Err::error: veilid_core::veilid_api::error::VeilidAPIError
+pub veilid_remote_api::ApiResultWithOptVecString::Ok
+pub veilid_remote_api::ApiResultWithOptVecString::Ok::value: T
+pub enum veilid_remote_api::ApiResultWithString<T> where T: core::clone::Clone + core::fmt::Debug
+pub veilid_remote_api::ApiResultWithString::Err
+pub veilid_remote_api::ApiResultWithString::Err::error: veilid_core::veilid_api::error::VeilidAPIError
+pub veilid_remote_api::ApiResultWithString::Ok
+pub veilid_remote_api::ApiResultWithString::Ok::value: T
+pub enum veilid_remote_api::ApiResultWithVecString<T> where T: core::clone::Clone + core::fmt::Debug
+pub veilid_remote_api::ApiResultWithVecString::Err
+pub veilid_remote_api::ApiResultWithVecString::Err::error: veilid_core::veilid_api::error::VeilidAPIError
+pub veilid_remote_api::ApiResultWithVecString::Ok
+pub veilid_remote_api::ApiResultWithVecString::Ok::value: T
+pub enum veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::ApiResultWithVecU8::Err
+pub veilid_remote_api::ApiResultWithVecU8::Err::error: veilid_core::veilid_api::error::VeilidAPIError
+pub veilid_remote_api::ApiResultWithVecU8::Ok
+pub veilid_remote_api::ApiResultWithVecU8::Ok::value: alloc::vec::Vec<u8>
+pub enum veilid_remote_api::ApiResultWithVecVecU8
+pub veilid_remote_api::ApiResultWithVecVecU8::Err
+pub veilid_remote_api::ApiResultWithVecVecU8::Err::error: veilid_core::veilid_api::error::VeilidAPIError
+pub veilid_remote_api::ApiResultWithVecVecU8::Ok
+pub veilid_remote_api::ApiResultWithVecVecU8::Ok::value: alloc::vec::Vec<veilid_remote_api::VecU8>
+pub enum veilid_remote_api::CryptoSystemRequestOp
+pub veilid_remote_api::CryptoSystemRequestOp::AeadOverhead
+pub veilid_remote_api::CryptoSystemRequestOp::CachedDh
+pub veilid_remote_api::CryptoSystemRequestOp::CachedDh::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::CachedDh::secret: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::CheckHashDigest
+pub veilid_remote_api::CryptoSystemRequestOp::CheckHashDigest::digest: veilid_core::crypto::types::HashDigest
+pub veilid_remote_api::CryptoSystemRequestOp::CheckNonce
+pub veilid_remote_api::CryptoSystemRequestOp::CheckNonce::nonce: veilid_core::crypto::types::byte_array_types::Nonce
+pub veilid_remote_api::CryptoSystemRequestOp::CheckPublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::CheckPublicKey::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::CheckSecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::CheckSecretKey::key: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::CheckSharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::CheckSharedSecret::secret: veilid_core::crypto::types::SharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::CheckSignature
+pub veilid_remote_api::CryptoSystemRequestOp::CheckSignature::signature: veilid_core::crypto::types::Signature
+pub veilid_remote_api::CryptoSystemRequestOp::ComputeDh
+pub veilid_remote_api::CryptoSystemRequestOp::ComputeDh::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::ComputeDh::secret: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::CryptNoAuth
+pub veilid_remote_api::CryptoSystemRequestOp::CryptNoAuth::body: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::CryptNoAuth::nonce: veilid_core::crypto::types::byte_array_types::Nonce
+pub veilid_remote_api::CryptoSystemRequestOp::CryptNoAuth::shared_secret: veilid_core::crypto::types::SharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::DecapsulationKeyFromSigningSecret
+pub veilid_remote_api::CryptoSystemRequestOp::DecapsulationKeyFromSigningSecret::secret: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::DecapsulationKeyLength
+pub veilid_remote_api::CryptoSystemRequestOp::DecryptAead
+pub veilid_remote_api::CryptoSystemRequestOp::DecryptAead::associated_data: core::option::Option<alloc::vec::Vec<u8>>
+pub veilid_remote_api::CryptoSystemRequestOp::DecryptAead::body: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::DecryptAead::nonce: veilid_core::crypto::types::byte_array_types::Nonce
+pub veilid_remote_api::CryptoSystemRequestOp::DecryptAead::shared_secret: veilid_core::crypto::types::SharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::DefaultSaltLength
+pub veilid_remote_api::CryptoSystemRequestOp::DeriveSharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::DeriveSharedSecret::password: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::DeriveSharedSecret::salt: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::EncapsulationKeyFromSigningKey
+pub veilid_remote_api::CryptoSystemRequestOp::EncapsulationKeyFromSigningKey::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::EncapsulationKeyLength
+pub veilid_remote_api::CryptoSystemRequestOp::EncryptAead
+pub veilid_remote_api::CryptoSystemRequestOp::EncryptAead::associated_data: core::option::Option<alloc::vec::Vec<u8>>
+pub veilid_remote_api::CryptoSystemRequestOp::EncryptAead::body: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::EncryptAead::nonce: veilid_core::crypto::types::byte_array_types::Nonce
+pub veilid_remote_api::CryptoSystemRequestOp::EncryptAead::shared_secret: veilid_core::crypto::types::SharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateHash
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateHash::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateKemKeyPair
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateKeyPair
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateSharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateSharedSecret::domain: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateSharedSecret::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::GenerateSharedSecret::secret: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::HashDigestLength
+pub veilid_remote_api::CryptoSystemRequestOp::HashPassword
+pub veilid_remote_api::CryptoSystemRequestOp::HashPassword::password: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::HashPassword::salt: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeOpen
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeOpen::aad: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeOpen::sealed: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeOpen::secret: veilid_core::crypto::types::DecapsulationKey
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeSeal
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeSeal::aad: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeSeal::plaintext: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::HpkeSeal::recipient: veilid_core::crypto::types::EncapsulationKey
+pub veilid_remote_api::CryptoSystemRequestOp::Kind
+pub veilid_remote_api::CryptoSystemRequestOp::NonceLength
+pub veilid_remote_api::CryptoSystemRequestOp::PublicKeyLength
+pub veilid_remote_api::CryptoSystemRequestOp::RandomBytes
+pub veilid_remote_api::CryptoSystemRequestOp::RandomBytes::len: u32
+pub veilid_remote_api::CryptoSystemRequestOp::RandomNonce
+pub veilid_remote_api::CryptoSystemRequestOp::RandomSharedSecret
+pub veilid_remote_api::CryptoSystemRequestOp::Release
+pub veilid_remote_api::CryptoSystemRequestOp::SecretKeyLength
+pub veilid_remote_api::CryptoSystemRequestOp::SharedSecretLength
+pub veilid_remote_api::CryptoSystemRequestOp::Sign
+pub veilid_remote_api::CryptoSystemRequestOp::Sign::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::Sign::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::Sign::secret: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::SignatureLength
+pub veilid_remote_api::CryptoSystemRequestOp::ValidateHash
+pub veilid_remote_api::CryptoSystemRequestOp::ValidateHash::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::ValidateHash::hash_digest: veilid_core::crypto::types::HashDigest
+pub veilid_remote_api::CryptoSystemRequestOp::ValidateKeyPair
+pub veilid_remote_api::CryptoSystemRequestOp::ValidateKeyPair::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::ValidateKeyPair::secret: veilid_core::crypto::types::SecretKey
+pub veilid_remote_api::CryptoSystemRequestOp::Verify
+pub veilid_remote_api::CryptoSystemRequestOp::Verify::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::Verify::key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::CryptoSystemRequestOp::Verify::signature: veilid_core::crypto::types::Signature
+pub veilid_remote_api::CryptoSystemRequestOp::VerifyPassword
+pub veilid_remote_api::CryptoSystemRequestOp::VerifyPassword::password: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemRequestOp::VerifyPassword::password_hash: alloc::string::String
+pub enum veilid_remote_api::CryptoSystemResponseOp
+pub veilid_remote_api::CryptoSystemResponseOp::AeadOverhead
+pub veilid_remote_api::CryptoSystemResponseOp::AeadOverhead::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::CachedDh
+pub veilid_remote_api::CryptoSystemResponseOp::CachedDh::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::SharedSecret>
+pub veilid_remote_api::CryptoSystemResponseOp::CheckHashDigest
+pub veilid_remote_api::CryptoSystemResponseOp::CheckHashDigest::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::CryptoSystemResponseOp::CheckNonce
+pub veilid_remote_api::CryptoSystemResponseOp::CheckNonce::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::CryptoSystemResponseOp::CheckPublicKey
+pub veilid_remote_api::CryptoSystemResponseOp::CheckPublicKey::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::CryptoSystemResponseOp::CheckSecretKey
+pub veilid_remote_api::CryptoSystemResponseOp::CheckSecretKey::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::CryptoSystemResponseOp::CheckSharedSecret
+pub veilid_remote_api::CryptoSystemResponseOp::CheckSharedSecret::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::CryptoSystemResponseOp::CheckSignature
+pub veilid_remote_api::CryptoSystemResponseOp::CheckSignature::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::CryptoSystemResponseOp::ComputeDh
+pub veilid_remote_api::CryptoSystemResponseOp::ComputeDh::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::SharedSecret>
+pub veilid_remote_api::CryptoSystemResponseOp::CryptNoAuth
+pub veilid_remote_api::CryptoSystemResponseOp::CryptNoAuth::result: veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::CryptoSystemResponseOp::DecapsulationKeyFromSigningSecret
+pub veilid_remote_api::CryptoSystemResponseOp::DecapsulationKeyFromSigningSecret::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::DecapsulationKey>
+pub veilid_remote_api::CryptoSystemResponseOp::DecapsulationKeyLength
+pub veilid_remote_api::CryptoSystemResponseOp::DecapsulationKeyLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::DecryptAead
+pub veilid_remote_api::CryptoSystemResponseOp::DecryptAead::result: veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::CryptoSystemResponseOp::DefaultSaltLength
+pub veilid_remote_api::CryptoSystemResponseOp::DefaultSaltLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::DeriveSharedSecret
+pub veilid_remote_api::CryptoSystemResponseOp::DeriveSharedSecret::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::SharedSecret>
+pub veilid_remote_api::CryptoSystemResponseOp::EncapsulationKeyFromSigningKey
+pub veilid_remote_api::CryptoSystemResponseOp::EncapsulationKeyFromSigningKey::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::EncapsulationKey>
+pub veilid_remote_api::CryptoSystemResponseOp::EncapsulationKeyLength
+pub veilid_remote_api::CryptoSystemResponseOp::EncapsulationKeyLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::EncryptAead
+pub veilid_remote_api::CryptoSystemResponseOp::EncryptAead::result: veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateHash
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateHash::value: veilid_core::crypto::types::HashDigest
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateKemKeyPair
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateKemKeyPair::value: veilid_core::crypto::types::KemKeyPair
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateKeyPair
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateKeyPair::value: veilid_core::crypto::types::KeyPair
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateSharedSecret
+pub veilid_remote_api::CryptoSystemResponseOp::GenerateSharedSecret::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::SharedSecret>
+pub veilid_remote_api::CryptoSystemResponseOp::HashDigestLength
+pub veilid_remote_api::CryptoSystemResponseOp::HashDigestLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::HashPassword
+pub veilid_remote_api::CryptoSystemResponseOp::HashPassword::result: veilid_remote_api::ApiResult<alloc::string::String>
+pub veilid_remote_api::CryptoSystemResponseOp::HpkeOpen
+pub veilid_remote_api::CryptoSystemResponseOp::HpkeOpen::result: veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::CryptoSystemResponseOp::HpkeSeal
+pub veilid_remote_api::CryptoSystemResponseOp::HpkeSeal::result: veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::CryptoSystemResponseOp::InvalidId
+pub veilid_remote_api::CryptoSystemResponseOp::Kind
+pub veilid_remote_api::CryptoSystemResponseOp::Kind::value: veilid_core::crypto::types::CryptoKind
+pub veilid_remote_api::CryptoSystemResponseOp::NonceLength
+pub veilid_remote_api::CryptoSystemResponseOp::NonceLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::PublicKeyLength
+pub veilid_remote_api::CryptoSystemResponseOp::PublicKeyLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::RandomBytes
+pub veilid_remote_api::CryptoSystemResponseOp::RandomBytes::value: alloc::vec::Vec<u8>
+pub veilid_remote_api::CryptoSystemResponseOp::RandomNonce
+pub veilid_remote_api::CryptoSystemResponseOp::RandomNonce::value: veilid_core::crypto::types::byte_array_types::Nonce
+pub veilid_remote_api::CryptoSystemResponseOp::RandomSharedSecret
+pub veilid_remote_api::CryptoSystemResponseOp::RandomSharedSecret::value: veilid_core::crypto::types::SharedSecret
+pub veilid_remote_api::CryptoSystemResponseOp::Release
+pub veilid_remote_api::CryptoSystemResponseOp::SecretKeyLength
+pub veilid_remote_api::CryptoSystemResponseOp::SecretKeyLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::SharedSecretLength
+pub veilid_remote_api::CryptoSystemResponseOp::SharedSecretLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::Sign
+pub veilid_remote_api::CryptoSystemResponseOp::Sign::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::Signature>
+pub veilid_remote_api::CryptoSystemResponseOp::SignatureLength
+pub veilid_remote_api::CryptoSystemResponseOp::SignatureLength::value: u32
+pub veilid_remote_api::CryptoSystemResponseOp::ValidateHash
+pub veilid_remote_api::CryptoSystemResponseOp::ValidateHash::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::CryptoSystemResponseOp::ValidateKeyPair
+pub veilid_remote_api::CryptoSystemResponseOp::ValidateKeyPair::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::CryptoSystemResponseOp::Verify
+pub veilid_remote_api::CryptoSystemResponseOp::Verify::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::CryptoSystemResponseOp::VerifyPassword
+pub veilid_remote_api::CryptoSystemResponseOp::VerifyPassword::result: veilid_remote_api::ApiResult<bool>
+pub enum veilid_remote_api::DhtTransactionRequestOp
+pub veilid_remote_api::DhtTransactionRequestOp::Commit
+pub veilid_remote_api::DhtTransactionRequestOp::Extend
+pub veilid_remote_api::DhtTransactionRequestOp::Extend::options: core::option::Option<veilid_core::veilid_api::types::dht::transact_dht_records_options::TransactDHTRecordsOptions>
+pub veilid_remote_api::DhtTransactionRequestOp::Extend::record_keys: alloc::vec::Vec<veilid_core::crypto::types::RecordKey>
+pub veilid_remote_api::DhtTransactionRequestOp::Get
+pub veilid_remote_api::DhtTransactionRequestOp::Get::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::DhtTransactionRequestOp::Get::subkey: veilid_core::veilid_api::types::dht::ValueSubkey
+pub veilid_remote_api::DhtTransactionRequestOp::Inspect
+pub veilid_remote_api::DhtTransactionRequestOp::Inspect::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::DhtTransactionRequestOp::Inspect::scope: veilid_core::veilid_api::types::dht::dht_record_report::DHTReportScope
+pub veilid_remote_api::DhtTransactionRequestOp::Inspect::subkeys: core::option::Option<veilid_core::veilid_api::types::dht::value_subkey_range_set::ValueSubkeyRangeSet>
+pub veilid_remote_api::DhtTransactionRequestOp::Release
+pub veilid_remote_api::DhtTransactionRequestOp::Rollback
+pub veilid_remote_api::DhtTransactionRequestOp::Set
+pub veilid_remote_api::DhtTransactionRequestOp::Set::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::DhtTransactionRequestOp::Set::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::DhtTransactionRequestOp::Set::options: core::option::Option<veilid_core::veilid_api::types::dht::dht_transaction_set_value_options::DHTTransactionSetValueOptions>
+pub veilid_remote_api::DhtTransactionRequestOp::Set::subkey: veilid_core::veilid_api::types::dht::ValueSubkey
+pub enum veilid_remote_api::DhtTransactionResponseOp
+pub veilid_remote_api::DhtTransactionResponseOp::Commit
+pub veilid_remote_api::DhtTransactionResponseOp::Commit::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::DhtTransactionResponseOp::Extend
+pub veilid_remote_api::DhtTransactionResponseOp::Extend::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::DhtTransactionResponseOp::Get
+pub veilid_remote_api::DhtTransactionResponseOp::Get::result: veilid_remote_api::ApiResult<core::option::Option<veilid_core::veilid_api::types::dht::value_data::ValueData>>
+pub veilid_remote_api::DhtTransactionResponseOp::Inspect
+pub veilid_remote_api::DhtTransactionResponseOp::Inspect::result: veilid_remote_api::ApiResult<alloc::boxed::Box<veilid_core::veilid_api::types::dht::dht_record_report::DHTRecordReport>>
+pub veilid_remote_api::DhtTransactionResponseOp::InvalidId
+pub veilid_remote_api::DhtTransactionResponseOp::Release
+pub veilid_remote_api::DhtTransactionResponseOp::Rollback
+pub veilid_remote_api::DhtTransactionResponseOp::Rollback::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::DhtTransactionResponseOp::Set
+pub veilid_remote_api::DhtTransactionResponseOp::Set::result: veilid_remote_api::ApiResult<core::option::Option<veilid_core::veilid_api::types::dht::value_data::ValueData>>
+pub enum veilid_remote_api::RecvMessage
+pub veilid_remote_api::RecvMessage::Response(veilid_remote_api::Response)
+pub veilid_remote_api::RecvMessage::Update(veilid_core::veilid_api::types::veilid_state::VeilidUpdate)
+pub enum veilid_remote_api::RequestOp
+pub veilid_remote_api::RequestOp::AppCallReply
+pub veilid_remote_api::RequestOp::AppCallReply::call_id: veilid_core::veilid_api::types::aligned_u64::OperationId
+pub veilid_remote_api::RequestOp::AppCallReply::message: alloc::vec::Vec<u8>
+pub veilid_remote_api::RequestOp::Attach
+pub veilid_remote_api::RequestOp::Control
+pub veilid_remote_api::RequestOp::Control::args: alloc::vec::Vec<alloc::string::String>
+pub veilid_remote_api::RequestOp::CryptoSystem(veilid_remote_api::CryptoSystemRequest)
+pub veilid_remote_api::RequestOp::Debug
+pub veilid_remote_api::RequestOp::Debug::command: alloc::string::String
+pub veilid_remote_api::RequestOp::DefaultVeilidConfig
+pub veilid_remote_api::RequestOp::DeleteTableDb
+pub veilid_remote_api::RequestOp::DeleteTableDb::name: alloc::string::String
+pub veilid_remote_api::RequestOp::Detach
+pub veilid_remote_api::RequestOp::DhtTransaction(veilid_remote_api::DhtTransactionRequest)
+pub veilid_remote_api::RequestOp::GenerateKeyPair
+pub veilid_remote_api::RequestOp::GenerateKeyPair::kind: veilid_core::crypto::types::CryptoKind
+pub veilid_remote_api::RequestOp::GenerateMemberId
+pub veilid_remote_api::RequestOp::GenerateMemberId::writer_key: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::RequestOp::GenerateSignatures
+pub veilid_remote_api::RequestOp::GenerateSignatures::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::RequestOp::GenerateSignatures::key_pairs: alloc::vec::Vec<veilid_core::crypto::types::KeyPair>
+pub veilid_remote_api::RequestOp::GetCryptoSystem
+pub veilid_remote_api::RequestOp::GetCryptoSystem::kind: veilid_core::crypto::types::CryptoKind
+pub veilid_remote_api::RequestOp::GetDhtRecordKey
+pub veilid_remote_api::RequestOp::GetDhtRecordKey::encryption_key: core::option::Option<veilid_core::crypto::types::SharedSecret>
+pub veilid_remote_api::RequestOp::GetDhtRecordKey::owner: veilid_core::crypto::types::PublicKey
+pub veilid_remote_api::RequestOp::GetDhtRecordKey::schema: veilid_core::veilid_api::types::dht::schema::DHTSchema
+pub veilid_remote_api::RequestOp::GetState
+pub veilid_remote_api::RequestOp::ImportRemotePrivateRoute
+pub veilid_remote_api::RequestOp::ImportRemotePrivateRoute::blob: alloc::vec::Vec<u8>
+pub veilid_remote_api::RequestOp::IsShutdown
+pub veilid_remote_api::RequestOp::NewCustomPrivateRoute
+pub veilid_remote_api::RequestOp::NewCustomPrivateRoute::private_spec: veilid_core::veilid_api::types::safety::PrivateSpec
+pub veilid_remote_api::RequestOp::NewPrivateRoute
+pub veilid_remote_api::RequestOp::NewRoutingContext
+pub veilid_remote_api::RequestOp::Now
+pub veilid_remote_api::RequestOp::NowIncreasing
+pub veilid_remote_api::RequestOp::NowNonDecreasing
+pub veilid_remote_api::RequestOp::OpenTableDb
+pub veilid_remote_api::RequestOp::OpenTableDb::column_count: u32
+pub veilid_remote_api::RequestOp::OpenTableDb::name: alloc::string::String
+pub veilid_remote_api::RequestOp::ReleasePrivateRoute
+pub veilid_remote_api::RequestOp::ReleasePrivateRoute::route_id: veilid_core::crypto::types::RouteId
+pub veilid_remote_api::RequestOp::RoutingContext(veilid_remote_api::RoutingContextRequest)
+pub veilid_remote_api::RequestOp::TableDb(veilid_remote_api::TableDbRequest)
+pub veilid_remote_api::RequestOp::TableDbTransaction(veilid_remote_api::TableDbTransactionRequest)
+pub veilid_remote_api::RequestOp::TransactDhtRecords
+pub veilid_remote_api::RequestOp::TransactDhtRecords::options: core::option::Option<veilid_core::veilid_api::types::dht::transact_dht_records_options::TransactDHTRecordsOptions>
+pub veilid_remote_api::RequestOp::TransactDhtRecords::record_keys: alloc::vec::Vec<veilid_core::crypto::types::RecordKey>
+pub veilid_remote_api::RequestOp::ValidCryptoKinds
+pub veilid_remote_api::RequestOp::VeilidFeatures
+pub veilid_remote_api::RequestOp::VeilidVersion
+pub veilid_remote_api::RequestOp::VeilidVersionString
+pub veilid_remote_api::RequestOp::VerifySignatures
+pub veilid_remote_api::RequestOp::VerifySignatures::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::RequestOp::VerifySignatures::node_ids: alloc::vec::Vec<veilid_core::crypto::types::PublicKey>
+pub veilid_remote_api::RequestOp::VerifySignatures::signatures: alloc::vec::Vec<veilid_core::crypto::types::Signature>
+pub enum veilid_remote_api::ResponseOp
+pub veilid_remote_api::ResponseOp::AppCallReply
+pub veilid_remote_api::ResponseOp::AppCallReply::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::ResponseOp::Attach
+pub veilid_remote_api::ResponseOp::Attach::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::ResponseOp::BestCryptoSystem
+pub veilid_remote_api::ResponseOp::BestCryptoSystem::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::ResponseOp::Control
+pub veilid_remote_api::ResponseOp::Control::result: veilid_remote_api::ApiResult<alloc::string::String>
+pub veilid_remote_api::ResponseOp::CryptoSystem(veilid_remote_api::CryptoSystemResponse)
+pub veilid_remote_api::ResponseOp::Debug
+pub veilid_remote_api::ResponseOp::Debug::result: veilid_remote_api::ApiResult<alloc::string::String>
+pub veilid_remote_api::ResponseOp::DefaultVeilidConfig
+pub veilid_remote_api::ResponseOp::DefaultVeilidConfig::value: alloc::string::String
+pub veilid_remote_api::ResponseOp::DeleteTableDb
+pub veilid_remote_api::ResponseOp::DeleteTableDb::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::ResponseOp::Detach
+pub veilid_remote_api::ResponseOp::Detach::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::ResponseOp::DhtTransaction(alloc::boxed::Box<veilid_remote_api::DhtTransactionResponse>)
+pub veilid_remote_api::ResponseOp::GenerateKeyPair
+pub veilid_remote_api::ResponseOp::GenerateKeyPair::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::KeyPair>
+pub veilid_remote_api::ResponseOp::GenerateMemberId
+pub veilid_remote_api::ResponseOp::GenerateMemberId::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::MemberId>
+pub veilid_remote_api::ResponseOp::GenerateSignatures
+pub veilid_remote_api::ResponseOp::GenerateSignatures::result: veilid_remote_api::ApiResultWithVecString<alloc::vec::Vec<veilid_core::crypto::types::Signature>>
+pub veilid_remote_api::ResponseOp::GetCryptoSystem
+pub veilid_remote_api::ResponseOp::GetCryptoSystem::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::ResponseOp::GetDhtRecordKey
+pub veilid_remote_api::ResponseOp::GetDhtRecordKey::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::RecordKey>
+pub veilid_remote_api::ResponseOp::GetState
+pub veilid_remote_api::ResponseOp::GetState::result: veilid_remote_api::ApiResult<alloc::boxed::Box<veilid_core::veilid_api::types::veilid_state::VeilidState>>
+pub veilid_remote_api::ResponseOp::ImportRemotePrivateRoute
+pub veilid_remote_api::ResponseOp::ImportRemotePrivateRoute::result: veilid_remote_api::ApiResultWithString<veilid_core::crypto::types::RouteId>
+pub veilid_remote_api::ResponseOp::IsShutdown
+pub veilid_remote_api::ResponseOp::IsShutdown::value: bool
+pub veilid_remote_api::ResponseOp::NewCustomPrivateRoute
+pub veilid_remote_api::ResponseOp::NewCustomPrivateRoute::result: veilid_remote_api::ApiResult<veilid_core::veilid_api::types::route_blob::RouteBlob>
+pub veilid_remote_api::ResponseOp::NewPrivateRoute
+pub veilid_remote_api::ResponseOp::NewPrivateRoute::result: veilid_remote_api::ApiResult<veilid_core::veilid_api::types::route_blob::RouteBlob>
+pub veilid_remote_api::ResponseOp::NewRoutingContext
+pub veilid_remote_api::ResponseOp::NewRoutingContext::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::ResponseOp::Now
+pub veilid_remote_api::ResponseOp::Now::value: veilid_core::veilid_api::types::timestamp::Timestamp
+pub veilid_remote_api::ResponseOp::NowIncreasing
+pub veilid_remote_api::ResponseOp::NowIncreasing::value: veilid_core::veilid_api::types::timestamp::Timestamp
+pub veilid_remote_api::ResponseOp::NowNonDecreasing
+pub veilid_remote_api::ResponseOp::NowNonDecreasing::value: veilid_core::veilid_api::types::timestamp::Timestamp
+pub veilid_remote_api::ResponseOp::OpenTableDb
+pub veilid_remote_api::ResponseOp::OpenTableDb::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::ResponseOp::ReleasePrivateRoute
+pub veilid_remote_api::ResponseOp::ReleasePrivateRoute::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::ResponseOp::RoutingContext(alloc::boxed::Box<veilid_remote_api::RoutingContextResponse>)
+pub veilid_remote_api::ResponseOp::TableDb(veilid_remote_api::TableDbResponse)
+pub veilid_remote_api::ResponseOp::TableDbTransaction(veilid_remote_api::TableDbTransactionResponse)
+pub veilid_remote_api::ResponseOp::TransactDhtRecords
+pub veilid_remote_api::ResponseOp::TransactDhtRecords::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::ResponseOp::ValidCryptoKinds
+pub veilid_remote_api::ResponseOp::ValidCryptoKinds::value: alloc::vec::Vec<veilid_core::crypto::types::CryptoKind>
+pub veilid_remote_api::ResponseOp::VeilidFeatures
+pub veilid_remote_api::ResponseOp::VeilidFeatures::value: alloc::vec::Vec<alloc::string::String>
+pub veilid_remote_api::ResponseOp::VeilidVersion
+pub veilid_remote_api::ResponseOp::VeilidVersion::major: u32
+pub veilid_remote_api::ResponseOp::VeilidVersion::minor: u32
+pub veilid_remote_api::ResponseOp::VeilidVersion::patch: u32
+pub veilid_remote_api::ResponseOp::VeilidVersionString
+pub veilid_remote_api::ResponseOp::VeilidVersionString::value: alloc::string::String
+pub veilid_remote_api::ResponseOp::VerifySignatures
+pub veilid_remote_api::ResponseOp::VerifySignatures::result: veilid_remote_api::ApiResultWithOptVecString<core::option::Option<veilid_core::crypto::types::PublicKeyGroup>>
+pub enum veilid_remote_api::RoutingContextRequestOp
+pub veilid_remote_api::RoutingContextRequestOp::AppCall
+pub veilid_remote_api::RoutingContextRequestOp::AppCall::message: alloc::vec::Vec<u8>
+pub veilid_remote_api::RoutingContextRequestOp::AppCall::target: veilid_core::veilid_api::routing_context::Target
+pub veilid_remote_api::RoutingContextRequestOp::AppMessage
+pub veilid_remote_api::RoutingContextRequestOp::AppMessage::message: alloc::vec::Vec<u8>
+pub veilid_remote_api::RoutingContextRequestOp::AppMessage::target: veilid_core::veilid_api::routing_context::Target
+pub veilid_remote_api::RoutingContextRequestOp::CancelDhtWatch
+pub veilid_remote_api::RoutingContextRequestOp::CancelDhtWatch::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::CancelDhtWatch::subkeys: core::option::Option<veilid_core::veilid_api::types::dht::value_subkey_range_set::ValueSubkeyRangeSet>
+pub veilid_remote_api::RoutingContextRequestOp::CloseDhtRecord
+pub veilid_remote_api::RoutingContextRequestOp::CloseDhtRecord::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::CreateDhtRecord
+pub veilid_remote_api::RoutingContextRequestOp::CreateDhtRecord::kind: veilid_core::crypto::types::CryptoKind
+pub veilid_remote_api::RoutingContextRequestOp::CreateDhtRecord::owner: core::option::Option<veilid_core::crypto::types::KeyPair>
+pub veilid_remote_api::RoutingContextRequestOp::CreateDhtRecord::schema: veilid_core::veilid_api::types::dht::schema::DHTSchema
+pub veilid_remote_api::RoutingContextRequestOp::DeleteDhtRecord
+pub veilid_remote_api::RoutingContextRequestOp::DeleteDhtRecord::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::FlushDhtRecord
+pub veilid_remote_api::RoutingContextRequestOp::FlushDhtRecord::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::FlushDhtRecord::timeout_ms: core::option::Option<u64>
+pub veilid_remote_api::RoutingContextRequestOp::GetDhtValue
+pub veilid_remote_api::RoutingContextRequestOp::GetDhtValue::force_refresh: bool
+pub veilid_remote_api::RoutingContextRequestOp::GetDhtValue::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::GetDhtValue::subkey: veilid_core::veilid_api::types::dht::ValueSubkey
+pub veilid_remote_api::RoutingContextRequestOp::InspectDhtRecord
+pub veilid_remote_api::RoutingContextRequestOp::InspectDhtRecord::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::InspectDhtRecord::scope: veilid_core::veilid_api::types::dht::dht_record_report::DHTReportScope
+pub veilid_remote_api::RoutingContextRequestOp::InspectDhtRecord::subkeys: core::option::Option<veilid_core::veilid_api::types::dht::value_subkey_range_set::ValueSubkeyRangeSet>
+pub veilid_remote_api::RoutingContextRequestOp::OpenDhtRecord
+pub veilid_remote_api::RoutingContextRequestOp::OpenDhtRecord::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::OpenDhtRecord::writer: core::option::Option<veilid_core::crypto::types::KeyPair>
+pub veilid_remote_api::RoutingContextRequestOp::Release
+pub veilid_remote_api::RoutingContextRequestOp::Safety
+pub veilid_remote_api::RoutingContextRequestOp::SetDhtValue
+pub veilid_remote_api::RoutingContextRequestOp::SetDhtValue::data: alloc::vec::Vec<u8>
+pub veilid_remote_api::RoutingContextRequestOp::SetDhtValue::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::SetDhtValue::options: core::option::Option<veilid_core::veilid_api::types::dht::set_dht_value_options::SetDHTValueOptions>
+pub veilid_remote_api::RoutingContextRequestOp::SetDhtValue::subkey: veilid_core::veilid_api::types::dht::ValueSubkey
+pub veilid_remote_api::RoutingContextRequestOp::WatchDhtValues
+pub veilid_remote_api::RoutingContextRequestOp::WatchDhtValues::count: core::option::Option<u32>
+pub veilid_remote_api::RoutingContextRequestOp::WatchDhtValues::expiration: core::option::Option<veilid_core::veilid_api::types::timestamp::Timestamp>
+pub veilid_remote_api::RoutingContextRequestOp::WatchDhtValues::key: veilid_core::crypto::types::RecordKey
+pub veilid_remote_api::RoutingContextRequestOp::WatchDhtValues::subkeys: core::option::Option<veilid_core::veilid_api::types::dht::value_subkey_range_set::ValueSubkeyRangeSet>
+pub veilid_remote_api::RoutingContextRequestOp::WithDefaultSafety
+pub veilid_remote_api::RoutingContextRequestOp::WithSafety
+pub veilid_remote_api::RoutingContextRequestOp::WithSafety::safety_selection: veilid_core::veilid_api::types::safety::SafetySelection
+pub veilid_remote_api::RoutingContextRequestOp::WithSequencing
+pub veilid_remote_api::RoutingContextRequestOp::WithSequencing::sequencing: veilid_core::veilid_api::types::safety::Sequencing
+pub enum veilid_remote_api::RoutingContextResponseOp
+pub veilid_remote_api::RoutingContextResponseOp::AppCall
+pub veilid_remote_api::RoutingContextResponseOp::AppCall::result: veilid_remote_api::ApiResultWithVecU8
+pub veilid_remote_api::RoutingContextResponseOp::AppMessage
+pub veilid_remote_api::RoutingContextResponseOp::AppMessage::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::RoutingContextResponseOp::CancelDhtWatch
+pub veilid_remote_api::RoutingContextResponseOp::CancelDhtWatch::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::RoutingContextResponseOp::CloseDhtRecord
+pub veilid_remote_api::RoutingContextResponseOp::CloseDhtRecord::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::RoutingContextResponseOp::CreateDhtRecord
+pub veilid_remote_api::RoutingContextResponseOp::CreateDhtRecord::result: veilid_remote_api::ApiResult<alloc::boxed::Box<veilid_core::veilid_api::types::dht::dht_record_descriptor::DHTRecordDescriptor>>
+pub veilid_remote_api::RoutingContextResponseOp::DeleteDhtRecord
+pub veilid_remote_api::RoutingContextResponseOp::DeleteDhtRecord::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::RoutingContextResponseOp::FlushDhtRecord
+pub veilid_remote_api::RoutingContextResponseOp::FlushDhtRecord::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::RoutingContextResponseOp::GetDhtValue
+pub veilid_remote_api::RoutingContextResponseOp::GetDhtValue::result: veilid_remote_api::ApiResult<core::option::Option<veilid_core::veilid_api::types::dht::value_data::ValueData>>
+pub veilid_remote_api::RoutingContextResponseOp::InspectDhtRecord
+pub veilid_remote_api::RoutingContextResponseOp::InspectDhtRecord::result: veilid_remote_api::ApiResult<alloc::boxed::Box<veilid_core::veilid_api::types::dht::dht_record_report::DHTRecordReport>>
+pub veilid_remote_api::RoutingContextResponseOp::InvalidId
+pub veilid_remote_api::RoutingContextResponseOp::OpenDhtRecord
+pub veilid_remote_api::RoutingContextResponseOp::OpenDhtRecord::result: veilid_remote_api::ApiResult<alloc::boxed::Box<veilid_core::veilid_api::types::dht::dht_record_descriptor::DHTRecordDescriptor>>
+pub veilid_remote_api::RoutingContextResponseOp::Release
+pub veilid_remote_api::RoutingContextResponseOp::Safety
+pub veilid_remote_api::RoutingContextResponseOp::Safety::value: veilid_core::veilid_api::types::safety::SafetySelection
+pub veilid_remote_api::RoutingContextResponseOp::SetDhtValue
+pub veilid_remote_api::RoutingContextResponseOp::SetDhtValue::result: veilid_remote_api::ApiResult<core::option::Option<veilid_core::veilid_api::types::dht::value_data::ValueData>>
+pub veilid_remote_api::RoutingContextResponseOp::WatchDhtValues
+pub veilid_remote_api::RoutingContextResponseOp::WatchDhtValues::result: veilid_remote_api::ApiResult<bool>
+pub veilid_remote_api::RoutingContextResponseOp::WithDefaultSafety
+pub veilid_remote_api::RoutingContextResponseOp::WithDefaultSafety::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::RoutingContextResponseOp::WithSafety
+pub veilid_remote_api::RoutingContextResponseOp::WithSafety::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::RoutingContextResponseOp::WithSequencing
+pub veilid_remote_api::RoutingContextResponseOp::WithSequencing::value: u32
+pub enum veilid_remote_api::TableDbRequestOp
+pub veilid_remote_api::TableDbRequestOp::Delete
+pub veilid_remote_api::TableDbRequestOp::Delete::col: u32
+pub veilid_remote_api::TableDbRequestOp::Delete::key: alloc::vec::Vec<u8>
+pub veilid_remote_api::TableDbRequestOp::GetColumnCount
+pub veilid_remote_api::TableDbRequestOp::GetKeys
+pub veilid_remote_api::TableDbRequestOp::GetKeys::col: u32
+pub veilid_remote_api::TableDbRequestOp::Load
+pub veilid_remote_api::TableDbRequestOp::Load::col: u32
+pub veilid_remote_api::TableDbRequestOp::Load::key: alloc::vec::Vec<u8>
+pub veilid_remote_api::TableDbRequestOp::Release
+pub veilid_remote_api::TableDbRequestOp::Store
+pub veilid_remote_api::TableDbRequestOp::Store::col: u32
+pub veilid_remote_api::TableDbRequestOp::Store::key: alloc::vec::Vec<u8>
+pub veilid_remote_api::TableDbRequestOp::Store::value: alloc::vec::Vec<u8>
+pub veilid_remote_api::TableDbRequestOp::Transact
+pub enum veilid_remote_api::TableDbResponseOp
+pub veilid_remote_api::TableDbResponseOp::Delete
+pub veilid_remote_api::TableDbResponseOp::Delete::result: veilid_remote_api::ApiResult<core::option::Option<veilid_remote_api::VecU8>>
+pub veilid_remote_api::TableDbResponseOp::GetColumnCount
+pub veilid_remote_api::TableDbResponseOp::GetColumnCount::result: veilid_remote_api::ApiResult<u32>
+pub veilid_remote_api::TableDbResponseOp::GetKeys
+pub veilid_remote_api::TableDbResponseOp::GetKeys::result: veilid_remote_api::ApiResultWithVecVecU8
+pub veilid_remote_api::TableDbResponseOp::InvalidId
+pub veilid_remote_api::TableDbResponseOp::Load
+pub veilid_remote_api::TableDbResponseOp::Load::result: veilid_remote_api::ApiResult<core::option::Option<veilid_remote_api::VecU8>>
+pub veilid_remote_api::TableDbResponseOp::Release
+pub veilid_remote_api::TableDbResponseOp::Store
+pub veilid_remote_api::TableDbResponseOp::Store::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::TableDbResponseOp::Transact
+pub veilid_remote_api::TableDbResponseOp::Transact::value: u32
+pub enum veilid_remote_api::TableDbTransactionRequestOp
+pub veilid_remote_api::TableDbTransactionRequestOp::Commit
+pub veilid_remote_api::TableDbTransactionRequestOp::Delete
+pub veilid_remote_api::TableDbTransactionRequestOp::Delete::col: u32
+pub veilid_remote_api::TableDbTransactionRequestOp::Delete::key: alloc::vec::Vec<u8>
+pub veilid_remote_api::TableDbTransactionRequestOp::Rollback
+pub veilid_remote_api::TableDbTransactionRequestOp::Store
+pub veilid_remote_api::TableDbTransactionRequestOp::Store::col: u32
+pub veilid_remote_api::TableDbTransactionRequestOp::Store::key: alloc::vec::Vec<u8>
+pub veilid_remote_api::TableDbTransactionRequestOp::Store::value: alloc::vec::Vec<u8>
+pub enum veilid_remote_api::TableDbTransactionResponseOp
+pub veilid_remote_api::TableDbTransactionResponseOp::Commit
+pub veilid_remote_api::TableDbTransactionResponseOp::Commit::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::TableDbTransactionResponseOp::Delete
+pub veilid_remote_api::TableDbTransactionResponseOp::Delete::result: veilid_remote_api::ApiResult<()>
+pub veilid_remote_api::TableDbTransactionResponseOp::InvalidId
+pub veilid_remote_api::TableDbTransactionResponseOp::Rollback
+pub veilid_remote_api::TableDbTransactionResponseOp::Store
+pub veilid_remote_api::TableDbTransactionResponseOp::Store::result: veilid_remote_api::ApiResult<()>
+pub struct veilid_remote_api::CryptoSystemRequest
+pub veilid_remote_api::CryptoSystemRequest::cs_id: u32
+pub veilid_remote_api::CryptoSystemRequest::cs_op: veilid_remote_api::CryptoSystemRequestOp
+pub struct veilid_remote_api::CryptoSystemResponse
+pub veilid_remote_api::CryptoSystemResponse::cs_id: u32
+pub veilid_remote_api::CryptoSystemResponse::cs_op: veilid_remote_api::CryptoSystemResponseOp
+pub struct veilid_remote_api::DhtTransactionRequest
+pub veilid_remote_api::DhtTransactionRequest::dhttx_id: u32
+pub veilid_remote_api::DhtTransactionRequest::dhttx_op: veilid_remote_api::DhtTransactionRequestOp
+pub struct veilid_remote_api::DhtTransactionResponse
+pub veilid_remote_api::DhtTransactionResponse::dhttx_id: u32
+pub veilid_remote_api::DhtTransactionResponse::dhttx_op: veilid_remote_api::DhtTransactionResponseOp
+pub struct veilid_remote_api::JsonRequestProcessor
+impl veilid_remote_api::JsonRequestProcessor
+pub fn veilid_remote_api::JsonRequestProcessor::new(veilid_core::veilid_api::api::VeilidAPI) -> Self
+pub async fn veilid_remote_api::JsonRequestProcessor::process_request(self, veilid_remote_api::Request) -> veilid_remote_api::Response
+pub struct veilid_remote_api::Request
+pub veilid_remote_api::Request::id: u32
+pub veilid_remote_api::Request::op: veilid_remote_api::RequestOp
+pub struct veilid_remote_api::Response
+pub veilid_remote_api::Response::id: u32
+pub veilid_remote_api::Response::op: veilid_remote_api::ResponseOp
+pub struct veilid_remote_api::RoutingContextRequest
+pub veilid_remote_api::RoutingContextRequest::rc_id: u32
+pub veilid_remote_api::RoutingContextRequest::rc_op: veilid_remote_api::RoutingContextRequestOp
+pub struct veilid_remote_api::RoutingContextResponse
+pub veilid_remote_api::RoutingContextResponse::rc_id: u32
+pub veilid_remote_api::RoutingContextResponse::rc_op: veilid_remote_api::RoutingContextResponseOp
+pub struct veilid_remote_api::TableDbRequest
+pub veilid_remote_api::TableDbRequest::db_id: u32
+pub veilid_remote_api::TableDbRequest::db_op: veilid_remote_api::TableDbRequestOp
+pub struct veilid_remote_api::TableDbResponse
+pub veilid_remote_api::TableDbResponse::db_id: u32
+pub veilid_remote_api::TableDbResponse::db_op: veilid_remote_api::TableDbResponseOp
+pub struct veilid_remote_api::TableDbTransactionRequest
+pub veilid_remote_api::TableDbTransactionRequest::tx_id: u32
+pub veilid_remote_api::TableDbTransactionRequest::tx_op: veilid_remote_api::TableDbTransactionRequestOp
+pub struct veilid_remote_api::TableDbTransactionResponse
+pub veilid_remote_api::TableDbTransactionResponse::tx_id: u32
+pub veilid_remote_api::TableDbTransactionResponse::tx_op: veilid_remote_api::TableDbTransactionResponseOp
+pub struct veilid_remote_api::VecU8
+pub fn veilid_remote_api::emit_schemas(&mut std::collections::hash::map::HashMap<alloc::string::String, alloc::string::String>)
+pub fn veilid_remote_api::to_json_api_result<T: core::clone::Clone + core::fmt::Debug + schemars::JsonSchema>(veilid_core::veilid_api::error::VeilidAPIResult<T>) -> veilid_remote_api::ApiResult<T>

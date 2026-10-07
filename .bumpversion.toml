@@ -1,0 +1,85 @@
+[tool.bumpversion]
+current_version = "0.5.7"
+allow_dirty = true
+commit = false
+tag = false
+
+[[tool.bumpversion.files]]
+filename = "veilid-server/Cargo.toml"
+search = '''name = "veilid-server"
+version = "{current_version}"'''
+replace = '''name = "veilid-server"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-flutter/rust/Cargo.toml"
+search = '''name = "veilid-flutter"
+version = "{current_version}"'''
+replace = '''name = "veilid-flutter"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-wasm/Cargo.toml"
+search = '''name = "veilid-wasm"
+version = "{current_version}"'''
+replace = '''name = "veilid-wasm"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-core/Cargo.toml"
+search = '''name = "veilid-core"
+version = "{current_version}"'''
+replace = '''name = "veilid-core"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-cli/Cargo.toml"
+search = '''name = "veilid-cli"
+version = "{current_version}"'''
+replace = '''name = "veilid-cli"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-tools/Cargo.toml"
+search = '''name = "veilid-tools"
+version = "{current_version}"'''
+replace = '''name = "veilid-tools"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-remote-api/Cargo.toml"
+search = '''name = "veilid-remote-api"
+version = "{current_version}"'''
+replace = '''name = "veilid-remote-api"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-python/pyproject.toml"
+search = '''name = "veilid"
+version = "{current_version}"'''
+replace = '''name = "veilid"
+version = "{new_version}"'''
+
+[[tool.bumpversion.files]]
+filename = "veilid-flutter/pubspec.yaml"
+search = '''name: veilid
+version: {current_version}'''
+replace = '''name: veilid
+version: {new_version}'''
+
+# Smoketest crates are independent workspaces with their own 0.1.0 versions;
+# only their veilid-* path dependency needs to track the bumped version.
+[[tool.bumpversion.files]]
+filename = "veilid-core/smoketest/Cargo.toml"
+search = 'veilid-core = {{ version = "{current_version}", path = "..", default-features = false }}'
+replace = 'veilid-core = {{ version = "{new_version}", path = "..", default-features = false }}'
+
+[[tool.bumpversion.files]]
+filename = "veilid-tools/smoketest/Cargo.toml"
+search = 'veilid-tools = {{ version = "{current_version}", path = "..", default-features = false }}'
+replace = 'veilid-tools = {{ version = "{new_version}", path = "..", default-features = false }}'
+
+[[tool.bumpversion.files]]
+filename = "veilid-remote-api/smoketest/Cargo.toml"
+search = 'veilid-remote-api = {{ version = "{current_version}", path = "..", default-features = false }}'
+replace = 'veilid-remote-api = {{ version = "{new_version}", path = "..", default-features = false }}'

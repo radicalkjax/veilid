@@ -1,0 +1,1127 @@
+use super::*;
+
+/// Convert a `VeilidAPIResult` into its JSON `ApiResult` ok/err form.
+pub fn to_json_api_result<T: Clone + fmt::Debug + JsonSchema>(
+    r: VeilidAPIResult<T>,
+) -> super::ApiResult<T> {
+    match r {
+        Err(e) => super::ApiResult::Err { error: e },
+        Ok(v) => super::ApiResult::Ok { value: v },
+    }
+}
+
+/// Convert a `VeilidAPIResult` into a JSON `ApiResult` whose ok value serializes as a string.
+pub(crate) fn to_json_api_result_with_string<T: Clone + fmt::Debug>(
+    r: VeilidAPIResult<T>,
+) -> super::ApiResultWithString<T> {
+    match r {
+        Err(e) => super::ApiResultWithString::Err { error: e },
+        Ok(v) => super::ApiResultWithString::Ok { value: v },
+    }
+}
+
+/// Convert a `VeilidAPIResult` into a JSON `ApiResult` whose ok value serializes as a vector of strings.
+pub(crate) fn to_json_api_result_with_vec_string<T: Clone + fmt::Debug>(
+    r: VeilidAPIResult<T>,
+) -> super::ApiResultWithVecString<T> {
+    match r {
+        Err(e) => super::ApiResultWithVecString::Err { error: e },
+        Ok(v) => super::ApiResultWithVecString::Ok { value: v },
+    }
+}
+
+/// Convert a `VeilidAPIResult` into a JSON `ApiResult` whose ok value serializes as an optional vector of strings.
+pub(crate) fn to_json_api_result_with_opt_vec_string<T: Clone + fmt::Debug>(
+    r: VeilidAPIResult<T>,
+) -> super::ApiResultWithOptVecString<T> {
+    match r {
+        Err(e) => super::ApiResultWithOptVecString::Err { error: e },
+        Ok(v) => super::ApiResultWithOptVecString::Ok { value: v },
+    }
+}
+
+/// Convert a `VeilidAPIResult<Vec<u8>>` into a JSON `ApiResult` whose ok value serializes as a base64 string.
+#[must_use]
+pub(crate) fn to_json_api_result_with_vec_u8(
+    r: VeilidAPIResult<Vec<u8>>,
+) -> super::ApiResultWithVecU8 {
+    match r {
+        Err(e) => super::ApiResultWithVecU8::Err { error: e },
+        Ok(v) => super::ApiResultWithVecU8::Ok { value: v },
+    }
+}
+
+/// Convert a `VeilidAPIResult<Vec<Vec<u8>>>` into a JSON `ApiResult` whose ok value serializes as a vector of base64 strings.
+#[must_use]
+pub(crate) fn to_json_api_result_with_vec_vec_u8(
+    r: VeilidAPIResult<Vec<Vec<u8>>>,
+) -> super::ApiResultWithVecVecU8 {
+    match r {
+        Err(e) => super::ApiResultWithVecVecU8::Err { error: e },
+        Ok(v) => super::ApiResultWithVecVecU8::Ok {
+            value: v.into_iter().map(|v| VecU8 { value: v }).collect(),
+        },
+    }
+}
+
+struct JsonRequestProcessorInner {
+    routing_contexts: BTreeMap<u32, RoutingContext>,
+    table_dbs: BTreeMap<u32, TableDB>,
+    table_db_transactions: BTreeMap<u32, TableDBTransaction>,
+    dht_transactions: BTreeMap<u32, DHTTransaction>,
+    crypto_kinds: BTreeMap<u32, CryptoKind>,
+}
+
+/// Dispatches JSON API requests to a `VeilidAPI` and tracks the handle ids for
+/// routing contexts, table DBs and their transactions, crypto systems, and DHT
+/// transactions opened over the protocol.
+#[derive(Clone)]
+pub struct JsonRequestProcessor {
+    api: VeilidAPI,
+    inner: Arc<Mutex<JsonRequestProcessorInner>>,
+}
+
+impl JsonRequestProcessor {
+    /// Create a processor that dispatches requests to `api`.
+    #[must_use]
+    pub fn new(api: VeilidAPI) -> Self {
+        Self {
+            api,
+            inner: Arc::new(Mutex::new(JsonRequestProcessorInner {
+                routing_contexts: Default::default(),
+                table_dbs: Default::default(),
+                table_db_transactions: Default::default(),
+                dht_transactions: Default::default(),
+                crypto_kinds: Default::default(),
+            })),
+        }
+    }
+
+    // Routing Context
+    fn add_routing_context(&self, routing_context: RoutingContext) -> u32 {
+        let mut inner = self.inner.lock();
+        let mut next_id: u32 = 1;
+        while inner.routing_contexts.contains_key(&next_id) {
+            next_id += 1;
+        }
+        inner.routing_contexts.insert(next_id, routing_context);
+        next_id
+    }
+    fn lookup_routing_context(&self, id: u32, rc_id: u32) -> Result<RoutingContext, Response> {
+        let inner = self.inner.lock();
+        let Some(routing_context) = inner.routing_contexts.get(&rc_id).cloned() else {
+            return Err(Response {
+                id,
+                op: ResponseOp::RoutingContext(Box::new(RoutingContextResponse {
+                    rc_id,
+                    rc_op: RoutingContextResponseOp::InvalidId,
+                })),
+            });
+        };
+        Ok(routing_context)
+    }
+    fn release_routing_context(&self, id: u32) -> i32 {
+        let mut inner = self.inner.lock();
+        if inner.routing_contexts.remove(&id).is_none() {
+            return 0;
+        }
+        1
+    }
+
+    // TableDB
+    fn add_table_db(&self, table_db: TableDB) -> u32 {
+        let mut inner = self.inner.lock();
+        let mut next_id: u32 = 1;
+        while inner.table_dbs.contains_key(&next_id) {
+            next_id += 1;
+        }
+        inner.table_dbs.insert(next_id, table_db);
+        next_id
+    }
+    fn lookup_table_db(&self, id: u32, db_id: u32) -> Result<TableDB, Response> {
+        let inner = self.inner.lock();
+        let Some(table_db) = inner.table_dbs.get(&db_id).cloned() else {
+            return Err(Response {
+                id,
+                op: ResponseOp::TableDb(TableDbResponse {
+                    db_id,
+                    db_op: TableDbResponseOp::InvalidId,
+                }),
+            });
+        };
+        Ok(table_db)
+    }
+    fn release_table_db(&self, id: u32) -> i32 {
+        let mut inner = self.inner.lock();
+        if inner.table_dbs.remove(&id).is_none() {
+            return 0;
+        }
+        1
+    }
+
+    // TableDBTransaction
+    fn add_table_db_transaction(&self, tdbt: TableDBTransaction) -> u32 {
+        let mut inner = self.inner.lock();
+        let mut next_id: u32 = 1;
+        while inner.table_db_transactions.contains_key(&next_id) {
+            next_id += 1;
+        }
+        inner.table_db_transactions.insert(next_id, tdbt);
+        next_id
+    }
+    fn lookup_table_db_transaction(
+        &self,
+        id: u32,
+        tx_id: u32,
+    ) -> Result<TableDBTransaction, Response> {
+        let inner = self.inner.lock();
+        let Some(table_db_transaction) = inner.table_db_transactions.get(&tx_id).cloned() else {
+            return Err(Response {
+                id,
+                op: ResponseOp::TableDbTransaction(TableDbTransactionResponse {
+                    tx_id,
+                    tx_op: TableDbTransactionResponseOp::InvalidId,
+                }),
+            });
+        };
+        Ok(table_db_transaction)
+    }
+    fn release_table_db_transaction(&self, id: u32) -> i32 {
+        let mut inner = self.inner.lock();
+        if inner.table_db_transactions.remove(&id).is_none() {
+            return 0;
+        }
+        1
+    }
+
+    // CryptoSystem
+    fn add_crypto_system(&self, csv: CryptoKind) -> u32 {
+        let mut inner = self.inner.lock();
+        let mut next_id: u32 = 1;
+        while inner.crypto_kinds.contains_key(&next_id) {
+            next_id += 1;
+        }
+        inner.crypto_kinds.insert(next_id, csv);
+        next_id
+    }
+    fn lookup_crypto_system(&self, id: u32, cs_id: u32) -> Result<CryptoKind, Response> {
+        let inner = self.inner.lock();
+        let Some(crypto_kind) = inner.crypto_kinds.get(&cs_id).cloned() else {
+            return Err(Response {
+                id,
+                op: ResponseOp::CryptoSystem(CryptoSystemResponse {
+                    cs_id,
+                    cs_op: CryptoSystemResponseOp::InvalidId,
+                }),
+            });
+        };
+        Ok(crypto_kind)
+    }
+    fn release_crypto_system(&self, id: u32) -> i32 {
+        let mut inner = self.inner.lock();
+        if inner.crypto_kinds.remove(&id).is_none() {
+            return 0;
+        }
+        1
+    }
+
+    // Routing Context
+    fn add_dht_transaction(&self, dht_transaction: DHTTransaction) -> u32 {
+        let mut inner = self.inner.lock();
+        let mut next_id: u32 = 1;
+        while inner.dht_transactions.contains_key(&next_id) {
+            next_id += 1;
+        }
+        inner.dht_transactions.insert(next_id, dht_transaction);
+        next_id
+    }
+    fn lookup_dht_transaction(&self, id: u32, dhttx_id: u32) -> Result<DHTTransaction, Response> {
+        let inner = self.inner.lock();
+        let Some(dht_transaction) = inner.dht_transactions.get(&dhttx_id).cloned() else {
+            return Err(Response {
+                id,
+                op: ResponseOp::DhtTransaction(Box::new(DhtTransactionResponse {
+                    dhttx_id,
+                    dhttx_op: DhtTransactionResponseOp::InvalidId,
+                })),
+            });
+        };
+        Ok(dht_transaction)
+    }
+    fn release_dht_transaction(&self, id: u32) -> i32 {
+        let mut inner = self.inner.lock();
+        if inner.dht_transactions.remove(&id).is_none() {
+            return 0;
+        }
+        1
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+
+    #[instrument(level = "trace", target = "json_api", skip_all)]
+    /// Handle a request addressed to a previously looked-up routing context.
+    ///
+    /// `Release` frees the routing-context handle; releasing an already-released id is a no-op.
+    /// `WithDefaultSafety`/`WithSafety`/`WithSequencing` return a new routing-context handle id the
+    /// caller must `Release`, or it leaks. DHT-record and app-call ops await the network.
+    ///
+    /// Each fallible op's response carries the `VeilidAPIError` from the underlying `RoutingContext`
+    /// call verbatim in its `result` (e.g. `WithSafety` `::InvalidArgument` for a malformed
+    /// `preferred_route` route id, `::Generic` for a hop count over the configured max; DHT/app-call
+    /// ops `::TryAgain`/`::Timeout`/`::NoConnection` are retryable, `::NotInitialized` if shut down).
+    /// Infallible ops (`Safety`, `WithSequencing`) cannot error.
+    pub(crate) async fn process_routing_context_request(
+        &self,
+        routing_context: RoutingContext,
+        rcr: RoutingContextRequest,
+    ) -> RoutingContextResponse {
+        let rc_op = match rcr.rc_op {
+            RoutingContextRequestOp::Release => {
+                self.release_routing_context(rcr.rc_id);
+                RoutingContextResponseOp::Release {}
+            }
+            RoutingContextRequestOp::WithDefaultSafety => {
+                RoutingContextResponseOp::WithDefaultSafety {
+                    result: to_json_api_result(
+                        routing_context
+                            .clone()
+                            .with_default_safety()
+                            .map(|new_rc| self.add_routing_context(new_rc)),
+                    ),
+                }
+            }
+            RoutingContextRequestOp::WithSafety { safety_selection } => {
+                RoutingContextResponseOp::WithSafety {
+                    result: to_json_api_result(
+                        routing_context
+                            .clone()
+                            .with_safety(safety_selection)
+                            .map(|new_rc| self.add_routing_context(new_rc)),
+                    ),
+                }
+            }
+            RoutingContextRequestOp::WithSequencing { sequencing } => {
+                RoutingContextResponseOp::WithSequencing {
+                    value: self
+                        .add_routing_context(routing_context.clone().with_sequencing(sequencing)),
+                }
+            }
+            RoutingContextRequestOp::Safety => RoutingContextResponseOp::Safety {
+                value: routing_context.safety(),
+            },
+            RoutingContextRequestOp::AppCall { target, message } => {
+                RoutingContextResponseOp::AppCall {
+                    result: to_json_api_result_with_vec_u8(
+                        async { routing_context.app_call(target, message).await }.await,
+                    ),
+                }
+            }
+            RoutingContextRequestOp::AppMessage { target, message } => {
+                RoutingContextResponseOp::AppMessage {
+                    result: to_json_api_result(
+                        async { routing_context.app_message(target, message).await }.await,
+                    ),
+                }
+            }
+            RoutingContextRequestOp::CreateDhtRecord {
+                kind,
+                schema,
+                owner,
+            } => RoutingContextResponseOp::CreateDhtRecord {
+                result: to_json_api_result(
+                    routing_context
+                        .create_dht_record(kind, schema, owner)
+                        .await
+                        .map(Box::new),
+                ),
+            },
+            RoutingContextRequestOp::OpenDhtRecord { key, writer } => {
+                RoutingContextResponseOp::OpenDhtRecord {
+                    result: to_json_api_result(
+                        routing_context
+                            .open_dht_record(key, writer)
+                            .await
+                            .map(Box::new),
+                    ),
+                }
+            }
+            RoutingContextRequestOp::CloseDhtRecord { key } => {
+                RoutingContextResponseOp::CloseDhtRecord {
+                    result: to_json_api_result(routing_context.close_dht_record(key).await),
+                }
+            }
+            RoutingContextRequestOp::DeleteDhtRecord { key } => {
+                RoutingContextResponseOp::DeleteDhtRecord {
+                    result: to_json_api_result(routing_context.delete_dht_record(key).await),
+                }
+            }
+            RoutingContextRequestOp::GetDhtValue {
+                key,
+                subkey,
+                force_refresh,
+            } => RoutingContextResponseOp::GetDhtValue {
+                result: to_json_api_result(
+                    routing_context
+                        .get_dht_value(key, subkey, force_refresh)
+                        .await,
+                ),
+            },
+            RoutingContextRequestOp::SetDhtValue {
+                key,
+                subkey,
+                data,
+                options,
+            } => RoutingContextResponseOp::SetDhtValue {
+                result: to_json_api_result(
+                    routing_context
+                        .set_dht_value(key, subkey, data, options)
+                        .await,
+                ),
+            },
+            RoutingContextRequestOp::WatchDhtValues {
+                key,
+                subkeys,
+                expiration,
+                count,
+            } => RoutingContextResponseOp::WatchDhtValues {
+                result: to_json_api_result(
+                    routing_context
+                        .watch_dht_values(key, subkeys, expiration, count)
+                        .await,
+                ),
+            },
+            RoutingContextRequestOp::CancelDhtWatch { key, subkeys } => {
+                RoutingContextResponseOp::CancelDhtWatch {
+                    result: to_json_api_result(
+                        routing_context.cancel_dht_watch(key, subkeys).await,
+                    ),
+                }
+            }
+            RoutingContextRequestOp::InspectDhtRecord {
+                key,
+                subkeys,
+                scope,
+            } => RoutingContextResponseOp::InspectDhtRecord {
+                result: to_json_api_result(
+                    routing_context
+                        .inspect_dht_record(key, subkeys, scope)
+                        .await
+                        .map(Box::new),
+                ),
+            },
+            RoutingContextRequestOp::FlushDhtRecord { key, timeout_ms } => {
+                RoutingContextResponseOp::FlushDhtRecord {
+                    result: to_json_api_result(
+                        routing_context
+                            .flush_dht_record(key, timeout_ms.map(Duration::from_millis))
+                            .await,
+                    ),
+                }
+            }
+        };
+        RoutingContextResponse {
+            rc_id: rcr.rc_id,
+            rc_op,
+        }
+    }
+
+    #[instrument(level = "trace", target = "json_api", skip_all)]
+    /// Handle a request addressed to a previously looked-up table DB handle.
+    ///
+    /// `Release` frees the table-DB handle; releasing an already-released id is a no-op.
+    /// `Transact` returns a new transaction handle id the caller must `Commit` or `Rollback`, or it
+    /// leaks. `GetKeys`/`Store`/`Load`/`Delete` await the backing store.
+    ///
+    /// Each fallible op's response carries the `VeilidAPIError` from the underlying `TableDB` call
+    /// verbatim in its `result`: `::Generic` if `col` is at or above the opened column count, or on a
+    /// backing-store read/write or decrypt failure (`::Internal` if the store reports out of memory).
+    /// `Release` and `Transact` cannot error.
+    pub(crate) async fn process_table_db_request(
+        &self,
+        table_db: TableDB,
+        tdr: TableDbRequest,
+    ) -> TableDbResponse {
+        let db_op = match tdr.db_op {
+            TableDbRequestOp::Release => {
+                self.release_table_db(tdr.db_id);
+                TableDbResponseOp::Release {}
+            }
+            TableDbRequestOp::GetColumnCount => TableDbResponseOp::GetColumnCount {
+                result: to_json_api_result(table_db.get_column_count()),
+            },
+            TableDbRequestOp::GetKeys { col } => TableDbResponseOp::GetKeys {
+                result: to_json_api_result_with_vec_vec_u8(table_db.get_keys(col).await),
+            },
+            TableDbRequestOp::Transact => TableDbResponseOp::Transact {
+                value: self.add_table_db_transaction(table_db.transact()),
+            },
+            TableDbRequestOp::Store { col, key, value } => TableDbResponseOp::Store {
+                result: to_json_api_result(table_db.store(col, &key, &value).await),
+            },
+            TableDbRequestOp::Load { col, key } => TableDbResponseOp::Load {
+                result: to_json_api_result(
+                    table_db
+                        .load(col, &key)
+                        .await
+                        .map(|vopt| vopt.map(|v| VecU8 { value: v })),
+                ),
+            },
+            TableDbRequestOp::Delete { col, key } => TableDbResponseOp::Delete {
+                result: to_json_api_result(
+                    table_db
+                        .delete(col, &key)
+                        .await
+                        .map(|vopt| vopt.map(|v| VecU8 { value: v })),
+                ),
+            },
+        };
+        TableDbResponse {
+            db_id: tdr.db_id,
+            db_op,
+        }
+    }
+
+    #[instrument(level = "trace", target = "json_api", skip_all)]
+    /// Handle a request addressed to a previously looked-up table DB transaction.
+    ///
+    /// `Rollback`, and a successful `Commit`, release the transaction handle; either ends the
+    /// `Transact` pair. `Store`/`Delete` only buffer into the transaction; `Commit` blocks on the
+    /// on-disk write.
+    ///
+    /// `Commit`/`Store`/`Delete` responses carry the `VeilidAPIError` from the underlying
+    /// `TableDBTransaction` call verbatim in their `result`, always `::Generic` (transaction already
+    /// completed, `col` at or above the opened column count, or the commit write failing); a failed
+    /// `Commit` does not release the handle. `Rollback` is infallible.
+    pub(crate) async fn process_table_db_transaction_request(
+        &self,
+        table_db_transaction: TableDBTransaction,
+        tdtr: TableDbTransactionRequest,
+    ) -> TableDbTransactionResponse {
+        let tx_op = match tdtr.tx_op {
+            TableDbTransactionRequestOp::Commit => TableDbTransactionResponseOp::Commit {
+                result: to_json_api_result(table_db_transaction.commit().await.map(|_| {
+                    self.release_table_db_transaction(tdtr.tx_id);
+                })),
+            },
+            TableDbTransactionRequestOp::Rollback => {
+                table_db_transaction.rollback();
+                self.release_table_db_transaction(tdtr.tx_id);
+                TableDbTransactionResponseOp::Rollback {}
+            }
+            TableDbTransactionRequestOp::Store { col, key, value } => {
+                TableDbTransactionResponseOp::Store {
+                    result: to_json_api_result(table_db_transaction.store(col, &key, &value).await),
+                }
+            }
+
+            TableDbTransactionRequestOp::Delete { col, key } => {
+                TableDbTransactionResponseOp::Delete {
+                    result: to_json_api_result(table_db_transaction.delete(col, &key).await),
+                }
+            }
+        };
+        TableDbTransactionResponse {
+            tx_id: tdtr.tx_id,
+            tx_op,
+        }
+    }
+
+    #[instrument(level = "trace", target = "json_api", skip_all)]
+    /// Handle a request addressed to a previously looked-up crypto system.
+    ///
+    /// `Release` frees the crypto-system handle; releasing an already-released id is a no-op. The
+    /// remaining crypto ops are local and do not block.
+    ///
+    /// Fallible ops carry the `VeilidAPIError` from the underlying `CryptoSystem` call verbatim in
+    /// their `result`: `::Generic` for an argument of the wrong crypto kind or length (the
+    /// `Check*`/`CachedDh`/`Sign`/`Verify`/AEAD/password ops), `::ParseError` for a malformed key or
+    /// hash string, `::Internal` for a key that is not a valid curve point or a signing failure.
+    /// Length/kind getters and the random/generate ops cannot error.
+    pub(crate) async fn process_crypto_system_request(
+        &self,
+        csv: &CryptoSystemGuard<'_>,
+        csr: CryptoSystemRequest,
+    ) -> CryptoSystemResponse {
+        let cs_op = match csr.cs_op {
+            CryptoSystemRequestOp::Release => {
+                self.release_crypto_system(csr.cs_id);
+                CryptoSystemResponseOp::Release {}
+            }
+            CryptoSystemRequestOp::Kind => CryptoSystemResponseOp::Kind { value: csv.kind() },
+            CryptoSystemRequestOp::CachedDh { key, secret } => CryptoSystemResponseOp::CachedDh {
+                result: to_json_api_result_with_string(csv.cached_dh(&key, &secret)),
+            },
+            CryptoSystemRequestOp::ComputeDh { key, secret } => CryptoSystemResponseOp::ComputeDh {
+                result: to_json_api_result_with_string(csv.compute_dh(&key, &secret)),
+            },
+            CryptoSystemRequestOp::GenerateSharedSecret {
+                key,
+                secret,
+                domain,
+            } => CryptoSystemResponseOp::GenerateSharedSecret {
+                result: to_json_api_result_with_string(
+                    csv.generate_shared_secret(&key, &secret, &domain),
+                ),
+            },
+
+            CryptoSystemRequestOp::HpkeSeal {
+                recipient,
+                aad,
+                plaintext,
+            } => CryptoSystemResponseOp::HpkeSeal {
+                result: to_json_api_result_with_vec_u8(csv.hpke_seal(&recipient, &aad, &plaintext)),
+            },
+            CryptoSystemRequestOp::HpkeOpen {
+                secret,
+                aad,
+                sealed,
+            } => CryptoSystemResponseOp::HpkeOpen {
+                result: to_json_api_result_with_vec_u8(csv.hpke_open(&secret, &aad, &sealed)),
+            },
+            CryptoSystemRequestOp::RandomBytes { len } => CryptoSystemResponseOp::RandomBytes {
+                value: csv.random_bytes(len as usize),
+            },
+            CryptoSystemRequestOp::SharedSecretLength => {
+                CryptoSystemResponseOp::SharedSecretLength {
+                    value: csv.shared_secret_length() as u32,
+                }
+            }
+            CryptoSystemRequestOp::NonceLength => CryptoSystemResponseOp::NonceLength {
+                value: csv.nonce_length() as u32,
+            },
+            CryptoSystemRequestOp::HashDigestLength => CryptoSystemResponseOp::HashDigestLength {
+                value: csv.hash_digest_length() as u32,
+            },
+            CryptoSystemRequestOp::PublicKeyLength => CryptoSystemResponseOp::PublicKeyLength {
+                value: csv.public_key_length() as u32,
+            },
+            CryptoSystemRequestOp::SecretKeyLength => CryptoSystemResponseOp::SecretKeyLength {
+                value: csv.secret_key_length() as u32,
+            },
+            CryptoSystemRequestOp::EncapsulationKeyLength => {
+                CryptoSystemResponseOp::EncapsulationKeyLength {
+                    value: csv.encapsulation_key_length() as u32,
+                }
+            }
+            CryptoSystemRequestOp::DecapsulationKeyLength => {
+                CryptoSystemResponseOp::DecapsulationKeyLength {
+                    value: csv.decapsulation_key_length() as u32,
+                }
+            }
+            CryptoSystemRequestOp::SignatureLength => CryptoSystemResponseOp::SignatureLength {
+                value: csv.signature_length() as u32,
+            },
+            CryptoSystemRequestOp::DefaultSaltLength => CryptoSystemResponseOp::DefaultSaltLength {
+                value: csv.default_salt_length() as u32,
+            },
+            CryptoSystemRequestOp::AeadOverhead => CryptoSystemResponseOp::AeadOverhead {
+                value: csv.aead_overhead() as u32,
+            },
+            CryptoSystemRequestOp::CheckSharedSecret { secret } => {
+                CryptoSystemResponseOp::CheckSharedSecret {
+                    result: to_json_api_result(csv.check_shared_secret(&secret)),
+                }
+            }
+            CryptoSystemRequestOp::CheckNonce { nonce } => CryptoSystemResponseOp::CheckNonce {
+                result: to_json_api_result(csv.check_nonce(&nonce)),
+            },
+            CryptoSystemRequestOp::CheckHashDigest { digest } => {
+                CryptoSystemResponseOp::CheckHashDigest {
+                    result: to_json_api_result(csv.check_hash_digest(&digest)),
+                }
+            }
+            CryptoSystemRequestOp::CheckPublicKey { key } => {
+                CryptoSystemResponseOp::CheckPublicKey {
+                    result: to_json_api_result(csv.check_public_key(&key)),
+                }
+            }
+            CryptoSystemRequestOp::CheckSecretKey { key } => {
+                CryptoSystemResponseOp::CheckSecretKey {
+                    result: to_json_api_result(csv.check_secret_key(&key)),
+                }
+            }
+            CryptoSystemRequestOp::CheckSignature { signature } => {
+                CryptoSystemResponseOp::CheckSignature {
+                    result: to_json_api_result(csv.check_signature(&signature)),
+                }
+            }
+            CryptoSystemRequestOp::HashPassword { password, salt } => {
+                CryptoSystemResponseOp::HashPassword {
+                    result: to_json_api_result(csv.hash_password(&password, &salt)),
+                }
+            }
+            CryptoSystemRequestOp::VerifyPassword {
+                password,
+                password_hash,
+            } => CryptoSystemResponseOp::VerifyPassword {
+                result: to_json_api_result(csv.verify_password(&password, &password_hash)),
+            },
+            CryptoSystemRequestOp::DeriveSharedSecret { password, salt } => {
+                CryptoSystemResponseOp::DeriveSharedSecret {
+                    result: to_json_api_result_with_string(
+                        csv.derive_shared_secret(&password, &salt),
+                    ),
+                }
+            }
+            CryptoSystemRequestOp::RandomNonce => CryptoSystemResponseOp::RandomNonce {
+                value: csv.random_nonce(),
+            },
+            CryptoSystemRequestOp::RandomSharedSecret => {
+                CryptoSystemResponseOp::RandomSharedSecret {
+                    value: csv.random_shared_secret(),
+                }
+            }
+            CryptoSystemRequestOp::GenerateKeyPair => CryptoSystemResponseOp::GenerateKeyPair {
+                value: csv.generate_keypair(),
+            },
+            CryptoSystemRequestOp::GenerateKemKeyPair => {
+                CryptoSystemResponseOp::GenerateKemKeyPair {
+                    value: csv.generate_kem_keypair(),
+                }
+            }
+            CryptoSystemRequestOp::EncapsulationKeyFromSigningKey { key } => {
+                CryptoSystemResponseOp::EncapsulationKeyFromSigningKey {
+                    result: to_json_api_result_with_string(
+                        csv.encapsulation_key_from_signing_key(&key),
+                    ),
+                }
+            }
+            CryptoSystemRequestOp::DecapsulationKeyFromSigningSecret { secret } => {
+                CryptoSystemResponseOp::DecapsulationKeyFromSigningSecret {
+                    result: to_json_api_result_with_string(
+                        csv.decapsulation_key_from_signing_secret(&secret),
+                    ),
+                }
+            }
+            CryptoSystemRequestOp::GenerateHash { data } => CryptoSystemResponseOp::GenerateHash {
+                value: csv.generate_hash(&data),
+            },
+            CryptoSystemRequestOp::ValidateKeyPair { key, secret } => {
+                CryptoSystemResponseOp::ValidateKeyPair {
+                    result: to_json_api_result(csv.validate_keypair(&key, &secret)),
+                }
+            }
+            CryptoSystemRequestOp::ValidateHash { data, hash_digest } => {
+                CryptoSystemResponseOp::ValidateHash {
+                    result: to_json_api_result(csv.validate_hash(&data, &hash_digest)),
+                }
+            }
+            CryptoSystemRequestOp::Sign { key, secret, data } => CryptoSystemResponseOp::Sign {
+                result: to_json_api_result_with_string(csv.sign(&key, &secret, &data)),
+            },
+            CryptoSystemRequestOp::Verify {
+                key,
+                data,
+                signature,
+            } => CryptoSystemResponseOp::Verify {
+                result: to_json_api_result(csv.verify(&key, &data, &signature)),
+            },
+            CryptoSystemRequestOp::DecryptAead {
+                body,
+                nonce,
+                shared_secret,
+                associated_data,
+            } => CryptoSystemResponseOp::DecryptAead {
+                result: to_json_api_result_with_vec_u8(csv.decrypt_aead(
+                    &body,
+                    &nonce,
+                    &shared_secret,
+                    associated_data.as_deref(),
+                )),
+            },
+            CryptoSystemRequestOp::EncryptAead {
+                body,
+                nonce,
+                shared_secret,
+                associated_data,
+            } => CryptoSystemResponseOp::EncryptAead {
+                result: to_json_api_result_with_vec_u8(csv.encrypt_aead(
+                    &body,
+                    &nonce,
+                    &shared_secret,
+                    associated_data.as_deref(),
+                )),
+            },
+            CryptoSystemRequestOp::CryptNoAuth {
+                body,
+                nonce,
+                shared_secret,
+            } => CryptoSystemResponseOp::CryptNoAuth {
+                result: to_json_api_result_with_vec_u8(csv.crypt_no_auth_unaligned(
+                    &body,
+                    &nonce,
+                    &shared_secret,
+                )),
+            },
+        };
+        CryptoSystemResponse {
+            cs_id: csr.cs_id,
+            cs_op,
+        }
+    }
+
+    #[instrument(level = "trace", target = "json_api", skip_all)]
+    /// Handle a request addressed to a previously looked-up DHT transaction.
+    ///
+    /// `Release`, and a successful `Commit` or `Rollback`, free the transaction handle; releasing an
+    /// already-released id is a no-op. `Commit`/`Rollback`/`Extend`/`Get`/`Set` await the network;
+    /// `Inspect` reads local transaction state.
+    ///
+    /// Each fallible op's response carries the `VeilidAPIError` from the underlying `DHTTransaction`
+    /// call verbatim in its `result`: `::TransactionNotFound` if the transaction was already
+    /// completed or is no longer in the expected stage, `::TryAgain` (retryable) if the node is
+    /// offline or consensus was not reached, `::InvalidArgument` for a `record_key` not open in the
+    /// transaction or an out-of-range `subkey`, `::Generic` for a malformed `record_key`. A failed
+    /// `Commit`/`Rollback` does not release the handle. `Release` is infallible.
+    pub(crate) async fn process_dht_transaction_request(
+        &self,
+        dht_transaction: DHTTransaction,
+        dhttr: DhtTransactionRequest,
+    ) -> DhtTransactionResponse {
+        let dhttx_op = match dhttr.dhttx_op {
+            DhtTransactionRequestOp::Release => {
+                self.release_dht_transaction(dhttr.dhttx_id);
+                DhtTransactionResponseOp::Release {}
+            }
+            DhtTransactionRequestOp::Commit => DhtTransactionResponseOp::Commit {
+                result: to_json_api_result(dht_transaction.commit().await.map(|_| {
+                    self.release_dht_transaction(dhttr.dhttx_id);
+                })),
+            },
+            DhtTransactionRequestOp::Rollback => DhtTransactionResponseOp::Rollback {
+                result: to_json_api_result(dht_transaction.rollback().await.map(|_| {
+                    self.release_dht_transaction(dhttr.dhttx_id);
+                })),
+            },
+            DhtTransactionRequestOp::Extend {
+                record_keys,
+                options,
+            } => DhtTransactionResponseOp::Extend {
+                result: to_json_api_result(dht_transaction.extend(record_keys, options).await),
+            },
+            DhtTransactionRequestOp::Get { key, subkey } => DhtTransactionResponseOp::Get {
+                result: to_json_api_result(dht_transaction.get(key, subkey).await),
+            },
+            DhtTransactionRequestOp::Set {
+                key,
+                subkey,
+                data,
+                options,
+            } => DhtTransactionResponseOp::Set {
+                result: to_json_api_result(dht_transaction.set(key, subkey, data, options).await),
+            },
+            DhtTransactionRequestOp::Inspect {
+                key,
+                subkeys,
+                scope,
+            } => DhtTransactionResponseOp::Inspect {
+                result: to_json_api_result(
+                    dht_transaction
+                        .inspect(key, subkeys, scope)
+                        .await
+                        .map(Box::new),
+                ),
+            },
+        };
+        DhtTransactionResponse {
+            dhttx_id: dhttr.dhttx_id,
+            dhttx_op,
+        }
+    }
+
+    #[instrument(level = "trace", target = "json_api", skip_all)]
+    /// Dispatch a top-level request, looking up any referenced handle and
+    /// routing the operation to the matching `VeilidAPI` call.
+    ///
+    /// `NewRoutingContext`, `OpenTableDb`, `GetCryptoSystem`, and `TransactDhtRecords` return a new
+    /// handle id the caller must release (`RoutingContext`/`TableDb`/`CryptoSystem` `Release`, or DHT
+    /// `Commit`/`Rollback`), or it leaks. `IsShutdown`, `Now*`, version/features/config, and
+    /// `ValidCryptoKinds` are local and do not block; the rest await the network or backing store.
+    ///
+    /// A request that references a handle id not in the table dispatches no call and returns the
+    /// matching `InvalidId` sub-response (`RoutingContext`/`TableDb`/`TableDbTransaction`/
+    /// `CryptoSystem`/`DhtTransaction`). `Control` always returns `VeilidAPIError::Unimplemented`;
+    /// `GetCryptoSystem` with an unsupported `kind` returns `::InvalidArgument`. The
+    /// `OpenTableDb`/`DeleteTableDb`/`GetCryptoSystem`/`VerifySignatures`/`GenerateSignatures` ops
+    /// surface `::NotInitialized` in their `result` when the API has been shut down. Every other
+    /// fallible op carries the underlying `VeilidAPI` call's `VeilidAPIError` verbatim in its
+    /// `result`. Local ops (`IsShutdown`, `Now*`, version/features/config, `ValidCryptoKinds`) cannot
+    /// error.
+    pub async fn process_request(self, request: Request) -> Response {
+        let id = request.id;
+
+        let op = match request.op {
+            RequestOp::Control { args: _args } => ResponseOp::Control {
+                result: to_json_api_result(VeilidAPIResult::Err(VeilidAPIError::unimplemented(
+                    "control should be handled by veilid-core host application",
+                ))),
+            },
+            RequestOp::GetState => ResponseOp::GetState {
+                result: to_json_api_result(self.api.get_state().await.map(Box::new)),
+            },
+            RequestOp::IsShutdown => ResponseOp::IsShutdown {
+                value: self.api.is_shutdown(),
+            },
+            RequestOp::Attach => ResponseOp::Attach {
+                result: to_json_api_result(self.api.attach().await),
+            },
+            RequestOp::Detach => ResponseOp::Detach {
+                result: to_json_api_result(self.api.detach().await),
+            },
+            RequestOp::GenerateMemberId { writer_key } => ResponseOp::GenerateMemberId {
+                result: to_json_api_result_with_string(self.api.generate_member_id(&writer_key)),
+            },
+            RequestOp::GetDhtRecordKey {
+                schema,
+                owner,
+                encryption_key,
+            } => ResponseOp::GetDhtRecordKey {
+                result: to_json_api_result_with_string(
+                    self.api
+                        .get_dht_record_key(schema, owner, encryption_key)
+                        .await,
+                ),
+            },
+            RequestOp::NewPrivateRoute => ResponseOp::NewPrivateRoute {
+                result: to_json_api_result(self.api.new_private_route().await),
+            },
+            RequestOp::NewCustomPrivateRoute { private_spec } => {
+                ResponseOp::NewCustomPrivateRoute {
+                    result: to_json_api_result(
+                        self.api.new_custom_private_route(private_spec).await,
+                    ),
+                }
+            }
+            RequestOp::ImportRemotePrivateRoute { blob } => ResponseOp::ImportRemotePrivateRoute {
+                result: to_json_api_result_with_string(self.api.import_remote_private_route(blob)),
+            },
+            RequestOp::ReleasePrivateRoute { route_id } => ResponseOp::ReleasePrivateRoute {
+                result: to_json_api_result(self.api.release_private_route(route_id)),
+            },
+            RequestOp::AppCallReply { call_id, message } => ResponseOp::AppCallReply {
+                result: to_json_api_result(self.api.app_call_reply(call_id, message).await),
+            },
+            RequestOp::NewRoutingContext => ResponseOp::NewRoutingContext {
+                result: to_json_api_result(
+                    self.api
+                        .routing_context()
+                        .map(|rc| self.add_routing_context(rc)),
+                ),
+            },
+            RequestOp::RoutingContext(rcr) => {
+                let routing_context = match self.lookup_routing_context(id, rcr.rc_id) {
+                    Ok(v) => v,
+                    Err(e) => return e,
+                };
+                ResponseOp::RoutingContext(Box::new(
+                    self.process_routing_context_request(routing_context, rcr)
+                        .await,
+                ))
+            }
+            RequestOp::OpenTableDb { name, column_count } => {
+                let table_store = match self.api.table_store() {
+                    Ok(v) => v,
+                    Err(e) => {
+                        return Response {
+                            id,
+                            op: ResponseOp::OpenTableDb {
+                                result: to_json_api_result(Err(e)),
+                            },
+                        }
+                    }
+                };
+                ResponseOp::OpenTableDb {
+                    result: to_json_api_result(
+                        table_store
+                            .open(&name, column_count)
+                            .await
+                            .map(|table_db| self.add_table_db(table_db)),
+                    ),
+                }
+            }
+            RequestOp::DeleteTableDb { name } => {
+                let table_store = match self.api.table_store() {
+                    Ok(v) => v,
+                    Err(e) => {
+                        return Response {
+                            id,
+                            op: ResponseOp::DeleteTableDb {
+                                result: to_json_api_result(Err(e)),
+                            },
+                        }
+                    }
+                };
+                ResponseOp::DeleteTableDb {
+                    result: to_json_api_result(table_store.delete(&name).await),
+                }
+            }
+            RequestOp::TableDb(tdr) => {
+                let table_db = match self.lookup_table_db(id, tdr.db_id) {
+                    Ok(v) => v,
+                    Err(e) => return e,
+                };
+                ResponseOp::TableDb(self.process_table_db_request(table_db, tdr).await)
+            }
+            RequestOp::TableDbTransaction(tdtr) => {
+                let table_db_transaction = match self.lookup_table_db_transaction(id, tdtr.tx_id) {
+                    Ok(v) => v,
+                    Err(e) => return e,
+                };
+                ResponseOp::TableDbTransaction(
+                    self.process_table_db_transaction_request(table_db_transaction, tdtr)
+                        .await,
+                )
+            }
+            RequestOp::GetCryptoSystem { kind } => {
+                let crypto = match self.api.crypto() {
+                    Ok(v) => v,
+                    Err(e) => {
+                        return Response {
+                            id,
+                            op: ResponseOp::GetCryptoSystem {
+                                result: to_json_api_result(Err(e)),
+                            },
+                        }
+                    }
+                };
+                ResponseOp::GetCryptoSystem {
+                    result: to_json_api_result(
+                        crypto
+                            .get(kind)
+                            .ok_or_else(|| {
+                                VeilidAPIError::invalid_argument(
+                                    "unsupported cryptosystem",
+                                    "kind",
+                                    kind,
+                                )
+                            })
+                            .map(|csv| self.add_crypto_system(csv.kind())),
+                    ),
+                }
+            }
+            RequestOp::CryptoSystem(csr) => {
+                let crypto_kind = match self.lookup_crypto_system(id, csr.cs_id) {
+                    Ok(v) => v,
+                    Err(e) => return e,
+                };
+                let crypto = match self.api.crypto() {
+                    Ok(v) => v,
+                    Err(e) => {
+                        return Response {
+                            id,
+                            op: ResponseOp::GetCryptoSystem {
+                                result: to_json_api_result(Err(e)),
+                            },
+                        }
+                    }
+                };
+                let csv = crypto.get(crypto_kind).unwrap_or_log();
+
+                ResponseOp::CryptoSystem(self.process_crypto_system_request(&csv, csr).await)
+            }
+            RequestOp::VerifySignatures {
+                node_ids,
+                data,
+                signatures,
+            } => {
+                let crypto = match self.api.crypto() {
+                    Ok(v) => v,
+                    Err(e) => {
+                        return Response {
+                            id,
+                            op: ResponseOp::GetCryptoSystem {
+                                result: to_json_api_result(Err(e)),
+                            },
+                        }
+                    }
+                };
+                ResponseOp::VerifySignatures {
+                    result: to_json_api_result_with_opt_vec_string(crypto.verify_signatures(
+                        &node_ids,
+                        &data,
+                        &signatures,
+                    )),
+                }
+            }
+            RequestOp::GenerateSignatures { data, key_pairs } => {
+                let crypto = match self.api.crypto() {
+                    Ok(v) => v,
+                    Err(e) => {
+                        return Response {
+                            id,
+                            op: ResponseOp::GetCryptoSystem {
+                                result: to_json_api_result(Err(e)),
+                            },
+                        }
+                    }
+                };
+                ResponseOp::GenerateSignatures {
+                    result: to_json_api_result_with_vec_string(crypto.generate_signatures(
+                        &data,
+                        &key_pairs,
+                        |_k, s| s,
+                    )),
+                }
+            }
+            RequestOp::GenerateKeyPair { kind } => ResponseOp::GenerateKeyPair {
+                result: to_json_api_result_with_string(Crypto::generate_keypair(kind)),
+            },
+            RequestOp::Now => ResponseOp::Now {
+                value: Timestamp::now(),
+            },
+            RequestOp::NowNonDecreasing => ResponseOp::NowNonDecreasing {
+                value: Timestamp::now_non_decreasing(),
+            },
+            RequestOp::NowIncreasing => ResponseOp::NowIncreasing {
+                value: Timestamp::now_increasing(),
+            },
+            RequestOp::Debug { command } => ResponseOp::Debug {
+                result: to_json_api_result(self.api.debug(command).await),
+            },
+            RequestOp::VeilidVersionString => ResponseOp::VeilidVersionString {
+                value: veilid_version_string(),
+            },
+            RequestOp::VeilidVersion => {
+                let (major, minor, patch) = veilid_version();
+
+                ResponseOp::VeilidVersion {
+                    major,
+                    minor,
+                    patch,
+                }
+            }
+            RequestOp::VeilidFeatures => ResponseOp::VeilidFeatures {
+                value: veilid_features(),
+            },
+            RequestOp::DefaultVeilidConfig => ResponseOp::DefaultVeilidConfig {
+                value: default_veilid_config(),
+            },
+            RequestOp::ValidCryptoKinds => ResponseOp::ValidCryptoKinds {
+                value: VALID_CRYPTO_KINDS.to_vec(),
+            },
+            RequestOp::DhtTransaction(dhttx) => {
+                let dht_transaction = match self.lookup_dht_transaction(id, dhttx.dhttx_id) {
+                    Ok(v) => v,
+                    Err(e) => return e,
+                };
+                ResponseOp::DhtTransaction(Box::new(
+                    self.process_dht_transaction_request(dht_transaction, dhttx)
+                        .await,
+                ))
+            }
+            RequestOp::TransactDhtRecords {
+                record_keys,
+                options,
+            } => ResponseOp::TransactDhtRecords {
+                result: to_json_api_result(
+                    self.api
+                        .transact_dht_records(record_keys, options)
+                        .await
+                        .map(|dht_tx| self.add_dht_transaction(dht_tx)),
+                ),
+            },
+        };
+
+        Response { id, op }
+    }
+}

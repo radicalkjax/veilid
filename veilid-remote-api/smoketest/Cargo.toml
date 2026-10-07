@@ -1,0 +1,21 @@
+[workspace]
+
+[package]
+name = "veilid_remote_api_smoketest"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+veilid-remote-api = { version = "0.5.7", path = "..", default-features = false }
+tokio = { version = "1.49.0", features = [
+    "rt-multi-thread",
+    "time",
+], optional = true }
+
+async-std = { version = "1.13.2", optional = true }
+
+[features]
+default = ["rt-tokio"]
+
+rt-tokio = ["tokio", "veilid-remote-api/default-tokio"]
+rt-async-std = ["async-std", "veilid-remote-api/default-async-std"]

@@ -1,0 +1,320 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-core"
+version = "0.5.7"
+# ---
+description = "Core library used to create a Veilid node and operate it as part of an application"
+build = "build.rs"
+resolver = "2"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+documentation = "https://docs.rs/veilid-core"
+homepage = "https://veilid.gitlab.io/developer-book/"
+
+[lib]
+crate-type = ["cdylib", "staticlib", "rlib"]
+path = "src/lib.rs"
+
+[features]
+
+default = ["default-tokio", "debug-api", "backtrace"]
+
+# Common features
+default-tokio = ["enable-crypto-vld0", "rt-tokio"]
+default-async-std = [
+    "enable-crypto-vld0",
+    "rt-async-std",
+    "debug-api",
+    "backtrace",
+]
+default-wasm = ["enable-crypto-vld0", "rt-wasm-bindgen"]
+
+# Capture backtraces in diagnostics (error logs, guard tracking); off for wasm product builds
+backtrace = ["dep:backtrace", "veilid-tools/backtrace"]
+
+# Text debug-command interface (VeilidAPI::debug); without it debug commands return ""
+debug-api = ["dep:clap", "dep:bytesize"]
+
+# JsonSchema derives on API types, for veilid-remote-api schema generation
+schemars = ["dep:schemars"]
+
+# Runtimes
+rt-async-std = ["async-std", "veilid-tools/rt-async-std"]
+rt-tokio = ["tokio", "veilid-tools/rt-tokio"]
+rt-wasm-bindgen = ["veilid-tools/rt-wasm-bindgen"]
+
+# Crypto support features
+enable-crypto-vld0 = [
+    "ed25519-dalek",
+    "x25519-dalek",
+    "curve25519-dalek",
+    "blake3",
+    "chacha20poly1305",
+    "chacha20",
+    "argon2",
+    "blake2",           # To apply optimization for argon2 code size
+    "hpke",
+]
+enable-crypto-none = [
+    "ed25519-dalek",
+    "curve25519-dalek",
+    "blake3",
+    "argon2",
+    "digest",
+    "blake2",           # To apply optimization for argon2 code size
+    "chacha20poly1305",
+    "hpke",
+    "subtle",
+]
+
+# Protocol support features
+enable-protocol-wss = ["webpki-roots"]
+
+# JSON format to use for serializing
+json-camel-case = []
+
+# GeoIP
+geolocation = ["maxminddb", "reqwest"]
+
+# Features that go against "Natural Security" concepts
+# https://gitlab.com/veilid/veilid/-/issues/420
+footgun-nodeid-target = []
+# Honor the VeilidConfig.internal footgun tuning tree (otherwise ignored)
+footgun-config = []
+
+# Reserved for use by future components
+unstable-blockstore = []
+unstable-tunnels = []
+virtual-network = ["veilid-tools/virtual-network"]
+virtual-network-server = ["veilid-tools/virtual-network-server"]
+
+# Debugging and testing features
+test-util = ["veilid-tools/test-util"]
+instrument = []
+verbose-tracing = []
+tracking = []
+crypto-test = ["enable-crypto-vld0", "enable-crypto-none"]
+crypto-test-none = ["enable-crypto-none"]
+veilid_core_android_tests = ["dep:paranoid-android", "test-util", "backtrace"]
+veilid_core_ios_tests = ["dep:tracing-oslog", "test-util", "backtrace"]
+debug-locks = ["veilid-tools/debug-locks", "backtrace"]
+
+
+### DEPENDENCIES
+
+[dependencies]
+
+# Tools
+veilid-tools = { version = "0.5.7", path = "../veilid-tools", features = [
+    "tracing",
+], default-features = false }
+pastey = "0.2.1"
+backtrace = { version = "^0.3.71", optional = true }
+num-traits = "0.2.19"
+cfg-if = "1.0.4"
+lazy_static = "1.5.0"
+directories = "6.0.0"
+get-size2 = { version = "0.10.1", features = ["derive"] }
+async-trait = "0.1.89"
+macro_rules_attribute = "0.2.2"
+clap = { version = "4.5.39", features = ["derive"], optional = true }
+
+# Logging
+tracing = { version = "0.1.44", features = ["log", "attributes"] }
+tracing-subscriber = "0.3.22"
+eyre = "0.6.12"
+thiserror = "2.0.18"
+
+# Data structures
+enumset = { version = "1.1.10", features = ["serde"] }
+keyvaluedb = "=0.1.8"
+range-set-blaze = "0.6.0"
+weak-table = "0.3.2"
+hashlink = { package = "veilid-hashlink", version = "=0.1.3", features = [
+    "serde_impl",
+] }
+
+# System
+futures-util = { version = "0.3.31", default-features = false, features = [
+    "alloc",
+] }
+flume = { version = "0.12.0", features = ["async"] }
+arc-swap = { version = "1.8.0" }
+
+# Crypto
+ed25519-dalek = { version = "3.0.0", optional = true, default-features = false, features = [
+    "alloc",
+    "rand_core",
+    "digest",
+    "zeroize",
+] }
+x25519-dalek = { version = "3.0.0", optional = true, default-features = false, features = [
+    "static_secrets",
+    "zeroize",
+    "precomputed-tables",
+] }
+curve25519-dalek = { version = "5.0.0", optional = true, default-features = false, features = [
+    "alloc",
+    "zeroize",
+    "precomputed-tables",
+] }
+blake3 = { version = "1.8.3", optional = true }
+blake2 = { version = "0.11.0-rc.5", optional = true, default-features = false, features = [
+    "size_opt",
+] } # Size optimization for c crate (via feature unification)
+chacha20poly1305 = { version = "0.11.0", optional = true, features = [
+    "bytes",
+    "zeroize",
+    "rand_core",
+] }
+chacha20 = { version = "0.10", optional = true, features = ["xchacha"] }
+argon2 = { version = "0.6.0-rc.8", optional = true, default-features = false, features = [
+    "alloc",
+    "password-hash",
+    "getrandom",
+    "rand_core",
+] }
+digest = { version = "0.11", optional = true, features = ["rand_core"] }
+hpke = { version = "0.14.0", optional = true, default-features = false, features = [
+    "alloc",
+    "x25519",
+    "chacha",
+] }
+subtle = { version = "2.6", optional = true, default-features = false }
+
+# Serialization
+capnp = { version = "0.26.1", default-features = false, features = [
+    "alloc",
+    "std",
+] }
+serde = { version = "1.0.218", features = ["derive", "rc"] }
+serde_ignored = "0.1.14"
+serde_json = { version = "1.0.149" }
+data-encoding = { version = "2.8.0" }
+schemars = { version = "1.0.3", optional = true }
+lz4_flex = { version = "0.13.1", default-features = false, features = [
+    "safe-encode",
+    "safe-decode",
+] }
+indent = "0.1.1"
+bytesize = { version = "2.3.1", optional = true }
+
+### Dependencies for native builds only
+# Linux, Windows, Mac, iOS, Android
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dependencies]
+
+# Tools
+maxminddb = { version = "0.29.0", optional = true }
+
+# System
+async-std = { version = "1.13.0", features = ["unstable"], optional = true }
+tokio = { version = "1.49.0", features = [
+    "rt-multi-thread",
+    "net",
+    "time",
+    "sync",
+    "parking_lot",
+], optional = true }
+futures-util = { version = "0.3.31", default-features = false, features = [
+    "async-await",
+    "sink",
+    "std",
+    "io",
+] }
+
+# Data structures
+keyring-manager = "=0.8.3"
+keyvaluedb-sqlite = "=0.1.8"
+
+# Network
+async-tungstenite = { version = "0.34.0" }
+futures-rustls = { version = "0.26.0", default-features = false, features = [
+    "ring",
+    "logging",
+] }
+webpki-roots = { version = "1.0.6", optional = true }
+
+### Dependencies for WASM builds only
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+
+# Crypto
+getrandom = { version = "0.4.2", features = ["wasm_js"] }
+
+# System
+js-sys = "0.3.83"
+wasm-bindgen = "0.2.121"
+gloo-events = { version = "0.3.0" }
+
+send_wrapper = { version = "0.6.0", features = ["futures"] }
+serde_bytes = { version = "0.11", default-features = false, features = [
+    "alloc",
+] }
+tsify = { version = "0.5.5", features = ["js"] }
+serde-wasm-bindgen = "0.6.5"
+
+# Network
+ws_stream_wasm = "0.7.4"
+
+# Data Structures
+keyvaluedb-web = "=0.1.8"
+
+### Configuration for WASM32 'web-sys' crate
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies.web-sys]
+version = "0.3.77"
+features = [
+    'Document',
+    'HtmlDocument',
+    # 'Element',
+    # 'HtmlElement',
+    # 'Node',
+    'IdbFactory',
+    'IdbOpenDbRequest',
+    'Storage',
+    'Location',
+    'DedicatedWorkerGlobalScope',
+    'ServiceWorkerGlobalScope',
+    'SharedWorkerGlobalScope',
+    'Window',
+]
+
+# Dependencies for Android
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.22.4"
+paranoid-android = { version = "0.2.2", optional = true }
+
+# Dependencies for Windows
+[target.'cfg(target_os = "windows")'.dependencies]
+# Nothing currently
+
+# Dependencies for iOS
+[target.'cfg(target_os = "ios")'.dependencies]
+tracing-oslog = { version = "0.3.0", optional = true }
+
+### DEV DEPENDENCIES
+
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dev-dependencies]
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
+
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dev-dependencies]
+wasm-bindgen-test = "0.3.56"
+console_error_panic_hook = "0.1.7"
+
+### BUILD OPTIONS
+
+[build-dependencies]
+capnpc = "0.26.0"
+glob = "0.3.2"
+sha2 = "0.11.0"
+hex = "0.4.3"
+reqwest = { version = "0.13.1", features = ["blocking"], optional = true }
+bosion = { version = "2.0.0", default-features = false }
+
+[package.metadata.cargo-machete]
+# ignore build dependencies and crates that are only used in derives
+ignored = ["capnpc", "glob", "sha2", "reqwest", "serde_bytes", "js-sys"]
+
+[lints]
+workspace = true

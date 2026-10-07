@@ -1,0 +1,24 @@
+name: veilid_integration_test
+description: In-window log harness for Veilid Flutter integration tests
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.8.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  test_api: ^0.7.0
+  veilid:
+    path: ../..
+  veilid_test:
+    path: ../veilid_test
+  veilid_xterm: 4.0.0-veilid.1
+
+dev_dependencies:
+  flutter_lints: ^6.0.0

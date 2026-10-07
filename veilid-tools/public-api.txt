@@ -1,0 +1,2059 @@
+pub mod veilid_tools
+pub use veilid_tools::<<tokio_util::compat::*>>
+pub use veilid_tools::Arc
+pub use veilid_tools::AtomicBool
+pub use veilid_tools::AtomicUsize
+pub use veilid_tools::BTreeMap
+pub use veilid_tools::BTreeSet
+pub use veilid_tools::Box
+pub use veilid_tools::Cow
+pub use veilid_tools::Duration
+pub use veilid_tools::Fn
+pub use veilid_tools::FnMut
+pub use veilid_tools::FnOnce
+pub use veilid_tools::FromStr
+pub use veilid_tools::Future
+pub use veilid_tools::HashMap
+pub use veilid_tools::HashSet
+pub use veilid_tools::IpAddr
+pub use veilid_tools::Ipv4Addr
+pub use veilid_tools::Ipv6Addr
+pub use veilid_tools::LazyLock
+pub use veilid_tools::LinkedList
+pub use veilid_tools::LowLevelJoinHandle
+pub use veilid_tools::Ordering
+pub use veilid_tools::Pin
+pub use veilid_tools::Rc
+pub use veilid_tools::RefCell
+pub use veilid_tools::SocketAddr
+pub use veilid_tools::SocketAddrV4
+pub use veilid_tools::SocketAddrV6
+pub use veilid_tools::String
+pub use veilid_tools::TcpListener
+pub use veilid_tools::TcpStream
+pub use veilid_tools::ToOwned
+pub use veilid_tools::ToSocketAddrs
+pub use veilid_tools::ToString
+pub use veilid_tools::TryFrom
+pub use veilid_tools::TryInto
+pub use veilid_tools::UdpSocket
+pub use veilid_tools::Vec
+pub use veilid_tools::VecDeque
+pub use veilid_tools::Weak
+pub use veilid_tools::bytes
+pub use veilid_tools::cmp
+pub use veilid_tools::fmt
+pub use veilid_tools::fn_name
+pub use veilid_tools::hex
+pub use veilid_tools::mem
+pub use veilid_tools::parking_lot
+pub use veilid_tools::shell_words
+pub use veilid_tools::task
+pub mod veilid_tools::assembly_buffer
+pub struct veilid_tools::assembly_buffer::AssemblyBuffer
+impl veilid_tools::AssemblyBuffer
+pub fn veilid_tools::AssemblyBuffer::insert_frame(&self, &[u8], core::net::socket_addr::SocketAddr) -> veilid_tools::NetworkResult<core::option::Option<bytes::bytes::Bytes>>
+pub fn veilid_tools::AssemblyBuffer::new() -> Self
+pub async fn veilid_tools::AssemblyBuffer::split_message<S, F>(&self, bytes::bytes::Bytes, core::net::socket_addr::SocketAddr, S) -> core::io::error::Result<veilid_tools::NetworkResult<()>> where S: core::ops::function::FnMut(bytes::bytes::Bytes, core::net::socket_addr::SocketAddr) -> F, F: core::future::future::Future<Output = core::io::error::Result<veilid_tools::NetworkResult<()>>>
+impl core::default::Default for veilid_tools::AssemblyBuffer
+pub fn veilid_tools::AssemblyBuffer::default() -> Self
+pub const veilid_tools::assembly_buffer::FRAGMENT_LEN: usize
+pub mod veilid_tools::async_locks
+pub struct veilid_tools::async_locks::AsyncKeyedCache<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+impl<K, V> veilid_tools::AsyncKeyedCache<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+pub async fn veilid_tools::AsyncKeyedCache<K, V>::lookup(&self, K) -> veilid_tools::AsyncKeyedCacheEntry<K, V>
+pub fn veilid_tools::AsyncKeyedCache<K, V>::new(usize) -> Self
+pub fn veilid_tools::AsyncKeyedCache<K, V>::purge(&self) -> bool
+pub struct veilid_tools::async_locks::AsyncKeyedCacheEntry<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+impl<K, V> veilid_tools::AsyncKeyedCacheEntry<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::get(&self) -> core::option::Option<V>
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::insert(&self, V) -> core::option::Option<V>
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::key(&self) -> &K
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::remove(&self) -> core::option::Option<V>
+pub struct veilid_tools::async_locks::AsyncMutex<T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> veilid_tools::AsyncMutex<T>
+pub async fn veilid_tools::AsyncMutex<T>::lock(&self) -> veilid_tools::AsyncMutexGuard<'_, T>
+pub async fn veilid_tools::AsyncMutex<T>::lock_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncMutexGuardArc<T>
+pub fn veilid_tools::AsyncMutex<T>::new(T) -> Self where T: core::marker::Sized
+pub fn veilid_tools::AsyncMutex<T>::try_lock(&self) -> core::option::Option<veilid_tools::AsyncMutexGuard<'_, T>>
+pub fn veilid_tools::AsyncMutex<T>::try_lock_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncMutexGuardArc<T>>
+impl<T> core::convert::From<T> for veilid_tools::AsyncMutex<T>
+pub fn veilid_tools::AsyncMutex<T>::from(T) -> Self
+pub struct veilid_tools::async_locks::AsyncMutexGuard<'a, T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncMutexGuard<'_, T>
+pub type veilid_tools::AsyncMutexGuard<'_, T>::Target = T
+pub fn veilid_tools::AsyncMutexGuard<'_, T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncMutexGuard<'_, T>
+pub fn veilid_tools::AsyncMutexGuard<'_, T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncMutexGuard<'_, T>
+pub fn veilid_tools::AsyncMutexGuard<'_, T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::async_locks::AsyncMutexGuardArc<T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncMutexGuardArc<T>
+pub type veilid_tools::AsyncMutexGuardArc<T>::Target = T
+pub fn veilid_tools::AsyncMutexGuardArc<T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncMutexGuardArc<T>
+pub fn veilid_tools::AsyncMutexGuardArc<T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncMutexGuardArc<T>
+pub fn veilid_tools::AsyncMutexGuardArc<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::async_locks::AsyncRwLock<T> where T: ?core::marker::Sized
+impl<T: ?core::marker::Sized> veilid_tools::AsyncRwLock<T>
+pub async fn veilid_tools::AsyncRwLock<T>::read(&self) -> veilid_tools::AsyncRwLockReadGuard<'_, T>
+pub fn veilid_tools::AsyncRwLock<T>::try_read(&self) -> core::option::Option<veilid_tools::AsyncRwLockReadGuard<'_, T>>
+pub fn veilid_tools::AsyncRwLock<T>::try_write(&self) -> core::option::Option<veilid_tools::AsyncRwLockWriteGuard<'_, T>>
+pub fn veilid_tools::AsyncRwLock<T>::try_write_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncRwLockWriteGuardArc<T>>
+pub async fn veilid_tools::AsyncRwLock<T>::write(&self) -> veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub async fn veilid_tools::AsyncRwLock<T>::write_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncRwLockWriteGuardArc<T>
+impl<T> veilid_tools::AsyncRwLock<T>
+pub fn veilid_tools::AsyncRwLock<T>::new(T) -> veilid_tools::AsyncRwLock<T>
+pub async fn veilid_tools::AsyncRwLock<T>::read_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncRwLockReadGuardArc<T>
+pub fn veilid_tools::AsyncRwLock<T>::try_read_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncRwLockReadGuardArc<T>>
+impl<T> core::convert::From<T> for veilid_tools::AsyncRwLock<T>
+pub fn veilid_tools::AsyncRwLock<T>::from(T) -> veilid_tools::AsyncRwLock<T>
+pub struct veilid_tools::async_locks::AsyncRwLockReadGuard<'a, T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncRwLockReadGuard<'_, T>
+pub type veilid_tools::AsyncRwLockReadGuard<'_, T>::Target = T
+pub fn veilid_tools::AsyncRwLockReadGuard<'_, T>::deref(&self) -> &T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncRwLockReadGuard<'_, T>
+pub fn veilid_tools::AsyncRwLockReadGuard<'_, T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::async_locks::AsyncRwLockReadGuardArc<T>
+impl<T: core::fmt::Display> core::fmt::Display for veilid_tools::AsyncRwLockReadGuardArc<T>
+pub fn veilid_tools::AsyncRwLockReadGuardArc<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::ops::deref::Deref for veilid_tools::AsyncRwLockReadGuardArc<T>
+pub type veilid_tools::AsyncRwLockReadGuardArc<T>::Target = T
+pub fn veilid_tools::AsyncRwLockReadGuardArc<T>::deref(&self) -> &T
+pub struct veilid_tools::async_locks::AsyncRwLockWriteGuard<'a, T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub type veilid_tools::AsyncRwLockWriteGuard<'_, T>::Target = T
+pub fn veilid_tools::AsyncRwLockWriteGuard<'_, T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub fn veilid_tools::AsyncRwLockWriteGuard<'_, T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub fn veilid_tools::AsyncRwLockWriteGuard<'_, T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::async_locks::AsyncRwLockWriteGuardArc<T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncRwLockWriteGuardArc<T>
+pub type veilid_tools::AsyncRwLockWriteGuardArc<T>::Target = T
+pub fn veilid_tools::AsyncRwLockWriteGuardArc<T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncRwLockWriteGuardArc<T>
+pub fn veilid_tools::AsyncRwLockWriteGuardArc<T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncRwLockWriteGuardArc<T>
+pub fn veilid_tools::AsyncRwLockWriteGuardArc<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::async_locks::AsyncSemaphore
+impl veilid_tools::AsyncSemaphore
+pub async fn veilid_tools::AsyncSemaphore::acquire(&self) -> veilid_tools::AsyncSemaphoreGuard<'_>
+pub async fn veilid_tools::AsyncSemaphore::acquire_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncSemaphoreGuardArc
+pub fn veilid_tools::AsyncSemaphore::new(usize) -> veilid_tools::AsyncSemaphore
+pub fn veilid_tools::AsyncSemaphore::try_acquire(&self) -> core::option::Option<veilid_tools::AsyncSemaphoreGuard<'_>>
+pub fn veilid_tools::AsyncSemaphore::try_acquire_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncSemaphoreGuardArc>
+pub struct veilid_tools::async_locks::AsyncSemaphoreGuard<'a>
+pub struct veilid_tools::async_locks::AsyncSemaphoreGuardArc
+pub struct veilid_tools::async_locks::AsyncTagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::AsyncTagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::AsyncTagLockGuard<T>::tag(&self) -> T
+pub struct veilid_tools::async_locks::AsyncTagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::AsyncTagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::AsyncTagLockTable<T>::is_empty(&self) -> bool
+pub fn veilid_tools::AsyncTagLockTable<T>::len(&self) -> usize
+pub async fn veilid_tools::AsyncTagLockTable<T>::lock_tag(&self, T) -> veilid_tools::AsyncTagLockGuard<T>
+pub fn veilid_tools::AsyncTagLockTable<T>::new() -> Self
+pub fn veilid_tools::AsyncTagLockTable<T>::try_lock_tag(&self, T) -> core::option::Option<veilid_tools::AsyncTagLockGuard<T>>
+impl<T> core::default::Default for veilid_tools::AsyncTagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::AsyncTagLockTable<T>::default() -> Self
+pub struct veilid_tools::async_locks::AsyncWeightedSemaphore
+impl veilid_tools::AsyncWeightedSemaphore
+pub async fn veilid_tools::AsyncWeightedSemaphore::acquire(&alloc::sync::Arc<Self>, u64) -> veilid_tools::AsyncWeightedSemaphoreGuard
+pub fn veilid_tools::AsyncWeightedSemaphore::in_flight(&self) -> u64
+pub fn veilid_tools::AsyncWeightedSemaphore::limit(&self) -> u64
+pub fn veilid_tools::AsyncWeightedSemaphore::new(u64) -> alloc::sync::Arc<Self>
+pub fn veilid_tools::AsyncWeightedSemaphore::raise_limit(&self, u64) -> u64
+pub fn veilid_tools::AsyncWeightedSemaphore::set_limit(&self, u64)
+pub fn veilid_tools::AsyncWeightedSemaphore::try_acquire(&alloc::sync::Arc<Self>, u64) -> core::option::Option<veilid_tools::AsyncWeightedSemaphoreGuard>
+pub struct veilid_tools::async_locks::AsyncWeightedSemaphoreGuard
+impl core::ops::drop::Drop for veilid_tools::AsyncWeightedSemaphoreGuard
+pub fn veilid_tools::AsyncWeightedSemaphoreGuard::drop(&mut self)
+pub const veilid_tools::async_locks::DEBUG_LOCKS_DURATION_MS: u32
+pub mod veilid_tools::async_peek_stream
+pub struct veilid_tools::async_peek_stream::AsyncPeekStream where Self: futures_io::if_std::AsyncRead + futures_io::if_std::AsyncWrite + core::marker::Send + core::marker::Unpin
+impl veilid_tools::AsyncPeekStream
+pub fn veilid_tools::AsyncPeekStream::new<S>(S) -> Self where S: futures_io::if_std::AsyncRead + futures_io::if_std::AsyncWrite + core::marker::Send + core::marker::Unpin + 'static
+pub fn veilid_tools::AsyncPeekStream::peek<'a>(&'a self, &'a mut [u8]) -> veilid_tools::Peek<'a>
+pub fn veilid_tools::AsyncPeekStream::peek_exact<'a>(&'a self, &'a mut [u8]) -> veilid_tools::PeekExact<'a>
+impl core::marker::Unpin for veilid_tools::AsyncPeekStream
+impl futures_io::if_std::AsyncRead for veilid_tools::AsyncPeekStream
+pub fn veilid_tools::AsyncPeekStream::poll_read(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &mut [u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+impl futures_io::if_std::AsyncWrite for veilid_tools::AsyncPeekStream
+pub fn veilid_tools::AsyncPeekStream::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::AsyncPeekStream::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::AsyncPeekStream::poll_write(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &[u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+pub struct veilid_tools::async_peek_stream::Peek<'a>
+impl core::future::future::Future for veilid_tools::Peek<'_>
+pub type veilid_tools::Peek<'_>::Output = core::result::Result<usize, core::io::error::Error>
+pub fn veilid_tools::Peek<'_>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl core::marker::Unpin for veilid_tools::Peek<'_>
+pub struct veilid_tools::async_peek_stream::PeekExact<'a>
+impl core::future::future::Future for veilid_tools::PeekExact<'_>
+pub type veilid_tools::PeekExact<'_>::Output = core::result::Result<usize, core::io::error::Error>
+pub fn veilid_tools::PeekExact<'_>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl core::marker::Unpin for veilid_tools::PeekExact<'_>
+pub mod veilid_tools::bytes_writer
+pub struct veilid_tools::bytes_writer::BytesWriter
+impl veilid_tools::BytesWriter
+pub fn veilid_tools::BytesWriter::bytes_mut(&self) -> &bytes::bytes_mut::BytesMut
+pub fn veilid_tools::BytesWriter::bytes_written(&self) -> usize
+pub fn veilid_tools::BytesWriter::into_inner(self) -> bytes::bytes_mut::BytesMut
+pub fn veilid_tools::BytesWriter::new() -> Self
+pub fn veilid_tools::BytesWriter::new_append(bytes::bytes_mut::BytesMut) -> Self
+pub fn veilid_tools::BytesWriter::new_offset(bytes::bytes_mut::BytesMut, usize) -> Self
+pub fn veilid_tools::BytesWriter::position(&self) -> usize
+pub fn veilid_tools::BytesWriter::start(&self) -> usize
+pub fn veilid_tools::BytesWriter::with_capacity(usize) -> Self
+impl core::default::Default for veilid_tools::BytesWriter
+pub fn veilid_tools::BytesWriter::default() -> Self
+impl core::io::write::Write for veilid_tools::BytesWriter
+pub fn veilid_tools::BytesWriter::flush(&mut self) -> core::io::error::Result<()>
+pub fn veilid_tools::BytesWriter::write(&mut self, &[u8]) -> core::io::error::Result<usize>
+pub mod veilid_tools::clone_stream
+pub struct veilid_tools::clone_stream::CloneStream<T> where T: core::marker::Unpin
+impl<T> veilid_tools::CloneStream<T> where T: core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::new(T) -> Self
+impl<T, Item> futures_sink::Sink<Item> for veilid_tools::CloneStream<T> where T: futures_sink::Sink<Item> + core::marker::Unpin
+pub type veilid_tools::CloneStream<T>::Error = <T as futures_sink::Sink<Item>>::Error
+pub fn veilid_tools::CloneStream<T>::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::result::Result<(), Self::Error>>
+pub fn veilid_tools::CloneStream<T>::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::result::Result<(), Self::Error>>
+pub fn veilid_tools::CloneStream<T>::poll_ready(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::result::Result<(), Self::Error>>
+pub fn veilid_tools::CloneStream<T>::start_send(core::pin::Pin<&mut Self>, Item) -> core::result::Result<(), Self::Error>
+impl<T> core::clone::Clone for veilid_tools::CloneStream<T> where T: core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::clone(&self) -> Self
+impl<T> futures_core::stream::Stream for veilid_tools::CloneStream<T> where T: futures_core::stream::Stream + core::marker::Unpin
+pub type veilid_tools::CloneStream<T>::Item = <T as futures_core::stream::Stream>::Item
+pub fn veilid_tools::CloneStream<T>::poll_next(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::option::Option<Self::Item>>
+impl<T> futures_io::if_std::AsyncRead for veilid_tools::CloneStream<T> where T: futures_io::if_std::AsyncRead + core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::poll_read(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &mut [u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+impl<T> futures_io::if_std::AsyncWrite for veilid_tools::CloneStream<T> where T: futures_io::if_std::AsyncWrite + core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::CloneStream<T>::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::CloneStream<T>::poll_write(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &[u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+pub mod veilid_tools::cpu_pool
+pub fn veilid_tools::cpu_pool::cpu_pool_spawn_fifo(alloc::boxed::Box<(dyn core::ops::function::FnOnce() + core::marker::Send)>)
+pub mod veilid_tools::debugging
+pub enum veilid_tools::debugging::DebuggerState
+pub veilid_tools::debugging::DebuggerState::Attached
+pub veilid_tools::debugging::DebuggerState::Detached
+pub veilid_tools::debugging::DebuggerState::Unknown
+pub fn veilid_tools::debugging::debugger_state() -> veilid_tools::DebuggerState
+pub fn veilid_tools::debugging::wait_until_debugger_attached<T: core::convert::Into<core::option::Option<core::time::Duration>>>(T) -> core::result::Result<(), &'static str>
+pub mod veilid_tools::deferred_stream_processor
+pub enum veilid_tools::deferred_stream_processor::DeferredStreamResult
+pub veilid_tools::deferred_stream_processor::DeferredStreamResult::Continue
+pub veilid_tools::deferred_stream_processor::DeferredStreamResult::Done
+pub struct veilid_tools::deferred_stream_processor::DeferredStreamProcessor
+impl veilid_tools::DeferredStreamProcessor
+pub fn veilid_tools::DeferredStreamProcessor::add_future<F>(&self, F) -> bool where F: core::future::future::Future<Output = ()> + core::marker::Send + 'static
+pub fn veilid_tools::DeferredStreamProcessor::add_stream<T: core::marker::Send + 'static, S: futures_core::stream::Stream<Item = T> + core::marker::Unpin + core::marker::Send + 'static>(&self, S, impl core::ops::function::FnMut(T) -> veilid_tools::PinBoxFutureStatic<veilid_tools::DeferredStreamResult> + core::marker::Send + 'static) -> bool
+pub fn veilid_tools::DeferredStreamProcessor::init(&self)
+pub fn veilid_tools::DeferredStreamProcessor::new() -> Self
+pub async fn veilid_tools::DeferredStreamProcessor::terminate(&self)
+impl core::default::Default for veilid_tools::DeferredStreamProcessor
+pub fn veilid_tools::DeferredStreamProcessor::default() -> Self
+pub mod veilid_tools::event_bus
+pub struct veilid_tools::event_bus::EventBus
+impl veilid_tools::EventBus
+pub fn veilid_tools::EventBus::is_empty(&self) -> bool
+pub fn veilid_tools::EventBus::len(&self) -> usize
+pub fn veilid_tools::EventBus::new() -> Self
+pub fn veilid_tools::EventBus::post<E: core::any::Any + core::marker::Send + core::marker::Sync + 'static>(&self, E) -> core::result::Result<(), veilid_tools::StartupLockNotStartedError>
+pub async fn veilid_tools::EventBus::shutdown(&self)
+pub fn veilid_tools::EventBus::startup(&self) -> core::result::Result<(), veilid_tools::StartupLockAlreadyStartedError>
+pub fn veilid_tools::EventBus::subscribe<E: core::any::Any + core::marker::Send + core::marker::Sync + 'static, F: core::ops::function::Fn(alloc::sync::Arc<E>) -> veilid_tools::PinBoxFutureStatic<()> + core::marker::Send + core::marker::Sync + 'static>(&self, F) -> veilid_tools::EventBusSubscription
+pub fn veilid_tools::EventBus::unsubscribe(&self, veilid_tools::EventBusSubscription)
+impl core::default::Default for veilid_tools::EventBus
+pub fn veilid_tools::EventBus::default() -> Self
+pub struct veilid_tools::event_bus::EventBusSubscription
+pub mod veilid_tools::eventual
+pub struct veilid_tools::eventual::Eventual
+impl veilid_tools::Eventual
+pub fn veilid_tools::Eventual::instance_clone<T>(&self, T) -> veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::Eventual::instance_empty(&self) -> veilid_tools::EventualFutureEmpty
+pub fn veilid_tools::Eventual::instance_none<T>(&self) -> veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+pub fn veilid_tools::Eventual::new() -> Self
+pub fn veilid_tools::Eventual::resolve(&self) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+impl core::clone::Clone for veilid_tools::Eventual
+pub fn veilid_tools::Eventual::clone(&self) -> Self
+impl core::default::Default for veilid_tools::Eventual
+pub fn veilid_tools::Eventual::default() -> Self
+impl core::fmt::Debug for veilid_tools::Eventual
+pub fn veilid_tools::Eventual::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl veilid_tools::eventual_base::EventualBase for veilid_tools::Eventual
+pub type veilid_tools::Eventual::ResolvedType = ()
+pub fn veilid_tools::Eventual::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::Eventual::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub struct veilid_tools::eventual::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+impl<T> core::future::future::Future for veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+pub type veilid_tools::EventualFutureClone<T>::Output = T
+pub fn veilid_tools::EventualFutureClone<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::EventualFutureClone<T>::drop(&mut self)
+pub struct veilid_tools::eventual::EventualFutureEmpty
+impl core::future::future::Future for veilid_tools::EventualFutureEmpty
+pub type veilid_tools::EventualFutureEmpty::Output = ()
+pub fn veilid_tools::EventualFutureEmpty::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl core::ops::drop::Drop for veilid_tools::EventualFutureEmpty
+pub fn veilid_tools::EventualFutureEmpty::drop(&mut self)
+pub struct veilid_tools::eventual::EventualFutureNone<T> where T: core::marker::Unpin
+impl<T> core::future::future::Future for veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+pub type veilid_tools::EventualFutureNone<T>::Output = core::option::Option<T>
+pub fn veilid_tools::EventualFutureNone<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+pub fn veilid_tools::EventualFutureNone<T>::drop(&mut self)
+pub mod veilid_tools::eventual_base
+pub enum veilid_tools::eventual_base::EventualError
+pub veilid_tools::eventual_base::EventualError::TryFailed(alloc::string::String)
+pub struct veilid_tools::eventual_base::EventualBaseInner<T>
+pub struct veilid_tools::eventual_base::EventualResolvedFuture<B: veilid_tools::eventual_base::EventualBase>
+impl<B: veilid_tools::eventual_base::EventualBase> core::future::future::Future for veilid_tools::eventual_base::EventualResolvedFuture<B>
+pub type veilid_tools::eventual_base::EventualResolvedFuture<B>::Output = ()
+pub fn veilid_tools::eventual_base::EventualResolvedFuture<B>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<B: veilid_tools::eventual_base::EventualBase> core::ops::drop::Drop for veilid_tools::eventual_base::EventualResolvedFuture<B>
+pub fn veilid_tools::eventual_base::EventualResolvedFuture<B>::drop(&mut self)
+pub trait veilid_tools::eventual_base::EventualBase: core::clone::Clone + core::marker::Unpin
+pub type veilid_tools::eventual_base::EventualBase::ResolvedType
+pub fn veilid_tools::eventual_base::EventualBase::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::eventual_base::EventualBase::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+impl veilid_tools::eventual_base::EventualBase for veilid_tools::Eventual
+pub type veilid_tools::Eventual::ResolvedType = ()
+pub fn veilid_tools::Eventual::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::Eventual::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+impl<T: core::marker::Unpin + core::clone::Clone> veilid_tools::eventual_base::EventualBase for veilid_tools::EventualValueClone<T>
+pub type veilid_tools::EventualValueClone<T>::ResolvedType = T
+pub fn veilid_tools::EventualValueClone<T>::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::EventualValueClone<T>::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+impl<T: core::marker::Unpin> veilid_tools::eventual_base::EventualBase for veilid_tools::EventualValue<T>
+pub type veilid_tools::EventualValue<T>::ResolvedType = T
+pub fn veilid_tools::EventualValue<T>::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::EventualValue<T>::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub trait veilid_tools::eventual_base::EventualCommon: veilid_tools::eventual_base::EventualBase
+pub fn veilid_tools::eventual_base::EventualCommon::is_resolved(&self) -> bool
+pub fn veilid_tools::eventual_base::EventualCommon::reset(&self)
+pub fn veilid_tools::eventual_base::EventualCommon::try_reset(&self) -> core::result::Result<(), veilid_tools::eventual_base::EventualError>
+impl<T> veilid_tools::eventual_base::EventualCommon for T where T: veilid_tools::eventual_base::EventualBase
+pub fn T::is_resolved(&self) -> bool
+pub fn T::reset(&self)
+pub fn T::try_reset(&self) -> core::result::Result<(), veilid_tools::eventual_base::EventualError>
+pub mod veilid_tools::eventual_value
+pub struct veilid_tools::eventual_value::EventualValue<T: core::marker::Unpin>
+impl<T: core::marker::Unpin> veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::instance(&self) -> veilid_tools::EventualValueFuture<T>
+pub fn veilid_tools::EventualValue<T>::new() -> Self
+pub fn veilid_tools::EventualValue<T>::resolve(&self, T) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub fn veilid_tools::EventualValue<T>::take_value(&self) -> core::option::Option<T>
+impl<T: core::marker::Unpin> core::clone::Clone for veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::clone(&self) -> Self
+impl<T: core::marker::Unpin> core::default::Default for veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::default() -> Self
+impl<T: core::marker::Unpin> core::fmt::Debug for veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::marker::Unpin> veilid_tools::eventual_base::EventualBase for veilid_tools::EventualValue<T>
+pub type veilid_tools::EventualValue<T>::ResolvedType = T
+pub fn veilid_tools::EventualValue<T>::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::EventualValue<T>::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub struct veilid_tools::eventual_value::EventualValueFuture<T: core::marker::Unpin>
+impl<T: core::marker::Unpin> core::fmt::Debug for veilid_tools::EventualValueFuture<T>
+pub fn veilid_tools::EventualValueFuture<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::marker::Unpin> core::future::future::Future for veilid_tools::EventualValueFuture<T>
+pub type veilid_tools::EventualValueFuture<T>::Output = veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValueFuture<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualValueFuture<T> where T: core::marker::Unpin
+pub fn veilid_tools::EventualValueFuture<T>::drop(&mut self)
+pub mod veilid_tools::eventual_value_clone
+pub struct veilid_tools::eventual_value_clone::EventualValueClone<T: core::marker::Unpin + core::clone::Clone>
+impl<T: core::marker::Unpin + core::clone::Clone> veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::instance(&self) -> veilid_tools::EventualValueCloneFuture<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::EventualValueClone<T>::new() -> Self
+pub fn veilid_tools::EventualValueClone<T>::resolve(&self, T) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub fn veilid_tools::EventualValueClone<T>::value(&self) -> core::option::Option<T>
+impl<T: core::marker::Unpin + core::clone::Clone> core::clone::Clone for veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::clone(&self) -> Self
+impl<T: core::marker::Unpin + core::clone::Clone> core::default::Default for veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::default() -> Self
+impl<T: core::marker::Unpin + core::clone::Clone> core::fmt::Debug for veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::marker::Unpin + core::clone::Clone> veilid_tools::eventual_base::EventualBase for veilid_tools::EventualValueClone<T>
+pub type veilid_tools::EventualValueClone<T>::ResolvedType = T
+pub fn veilid_tools::EventualValueClone<T>::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::EventualValueClone<T>::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub struct veilid_tools::eventual_value_clone::EventualValueCloneFuture<T: core::marker::Unpin + core::clone::Clone>
+impl<T: core::marker::Unpin + core::clone::Clone> core::future::future::Future for veilid_tools::EventualValueCloneFuture<T>
+pub type veilid_tools::EventualValueCloneFuture<T>::Output = T
+pub fn veilid_tools::EventualValueCloneFuture<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualValueCloneFuture<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::EventualValueCloneFuture<T>::drop(&mut self)
+pub mod veilid_tools::flap_detector
+pub struct veilid_tools::flap_detector::FlapDetector<T: core::cmp::PartialEq>
+impl<T: core::cmp::PartialEq> veilid_tools::FlapDetector<T>
+pub fn veilid_tools::FlapDetector<T>::new(f64, u64) -> Self
+pub fn veilid_tools::FlapDetector<T>::new_secs(f64, u64) -> Self
+pub fn veilid_tools::FlapDetector<T>::record(&mut self, u64, T) -> core::option::Option<f64>
+pub fn veilid_tools::FlapDetector<T>::record_event(&mut self, u64) -> core::option::Option<f64>
+pub fn veilid_tools::FlapDetector<T>::reset(&mut self)
+pub mod veilid_tools::formatting
+pub struct veilid_tools::formatting::AlternateDisplayFormat
+impl veilid_tools::FormatterToString for veilid_tools::AlternateDisplayFormat
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+pub struct veilid_tools::formatting::DefaultDisplayFormat
+impl veilid_tools::FormatterToString for veilid_tools::DefaultDisplayFormat
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+pub const veilid_tools::formatting::DEFAULT_INDENT_SPACES: usize
+pub trait veilid_tools::formatting::FormatterToString
+pub fn veilid_tools::formatting::FormatterToString::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::formatting::FormatterToString::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::formatting::FormatterToString::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::formatting::FormatterToString::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::formatting::FormatterToString::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::formatting::FormatterToString::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+impl veilid_tools::FormatterToString for core::fmt::Formatter<'_>
+pub fn core::fmt::Formatter<'_>::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn core::fmt::Formatter<'_>::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn core::fmt::Formatter<'_>::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn core::fmt::Formatter<'_>::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn core::fmt::Formatter<'_>::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn core::fmt::Formatter<'_>::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+impl veilid_tools::FormatterToString for veilid_tools::AlternateDisplayFormat
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+impl veilid_tools::FormatterToString for veilid_tools::DefaultDisplayFormat
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+pub trait veilid_tools::formatting::StringIfEmpty<X: alloc::string::ToString>
+pub fn veilid_tools::formatting::StringIfEmpty::string_if_empty(&self, X) -> alloc::string::String
+impl<S: core::convert::AsRef<str>, X: alloc::string::ToString> veilid_tools::StringIfEmpty<X> for S
+pub fn S::string_if_empty(&self, X) -> alloc::string::String
+pub trait veilid_tools::formatting::StripTrailingNewline
+pub fn veilid_tools::formatting::StripTrailingNewline::strip_trailing_newline(&self) -> &str
+impl<T: core::convert::AsRef<str>> veilid_tools::StripTrailingNewline for T
+pub fn T::strip_trailing_newline(&self) -> &str
+pub trait veilid_tools::formatting::ToMultilineString
+pub fn veilid_tools::formatting::ToMultilineString::to_multiline_indexed_string(&self) -> alloc::string::String
+pub fn veilid_tools::formatting::ToMultilineString::to_multiline_string(&self) -> alloc::string::String
+impl<T> veilid_tools::ToMultilineString for alloc::vec::Vec<T> where T: core::fmt::Display
+pub fn alloc::vec::Vec<T>::to_multiline_indexed_string(&self) -> alloc::string::String
+pub fn alloc::vec::Vec<T>::to_multiline_string(&self) -> alloc::string::String
+pub trait veilid_tools::formatting::ToTableString
+pub fn veilid_tools::formatting::ToTableString::to_table_string(&self) -> alloc::string::String
+pub fn veilid_tools::formatting::ToTableString::to_table_string_custom(&self, usize, usize, bool, bool) -> alloc::string::String
+impl<T> veilid_tools::ToTableString for alloc::vec::Vec<T> where T: core::fmt::Display
+pub fn alloc::vec::Vec<T>::to_table_string(&self) -> alloc::string::String
+pub fn alloc::vec::Vec<T>::to_table_string_custom(&self, usize, usize, bool, bool) -> alloc::string::String
+pub fn veilid_tools::formatting::human_byte_count<T: core::convert::Into<u64>>(T) -> alloc::string::String
+pub fn veilid_tools::formatting::human_byte_data<T: core::convert::AsRef<[u8]>>(T, core::option::Option<usize>) -> alloc::string::String
+pub fn veilid_tools::formatting::indent_all_string<S: core::convert::AsRef<str>>(S) -> alloc::string::String
+pub fn veilid_tools::formatting::indent_string<S: core::convert::AsRef<str>>(S) -> alloc::string::String
+pub fn veilid_tools::formatting::map_to_string<X: alloc::string::ToString>(X) -> alloc::string::String
+pub fn veilid_tools::formatting::prepend_slash(alloc::string::String) -> alloc::string::String
+pub fn veilid_tools::formatting::split_port(&str) -> core::result::Result<(alloc::string::String, core::option::Option<u16>), alloc::string::String>
+pub mod veilid_tools::future_queue
+pub async fn veilid_tools::future_queue::process_batched_future_queue_result<I, C, E, R>(I, usize, veilid_tools::stop_token::StopToken, C) -> core::result::Result<bool, E> where I: core::iter::traits::collect::IntoIterator, C: core::ops::function::Fn(R) -> core::result::Result<(), E>, <I as core::iter::traits::collect::IntoIterator>::Item: core::future::future::Future<Output = R>
+pub async fn veilid_tools::future_queue::process_batched_future_queue_void<I>(I, usize, veilid_tools::stop_token::StopToken) -> bool where I: core::iter::traits::collect::IntoIterator, <I as core::iter::traits::collect::IntoIterator>::Item: core::future::future::Future<Output = ()>
+pub async fn veilid_tools::future_queue::process_batched_future_stream_result<S, C, E, R>(S, usize, veilid_tools::stop_token::StopToken, C) -> core::result::Result<bool, E> where S: futures_core::stream::Stream, C: core::ops::function::Fn(R) -> core::result::Result<(), E>, <S as futures_core::stream::Stream>::Item: core::future::future::Future<Output = R>
+pub async fn veilid_tools::future_queue::process_batched_future_stream_void<S>(S, usize, veilid_tools::stop_token::StopToken) -> bool where S: futures_core::stream::Stream, <S as futures_core::stream::Stream>::Item: core::future::future::Future<Output = ()>
+pub mod veilid_tools::future_race_completion
+pub enum veilid_tools::future_race_completion::FutureRaceCompletion<T, R>
+pub veilid_tools::future_race_completion::FutureRaceCompletion::Original(T)
+pub veilid_tools::future_race_completion::FutureRaceCompletion::Race(R)
+pub struct veilid_tools::future_race_completion::FutureRaceCompletionPool
+impl veilid_tools::FutureRaceCompletionPool
+pub fn veilid_tools::FutureRaceCompletionPool::channel_spawn<F, T>(&self, F) -> flume::Receiver<T> where F: core::future::future::Future<Output = T> + core::marker::Send + 'static, T: core::marker::Send + 'static
+pub fn veilid_tools::FutureRaceCompletionPool::new(impl core::convert::Into<alloc::string::String>) -> Self
+pub async fn veilid_tools::FutureRaceCompletionPool::shutdown(&self)
+pub fn veilid_tools::FutureRaceCompletionPool::spawn<F>(&self, F) where F: core::future::future::Future<Output = ()> + core::marker::Send + 'static
+pub trait veilid_tools::future_race_completion::FutureRaceCompletionPoolExt: core::future::future::Future + core::marker::Sized
+pub fn veilid_tools::future_race_completion::FutureRaceCompletionPoolExt::race_complete_on<R, F>(self, veilid_tools::FutureRaceCompletionPool, F) -> impl core::future::future::Future<Output = veilid_tools::FutureRaceCompletion<Self::Output, R>> + core::marker::Send where Self: core::marker::Send + 'static, Self::Output: core::marker::Send + 'static, F: core::future::future::Future<Output = R> + core::marker::Send, R: core::marker::Send
+impl<Fut> veilid_tools::FutureRaceCompletionPoolExt for Fut where Fut: core::future::future::Future
+pub fn Fut::race_complete_on<R, F>(self, veilid_tools::FutureRaceCompletionPool, F) -> impl core::future::future::Future<Output = veilid_tools::FutureRaceCompletion<<Fut as core::future::future::Future>::Output, R>> + core::marker::Send where Fut: core::marker::Send + 'static, <Fut as core::future::future::Future>::Output: core::marker::Send + 'static, F: core::future::future::Future<Output = R> + core::marker::Send, R: core::marker::Send
+pub mod veilid_tools::igd
+pub enum veilid_tools::igd::Ipv6SearchScope
+pub veilid_tools::igd::Ipv6SearchScope::Admin
+pub veilid_tools::igd::Ipv6SearchScope::LinkLocal
+pub veilid_tools::igd::Ipv6SearchScope::SiteLocal
+pub veilid_tools::igd::Ipv6SearchScope::Subnet
+pub enum veilid_tools::igd::PortMappingProtocol
+pub veilid_tools::igd::PortMappingProtocol::TCP
+pub veilid_tools::igd::PortMappingProtocol::UDP
+impl core::fmt::Display for veilid_tools::igd::PortMappingProtocol
+pub fn veilid_tools::igd::PortMappingProtocol::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::igd::Gateway
+pub veilid_tools::igd::Gateway::addr: core::net::socket_addr::SocketAddr
+pub veilid_tools::igd::Gateway::control_schema: std::collections::hash::map::HashMap<alloc::string::String, alloc::vec::Vec<alloc::string::String>>
+pub veilid_tools::igd::Gateway::control_schema_url: alloc::string::String
+pub veilid_tools::igd::Gateway::control_url: alloc::string::String
+pub veilid_tools::igd::Gateway::root_url: alloc::string::String
+impl veilid_tools::igd::Gateway
+pub fn veilid_tools::igd::Gateway::add_any_port(&self, veilid_tools::igd::PortMappingProtocol, core::net::socket_addr::SocketAddr, u32, &str) -> core::result::Result<u16, veilid_tools::igd::IgdError>
+pub fn veilid_tools::igd::Gateway::add_port(&self, veilid_tools::igd::PortMappingProtocol, u16, core::net::socket_addr::SocketAddr, u32, &str) -> core::result::Result<(), veilid_tools::igd::IgdError>
+pub fn veilid_tools::igd::Gateway::get_external_ip(&self) -> core::result::Result<core::net::ip_addr::IpAddr, veilid_tools::igd::IgdError>
+pub fn veilid_tools::igd::Gateway::remove_port(&self, veilid_tools::igd::PortMappingProtocol, u16) -> core::result::Result<(), veilid_tools::igd::IgdError>
+impl core::fmt::Display for veilid_tools::igd::Gateway
+pub fn veilid_tools::igd::Gateway::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::igd::IgdError
+impl core::error::Error for veilid_tools::igd::IgdError
+impl core::fmt::Display for veilid_tools::igd::IgdError
+pub fn veilid_tools::igd::IgdError::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::igd::SearchOptions
+pub veilid_tools::igd::SearchOptions::bind_addr: core::net::socket_addr::SocketAddr
+pub veilid_tools::igd::SearchOptions::broadcast_address: core::net::socket_addr::SocketAddr
+pub veilid_tools::igd::SearchOptions::timeout: core::option::Option<core::time::Duration>
+impl veilid_tools::igd::SearchOptions
+pub fn veilid_tools::igd::SearchOptions::new_v4(u64) -> Self
+pub fn veilid_tools::igd::SearchOptions::new_v6(veilid_tools::igd::Ipv6SearchScope, u64) -> Self
+impl core::default::Default for veilid_tools::igd::SearchOptions
+pub fn veilid_tools::igd::SearchOptions::default() -> Self
+pub fn veilid_tools::igd::search_gateway(veilid_tools::igd::SearchOptions) -> core::result::Result<veilid_tools::igd::Gateway, veilid_tools::igd::IgdError>
+pub mod veilid_tools::interval
+pub fn veilid_tools::interval::interval<F, FUT>(&str, u32, bool, F) -> veilid_tools::PinBoxFutureStatic<()> where F: core::ops::function::Fn() -> FUT + core::marker::Send + core::marker::Sync + 'static, FUT: core::future::future::Future<Output = ()> + core::marker::Send
+pub mod veilid_tools::ip_addr_port
+pub struct veilid_tools::ip_addr_port::IpAddrPort
+impl veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::addr(&self) -> &core::net::ip_addr::IpAddr
+pub fn veilid_tools::IpAddrPort::from_socket_addr(&core::net::socket_addr::SocketAddr) -> Self
+pub fn veilid_tools::IpAddrPort::new(core::net::ip_addr::IpAddr, u16) -> Self
+pub fn veilid_tools::IpAddrPort::port(&self) -> u16
+pub fn veilid_tools::IpAddrPort::set_addr(&mut self, core::net::ip_addr::IpAddr)
+pub fn veilid_tools::IpAddrPort::set_port(&mut self, u16)
+pub fn veilid_tools::IpAddrPort::to_socket_addr(&self) -> core::net::socket_addr::SocketAddr
+impl core::convert::From<core::net::socket_addr::SocketAddrV4> for veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::from(core::net::socket_addr::SocketAddrV4) -> veilid_tools::IpAddrPort
+impl core::convert::From<core::net::socket_addr::SocketAddrV6> for veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::from(core::net::socket_addr::SocketAddrV6) -> veilid_tools::IpAddrPort
+impl core::fmt::Display for veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub mod veilid_tools::ip_extra
+pub enum veilid_tools::ip_extra::Ipv6MulticastScope
+pub veilid_tools::ip_extra::Ipv6MulticastScope::AdminLocal
+pub veilid_tools::ip_extra::Ipv6MulticastScope::Global
+pub veilid_tools::ip_extra::Ipv6MulticastScope::InterfaceLocal
+pub veilid_tools::ip_extra::Ipv6MulticastScope::LinkLocal
+pub veilid_tools::ip_extra::Ipv6MulticastScope::OrganizationLocal
+pub veilid_tools::ip_extra::Ipv6MulticastScope::RealmLocal
+pub veilid_tools::ip_extra::Ipv6MulticastScope::SiteLocal
+pub fn veilid_tools::ip_extra::ip_to_ipblock(usize, core::net::ip_addr::IpAddr) -> core::net::ip_addr::IpAddr
+pub fn veilid_tools::ip_extra::ipaddr_apply_netmask(core::net::ip_addr::IpAddr, core::net::ip_addr::IpAddr) -> core::option::Option<core::net::ip_addr::IpAddr>
+pub fn veilid_tools::ip_extra::ipaddr_in_network(core::net::ip_addr::IpAddr, core::net::ip_addr::IpAddr, core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ip_extra::ipaddr_is_documentation(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ip_extra::ipaddr_is_global(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ip_extra::ipaddr_is_loopback(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ip_extra::ipaddr_is_multicast(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ip_extra::ipaddr_is_unspecified(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_benchmarking(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_broadcast(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_documentation(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_global(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_ietf_protocol_assignment(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_link_local(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_loopback(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_multicast(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_private(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_reserved(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_shared(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv4addr_is_unspecified(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_6to4(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_documentation(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_global(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_loopback(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_multicast(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_nat64_well_known(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_teredo(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_unicast_global(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_unicast_link_local(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_unicast_link_local_strict(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_unicast_site_local(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_unique_local(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_is_unspecified(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ip_extra::ipv6addr_multicast_scope(&core::net::ip_addr::Ipv6Addr) -> core::option::Option<veilid_tools::Ipv6MulticastScope>
+pub mod veilid_tools::ipc
+pub struct veilid_tools::ipc::IpcIncoming<'a>
+impl core::ops::drop::Drop for veilid_tools::IpcIncoming<'_>
+pub fn veilid_tools::IpcIncoming<'_>::drop(&mut self)
+impl futures_core::stream::Stream for veilid_tools::IpcIncoming<'_>
+pub type veilid_tools::IpcIncoming<'_>::Item = core::result::Result<veilid_tools::IpcStream, core::io::error::Error>
+pub fn veilid_tools::IpcIncoming<'_>::poll_next(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::option::Option<Self::Item>>
+pub struct veilid_tools::ipc::IpcListener
+impl veilid_tools::IpcListener
+pub fn veilid_tools::IpcListener::accept(&self) -> veilid_tools::PinBoxFutureStatic<core::io::error::Result<veilid_tools::IpcStream>>
+pub async fn veilid_tools::IpcListener::bind<P: core::convert::AsRef<std::path::Path>>(P) -> core::io::error::Result<Self>
+pub fn veilid_tools::IpcListener::incoming(&mut self) -> core::io::error::Result<veilid_tools::IpcIncoming<'_>>
+impl core::ops::drop::Drop for veilid_tools::IpcListener
+pub fn veilid_tools::IpcListener::drop(&mut self)
+pub struct veilid_tools::ipc::IpcStream
+impl veilid_tools::IpcStream
+pub async fn veilid_tools::IpcStream::connect<P: core::convert::AsRef<std::path::Path>>(P) -> core::io::error::Result<veilid_tools::IpcStream>
+impl futures_io::if_std::AsyncRead for veilid_tools::IpcStream
+pub fn veilid_tools::IpcStream::poll_read(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &mut [u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+impl futures_io::if_std::AsyncWrite for veilid_tools::IpcStream
+pub fn veilid_tools::IpcStream::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::IpcStream::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::IpcStream::poll_write(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &[u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+pub fn veilid_tools::ipc::is_ipc_socket_path<P: core::convert::AsRef<std::path::Path>>(P) -> bool
+pub mod veilid_tools::log_unwrap
+pub trait veilid_tools::log_unwrap::OptionExt<T>
+pub fn veilid_tools::log_unwrap::OptionExt::expect_none_or_log(self, &str) where T: core::fmt::Debug
+pub fn veilid_tools::log_unwrap::OptionExt::expect_or_log(self, &str) -> T
+pub fn veilid_tools::log_unwrap::OptionExt::unwrap_none_or_log(self) where T: core::fmt::Debug
+pub fn veilid_tools::log_unwrap::OptionExt::unwrap_or_log(self) -> T
+impl<T> veilid_tools::OptionExt<T> for core::option::Option<T>
+pub fn core::option::Option<T>::expect_none_or_log(self, &str) where T: core::fmt::Debug
+pub fn core::option::Option<T>::expect_or_log(self, &str) -> T
+pub fn core::option::Option<T>::unwrap_none_or_log(self) where T: core::fmt::Debug
+pub fn core::option::Option<T>::unwrap_or_log(self) -> T
+pub trait veilid_tools::log_unwrap::ResultExt<T, E>
+pub fn veilid_tools::log_unwrap::ResultExt::expect_err_or_log(self, &str) -> E where T: core::fmt::Debug
+pub fn veilid_tools::log_unwrap::ResultExt::expect_or_log(self, &str) -> T where E: core::fmt::Debug
+pub fn veilid_tools::log_unwrap::ResultExt::ok_or_log(self) -> core::option::Option<T> where E: core::fmt::Debug
+pub fn veilid_tools::log_unwrap::ResultExt::unwrap_err_or_log(self) -> E where T: core::fmt::Debug
+pub fn veilid_tools::log_unwrap::ResultExt::unwrap_or_log(self) -> T where E: core::fmt::Debug
+impl<T, E> veilid_tools::ResultExt<T, E> for core::result::Result<T, E>
+pub fn core::result::Result<T, E>::expect_err_or_log(self, &str) -> E where T: core::fmt::Debug
+pub fn core::result::Result<T, E>::expect_or_log(self, &str) -> T where E: core::fmt::Debug
+pub fn core::result::Result<T, E>::ok_or_log(self) -> core::option::Option<T> where E: core::fmt::Debug
+pub fn core::result::Result<T, E>::unwrap_err_or_log(self) -> E where T: core::fmt::Debug
+pub fn core::result::Result<T, E>::unwrap_or_log(self) -> T where E: core::fmt::Debug
+pub mod veilid_tools::must_join_handle
+pub struct veilid_tools::must_join_handle::MustJoinHandle<T>
+impl<T> veilid_tools::MustJoinHandle<T>
+pub async fn veilid_tools::MustJoinHandle<T>::abort(self)
+pub fn veilid_tools::MustJoinHandle<T>::detach(self)
+pub fn veilid_tools::MustJoinHandle<T>::new(tokio::runtime::task::join::JoinHandle<T>) -> Self
+impl<T: 'static> core::future::future::Future for veilid_tools::MustJoinHandle<T>
+pub type veilid_tools::MustJoinHandle<T>::Output = T
+pub fn veilid_tools::MustJoinHandle<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::MustJoinHandle<T>
+pub fn veilid_tools::MustJoinHandle<T>::drop(&mut self)
+pub mod veilid_tools::must_join_single_future
+pub struct veilid_tools::must_join_single_future::MustJoinSingleFuture<T> where T: 'static
+impl<T> veilid_tools::MustJoinSingleFuture<T> where T: 'static + core::marker::Send
+pub async fn veilid_tools::MustJoinSingleFuture<T>::single_spawn<F: core::future::future::Future<Output = T> + core::marker::Send + 'static, C: core::ops::function::FnOnce() -> F>(&self, &str, C) -> core::result::Result<(core::option::Option<T>, bool), ()>
+impl<T> veilid_tools::MustJoinSingleFuture<T> where T: 'static
+pub async fn veilid_tools::MustJoinSingleFuture<T>::check(&self) -> core::result::Result<core::option::Option<T>, ()>
+pub async fn veilid_tools::MustJoinSingleFuture<T>::join(&self) -> core::result::Result<core::option::Option<T>, ()>
+pub fn veilid_tools::MustJoinSingleFuture<T>::new() -> Self
+pub async fn veilid_tools::MustJoinSingleFuture<T>::single_spawn_local(&self, &str, impl core::future::future::Future<Output = T> + 'static) -> core::result::Result<(core::option::Option<T>, bool), ()>
+impl<T> core::default::Default for veilid_tools::MustJoinSingleFuture<T> where T: 'static
+pub fn veilid_tools::MustJoinSingleFuture<T>::default() -> Self
+pub mod veilid_tools::network_interfaces
+pub enum veilid_tools::network_interfaces::IfAddr
+pub veilid_tools::network_interfaces::IfAddr::V4(veilid_tools::Ifv4Addr)
+pub veilid_tools::network_interfaces::IfAddr::V6(veilid_tools::Ifv6Addr)
+impl veilid_tools::IfAddr
+pub fn veilid_tools::IfAddr::broadcast(&self) -> core::option::Option<core::net::ip_addr::IpAddr>
+pub fn veilid_tools::IfAddr::contains_address(&self, core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::IfAddr::ip(&self) -> core::net::ip_addr::IpAddr
+pub fn veilid_tools::IfAddr::netmask(&self) -> core::net::ip_addr::IpAddr
+pub fn veilid_tools::IfAddr::network(&self) -> veilid_tools::IfAddr
+impl core::fmt::Display for veilid_tools::IfAddr
+pub fn veilid_tools::IfAddr::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::network_interfaces::AddressFlags
+pub veilid_tools::network_interfaces::AddressFlags::expiration_secs: core::option::Option<u64>
+pub veilid_tools::network_interfaces::AddressFlags::is_clat: bool
+pub veilid_tools::network_interfaces::AddressFlags::is_dynamic: bool
+pub veilid_tools::network_interfaces::AddressFlags::is_preferred: bool
+pub veilid_tools::network_interfaces::AddressFlags::is_temporary: bool
+pub struct veilid_tools::network_interfaces::Ifv4Addr
+pub veilid_tools::network_interfaces::Ifv4Addr::broadcast: core::option::Option<core::net::ip_addr::Ipv4Addr>
+pub veilid_tools::network_interfaces::Ifv4Addr::ip: core::net::ip_addr::Ipv4Addr
+pub veilid_tools::network_interfaces::Ifv4Addr::netmask: core::net::ip_addr::Ipv4Addr
+impl veilid_tools::Ifv4Addr
+pub fn veilid_tools::Ifv4Addr::contains_address(&self, core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::Ifv4Addr::network(&self) -> veilid_tools::Ifv4Addr
+pub fn veilid_tools::Ifv4Addr::prefix_len(&self) -> core::option::Option<u8>
+impl core::fmt::Display for veilid_tools::Ifv4Addr
+pub fn veilid_tools::Ifv4Addr::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::network_interfaces::Ifv6Addr
+pub veilid_tools::network_interfaces::Ifv6Addr::broadcast: core::option::Option<core::net::ip_addr::Ipv6Addr>
+pub veilid_tools::network_interfaces::Ifv6Addr::ip: core::net::ip_addr::Ipv6Addr
+pub veilid_tools::network_interfaces::Ifv6Addr::netmask: core::net::ip_addr::Ipv6Addr
+impl veilid_tools::Ifv6Addr
+pub fn veilid_tools::Ifv6Addr::contains_address(&self, core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::Ifv6Addr::network(&self) -> veilid_tools::Ifv6Addr
+pub fn veilid_tools::Ifv6Addr::prefix_len(&self) -> core::option::Option<u8>
+impl core::fmt::Display for veilid_tools::Ifv6Addr
+pub fn veilid_tools::Ifv6Addr::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::network_interfaces::InterfaceAddress
+pub veilid_tools::network_interfaces::InterfaceAddress::flags: veilid_tools::AddressFlags
+pub veilid_tools::network_interfaces::InterfaceAddress::if_addr: veilid_tools::IfAddr
+impl veilid_tools::InterfaceAddress
+pub fn veilid_tools::InterfaceAddress::if_addr(&self) -> &veilid_tools::IfAddr
+pub fn veilid_tools::InterfaceAddress::is_cgnat_or_ds_lite(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_clat(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_dynamic(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_ipv4_link_local(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_preferred(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_temporary(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::new(veilid_tools::IfAddr, veilid_tools::AddressFlags) -> Self
+impl core::cmp::Ord for veilid_tools::InterfaceAddress
+pub fn veilid_tools::InterfaceAddress::cmp(&self, &Self) -> core::cmp::Ordering
+impl core::cmp::PartialOrd for veilid_tools::InterfaceAddress
+pub fn veilid_tools::InterfaceAddress::partial_cmp(&self, &Self) -> core::option::Option<core::cmp::Ordering>
+pub struct veilid_tools::network_interfaces::InterfaceFlags
+pub veilid_tools::network_interfaces::InterfaceFlags::is_clat: bool
+pub veilid_tools::network_interfaces::InterfaceFlags::is_loopback: bool
+pub veilid_tools::network_interfaces::InterfaceFlags::is_point_to_point: bool
+pub veilid_tools::network_interfaces::InterfaceFlags::is_running: bool
+pub struct veilid_tools::network_interfaces::NetworkInterface
+pub veilid_tools::network_interfaces::NetworkInterface::addrs: alloc::vec::Vec<veilid_tools::InterfaceAddress>
+pub veilid_tools::network_interfaces::NetworkInterface::flags: veilid_tools::InterfaceFlags
+pub veilid_tools::network_interfaces::NetworkInterface::gateways: alloc::vec::Vec<core::net::ip_addr::IpAddr>
+pub veilid_tools::network_interfaces::NetworkInterface::name: alloc::string::String
+impl veilid_tools::NetworkInterface
+pub fn veilid_tools::NetworkInterface::add_address(&mut self, veilid_tools::InterfaceAddress)
+pub fn veilid_tools::NetworkInterface::add_gateway(&mut self, core::net::ip_addr::IpAddr)
+pub fn veilid_tools::NetworkInterface::addresses(&self) -> &[veilid_tools::InterfaceAddress]
+pub fn veilid_tools::NetworkInterface::gateways(&self) -> &[core::net::ip_addr::IpAddr]
+pub fn veilid_tools::NetworkInterface::is_clat(&self) -> bool
+pub fn veilid_tools::NetworkInterface::is_loopback(&self) -> bool
+pub fn veilid_tools::NetworkInterface::is_point_to_point(&self) -> bool
+pub fn veilid_tools::NetworkInterface::is_running(&self) -> bool
+pub fn veilid_tools::NetworkInterface::name(&self) -> alloc::string::String
+pub fn veilid_tools::NetworkInterface::new(alloc::string::String, veilid_tools::InterfaceFlags) -> Self
+pub fn veilid_tools::NetworkInterface::primary_ipv4(&self) -> core::option::Option<veilid_tools::InterfaceAddress>
+pub fn veilid_tools::NetworkInterface::primary_ipv6(&self) -> core::option::Option<veilid_tools::InterfaceAddress>
+impl core::fmt::Debug for veilid_tools::NetworkInterface
+pub fn veilid_tools::NetworkInterface::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::network_interfaces::NetworkInterfaceAddressState
+pub veilid_tools::network_interfaces::NetworkInterfaceAddressState::gateway_addresses: alloc::vec::Vec<core::net::ip_addr::IpAddr>
+pub veilid_tools::network_interfaces::NetworkInterfaceAddressState::interface_addresses: alloc::vec::Vec<veilid_tools::IfAddr>
+pub struct veilid_tools::network_interfaces::NetworkInterfaces
+impl veilid_tools::NetworkInterfaces
+pub fn veilid_tools::NetworkInterfaces::clear(&self)
+pub fn veilid_tools::NetworkInterfaces::interface_address_state(&self) -> alloc::sync::Arc<veilid_tools::NetworkInterfaceAddressState>
+pub fn veilid_tools::NetworkInterfaces::is_valid(&self) -> bool
+pub fn veilid_tools::NetworkInterfaces::new() -> Self
+pub fn veilid_tools::NetworkInterfaces::raw_address_summary(&self) -> veilid_tools::RawAddressSummary
+pub async fn veilid_tools::NetworkInterfaces::refresh(&self) -> core::io::error::Result<bool>
+pub fn veilid_tools::NetworkInterfaces::with_interfaces<F, R>(&self, F) -> R where F: core::ops::function::FnOnce(&alloc::collections::btree::map::BTreeMap<alloc::string::String, veilid_tools::NetworkInterface>) -> R
+impl core::default::Default for veilid_tools::NetworkInterfaces
+pub fn veilid_tools::NetworkInterfaces::default() -> Self
+impl core::fmt::Debug for veilid_tools::NetworkInterfaces
+pub fn veilid_tools::NetworkInterfaces::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::network_interfaces::NetworkInterfacesInner
+pub struct veilid_tools::network_interfaces::RawAddressSummary
+pub veilid_tools::network_interfaces::RawAddressSummary::has_non_loopback_ipv4: bool
+pub veilid_tools::network_interfaces::RawAddressSummary::has_non_loopback_ipv6: bool
+pub veilid_tools::network_interfaces::RawAddressSummary::has_unicast_global_ipv6: bool
+pub mod veilid_tools::network_result
+pub enum veilid_tools::network_result::NetworkResult<T>
+pub veilid_tools::network_result::NetworkResult::AlreadyExists(core::io::error::Error)
+pub veilid_tools::network_result::NetworkResult::InvalidMessage(alloc::string::String)
+pub veilid_tools::network_result::NetworkResult::NoConnection(core::io::error::Error)
+pub veilid_tools::network_result::NetworkResult::ServiceUnavailable(alloc::string::String)
+pub veilid_tools::network_result::NetworkResult::Timeout
+pub veilid_tools::network_result::NetworkResult::Value(T)
+impl<T> veilid_tools::NetworkResult<T>
+pub fn veilid_tools::NetworkResult<T>::already_exists(core::io::error::Error) -> Self
+pub fn veilid_tools::NetworkResult<T>::into_io_result(self) -> core::result::Result<T, core::io::error::Error>
+pub fn veilid_tools::NetworkResult<T>::invalid_message<S: alloc::string::ToString>(S) -> Self
+pub fn veilid_tools::NetworkResult<T>::is_already_exists(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_invalid_message(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_no_connection(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_timeout(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_value(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::map<X, F: core::ops::function::Fn(T) -> X>(self, F) -> veilid_tools::NetworkResult<X>
+pub fn veilid_tools::NetworkResult<T>::no_connection(core::io::error::Error) -> Self
+pub fn veilid_tools::NetworkResult<T>::no_connection_other<S: alloc::string::ToString>(S) -> Self
+pub fn veilid_tools::NetworkResult<T>::service_unavailable<S: alloc::string::ToString>(S) -> Self
+pub fn veilid_tools::NetworkResult<T>::timeout() -> Self
+pub fn veilid_tools::NetworkResult<T>::value(T) -> Self
+impl<T, E> veilid_tools::NetworkResultResultExt<T, E> for veilid_tools::NetworkResult<core::result::Result<T, E>>
+pub fn veilid_tools::NetworkResult<core::result::Result<T, E>>::into_result_network_result(self) -> core::result::Result<veilid_tools::NetworkResult<T>, E>
+impl<T: core::fmt::Debug + core::fmt::Display> core::error::Error for veilid_tools::NetworkResult<T>
+impl<T: core::fmt::Debug> core::fmt::Debug for veilid_tools::NetworkResult<T>
+pub fn veilid_tools::NetworkResult<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::convert::From<veilid_tools::NetworkResult<T>> for core::option::Option<T>
+pub fn core::option::Option<T>::from(veilid_tools::NetworkResult<T>) -> Self
+impl<T> core::fmt::Display for veilid_tools::NetworkResult<T>
+pub fn veilid_tools::NetworkResult<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub trait veilid_tools::network_result::FoldedNetworkResultExt<T>
+pub fn veilid_tools::network_result::FoldedNetworkResultExt::folded(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+impl<T> veilid_tools::FoldedNetworkResultExt<T> for core::io::error::Result<veilid_tools::NetworkResult<T>>
+pub fn core::io::error::Result<veilid_tools::NetworkResult<T>>::folded(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+impl<T> veilid_tools::FoldedNetworkResultExt<T> for core::io::error::Result<veilid_tools::TimeoutOr<T>>
+pub fn core::io::error::Result<veilid_tools::TimeoutOr<T>>::folded(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+pub trait veilid_tools::network_result::IoNetworkResultExt<T>
+pub fn veilid_tools::network_result::IoNetworkResultExt::into_network_result(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+impl<T> veilid_tools::IoNetworkResultExt<T> for core::io::error::Result<T>
+pub fn core::io::error::Result<T>::into_network_result(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+pub trait veilid_tools::network_result::NetworkResultExt<T>
+pub fn veilid_tools::network_result::NetworkResultExt::into_network_result(self) -> veilid_tools::NetworkResult<T>
+impl<T> veilid_tools::NetworkResultExt<T> for core::result::Result<T, veilid_tools::TimeoutError>
+pub fn core::result::Result<T, veilid_tools::TimeoutError>::into_network_result(self) -> veilid_tools::NetworkResult<T>
+pub trait veilid_tools::network_result::NetworkResultResultExt<T, E>
+pub fn veilid_tools::network_result::NetworkResultResultExt::into_result_network_result(self) -> core::result::Result<veilid_tools::NetworkResult<T>, E>
+impl<T, E> veilid_tools::NetworkResultResultExt<T, E> for veilid_tools::NetworkResult<core::result::Result<T, E>>
+pub fn veilid_tools::NetworkResult<core::result::Result<T, E>>::into_result_network_result(self) -> core::result::Result<veilid_tools::NetworkResult<T>, E>
+pub mod veilid_tools::pin
+pub type veilid_tools::pin::PinBox<T> = core::pin::Pin<alloc::boxed::Box<T>>
+pub type veilid_tools::pin::PinBoxFuture<'a, T> = veilid_tools::PinBox<(dyn core::future::future::Future<Output = T> + core::marker::Send + 'a)>
+pub type veilid_tools::pin::PinBoxFutureStatic<T> = veilid_tools::PinBoxFuture<'static, T>
+pub mod veilid_tools::random
+pub struct veilid_tools::random::VeilidRng
+impl rand_core::CryptoRng for veilid_tools::VeilidRng
+impl rand_core::RngCore for veilid_tools::VeilidRng
+pub fn veilid_tools::VeilidRng::fill_bytes(&mut self, &mut [u8])
+pub fn veilid_tools::VeilidRng::next_u32(&mut self) -> u32
+pub fn veilid_tools::VeilidRng::next_u64(&mut self) -> u64
+pub fn veilid_tools::VeilidRng::try_fill_bytes(&mut self, &mut [u8]) -> core::result::Result<(), rand_core::error::Error>
+impl rand_core::TryCryptoRng for veilid_tools::VeilidRng
+impl rand_core::TryRng for veilid_tools::VeilidRng
+pub type veilid_tools::VeilidRng::Error = core::convert::Infallible
+pub fn veilid_tools::VeilidRng::try_fill_bytes(&mut self, &mut [u8]) -> core::result::Result<(), Self::Error>
+pub fn veilid_tools::VeilidRng::try_next_u32(&mut self) -> core::result::Result<u32, Self::Error>
+pub fn veilid_tools::VeilidRng::try_next_u64(&mut self) -> core::result::Result<u64, Self::Error>
+pub fn veilid_tools::random::get_random_u32() -> u32
+pub fn veilid_tools::random::get_random_u64() -> u64
+pub fn veilid_tools::random::random_bytes(&mut [u8])
+pub mod veilid_tools::raw_timestamp
+pub fn veilid_tools::raw_timestamp::get_raw_timestamp() -> u64
+pub fn veilid_tools::raw_timestamp::human_duration(u64) -> alloc::string::String
+pub fn veilid_tools::raw_timestamp::human_timestamp(u64) -> alloc::string::String
+pub fn veilid_tools::raw_timestamp::parse_duration(&str) -> core::option::Option<u64>
+pub mod veilid_tools::resolver
+pub enum veilid_tools::resolver::ResolverError
+pub veilid_tools::resolver::ResolverError::Generic(alloc::string::String)
+pub struct veilid_tools::resolver::Resolver
+impl veilid_tools::Resolver
+pub async fn veilid_tools::Resolver::ptr_lookup(core::net::ip_addr::IpAddr) -> core::result::Result<alloc::string::String, veilid_tools::ResolverError>
+pub async fn veilid_tools::Resolver::txt_lookup<S: core::convert::AsRef<str>>(S) -> core::result::Result<alloc::vec::Vec<alloc::string::String>, veilid_tools::ResolverError>
+pub mod veilid_tools::single_shot_eventual
+pub struct veilid_tools::single_shot_eventual::SingleShotEventual<T> where T: core::marker::Unpin
+impl<T> veilid_tools::SingleShotEventual<T> where T: core::marker::Unpin
+pub fn veilid_tools::SingleShotEventual<T>::instance(&self) -> veilid_tools::EventualValueFuture<T>
+pub fn veilid_tools::SingleShotEventual<T>::new(core::option::Option<T>) -> Self
+pub fn veilid_tools::SingleShotEventual<T>::resolve(self, T) -> veilid_tools::eventual_base::EventualResolvedFuture<veilid_tools::EventualValue<T>>
+impl<T> core::ops::drop::Drop for veilid_tools::SingleShotEventual<T> where T: core::marker::Unpin
+pub fn veilid_tools::SingleShotEventual<T>::drop(&mut self)
+pub mod veilid_tools::sleep
+pub async fn veilid_tools::sleep::sleep(u32)
+pub mod veilid_tools::socket_tools
+pub use veilid_tools::socket_tools::<<tokio_util::compat::*>>
+pub use veilid_tools::socket_tools::TcpListener
+pub use veilid_tools::socket_tools::TcpStream
+pub use veilid_tools::socket_tools::UdpSocket
+pub fn veilid_tools::socket_tools::async_tcp_listener_incoming(tokio::net::tcp::listener::TcpListener) -> core::pin::Pin<alloc::boxed::Box<impl futures_core::stream::Stream<Item = core::io::error::Result<tokio::net::tcp::stream::TcpStream>> + core::marker::Send>>
+pub fn veilid_tools::socket_tools::bind_async_tcp_listener(core::net::socket_addr::SocketAddr) -> core::io::error::Result<core::option::Option<tokio::net::tcp::listener::TcpListener>>
+pub fn veilid_tools::socket_tools::bind_async_udp_socket(core::net::socket_addr::SocketAddr) -> core::io::error::Result<core::option::Option<tokio::net::udp::UdpSocket>>
+pub fn veilid_tools::socket_tools::bind_async_udp_socket_probed(core::net::socket_addr::SocketAddr) -> core::io::error::Result<core::option::Option<tokio::net::udp::UdpSocket>>
+pub async fn veilid_tools::socket_tools::connect_async_tcp_stream(core::option::Option<core::net::socket_addr::SocketAddr>, core::net::socket_addr::SocketAddr, u32) -> core::io::error::Result<veilid_tools::TimeoutOr<tokio::net::tcp::stream::TcpStream>>
+pub fn veilid_tools::socket_tools::domain_for_address(core::net::socket_addr::SocketAddr) -> core::ffi::primitives::c_int
+pub fn veilid_tools::socket_tools::new_default_socket2_tcp(core::ffi::primitives::c_int) -> core::io::error::Result<socket2::socket::Socket>
+pub fn veilid_tools::socket_tools::primary_source_ipv4() -> core::option::Option<core::net::ip_addr::Ipv4Addr>
+pub fn veilid_tools::socket_tools::primary_source_ipv6() -> core::option::Option<core::net::ip_addr::Ipv6Addr>
+pub fn veilid_tools::socket_tools::set_tcp_stream_linger(&tokio::net::tcp::stream::TcpStream, core::option::Option<core::time::Duration>) -> core::io::error::Result<()>
+pub fn veilid_tools::socket_tools::socket2_operation<S: std::os::fd::raw::AsRawFd, F: core::ops::function::FnOnce(&mut socket2::socket::Socket) -> R, R>(&S, F) -> R
+pub fn veilid_tools::socket_tools::split_async_tcp_stream(tokio::net::tcp::stream::TcpStream) -> (veilid_tools::ReadHalf, veilid_tools::WriteHalf)
+pub type veilid_tools::socket_tools::ReadHalf = tokio::net::tcp::split_owned::OwnedReadHalf
+pub type veilid_tools::socket_tools::WriteHalf = tokio::net::tcp::split_owned::OwnedWriteHalf
+pub mod veilid_tools::spawn
+pub async fn veilid_tools::spawn::blocking_wrapper<F, R>(F) -> R where F: core::ops::function::FnOnce() -> R + core::marker::Send + 'static, R: core::marker::Send + 'static
+pub async fn veilid_tools::spawn::blocking_yielding<R: core::marker::Send + 'static>(impl core::ops::function::FnOnce() -> R + core::marker::Send + 'static) -> R
+pub async fn veilid_tools::spawn::cpu_yielding<R: core::marker::Send + 'static>(impl core::ops::function::FnOnce() -> R + core::marker::Send + 'static) -> R
+pub async fn veilid_tools::spawn::scaled_yielding<N: core::cmp::PartialOrd, R: core::marker::Send + 'static, T: core::ops::function::FnOnce() -> R + core::marker::Send + 'static>(N, N, N, T) -> R
+pub fn veilid_tools::spawn::spawn<Out>(&str, impl core::future::future::Future<Output = Out> + core::marker::Send + 'static) -> veilid_tools::MustJoinHandle<Out> where Out: core::marker::Send + 'static
+pub fn veilid_tools::spawn::spawn_detached<Out>(&str, impl core::future::future::Future<Output = Out> + core::marker::Send + 'static) where Out: core::marker::Send + 'static
+pub fn veilid_tools::spawn::spawn_detached_local<Out>(&str, impl core::future::future::Future<Output = Out> + 'static) where Out: 'static
+pub fn veilid_tools::spawn::spawn_local<Out>(&str, impl core::future::future::Future<Output = Out> + 'static) -> veilid_tools::MustJoinHandle<Out> where Out: 'static
+pub async fn veilid_tools::spawn::yielding<R, T: core::ops::function::FnOnce() -> R>(T) -> R
+pub mod veilid_tools::split_url
+pub enum veilid_tools::split_url::SplitUrlHost
+pub veilid_tools::split_url::SplitUrlHost::Hostname(alloc::string::String)
+pub veilid_tools::split_url::SplitUrlHost::IpAddr(core::net::ip_addr::IpAddr)
+impl veilid_tools::SplitUrlHost
+pub fn veilid_tools::SplitUrlHost::new<S: core::convert::AsRef<str>>(S) -> core::result::Result<Self, veilid_tools::SplitUrlError>
+impl core::fmt::Display for veilid_tools::SplitUrlHost
+pub fn veilid_tools::SplitUrlHost::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::str::traits::FromStr for veilid_tools::SplitUrlHost
+pub type veilid_tools::SplitUrlHost::Err = veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrlHost::from_str(&str) -> core::result::Result<Self, Self::Err>
+pub struct veilid_tools::split_url::SplitUrl
+pub veilid_tools::split_url::SplitUrl::host: veilid_tools::SplitUrlHost
+pub veilid_tools::split_url::SplitUrl::path: core::option::Option<veilid_tools::SplitUrlPath>
+pub veilid_tools::split_url::SplitUrl::port: core::option::Option<u16>
+pub veilid_tools::split_url::SplitUrl::scheme: alloc::string::String
+pub veilid_tools::split_url::SplitUrl::userinfo: core::option::Option<alloc::string::String>
+impl veilid_tools::SplitUrl
+pub fn veilid_tools::SplitUrl::host_port(&self, u16) -> alloc::string::String
+pub fn veilid_tools::SplitUrl::new<S>(S, core::option::Option<alloc::string::String>, veilid_tools::SplitUrlHost, core::option::Option<u16>, core::option::Option<veilid_tools::SplitUrlPath>) -> Self where S: core::convert::AsRef<str>
+impl core::fmt::Display for veilid_tools::SplitUrl
+pub fn veilid_tools::SplitUrl::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::str::traits::FromStr for veilid_tools::SplitUrl
+pub type veilid_tools::SplitUrl::Err = veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrl::from_str(&str) -> core::result::Result<Self, Self::Err>
+pub struct veilid_tools::split_url::SplitUrlError(_)
+impl veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrlError::new<T: alloc::string::ToString>(T) -> Self
+pub struct veilid_tools::split_url::SplitUrlPath
+pub veilid_tools::split_url::SplitUrlPath::fragment: core::option::Option<alloc::string::String>
+pub veilid_tools::split_url::SplitUrlPath::path: alloc::string::String
+pub veilid_tools::split_url::SplitUrlPath::query: core::option::Option<alloc::string::String>
+impl veilid_tools::SplitUrlPath
+pub fn veilid_tools::SplitUrlPath::new<P, F, Q>(P, core::option::Option<F>, core::option::Option<Q>) -> Self where P: core::convert::AsRef<str>, F: core::convert::AsRef<str>, Q: core::convert::AsRef<str>
+impl core::fmt::Display for veilid_tools::SplitUrlPath
+pub fn veilid_tools::SplitUrlPath::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::str::traits::FromStr for veilid_tools::SplitUrlPath
+pub type veilid_tools::SplitUrlPath::Err = veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrlPath::from_str(&str) -> core::result::Result<Self, Self::Err>
+pub mod veilid_tools::startup_lock
+pub struct veilid_tools::startup_lock::StartupLock
+impl veilid_tools::StartupLock
+pub fn veilid_tools::StartupLock::enter(&self) -> core::result::Result<veilid_tools::StartupLockEnterGuard<'_>, veilid_tools::StartupLockNotStartedError>
+pub fn veilid_tools::StartupLock::enter_arc(&self) -> core::result::Result<veilid_tools::StartupLockEnterGuardArc, veilid_tools::StartupLockNotStartedError>
+pub fn veilid_tools::StartupLock::is_shut_down(&self) -> bool
+pub fn veilid_tools::StartupLock::is_started(&self) -> bool
+pub fn veilid_tools::StartupLock::new() -> Self
+pub async fn veilid_tools::StartupLock::shutdown(&self) -> core::result::Result<veilid_tools::StartupLockGuard<'_>, veilid_tools::StartupLockAlreadyShutDownError>
+pub fn veilid_tools::StartupLock::startup(&self) -> core::result::Result<veilid_tools::StartupLockGuard<'_>, veilid_tools::StartupLockAlreadyStartedError>
+pub fn veilid_tools::StartupLock::stop_token(&self) -> core::option::Option<veilid_tools::stop_token::StopToken>
+impl core::default::Default for veilid_tools::StartupLock
+pub fn veilid_tools::StartupLock::default() -> Self
+pub struct veilid_tools::startup_lock::StartupLockAlreadyShutDownError
+pub struct veilid_tools::startup_lock::StartupLockAlreadyStartedError
+pub struct veilid_tools::startup_lock::StartupLockEnterGuard<'a>
+pub struct veilid_tools::startup_lock::StartupLockEnterGuardArc
+pub struct veilid_tools::startup_lock::StartupLockGuard<'a>
+impl veilid_tools::StartupLockGuard<'_>
+pub fn veilid_tools::StartupLockGuard<'_>::success(self)
+pub struct veilid_tools::startup_lock::StartupLockNotStartedError
+pub mod veilid_tools::static_string_table
+pub trait veilid_tools::static_string_table::StaticStrTransform
+pub fn veilid_tools::static_string_table::StaticStrTransform::static_transform<F: core::ops::function::FnOnce(&'static str) -> &'static str>(self, F) -> &'static str
+impl veilid_tools::StaticStrTransform for &'static str
+pub fn &'static str::static_transform<F: core::ops::function::FnOnce(&'static str) -> &'static str>(self, F) -> &'static str
+pub trait veilid_tools::static_string_table::ToStaticStr
+pub fn veilid_tools::static_string_table::ToStaticStr::to_static_str(&self) -> &'static str
+impl<T: core::convert::AsRef<str>> veilid_tools::ToStaticStr for T
+pub fn T::to_static_str(&self) -> &'static str
+pub mod veilid_tools::stop_token
+pub mod veilid_tools::stop_token::future
+pub struct veilid_tools::stop_token::future::TimeoutAt<F, D>
+impl<'__pin, F, D> core::marker::Unpin for veilid_tools::stop_token::future::TimeoutAt<F, D> where pin_project_lite::__private::PinnedFieldsOf<__Origin<'__pin, F, D>>: core::marker::Unpin
+impl<F: core::future::future::Future, D: core::future::future::Future> core::future::future::Future for veilid_tools::stop_token::future::TimeoutAt<F, D>
+pub type veilid_tools::stop_token::future::TimeoutAt<F, D>::Output = core::result::Result<<F as core::future::future::Future>::Output, veilid_tools::stop_token::TimedOutError>
+pub fn veilid_tools::stop_token::future::TimeoutAt<F, D>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+pub trait veilid_tools::stop_token::future::FutureExt: core::future::future::Future + core::marker::Sized
+pub fn veilid_tools::stop_token::future::FutureExt::timeout_at<D: core::future::future::Future>(self, D) -> veilid_tools::stop_token::future::TimeoutAt<Self, D>
+impl<F: core::future::future::Future + core::marker::Sized> veilid_tools::stop_token::future::FutureExt for F
+pub fn F::timeout_at<D: core::future::future::Future>(self, D) -> veilid_tools::stop_token::future::TimeoutAt<Self, D>
+pub mod veilid_tools::stop_token::prelude
+pub struct veilid_tools::stop_token::prelude::StopSource
+impl veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::new() -> Self
+pub fn veilid_tools::stop_token::StopSource::token(&self) -> veilid_tools::stop_token::StopToken
+impl core::default::Default for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::default() -> Self
+impl core::fmt::Debug for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::ops::drop::Drop for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::drop(&mut self)
+pub struct veilid_tools::stop_token::prelude::StopToken
+impl core::clone::Clone for veilid_tools::stop_token::StopToken
+pub fn veilid_tools::stop_token::StopToken::clone(&self) -> Self
+impl core::fmt::Debug for veilid_tools::stop_token::StopToken
+pub fn veilid_tools::stop_token::StopToken::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::future::future::Future for veilid_tools::stop_token::StopToken
+pub type veilid_tools::stop_token::StopToken::Output = ()
+pub fn veilid_tools::stop_token::StopToken::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+pub struct veilid_tools::stop_token::prelude::TimedOutError
+impl core::error::Error for veilid_tools::stop_token::TimedOutError
+impl core::fmt::Display for veilid_tools::stop_token::TimedOutError
+pub fn veilid_tools::stop_token::TimedOutError::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub trait veilid_tools::stop_token::prelude::_: core::future::future::Future + core::marker::Sized
+pub fn veilid_tools::stop_token::prelude::_::timeout_at<D: core::future::future::Future>(self, D) -> veilid_tools::stop_token::future::TimeoutAt<Self, D>
+impl<F: core::future::future::Future + core::marker::Sized> veilid_tools::stop_token::future::FutureExt for F
+pub fn F::timeout_at<D: core::future::future::Future>(self, D) -> veilid_tools::stop_token::future::TimeoutAt<Self, D>
+pub struct veilid_tools::stop_token::StopSource
+impl veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::new() -> Self
+pub fn veilid_tools::stop_token::StopSource::token(&self) -> veilid_tools::stop_token::StopToken
+impl core::default::Default for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::default() -> Self
+impl core::fmt::Debug for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::ops::drop::Drop for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::drop(&mut self)
+pub struct veilid_tools::stop_token::StopToken
+impl core::clone::Clone for veilid_tools::stop_token::StopToken
+pub fn veilid_tools::stop_token::StopToken::clone(&self) -> Self
+impl core::fmt::Debug for veilid_tools::stop_token::StopToken
+pub fn veilid_tools::stop_token::StopToken::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::future::future::Future for veilid_tools::stop_token::StopToken
+pub type veilid_tools::stop_token::StopToken::Output = ()
+pub fn veilid_tools::stop_token::StopToken::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+pub struct veilid_tools::stop_token::TimedOutError
+impl core::error::Error for veilid_tools::stop_token::TimedOutError
+impl core::fmt::Display for veilid_tools::stop_token::TimedOutError
+pub fn veilid_tools::stop_token::TimedOutError::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub mod veilid_tools::system_info
+pub fn veilid_tools::system_info::total_memory_bytes() -> core::option::Option<u64>
+pub mod veilid_tools::tag_lock
+pub struct veilid_tools::tag_lock::TagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::TagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockGuard<T>::tag(&self) -> T
+pub struct veilid_tools::tag_lock::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockTable<T>::is_empty(&self) -> bool
+pub fn veilid_tools::TagLockTable<T>::len(&self) -> usize
+pub fn veilid_tools::TagLockTable<T>::lock_tag(&self, T) -> veilid_tools::TagLockGuard<T>
+pub fn veilid_tools::TagLockTable<T>::new() -> Self
+pub fn veilid_tools::TagLockTable<T>::try_lock_tag(&self, T) -> core::option::Option<veilid_tools::TagLockGuard<T>>
+impl<T> core::default::Default for veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockTable<T>::default() -> Self
+impl<T> core::fmt::Debug for veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockTable<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub mod veilid_tools::tick_task
+pub struct veilid_tools::tick_task::TickTask<E: core::marker::Send + 'static>
+impl<E: core::marker::Send + core::fmt::Debug + 'static> veilid_tools::TickTask<E>
+pub fn veilid_tools::TickTask<E>::is_running(&self) -> bool
+pub fn veilid_tools::TickTask<E>::last_timestamp_us(&self) -> core::option::Option<u64>
+pub fn veilid_tools::TickTask<E>::new(&str, u32) -> Self
+pub fn veilid_tools::TickTask<E>::new_ms(&str, u32) -> Self
+pub fn veilid_tools::TickTask<E>::new_us(&str, u64) -> Self
+pub fn veilid_tools::TickTask<E>::set_routine(&self, impl core::ops::function::Fn(veilid_tools::stop_token::StopToken, u64, u64) -> veilid_tools::PinBoxFutureStatic<core::result::Result<(), E>> + core::marker::Send + core::marker::Sync + 'static)
+pub async fn veilid_tools::TickTask<E>::stop(&self) -> core::result::Result<(), E>
+pub async fn veilid_tools::TickTask<E>::tick(&self) -> core::result::Result<(), E>
+pub async fn veilid_tools::TickTask<E>::try_tick_now(&self) -> core::result::Result<bool, E>
+pub mod veilid_tools::timeout
+pub async fn veilid_tools::timeout::timeout<F, T>(u32, F) -> core::result::Result<T, veilid_tools::TimeoutError> where F: core::future::future::Future<Output = T>
+pub mod veilid_tools::timeout_or
+pub enum veilid_tools::timeout_or::TimeoutOr<T>
+pub veilid_tools::timeout_or::TimeoutOr::Timeout
+pub veilid_tools::timeout_or::TimeoutOr::Value(T)
+impl<T> veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::into_option(self) -> core::option::Option<T>
+pub fn veilid_tools::TimeoutOr<T>::into_timeout_error(self) -> core::result::Result<T, veilid_tools::TimeoutError>
+pub fn veilid_tools::TimeoutOr<T>::is_timeout(&self) -> bool
+pub fn veilid_tools::TimeoutOr<T>::is_value(&self) -> bool
+pub fn veilid_tools::TimeoutOr<T>::map<X, F: core::ops::function::Fn(T) -> X>(self, F) -> veilid_tools::TimeoutOr<X>
+pub fn veilid_tools::TimeoutOr<T>::on_timeout<F: core::ops::function::Fn()>(self, F) -> Self
+pub fn veilid_tools::TimeoutOr<T>::timeout() -> Self
+pub fn veilid_tools::TimeoutOr<T>::value(T) -> Self
+impl<T, E> veilid_tools::TimeoutOrResultExt<T, E> for veilid_tools::TimeoutOr<core::result::Result<T, E>>
+pub fn veilid_tools::TimeoutOr<core::result::Result<T, E>>::into_result(self) -> core::result::Result<veilid_tools::TimeoutOr<T>, E>
+impl<T: core::clone::Clone> core::clone::Clone for veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::clone(&self) -> Self
+impl<T: core::fmt::Debug + core::fmt::Display> core::error::Error for veilid_tools::TimeoutOr<T>
+impl<T: core::fmt::Debug> core::fmt::Debug for veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::fmt::Display> core::fmt::Display for veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::convert::From<veilid_tools::TimeoutOr<T>> for core::option::Option<T>
+pub fn core::option::Option<T>::from(veilid_tools::TimeoutOr<T>) -> Self
+pub struct veilid_tools::timeout_or::TimeoutError()
+impl veilid_tools::TimeoutError
+pub fn veilid_tools::TimeoutError::to_io(self) -> core::io::error::Error
+impl core::convert::From<tokio::time::error::Elapsed> for veilid_tools::TimeoutError
+pub fn veilid_tools::TimeoutError::from(tokio::time::error::Elapsed) -> Self
+pub trait veilid_tools::timeout_or::IoTimeoutOrExt<T>
+pub fn veilid_tools::timeout_or::IoTimeoutOrExt::into_timeout_or(self) -> core::io::error::Result<veilid_tools::TimeoutOr<T>>
+impl<T> veilid_tools::IoTimeoutOrExt<T> for core::io::error::Result<T>
+pub fn core::io::error::Result<T>::into_timeout_or(self) -> core::io::error::Result<veilid_tools::TimeoutOr<T>>
+pub trait veilid_tools::timeout_or::TimeoutOrExt<T>
+pub fn veilid_tools::timeout_or::TimeoutOrExt::into_timeout_or(self) -> veilid_tools::TimeoutOr<T>
+impl<T> veilid_tools::TimeoutOrExt<T> for core::result::Result<T, veilid_tools::TimeoutError>
+pub fn core::result::Result<T, veilid_tools::TimeoutError>::into_timeout_or(self) -> veilid_tools::TimeoutOr<T>
+pub trait veilid_tools::timeout_or::TimeoutOrResultExt<T, E>
+pub fn veilid_tools::timeout_or::TimeoutOrResultExt::into_result(self) -> core::result::Result<veilid_tools::TimeoutOr<T>, E>
+impl<T, E> veilid_tools::TimeoutOrResultExt<T, E> for veilid_tools::TimeoutOr<core::result::Result<T, E>>
+pub fn veilid_tools::TimeoutOr<core::result::Result<T, E>>::into_result(self) -> core::result::Result<veilid_tools::TimeoutOr<T>, E>
+pub mod veilid_tools::tools
+pub struct veilid_tools::tools::DebugGuard
+impl veilid_tools::DebugGuard
+pub fn veilid_tools::DebugGuard::new(&'static str, &'static core::sync::atomic::AtomicUsize) -> Self
+impl core::ops::drop::Drop for veilid_tools::DebugGuard
+pub fn veilid_tools::DebugGuard::drop(&mut self)
+pub trait veilid_tools::tools::CmpAssign
+pub fn veilid_tools::tools::CmpAssign::max_assign(&mut self, Self)
+pub fn veilid_tools::tools::CmpAssign::min_assign(&mut self, Self)
+impl<T> veilid_tools::CmpAssign for T where T: core::cmp::Ord
+pub fn T::max_assign(&mut self, Self)
+pub fn T::min_assign(&mut self, Self)
+pub trait veilid_tools::tools::HasDuplicates<T: core::cmp::PartialEq>
+pub fn veilid_tools::tools::HasDuplicates::has_duplicates(&self) -> bool
+impl<T: core::cmp::PartialEq + core::cmp::Ord> veilid_tools::HasDuplicates<T> for alloc::vec::Vec<T>
+pub fn alloc::vec::Vec<T>::has_duplicates(&self) -> bool
+pub trait veilid_tools::tools::RemoveDuplicates<T: core::cmp::PartialEq>
+pub fn veilid_tools::tools::RemoveDuplicates::remove_duplicates(&mut self)
+impl<T: core::cmp::PartialEq + core::cmp::Ord> veilid_tools::RemoveDuplicates<T> for alloc::vec::Vec<T>
+pub fn alloc::vec::Vec<T>::remove_duplicates(&mut self)
+pub unsafe fn veilid_tools::tools::aligned_8_u8_vec_uninit(usize) -> alloc::vec::Vec<u8>
+pub async fn veilid_tools::tools::async_try_at_most_n_things<T, I, C, R, F>(usize, I, C) -> core::option::Option<R> where I: core::iter::traits::collect::IntoIterator<Item = T>, C: core::ops::function::Fn(T) -> F, F: core::future::future::Future<Output = core::option::Option<R>>
+pub fn veilid_tools::tools::available_unspecified_addresses() -> alloc::vec::Vec<core::net::ip_addr::IpAddr>
+pub fn veilid_tools::tools::compatible_unspecified_socket_addr(&core::net::socket_addr::SocketAddr) -> core::net::socket_addr::SocketAddr
+pub fn veilid_tools::tools::ensure_directory_private_owner<P: core::convert::AsRef<std::path::Path>>(P, bool) -> core::result::Result<(), alloc::string::String>
+pub fn veilid_tools::tools::ensure_file_private_owner<P: core::convert::AsRef<std::path::Path>>(P) -> core::result::Result<(), alloc::string::String>
+pub fn veilid_tools::tools::get_concurrency() -> u32
+pub fn veilid_tools::tools::is_ipv4_supported() -> bool
+pub fn veilid_tools::tools::is_ipv6_supported() -> bool
+pub fn veilid_tools::tools::listen_address_to_socket_addrs(&str) -> core::result::Result<alloc::vec::Vec<core::net::socket_addr::SocketAddr>, alloc::string::String>
+pub fn veilid_tools::tools::ms_to_us(u32) -> u64
+pub fn veilid_tools::tools::retry_falloff_log(u64, u64, u64, u64, f64) -> bool
+pub fn veilid_tools::tools::secs_to_timestamp_duration(f64) -> u64
+pub fn veilid_tools::tools::timestamp_duration_to_secs(u64) -> f64
+pub fn veilid_tools::tools::to_io_error_other<E: core::error::Error + core::marker::Send + core::marker::Sync + 'static>(E) -> core::io::error::Error
+pub fn veilid_tools::tools::try_at_most_n_things<T, I, C, R>(usize, I, C) -> core::option::Option<R> where I: core::iter::traits::collect::IntoIterator<Item = T>, C: core::ops::function::Fn(T) -> core::option::Option<R>
+pub fn veilid_tools::tools::type_name_of_val<T: ?core::marker::Sized>(&T) -> &'static str
+pub unsafe fn veilid_tools::tools::unaligned_u8_vec_uninit(usize) -> alloc::vec::Vec<u8>
+pub fn veilid_tools::tools::us_to_ms(u64) -> core::result::Result<u32, alloc::string::String>
+pub mod veilid_tools::tracked_mutex
+pub type veilid_tools::tracked_mutex::TrackedMutex<T> = parking_lot::mutex::Mutex<T>
+pub type veilid_tools::tracked_mutex::TrackedMutexGuard<'a, T> = parking_lot::mutex::MutexGuard<'a, T>
+pub macro veilid_tools::assert_err!
+pub macro veilid_tools::bail_io_error_other!
+pub macro veilid_tools::debug_target_enabled!
+pub macro veilid_tools::io_error_other!
+pub macro veilid_tools::network_result_raise!
+pub macro veilid_tools::network_result_try!
+pub macro veilid_tools::pin_dyn_future!
+pub macro veilid_tools::pin_dyn_future_closure!
+pub macro veilid_tools::pin_future!
+pub macro veilid_tools::pin_future_closure!
+pub macro veilid_tools::timeout_or_try!
+pub enum veilid_tools::DebuggerState
+pub veilid_tools::DebuggerState::Attached
+pub veilid_tools::DebuggerState::Detached
+pub veilid_tools::DebuggerState::Unknown
+pub enum veilid_tools::DeferredStreamResult
+pub veilid_tools::DeferredStreamResult::Continue
+pub veilid_tools::DeferredStreamResult::Done
+pub enum veilid_tools::FutureRaceCompletion<T, R>
+pub veilid_tools::FutureRaceCompletion::Original(T)
+pub veilid_tools::FutureRaceCompletion::Race(R)
+pub enum veilid_tools::IfAddr
+pub veilid_tools::IfAddr::V4(veilid_tools::Ifv4Addr)
+pub veilid_tools::IfAddr::V6(veilid_tools::Ifv6Addr)
+impl veilid_tools::IfAddr
+pub fn veilid_tools::IfAddr::broadcast(&self) -> core::option::Option<core::net::ip_addr::IpAddr>
+pub fn veilid_tools::IfAddr::contains_address(&self, core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::IfAddr::ip(&self) -> core::net::ip_addr::IpAddr
+pub fn veilid_tools::IfAddr::netmask(&self) -> core::net::ip_addr::IpAddr
+pub fn veilid_tools::IfAddr::network(&self) -> veilid_tools::IfAddr
+impl core::fmt::Display for veilid_tools::IfAddr
+pub fn veilid_tools::IfAddr::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub enum veilid_tools::Ipv6MulticastScope
+pub veilid_tools::Ipv6MulticastScope::AdminLocal
+pub veilid_tools::Ipv6MulticastScope::Global
+pub veilid_tools::Ipv6MulticastScope::InterfaceLocal
+pub veilid_tools::Ipv6MulticastScope::LinkLocal
+pub veilid_tools::Ipv6MulticastScope::OrganizationLocal
+pub veilid_tools::Ipv6MulticastScope::RealmLocal
+pub veilid_tools::Ipv6MulticastScope::SiteLocal
+pub enum veilid_tools::NetworkResult<T>
+pub veilid_tools::NetworkResult::AlreadyExists(core::io::error::Error)
+pub veilid_tools::NetworkResult::InvalidMessage(alloc::string::String)
+pub veilid_tools::NetworkResult::NoConnection(core::io::error::Error)
+pub veilid_tools::NetworkResult::ServiceUnavailable(alloc::string::String)
+pub veilid_tools::NetworkResult::Timeout
+pub veilid_tools::NetworkResult::Value(T)
+impl<T> veilid_tools::NetworkResult<T>
+pub fn veilid_tools::NetworkResult<T>::already_exists(core::io::error::Error) -> Self
+pub fn veilid_tools::NetworkResult<T>::into_io_result(self) -> core::result::Result<T, core::io::error::Error>
+pub fn veilid_tools::NetworkResult<T>::invalid_message<S: alloc::string::ToString>(S) -> Self
+pub fn veilid_tools::NetworkResult<T>::is_already_exists(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_invalid_message(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_no_connection(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_timeout(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::is_value(&self) -> bool
+pub fn veilid_tools::NetworkResult<T>::map<X, F: core::ops::function::Fn(T) -> X>(self, F) -> veilid_tools::NetworkResult<X>
+pub fn veilid_tools::NetworkResult<T>::no_connection(core::io::error::Error) -> Self
+pub fn veilid_tools::NetworkResult<T>::no_connection_other<S: alloc::string::ToString>(S) -> Self
+pub fn veilid_tools::NetworkResult<T>::service_unavailable<S: alloc::string::ToString>(S) -> Self
+pub fn veilid_tools::NetworkResult<T>::timeout() -> Self
+pub fn veilid_tools::NetworkResult<T>::value(T) -> Self
+impl<T, E> veilid_tools::NetworkResultResultExt<T, E> for veilid_tools::NetworkResult<core::result::Result<T, E>>
+pub fn veilid_tools::NetworkResult<core::result::Result<T, E>>::into_result_network_result(self) -> core::result::Result<veilid_tools::NetworkResult<T>, E>
+impl<T: core::fmt::Debug + core::fmt::Display> core::error::Error for veilid_tools::NetworkResult<T>
+impl<T: core::fmt::Debug> core::fmt::Debug for veilid_tools::NetworkResult<T>
+pub fn veilid_tools::NetworkResult<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::convert::From<veilid_tools::NetworkResult<T>> for core::option::Option<T>
+pub fn core::option::Option<T>::from(veilid_tools::NetworkResult<T>) -> Self
+impl<T> core::fmt::Display for veilid_tools::NetworkResult<T>
+pub fn veilid_tools::NetworkResult<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub enum veilid_tools::ResolverError
+pub veilid_tools::ResolverError::Generic(alloc::string::String)
+pub enum veilid_tools::SplitUrlHost
+pub veilid_tools::SplitUrlHost::Hostname(alloc::string::String)
+pub veilid_tools::SplitUrlHost::IpAddr(core::net::ip_addr::IpAddr)
+impl veilid_tools::SplitUrlHost
+pub fn veilid_tools::SplitUrlHost::new<S: core::convert::AsRef<str>>(S) -> core::result::Result<Self, veilid_tools::SplitUrlError>
+impl core::fmt::Display for veilid_tools::SplitUrlHost
+pub fn veilid_tools::SplitUrlHost::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::str::traits::FromStr for veilid_tools::SplitUrlHost
+pub type veilid_tools::SplitUrlHost::Err = veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrlHost::from_str(&str) -> core::result::Result<Self, Self::Err>
+pub enum veilid_tools::TimeoutOr<T>
+pub veilid_tools::TimeoutOr::Timeout
+pub veilid_tools::TimeoutOr::Value(T)
+impl<T> veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::into_option(self) -> core::option::Option<T>
+pub fn veilid_tools::TimeoutOr<T>::into_timeout_error(self) -> core::result::Result<T, veilid_tools::TimeoutError>
+pub fn veilid_tools::TimeoutOr<T>::is_timeout(&self) -> bool
+pub fn veilid_tools::TimeoutOr<T>::is_value(&self) -> bool
+pub fn veilid_tools::TimeoutOr<T>::map<X, F: core::ops::function::Fn(T) -> X>(self, F) -> veilid_tools::TimeoutOr<X>
+pub fn veilid_tools::TimeoutOr<T>::on_timeout<F: core::ops::function::Fn()>(self, F) -> Self
+pub fn veilid_tools::TimeoutOr<T>::timeout() -> Self
+pub fn veilid_tools::TimeoutOr<T>::value(T) -> Self
+impl<T, E> veilid_tools::TimeoutOrResultExt<T, E> for veilid_tools::TimeoutOr<core::result::Result<T, E>>
+pub fn veilid_tools::TimeoutOr<core::result::Result<T, E>>::into_result(self) -> core::result::Result<veilid_tools::TimeoutOr<T>, E>
+impl<T: core::clone::Clone> core::clone::Clone for veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::clone(&self) -> Self
+impl<T: core::fmt::Debug + core::fmt::Display> core::error::Error for veilid_tools::TimeoutOr<T>
+impl<T: core::fmt::Debug> core::fmt::Debug for veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::fmt::Display> core::fmt::Display for veilid_tools::TimeoutOr<T>
+pub fn veilid_tools::TimeoutOr<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::convert::From<veilid_tools::TimeoutOr<T>> for core::option::Option<T>
+pub fn core::option::Option<T>::from(veilid_tools::TimeoutOr<T>) -> Self
+pub struct veilid_tools::AddressFlags
+pub veilid_tools::AddressFlags::expiration_secs: core::option::Option<u64>
+pub veilid_tools::AddressFlags::is_clat: bool
+pub veilid_tools::AddressFlags::is_dynamic: bool
+pub veilid_tools::AddressFlags::is_preferred: bool
+pub veilid_tools::AddressFlags::is_temporary: bool
+pub struct veilid_tools::AlternateDisplayFormat
+impl veilid_tools::FormatterToString for veilid_tools::AlternateDisplayFormat
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+pub struct veilid_tools::AssemblyBuffer
+impl veilid_tools::AssemblyBuffer
+pub fn veilid_tools::AssemblyBuffer::insert_frame(&self, &[u8], core::net::socket_addr::SocketAddr) -> veilid_tools::NetworkResult<core::option::Option<bytes::bytes::Bytes>>
+pub fn veilid_tools::AssemblyBuffer::new() -> Self
+pub async fn veilid_tools::AssemblyBuffer::split_message<S, F>(&self, bytes::bytes::Bytes, core::net::socket_addr::SocketAddr, S) -> core::io::error::Result<veilid_tools::NetworkResult<()>> where S: core::ops::function::FnMut(bytes::bytes::Bytes, core::net::socket_addr::SocketAddr) -> F, F: core::future::future::Future<Output = core::io::error::Result<veilid_tools::NetworkResult<()>>>
+impl core::default::Default for veilid_tools::AssemblyBuffer
+pub fn veilid_tools::AssemblyBuffer::default() -> Self
+pub struct veilid_tools::AsyncKeyedCache<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+impl<K, V> veilid_tools::AsyncKeyedCache<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+pub async fn veilid_tools::AsyncKeyedCache<K, V>::lookup(&self, K) -> veilid_tools::AsyncKeyedCacheEntry<K, V>
+pub fn veilid_tools::AsyncKeyedCache<K, V>::new(usize) -> Self
+pub fn veilid_tools::AsyncKeyedCache<K, V>::purge(&self) -> bool
+pub struct veilid_tools::AsyncKeyedCacheEntry<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+impl<K, V> veilid_tools::AsyncKeyedCacheEntry<K, V> where K: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug, V: core::clone::Clone
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::get(&self) -> core::option::Option<V>
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::insert(&self, V) -> core::option::Option<V>
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::key(&self) -> &K
+pub fn veilid_tools::AsyncKeyedCacheEntry<K, V>::remove(&self) -> core::option::Option<V>
+pub struct veilid_tools::AsyncMutex<T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> veilid_tools::AsyncMutex<T>
+pub async fn veilid_tools::AsyncMutex<T>::lock(&self) -> veilid_tools::AsyncMutexGuard<'_, T>
+pub async fn veilid_tools::AsyncMutex<T>::lock_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncMutexGuardArc<T>
+pub fn veilid_tools::AsyncMutex<T>::new(T) -> Self where T: core::marker::Sized
+pub fn veilid_tools::AsyncMutex<T>::try_lock(&self) -> core::option::Option<veilid_tools::AsyncMutexGuard<'_, T>>
+pub fn veilid_tools::AsyncMutex<T>::try_lock_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncMutexGuardArc<T>>
+impl<T> core::convert::From<T> for veilid_tools::AsyncMutex<T>
+pub fn veilid_tools::AsyncMutex<T>::from(T) -> Self
+pub struct veilid_tools::AsyncMutexGuard<'a, T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncMutexGuard<'_, T>
+pub type veilid_tools::AsyncMutexGuard<'_, T>::Target = T
+pub fn veilid_tools::AsyncMutexGuard<'_, T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncMutexGuard<'_, T>
+pub fn veilid_tools::AsyncMutexGuard<'_, T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncMutexGuard<'_, T>
+pub fn veilid_tools::AsyncMutexGuard<'_, T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::AsyncMutexGuardArc<T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncMutexGuardArc<T>
+pub type veilid_tools::AsyncMutexGuardArc<T>::Target = T
+pub fn veilid_tools::AsyncMutexGuardArc<T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncMutexGuardArc<T>
+pub fn veilid_tools::AsyncMutexGuardArc<T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncMutexGuardArc<T>
+pub fn veilid_tools::AsyncMutexGuardArc<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::AsyncPeekStream where Self: futures_io::if_std::AsyncRead + futures_io::if_std::AsyncWrite + core::marker::Send + core::marker::Unpin
+impl veilid_tools::AsyncPeekStream
+pub fn veilid_tools::AsyncPeekStream::new<S>(S) -> Self where S: futures_io::if_std::AsyncRead + futures_io::if_std::AsyncWrite + core::marker::Send + core::marker::Unpin + 'static
+pub fn veilid_tools::AsyncPeekStream::peek<'a>(&'a self, &'a mut [u8]) -> veilid_tools::Peek<'a>
+pub fn veilid_tools::AsyncPeekStream::peek_exact<'a>(&'a self, &'a mut [u8]) -> veilid_tools::PeekExact<'a>
+impl core::marker::Unpin for veilid_tools::AsyncPeekStream
+impl futures_io::if_std::AsyncRead for veilid_tools::AsyncPeekStream
+pub fn veilid_tools::AsyncPeekStream::poll_read(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &mut [u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+impl futures_io::if_std::AsyncWrite for veilid_tools::AsyncPeekStream
+pub fn veilid_tools::AsyncPeekStream::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::AsyncPeekStream::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::AsyncPeekStream::poll_write(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &[u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+pub struct veilid_tools::AsyncRwLock<T> where T: ?core::marker::Sized
+impl<T: ?core::marker::Sized> veilid_tools::AsyncRwLock<T>
+pub async fn veilid_tools::AsyncRwLock<T>::read(&self) -> veilid_tools::AsyncRwLockReadGuard<'_, T>
+pub fn veilid_tools::AsyncRwLock<T>::try_read(&self) -> core::option::Option<veilid_tools::AsyncRwLockReadGuard<'_, T>>
+pub fn veilid_tools::AsyncRwLock<T>::try_write(&self) -> core::option::Option<veilid_tools::AsyncRwLockWriteGuard<'_, T>>
+pub fn veilid_tools::AsyncRwLock<T>::try_write_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncRwLockWriteGuardArc<T>>
+pub async fn veilid_tools::AsyncRwLock<T>::write(&self) -> veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub async fn veilid_tools::AsyncRwLock<T>::write_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncRwLockWriteGuardArc<T>
+impl<T> veilid_tools::AsyncRwLock<T>
+pub fn veilid_tools::AsyncRwLock<T>::new(T) -> veilid_tools::AsyncRwLock<T>
+pub async fn veilid_tools::AsyncRwLock<T>::read_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncRwLockReadGuardArc<T>
+pub fn veilid_tools::AsyncRwLock<T>::try_read_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncRwLockReadGuardArc<T>>
+impl<T> core::convert::From<T> for veilid_tools::AsyncRwLock<T>
+pub fn veilid_tools::AsyncRwLock<T>::from(T) -> veilid_tools::AsyncRwLock<T>
+pub struct veilid_tools::AsyncRwLockReadGuard<'a, T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncRwLockReadGuard<'_, T>
+pub type veilid_tools::AsyncRwLockReadGuard<'_, T>::Target = T
+pub fn veilid_tools::AsyncRwLockReadGuard<'_, T>::deref(&self) -> &T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncRwLockReadGuard<'_, T>
+pub fn veilid_tools::AsyncRwLockReadGuard<'_, T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::AsyncRwLockReadGuardArc<T>
+impl<T: core::fmt::Display> core::fmt::Display for veilid_tools::AsyncRwLockReadGuardArc<T>
+pub fn veilid_tools::AsyncRwLockReadGuardArc<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T> core::ops::deref::Deref for veilid_tools::AsyncRwLockReadGuardArc<T>
+pub type veilid_tools::AsyncRwLockReadGuardArc<T>::Target = T
+pub fn veilid_tools::AsyncRwLockReadGuardArc<T>::deref(&self) -> &T
+pub struct veilid_tools::AsyncRwLockWriteGuard<'a, T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub type veilid_tools::AsyncRwLockWriteGuard<'_, T>::Target = T
+pub fn veilid_tools::AsyncRwLockWriteGuard<'_, T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub fn veilid_tools::AsyncRwLockWriteGuard<'_, T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncRwLockWriteGuard<'_, T>
+pub fn veilid_tools::AsyncRwLockWriteGuard<'_, T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::AsyncRwLockWriteGuardArc<T: ?core::marker::Sized>
+impl<T: ?core::marker::Sized> core::ops::deref::Deref for veilid_tools::AsyncRwLockWriteGuardArc<T>
+pub type veilid_tools::AsyncRwLockWriteGuardArc<T>::Target = T
+pub fn veilid_tools::AsyncRwLockWriteGuardArc<T>::deref(&self) -> &T
+impl<T: ?core::marker::Sized> core::ops::deref::DerefMut for veilid_tools::AsyncRwLockWriteGuardArc<T>
+pub fn veilid_tools::AsyncRwLockWriteGuardArc<T>::deref_mut(&mut self) -> &mut T
+impl<T: core::fmt::Display + ?core::marker::Sized> core::fmt::Display for veilid_tools::AsyncRwLockWriteGuardArc<T>
+pub fn veilid_tools::AsyncRwLockWriteGuardArc<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::AsyncSemaphore
+impl veilid_tools::AsyncSemaphore
+pub async fn veilid_tools::AsyncSemaphore::acquire(&self) -> veilid_tools::AsyncSemaphoreGuard<'_>
+pub async fn veilid_tools::AsyncSemaphore::acquire_arc(&alloc::sync::Arc<Self>) -> veilid_tools::AsyncSemaphoreGuardArc
+pub fn veilid_tools::AsyncSemaphore::new(usize) -> veilid_tools::AsyncSemaphore
+pub fn veilid_tools::AsyncSemaphore::try_acquire(&self) -> core::option::Option<veilid_tools::AsyncSemaphoreGuard<'_>>
+pub fn veilid_tools::AsyncSemaphore::try_acquire_arc(&alloc::sync::Arc<Self>) -> core::option::Option<veilid_tools::AsyncSemaphoreGuardArc>
+pub struct veilid_tools::AsyncSemaphoreGuard<'a>
+pub struct veilid_tools::AsyncSemaphoreGuardArc
+pub struct veilid_tools::AsyncTagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::AsyncTagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::AsyncTagLockGuard<T>::tag(&self) -> T
+pub struct veilid_tools::AsyncTagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::AsyncTagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::AsyncTagLockTable<T>::is_empty(&self) -> bool
+pub fn veilid_tools::AsyncTagLockTable<T>::len(&self) -> usize
+pub async fn veilid_tools::AsyncTagLockTable<T>::lock_tag(&self, T) -> veilid_tools::AsyncTagLockGuard<T>
+pub fn veilid_tools::AsyncTagLockTable<T>::new() -> Self
+pub fn veilid_tools::AsyncTagLockTable<T>::try_lock_tag(&self, T) -> core::option::Option<veilid_tools::AsyncTagLockGuard<T>>
+impl<T> core::default::Default for veilid_tools::AsyncTagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::AsyncTagLockTable<T>::default() -> Self
+pub struct veilid_tools::AsyncWeightedSemaphore
+impl veilid_tools::AsyncWeightedSemaphore
+pub async fn veilid_tools::AsyncWeightedSemaphore::acquire(&alloc::sync::Arc<Self>, u64) -> veilid_tools::AsyncWeightedSemaphoreGuard
+pub fn veilid_tools::AsyncWeightedSemaphore::in_flight(&self) -> u64
+pub fn veilid_tools::AsyncWeightedSemaphore::limit(&self) -> u64
+pub fn veilid_tools::AsyncWeightedSemaphore::new(u64) -> alloc::sync::Arc<Self>
+pub fn veilid_tools::AsyncWeightedSemaphore::raise_limit(&self, u64) -> u64
+pub fn veilid_tools::AsyncWeightedSemaphore::set_limit(&self, u64)
+pub fn veilid_tools::AsyncWeightedSemaphore::try_acquire(&alloc::sync::Arc<Self>, u64) -> core::option::Option<veilid_tools::AsyncWeightedSemaphoreGuard>
+pub struct veilid_tools::AsyncWeightedSemaphoreGuard
+impl core::ops::drop::Drop for veilid_tools::AsyncWeightedSemaphoreGuard
+pub fn veilid_tools::AsyncWeightedSemaphoreGuard::drop(&mut self)
+pub struct veilid_tools::BytesWriter
+impl veilid_tools::BytesWriter
+pub fn veilid_tools::BytesWriter::bytes_mut(&self) -> &bytes::bytes_mut::BytesMut
+pub fn veilid_tools::BytesWriter::bytes_written(&self) -> usize
+pub fn veilid_tools::BytesWriter::into_inner(self) -> bytes::bytes_mut::BytesMut
+pub fn veilid_tools::BytesWriter::new() -> Self
+pub fn veilid_tools::BytesWriter::new_append(bytes::bytes_mut::BytesMut) -> Self
+pub fn veilid_tools::BytesWriter::new_offset(bytes::bytes_mut::BytesMut, usize) -> Self
+pub fn veilid_tools::BytesWriter::position(&self) -> usize
+pub fn veilid_tools::BytesWriter::start(&self) -> usize
+pub fn veilid_tools::BytesWriter::with_capacity(usize) -> Self
+impl core::default::Default for veilid_tools::BytesWriter
+pub fn veilid_tools::BytesWriter::default() -> Self
+impl core::io::write::Write for veilid_tools::BytesWriter
+pub fn veilid_tools::BytesWriter::flush(&mut self) -> core::io::error::Result<()>
+pub fn veilid_tools::BytesWriter::write(&mut self, &[u8]) -> core::io::error::Result<usize>
+pub struct veilid_tools::CloneStream<T> where T: core::marker::Unpin
+impl<T> veilid_tools::CloneStream<T> where T: core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::new(T) -> Self
+impl<T, Item> futures_sink::Sink<Item> for veilid_tools::CloneStream<T> where T: futures_sink::Sink<Item> + core::marker::Unpin
+pub type veilid_tools::CloneStream<T>::Error = <T as futures_sink::Sink<Item>>::Error
+pub fn veilid_tools::CloneStream<T>::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::result::Result<(), Self::Error>>
+pub fn veilid_tools::CloneStream<T>::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::result::Result<(), Self::Error>>
+pub fn veilid_tools::CloneStream<T>::poll_ready(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::result::Result<(), Self::Error>>
+pub fn veilid_tools::CloneStream<T>::start_send(core::pin::Pin<&mut Self>, Item) -> core::result::Result<(), Self::Error>
+impl<T> core::clone::Clone for veilid_tools::CloneStream<T> where T: core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::clone(&self) -> Self
+impl<T> futures_core::stream::Stream for veilid_tools::CloneStream<T> where T: futures_core::stream::Stream + core::marker::Unpin
+pub type veilid_tools::CloneStream<T>::Item = <T as futures_core::stream::Stream>::Item
+pub fn veilid_tools::CloneStream<T>::poll_next(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::option::Option<Self::Item>>
+impl<T> futures_io::if_std::AsyncRead for veilid_tools::CloneStream<T> where T: futures_io::if_std::AsyncRead + core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::poll_read(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &mut [u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+impl<T> futures_io::if_std::AsyncWrite for veilid_tools::CloneStream<T> where T: futures_io::if_std::AsyncWrite + core::marker::Unpin
+pub fn veilid_tools::CloneStream<T>::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::CloneStream<T>::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::CloneStream<T>::poll_write(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &[u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+pub struct veilid_tools::DebugGuard
+impl veilid_tools::DebugGuard
+pub fn veilid_tools::DebugGuard::new(&'static str, &'static core::sync::atomic::AtomicUsize) -> Self
+impl core::ops::drop::Drop for veilid_tools::DebugGuard
+pub fn veilid_tools::DebugGuard::drop(&mut self)
+pub struct veilid_tools::DefaultDisplayFormat
+impl veilid_tools::FormatterToString for veilid_tools::DefaultDisplayFormat
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+pub struct veilid_tools::DeferredStreamProcessor
+impl veilid_tools::DeferredStreamProcessor
+pub fn veilid_tools::DeferredStreamProcessor::add_future<F>(&self, F) -> bool where F: core::future::future::Future<Output = ()> + core::marker::Send + 'static
+pub fn veilid_tools::DeferredStreamProcessor::add_stream<T: core::marker::Send + 'static, S: futures_core::stream::Stream<Item = T> + core::marker::Unpin + core::marker::Send + 'static>(&self, S, impl core::ops::function::FnMut(T) -> veilid_tools::PinBoxFutureStatic<veilid_tools::DeferredStreamResult> + core::marker::Send + 'static) -> bool
+pub fn veilid_tools::DeferredStreamProcessor::init(&self)
+pub fn veilid_tools::DeferredStreamProcessor::new() -> Self
+pub async fn veilid_tools::DeferredStreamProcessor::terminate(&self)
+impl core::default::Default for veilid_tools::DeferredStreamProcessor
+pub fn veilid_tools::DeferredStreamProcessor::default() -> Self
+pub struct veilid_tools::EventBus
+impl veilid_tools::EventBus
+pub fn veilid_tools::EventBus::is_empty(&self) -> bool
+pub fn veilid_tools::EventBus::len(&self) -> usize
+pub fn veilid_tools::EventBus::new() -> Self
+pub fn veilid_tools::EventBus::post<E: core::any::Any + core::marker::Send + core::marker::Sync + 'static>(&self, E) -> core::result::Result<(), veilid_tools::StartupLockNotStartedError>
+pub async fn veilid_tools::EventBus::shutdown(&self)
+pub fn veilid_tools::EventBus::startup(&self) -> core::result::Result<(), veilid_tools::StartupLockAlreadyStartedError>
+pub fn veilid_tools::EventBus::subscribe<E: core::any::Any + core::marker::Send + core::marker::Sync + 'static, F: core::ops::function::Fn(alloc::sync::Arc<E>) -> veilid_tools::PinBoxFutureStatic<()> + core::marker::Send + core::marker::Sync + 'static>(&self, F) -> veilid_tools::EventBusSubscription
+pub fn veilid_tools::EventBus::unsubscribe(&self, veilid_tools::EventBusSubscription)
+impl core::default::Default for veilid_tools::EventBus
+pub fn veilid_tools::EventBus::default() -> Self
+pub struct veilid_tools::EventBusSubscription
+pub struct veilid_tools::Eventual
+impl veilid_tools::Eventual
+pub fn veilid_tools::Eventual::instance_clone<T>(&self, T) -> veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::Eventual::instance_empty(&self) -> veilid_tools::EventualFutureEmpty
+pub fn veilid_tools::Eventual::instance_none<T>(&self) -> veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+pub fn veilid_tools::Eventual::new() -> Self
+pub fn veilid_tools::Eventual::resolve(&self) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+impl core::clone::Clone for veilid_tools::Eventual
+pub fn veilid_tools::Eventual::clone(&self) -> Self
+impl core::default::Default for veilid_tools::Eventual
+pub fn veilid_tools::Eventual::default() -> Self
+impl core::fmt::Debug for veilid_tools::Eventual
+pub fn veilid_tools::Eventual::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl veilid_tools::eventual_base::EventualBase for veilid_tools::Eventual
+pub type veilid_tools::Eventual::ResolvedType = ()
+pub fn veilid_tools::Eventual::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::Eventual::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub struct veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+impl<T> core::future::future::Future for veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+pub type veilid_tools::EventualFutureClone<T>::Output = T
+pub fn veilid_tools::EventualFutureClone<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualFutureClone<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::EventualFutureClone<T>::drop(&mut self)
+pub struct veilid_tools::EventualFutureEmpty
+impl core::future::future::Future for veilid_tools::EventualFutureEmpty
+pub type veilid_tools::EventualFutureEmpty::Output = ()
+pub fn veilid_tools::EventualFutureEmpty::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl core::ops::drop::Drop for veilid_tools::EventualFutureEmpty
+pub fn veilid_tools::EventualFutureEmpty::drop(&mut self)
+pub struct veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+impl<T> core::future::future::Future for veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+pub type veilid_tools::EventualFutureNone<T>::Output = core::option::Option<T>
+pub fn veilid_tools::EventualFutureNone<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualFutureNone<T> where T: core::marker::Unpin
+pub fn veilid_tools::EventualFutureNone<T>::drop(&mut self)
+pub struct veilid_tools::EventualResolvedFuture<B: veilid_tools::eventual_base::EventualBase>
+impl<B: veilid_tools::eventual_base::EventualBase> core::future::future::Future for veilid_tools::eventual_base::EventualResolvedFuture<B>
+pub type veilid_tools::eventual_base::EventualResolvedFuture<B>::Output = ()
+pub fn veilid_tools::eventual_base::EventualResolvedFuture<B>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<B: veilid_tools::eventual_base::EventualBase> core::ops::drop::Drop for veilid_tools::eventual_base::EventualResolvedFuture<B>
+pub fn veilid_tools::eventual_base::EventualResolvedFuture<B>::drop(&mut self)
+pub struct veilid_tools::EventualValue<T: core::marker::Unpin>
+impl<T: core::marker::Unpin> veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::instance(&self) -> veilid_tools::EventualValueFuture<T>
+pub fn veilid_tools::EventualValue<T>::new() -> Self
+pub fn veilid_tools::EventualValue<T>::resolve(&self, T) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub fn veilid_tools::EventualValue<T>::take_value(&self) -> core::option::Option<T>
+impl<T: core::marker::Unpin> core::clone::Clone for veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::clone(&self) -> Self
+impl<T: core::marker::Unpin> core::default::Default for veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::default() -> Self
+impl<T: core::marker::Unpin> core::fmt::Debug for veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValue<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::marker::Unpin> veilid_tools::eventual_base::EventualBase for veilid_tools::EventualValue<T>
+pub type veilid_tools::EventualValue<T>::ResolvedType = T
+pub fn veilid_tools::EventualValue<T>::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::EventualValue<T>::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub struct veilid_tools::EventualValueClone<T: core::marker::Unpin + core::clone::Clone>
+impl<T: core::marker::Unpin + core::clone::Clone> veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::instance(&self) -> veilid_tools::EventualValueCloneFuture<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::EventualValueClone<T>::new() -> Self
+pub fn veilid_tools::EventualValueClone<T>::resolve(&self, T) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub fn veilid_tools::EventualValueClone<T>::value(&self) -> core::option::Option<T>
+impl<T: core::marker::Unpin + core::clone::Clone> core::clone::Clone for veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::clone(&self) -> Self
+impl<T: core::marker::Unpin + core::clone::Clone> core::default::Default for veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::default() -> Self
+impl<T: core::marker::Unpin + core::clone::Clone> core::fmt::Debug for veilid_tools::EventualValueClone<T>
+pub fn veilid_tools::EventualValueClone<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::marker::Unpin + core::clone::Clone> veilid_tools::eventual_base::EventualBase for veilid_tools::EventualValueClone<T>
+pub type veilid_tools::EventualValueClone<T>::ResolvedType = T
+pub fn veilid_tools::EventualValueClone<T>::base_inner(&self) -> parking_lot::mutex::MutexGuard<'_, veilid_tools::eventual_base::EventualBaseInner<Self::ResolvedType>>
+pub fn veilid_tools::EventualValueClone<T>::resolve_to_value(&self, Self::ResolvedType) -> veilid_tools::eventual_base::EventualResolvedFuture<Self>
+pub struct veilid_tools::EventualValueCloneFuture<T: core::marker::Unpin + core::clone::Clone>
+impl<T: core::marker::Unpin + core::clone::Clone> core::future::future::Future for veilid_tools::EventualValueCloneFuture<T>
+pub type veilid_tools::EventualValueCloneFuture<T>::Output = T
+pub fn veilid_tools::EventualValueCloneFuture<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualValueCloneFuture<T> where T: core::clone::Clone + core::marker::Unpin
+pub fn veilid_tools::EventualValueCloneFuture<T>::drop(&mut self)
+pub struct veilid_tools::EventualValueFuture<T: core::marker::Unpin>
+impl<T: core::marker::Unpin> core::fmt::Debug for veilid_tools::EventualValueFuture<T>
+pub fn veilid_tools::EventualValueFuture<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl<T: core::marker::Unpin> core::future::future::Future for veilid_tools::EventualValueFuture<T>
+pub type veilid_tools::EventualValueFuture<T>::Output = veilid_tools::EventualValue<T>
+pub fn veilid_tools::EventualValueFuture<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::EventualValueFuture<T> where T: core::marker::Unpin
+pub fn veilid_tools::EventualValueFuture<T>::drop(&mut self)
+pub struct veilid_tools::FlapDetector<T: core::cmp::PartialEq>
+impl<T: core::cmp::PartialEq> veilid_tools::FlapDetector<T>
+pub fn veilid_tools::FlapDetector<T>::new(f64, u64) -> Self
+pub fn veilid_tools::FlapDetector<T>::new_secs(f64, u64) -> Self
+pub fn veilid_tools::FlapDetector<T>::record(&mut self, u64, T) -> core::option::Option<f64>
+pub fn veilid_tools::FlapDetector<T>::record_event(&mut self, u64) -> core::option::Option<f64>
+pub fn veilid_tools::FlapDetector<T>::reset(&mut self)
+pub struct veilid_tools::FutureRaceCompletionPool
+impl veilid_tools::FutureRaceCompletionPool
+pub fn veilid_tools::FutureRaceCompletionPool::channel_spawn<F, T>(&self, F) -> flume::Receiver<T> where F: core::future::future::Future<Output = T> + core::marker::Send + 'static, T: core::marker::Send + 'static
+pub fn veilid_tools::FutureRaceCompletionPool::new(impl core::convert::Into<alloc::string::String>) -> Self
+pub async fn veilid_tools::FutureRaceCompletionPool::shutdown(&self)
+pub fn veilid_tools::FutureRaceCompletionPool::spawn<F>(&self, F) where F: core::future::future::Future<Output = ()> + core::marker::Send + 'static
+pub struct veilid_tools::Ifv4Addr
+pub veilid_tools::Ifv4Addr::broadcast: core::option::Option<core::net::ip_addr::Ipv4Addr>
+pub veilid_tools::Ifv4Addr::ip: core::net::ip_addr::Ipv4Addr
+pub veilid_tools::Ifv4Addr::netmask: core::net::ip_addr::Ipv4Addr
+impl veilid_tools::Ifv4Addr
+pub fn veilid_tools::Ifv4Addr::contains_address(&self, core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::Ifv4Addr::network(&self) -> veilid_tools::Ifv4Addr
+pub fn veilid_tools::Ifv4Addr::prefix_len(&self) -> core::option::Option<u8>
+impl core::fmt::Display for veilid_tools::Ifv4Addr
+pub fn veilid_tools::Ifv4Addr::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::Ifv6Addr
+pub veilid_tools::Ifv6Addr::broadcast: core::option::Option<core::net::ip_addr::Ipv6Addr>
+pub veilid_tools::Ifv6Addr::ip: core::net::ip_addr::Ipv6Addr
+pub veilid_tools::Ifv6Addr::netmask: core::net::ip_addr::Ipv6Addr
+impl veilid_tools::Ifv6Addr
+pub fn veilid_tools::Ifv6Addr::contains_address(&self, core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::Ifv6Addr::network(&self) -> veilid_tools::Ifv6Addr
+pub fn veilid_tools::Ifv6Addr::prefix_len(&self) -> core::option::Option<u8>
+impl core::fmt::Display for veilid_tools::Ifv6Addr
+pub fn veilid_tools::Ifv6Addr::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::InterfaceAddress
+pub veilid_tools::InterfaceAddress::flags: veilid_tools::AddressFlags
+pub veilid_tools::InterfaceAddress::if_addr: veilid_tools::IfAddr
+impl veilid_tools::InterfaceAddress
+pub fn veilid_tools::InterfaceAddress::if_addr(&self) -> &veilid_tools::IfAddr
+pub fn veilid_tools::InterfaceAddress::is_cgnat_or_ds_lite(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_clat(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_dynamic(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_ipv4_link_local(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_preferred(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::is_temporary(&self) -> bool
+pub fn veilid_tools::InterfaceAddress::new(veilid_tools::IfAddr, veilid_tools::AddressFlags) -> Self
+impl core::cmp::Ord for veilid_tools::InterfaceAddress
+pub fn veilid_tools::InterfaceAddress::cmp(&self, &Self) -> core::cmp::Ordering
+impl core::cmp::PartialOrd for veilid_tools::InterfaceAddress
+pub fn veilid_tools::InterfaceAddress::partial_cmp(&self, &Self) -> core::option::Option<core::cmp::Ordering>
+pub struct veilid_tools::InterfaceFlags
+pub veilid_tools::InterfaceFlags::is_clat: bool
+pub veilid_tools::InterfaceFlags::is_loopback: bool
+pub veilid_tools::InterfaceFlags::is_point_to_point: bool
+pub veilid_tools::InterfaceFlags::is_running: bool
+pub struct veilid_tools::IpAddrPort
+impl veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::addr(&self) -> &core::net::ip_addr::IpAddr
+pub fn veilid_tools::IpAddrPort::from_socket_addr(&core::net::socket_addr::SocketAddr) -> Self
+pub fn veilid_tools::IpAddrPort::new(core::net::ip_addr::IpAddr, u16) -> Self
+pub fn veilid_tools::IpAddrPort::port(&self) -> u16
+pub fn veilid_tools::IpAddrPort::set_addr(&mut self, core::net::ip_addr::IpAddr)
+pub fn veilid_tools::IpAddrPort::set_port(&mut self, u16)
+pub fn veilid_tools::IpAddrPort::to_socket_addr(&self) -> core::net::socket_addr::SocketAddr
+impl core::convert::From<core::net::socket_addr::SocketAddrV4> for veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::from(core::net::socket_addr::SocketAddrV4) -> veilid_tools::IpAddrPort
+impl core::convert::From<core::net::socket_addr::SocketAddrV6> for veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::from(core::net::socket_addr::SocketAddrV6) -> veilid_tools::IpAddrPort
+impl core::fmt::Display for veilid_tools::IpAddrPort
+pub fn veilid_tools::IpAddrPort::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::IpcIncoming<'a>
+impl core::ops::drop::Drop for veilid_tools::IpcIncoming<'_>
+pub fn veilid_tools::IpcIncoming<'_>::drop(&mut self)
+impl futures_core::stream::Stream for veilid_tools::IpcIncoming<'_>
+pub type veilid_tools::IpcIncoming<'_>::Item = core::result::Result<veilid_tools::IpcStream, core::io::error::Error>
+pub fn veilid_tools::IpcIncoming<'_>::poll_next(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::option::Option<Self::Item>>
+pub struct veilid_tools::IpcListener
+impl veilid_tools::IpcListener
+pub fn veilid_tools::IpcListener::accept(&self) -> veilid_tools::PinBoxFutureStatic<core::io::error::Result<veilid_tools::IpcStream>>
+pub async fn veilid_tools::IpcListener::bind<P: core::convert::AsRef<std::path::Path>>(P) -> core::io::error::Result<Self>
+pub fn veilid_tools::IpcListener::incoming(&mut self) -> core::io::error::Result<veilid_tools::IpcIncoming<'_>>
+impl core::ops::drop::Drop for veilid_tools::IpcListener
+pub fn veilid_tools::IpcListener::drop(&mut self)
+pub struct veilid_tools::IpcStream
+impl veilid_tools::IpcStream
+pub async fn veilid_tools::IpcStream::connect<P: core::convert::AsRef<std::path::Path>>(P) -> core::io::error::Result<veilid_tools::IpcStream>
+impl futures_io::if_std::AsyncRead for veilid_tools::IpcStream
+pub fn veilid_tools::IpcStream::poll_read(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &mut [u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+impl futures_io::if_std::AsyncWrite for veilid_tools::IpcStream
+pub fn veilid_tools::IpcStream::poll_close(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::IpcStream::poll_flush(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<core::io::error::Result<()>>
+pub fn veilid_tools::IpcStream::poll_write(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>, &[u8]) -> core::task::poll::Poll<core::io::error::Result<usize>>
+pub struct veilid_tools::MustJoinHandle<T>
+impl<T> veilid_tools::MustJoinHandle<T>
+pub async fn veilid_tools::MustJoinHandle<T>::abort(self)
+pub fn veilid_tools::MustJoinHandle<T>::detach(self)
+pub fn veilid_tools::MustJoinHandle<T>::new(tokio::runtime::task::join::JoinHandle<T>) -> Self
+impl<T: 'static> core::future::future::Future for veilid_tools::MustJoinHandle<T>
+pub type veilid_tools::MustJoinHandle<T>::Output = T
+pub fn veilid_tools::MustJoinHandle<T>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl<T> core::ops::drop::Drop for veilid_tools::MustJoinHandle<T>
+pub fn veilid_tools::MustJoinHandle<T>::drop(&mut self)
+pub struct veilid_tools::MustJoinSingleFuture<T> where T: 'static
+impl<T> veilid_tools::MustJoinSingleFuture<T> where T: 'static + core::marker::Send
+pub async fn veilid_tools::MustJoinSingleFuture<T>::single_spawn<F: core::future::future::Future<Output = T> + core::marker::Send + 'static, C: core::ops::function::FnOnce() -> F>(&self, &str, C) -> core::result::Result<(core::option::Option<T>, bool), ()>
+impl<T> veilid_tools::MustJoinSingleFuture<T> where T: 'static
+pub async fn veilid_tools::MustJoinSingleFuture<T>::check(&self) -> core::result::Result<core::option::Option<T>, ()>
+pub async fn veilid_tools::MustJoinSingleFuture<T>::join(&self) -> core::result::Result<core::option::Option<T>, ()>
+pub fn veilid_tools::MustJoinSingleFuture<T>::new() -> Self
+pub async fn veilid_tools::MustJoinSingleFuture<T>::single_spawn_local(&self, &str, impl core::future::future::Future<Output = T> + 'static) -> core::result::Result<(core::option::Option<T>, bool), ()>
+impl<T> core::default::Default for veilid_tools::MustJoinSingleFuture<T> where T: 'static
+pub fn veilid_tools::MustJoinSingleFuture<T>::default() -> Self
+pub struct veilid_tools::NetworkInterface
+pub veilid_tools::NetworkInterface::addrs: alloc::vec::Vec<veilid_tools::InterfaceAddress>
+pub veilid_tools::NetworkInterface::flags: veilid_tools::InterfaceFlags
+pub veilid_tools::NetworkInterface::gateways: alloc::vec::Vec<core::net::ip_addr::IpAddr>
+pub veilid_tools::NetworkInterface::name: alloc::string::String
+impl veilid_tools::NetworkInterface
+pub fn veilid_tools::NetworkInterface::add_address(&mut self, veilid_tools::InterfaceAddress)
+pub fn veilid_tools::NetworkInterface::add_gateway(&mut self, core::net::ip_addr::IpAddr)
+pub fn veilid_tools::NetworkInterface::addresses(&self) -> &[veilid_tools::InterfaceAddress]
+pub fn veilid_tools::NetworkInterface::gateways(&self) -> &[core::net::ip_addr::IpAddr]
+pub fn veilid_tools::NetworkInterface::is_clat(&self) -> bool
+pub fn veilid_tools::NetworkInterface::is_loopback(&self) -> bool
+pub fn veilid_tools::NetworkInterface::is_point_to_point(&self) -> bool
+pub fn veilid_tools::NetworkInterface::is_running(&self) -> bool
+pub fn veilid_tools::NetworkInterface::name(&self) -> alloc::string::String
+pub fn veilid_tools::NetworkInterface::new(alloc::string::String, veilid_tools::InterfaceFlags) -> Self
+pub fn veilid_tools::NetworkInterface::primary_ipv4(&self) -> core::option::Option<veilid_tools::InterfaceAddress>
+pub fn veilid_tools::NetworkInterface::primary_ipv6(&self) -> core::option::Option<veilid_tools::InterfaceAddress>
+impl core::fmt::Debug for veilid_tools::NetworkInterface
+pub fn veilid_tools::NetworkInterface::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::NetworkInterfaceAddressState
+pub veilid_tools::NetworkInterfaceAddressState::gateway_addresses: alloc::vec::Vec<core::net::ip_addr::IpAddr>
+pub veilid_tools::NetworkInterfaceAddressState::interface_addresses: alloc::vec::Vec<veilid_tools::IfAddr>
+pub struct veilid_tools::NetworkInterfaces
+impl veilid_tools::NetworkInterfaces
+pub fn veilid_tools::NetworkInterfaces::clear(&self)
+pub fn veilid_tools::NetworkInterfaces::interface_address_state(&self) -> alloc::sync::Arc<veilid_tools::NetworkInterfaceAddressState>
+pub fn veilid_tools::NetworkInterfaces::is_valid(&self) -> bool
+pub fn veilid_tools::NetworkInterfaces::new() -> Self
+pub fn veilid_tools::NetworkInterfaces::raw_address_summary(&self) -> veilid_tools::RawAddressSummary
+pub async fn veilid_tools::NetworkInterfaces::refresh(&self) -> core::io::error::Result<bool>
+pub fn veilid_tools::NetworkInterfaces::with_interfaces<F, R>(&self, F) -> R where F: core::ops::function::FnOnce(&alloc::collections::btree::map::BTreeMap<alloc::string::String, veilid_tools::NetworkInterface>) -> R
+impl core::default::Default for veilid_tools::NetworkInterfaces
+pub fn veilid_tools::NetworkInterfaces::default() -> Self
+impl core::fmt::Debug for veilid_tools::NetworkInterfaces
+pub fn veilid_tools::NetworkInterfaces::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::NetworkInterfacesInner
+pub struct veilid_tools::Peek<'a>
+impl core::future::future::Future for veilid_tools::Peek<'_>
+pub type veilid_tools::Peek<'_>::Output = core::result::Result<usize, core::io::error::Error>
+pub fn veilid_tools::Peek<'_>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl core::marker::Unpin for veilid_tools::Peek<'_>
+pub struct veilid_tools::PeekExact<'a>
+impl core::future::future::Future for veilid_tools::PeekExact<'_>
+pub type veilid_tools::PeekExact<'_>::Output = core::result::Result<usize, core::io::error::Error>
+pub fn veilid_tools::PeekExact<'_>::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+impl core::marker::Unpin for veilid_tools::PeekExact<'_>
+pub struct veilid_tools::RawAddressSummary
+pub veilid_tools::RawAddressSummary::has_non_loopback_ipv4: bool
+pub veilid_tools::RawAddressSummary::has_non_loopback_ipv6: bool
+pub veilid_tools::RawAddressSummary::has_unicast_global_ipv6: bool
+pub struct veilid_tools::Resolver
+impl veilid_tools::Resolver
+pub async fn veilid_tools::Resolver::ptr_lookup(core::net::ip_addr::IpAddr) -> core::result::Result<alloc::string::String, veilid_tools::ResolverError>
+pub async fn veilid_tools::Resolver::txt_lookup<S: core::convert::AsRef<str>>(S) -> core::result::Result<alloc::vec::Vec<alloc::string::String>, veilid_tools::ResolverError>
+pub struct veilid_tools::SingleShotEventual<T> where T: core::marker::Unpin
+impl<T> veilid_tools::SingleShotEventual<T> where T: core::marker::Unpin
+pub fn veilid_tools::SingleShotEventual<T>::instance(&self) -> veilid_tools::EventualValueFuture<T>
+pub fn veilid_tools::SingleShotEventual<T>::new(core::option::Option<T>) -> Self
+pub fn veilid_tools::SingleShotEventual<T>::resolve(self, T) -> veilid_tools::eventual_base::EventualResolvedFuture<veilid_tools::EventualValue<T>>
+impl<T> core::ops::drop::Drop for veilid_tools::SingleShotEventual<T> where T: core::marker::Unpin
+pub fn veilid_tools::SingleShotEventual<T>::drop(&mut self)
+pub struct veilid_tools::SplitUrl
+pub veilid_tools::SplitUrl::host: veilid_tools::SplitUrlHost
+pub veilid_tools::SplitUrl::path: core::option::Option<veilid_tools::SplitUrlPath>
+pub veilid_tools::SplitUrl::port: core::option::Option<u16>
+pub veilid_tools::SplitUrl::scheme: alloc::string::String
+pub veilid_tools::SplitUrl::userinfo: core::option::Option<alloc::string::String>
+impl veilid_tools::SplitUrl
+pub fn veilid_tools::SplitUrl::host_port(&self, u16) -> alloc::string::String
+pub fn veilid_tools::SplitUrl::new<S>(S, core::option::Option<alloc::string::String>, veilid_tools::SplitUrlHost, core::option::Option<u16>, core::option::Option<veilid_tools::SplitUrlPath>) -> Self where S: core::convert::AsRef<str>
+impl core::fmt::Display for veilid_tools::SplitUrl
+pub fn veilid_tools::SplitUrl::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::str::traits::FromStr for veilid_tools::SplitUrl
+pub type veilid_tools::SplitUrl::Err = veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrl::from_str(&str) -> core::result::Result<Self, Self::Err>
+pub struct veilid_tools::SplitUrlError(_)
+impl veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrlError::new<T: alloc::string::ToString>(T) -> Self
+pub struct veilid_tools::SplitUrlPath
+pub veilid_tools::SplitUrlPath::fragment: core::option::Option<alloc::string::String>
+pub veilid_tools::SplitUrlPath::path: alloc::string::String
+pub veilid_tools::SplitUrlPath::query: core::option::Option<alloc::string::String>
+impl veilid_tools::SplitUrlPath
+pub fn veilid_tools::SplitUrlPath::new<P, F, Q>(P, core::option::Option<F>, core::option::Option<Q>) -> Self where P: core::convert::AsRef<str>, F: core::convert::AsRef<str>, Q: core::convert::AsRef<str>
+impl core::fmt::Display for veilid_tools::SplitUrlPath
+pub fn veilid_tools::SplitUrlPath::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::str::traits::FromStr for veilid_tools::SplitUrlPath
+pub type veilid_tools::SplitUrlPath::Err = veilid_tools::SplitUrlError
+pub fn veilid_tools::SplitUrlPath::from_str(&str) -> core::result::Result<Self, Self::Err>
+pub struct veilid_tools::StartupLock
+impl veilid_tools::StartupLock
+pub fn veilid_tools::StartupLock::enter(&self) -> core::result::Result<veilid_tools::StartupLockEnterGuard<'_>, veilid_tools::StartupLockNotStartedError>
+pub fn veilid_tools::StartupLock::enter_arc(&self) -> core::result::Result<veilid_tools::StartupLockEnterGuardArc, veilid_tools::StartupLockNotStartedError>
+pub fn veilid_tools::StartupLock::is_shut_down(&self) -> bool
+pub fn veilid_tools::StartupLock::is_started(&self) -> bool
+pub fn veilid_tools::StartupLock::new() -> Self
+pub async fn veilid_tools::StartupLock::shutdown(&self) -> core::result::Result<veilid_tools::StartupLockGuard<'_>, veilid_tools::StartupLockAlreadyShutDownError>
+pub fn veilid_tools::StartupLock::startup(&self) -> core::result::Result<veilid_tools::StartupLockGuard<'_>, veilid_tools::StartupLockAlreadyStartedError>
+pub fn veilid_tools::StartupLock::stop_token(&self) -> core::option::Option<veilid_tools::stop_token::StopToken>
+impl core::default::Default for veilid_tools::StartupLock
+pub fn veilid_tools::StartupLock::default() -> Self
+pub struct veilid_tools::StartupLockAlreadyShutDownError
+pub struct veilid_tools::StartupLockAlreadyStartedError
+pub struct veilid_tools::StartupLockEnterGuard<'a>
+pub struct veilid_tools::StartupLockEnterGuardArc
+pub struct veilid_tools::StartupLockGuard<'a>
+impl veilid_tools::StartupLockGuard<'_>
+pub fn veilid_tools::StartupLockGuard<'_>::success(self)
+pub struct veilid_tools::StartupLockNotStartedError
+pub struct veilid_tools::StopSource
+impl veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::new() -> Self
+pub fn veilid_tools::stop_token::StopSource::token(&self) -> veilid_tools::stop_token::StopToken
+impl core::default::Default for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::default() -> Self
+impl core::fmt::Debug for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::ops::drop::Drop for veilid_tools::stop_token::StopSource
+pub fn veilid_tools::stop_token::StopSource::drop(&mut self)
+pub struct veilid_tools::StopToken
+impl core::clone::Clone for veilid_tools::stop_token::StopToken
+pub fn veilid_tools::stop_token::StopToken::clone(&self) -> Self
+impl core::fmt::Debug for veilid_tools::stop_token::StopToken
+pub fn veilid_tools::stop_token::StopToken::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+impl core::future::future::Future for veilid_tools::stop_token::StopToken
+pub type veilid_tools::stop_token::StopToken::Output = ()
+pub fn veilid_tools::stop_token::StopToken::poll(core::pin::Pin<&mut Self>, &mut core::task::wake::Context<'_>) -> core::task::poll::Poll<Self::Output>
+pub struct veilid_tools::TagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::TagLockGuard<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockGuard<T>::tag(&self) -> T
+pub struct veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+impl<T> veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockTable<T>::is_empty(&self) -> bool
+pub fn veilid_tools::TagLockTable<T>::len(&self) -> usize
+pub fn veilid_tools::TagLockTable<T>::lock_tag(&self, T) -> veilid_tools::TagLockGuard<T>
+pub fn veilid_tools::TagLockTable<T>::new() -> Self
+pub fn veilid_tools::TagLockTable<T>::try_lock_tag(&self, T) -> core::option::Option<veilid_tools::TagLockGuard<T>>
+impl<T> core::default::Default for veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockTable<T>::default() -> Self
+impl<T> core::fmt::Debug for veilid_tools::TagLockTable<T> where T: core::hash::Hash + core::cmp::Eq + core::clone::Clone + core::fmt::Debug
+pub fn veilid_tools::TagLockTable<T>::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::TickTask<E: core::marker::Send + 'static>
+impl<E: core::marker::Send + core::fmt::Debug + 'static> veilid_tools::TickTask<E>
+pub fn veilid_tools::TickTask<E>::is_running(&self) -> bool
+pub fn veilid_tools::TickTask<E>::last_timestamp_us(&self) -> core::option::Option<u64>
+pub fn veilid_tools::TickTask<E>::new(&str, u32) -> Self
+pub fn veilid_tools::TickTask<E>::new_ms(&str, u32) -> Self
+pub fn veilid_tools::TickTask<E>::new_us(&str, u64) -> Self
+pub fn veilid_tools::TickTask<E>::set_routine(&self, impl core::ops::function::Fn(veilid_tools::stop_token::StopToken, u64, u64) -> veilid_tools::PinBoxFutureStatic<core::result::Result<(), E>> + core::marker::Send + core::marker::Sync + 'static)
+pub async fn veilid_tools::TickTask<E>::stop(&self) -> core::result::Result<(), E>
+pub async fn veilid_tools::TickTask<E>::tick(&self) -> core::result::Result<(), E>
+pub async fn veilid_tools::TickTask<E>::try_tick_now(&self) -> core::result::Result<bool, E>
+pub struct veilid_tools::TimedOutError
+impl core::error::Error for veilid_tools::stop_token::TimedOutError
+impl core::fmt::Display for veilid_tools::stop_token::TimedOutError
+pub fn veilid_tools::stop_token::TimedOutError::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_tools::TimeoutError()
+impl veilid_tools::TimeoutError
+pub fn veilid_tools::TimeoutError::to_io(self) -> core::io::error::Error
+impl core::convert::From<tokio::time::error::Elapsed> for veilid_tools::TimeoutError
+pub fn veilid_tools::TimeoutError::from(tokio::time::error::Elapsed) -> Self
+pub struct veilid_tools::VeilidRng
+impl rand_core::CryptoRng for veilid_tools::VeilidRng
+impl rand_core::RngCore for veilid_tools::VeilidRng
+pub fn veilid_tools::VeilidRng::fill_bytes(&mut self, &mut [u8])
+pub fn veilid_tools::VeilidRng::next_u32(&mut self) -> u32
+pub fn veilid_tools::VeilidRng::next_u64(&mut self) -> u64
+pub fn veilid_tools::VeilidRng::try_fill_bytes(&mut self, &mut [u8]) -> core::result::Result<(), rand_core::error::Error>
+impl rand_core::TryCryptoRng for veilid_tools::VeilidRng
+impl rand_core::TryRng for veilid_tools::VeilidRng
+pub type veilid_tools::VeilidRng::Error = core::convert::Infallible
+pub fn veilid_tools::VeilidRng::try_fill_bytes(&mut self, &mut [u8]) -> core::result::Result<(), Self::Error>
+pub fn veilid_tools::VeilidRng::try_next_u32(&mut self) -> core::result::Result<u32, Self::Error>
+pub fn veilid_tools::VeilidRng::try_next_u64(&mut self) -> core::result::Result<u64, Self::Error>
+pub const veilid_tools::DEBUG_LOCKS_DURATION_MS: u32
+pub const veilid_tools::DEFAULT_INDENT_SPACES: usize
+pub const veilid_tools::FRAGMENT_LEN: usize
+pub trait veilid_tools::CmpAssign
+pub fn veilid_tools::CmpAssign::max_assign(&mut self, Self)
+pub fn veilid_tools::CmpAssign::min_assign(&mut self, Self)
+impl<T> veilid_tools::CmpAssign for T where T: core::cmp::Ord
+pub fn T::max_assign(&mut self, Self)
+pub fn T::min_assign(&mut self, Self)
+pub trait veilid_tools::EventualCommon: veilid_tools::eventual_base::EventualBase
+pub fn veilid_tools::EventualCommon::is_resolved(&self) -> bool
+pub fn veilid_tools::EventualCommon::reset(&self)
+pub fn veilid_tools::EventualCommon::try_reset(&self) -> core::result::Result<(), veilid_tools::eventual_base::EventualError>
+impl<T> veilid_tools::eventual_base::EventualCommon for T where T: veilid_tools::eventual_base::EventualBase
+pub fn T::is_resolved(&self) -> bool
+pub fn T::reset(&self)
+pub fn T::try_reset(&self) -> core::result::Result<(), veilid_tools::eventual_base::EventualError>
+pub trait veilid_tools::FoldedNetworkResultExt<T>
+pub fn veilid_tools::FoldedNetworkResultExt::folded(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+impl<T> veilid_tools::FoldedNetworkResultExt<T> for core::io::error::Result<veilid_tools::NetworkResult<T>>
+pub fn core::io::error::Result<veilid_tools::NetworkResult<T>>::folded(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+impl<T> veilid_tools::FoldedNetworkResultExt<T> for core::io::error::Result<veilid_tools::TimeoutOr<T>>
+pub fn core::io::error::Result<veilid_tools::TimeoutOr<T>>::folded(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+pub trait veilid_tools::FormatterToString
+pub fn veilid_tools::FormatterToString::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::FormatterToString::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::FormatterToString::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::FormatterToString::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::FormatterToString::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::FormatterToString::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+impl veilid_tools::FormatterToString for core::fmt::Formatter<'_>
+pub fn core::fmt::Formatter<'_>::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn core::fmt::Formatter<'_>::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn core::fmt::Formatter<'_>::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn core::fmt::Formatter<'_>::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn core::fmt::Formatter<'_>::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn core::fmt::Formatter<'_>::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+impl veilid_tools::FormatterToString for veilid_tools::AlternateDisplayFormat
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::AlternateDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::AlternateDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+impl veilid_tools::FormatterToString for veilid_tools::DefaultDisplayFormat
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_indexed_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_multiline_string<'a, T, I>(&self, I) -> alloc::string::String where T: core::fmt::Display + 'a, I: core::iter::traits::collect::IntoIterator<Item = T>
+pub fn veilid_tools::DefaultDisplayFormat::to_string<T: core::fmt::Display>(&self, T) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_string_opt<T: core::fmt::Display>(&self, core::option::Option<T>) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string<T: core::fmt::Display>(&self, &[T]) -> alloc::string::String
+pub fn veilid_tools::DefaultDisplayFormat::to_table_string_custom<T: core::fmt::Display, I: core::iter::traits::collect::IntoIterator<Item = T>>(&self, I, usize, usize, bool, bool) -> alloc::string::String
+pub trait veilid_tools::FutureRaceCompletionPoolExt: core::future::future::Future + core::marker::Sized
+pub fn veilid_tools::FutureRaceCompletionPoolExt::race_complete_on<R, F>(self, veilid_tools::FutureRaceCompletionPool, F) -> impl core::future::future::Future<Output = veilid_tools::FutureRaceCompletion<Self::Output, R>> + core::marker::Send where Self: core::marker::Send + 'static, Self::Output: core::marker::Send + 'static, F: core::future::future::Future<Output = R> + core::marker::Send, R: core::marker::Send
+impl<Fut> veilid_tools::FutureRaceCompletionPoolExt for Fut where Fut: core::future::future::Future
+pub fn Fut::race_complete_on<R, F>(self, veilid_tools::FutureRaceCompletionPool, F) -> impl core::future::future::Future<Output = veilid_tools::FutureRaceCompletion<<Fut as core::future::future::Future>::Output, R>> + core::marker::Send where Fut: core::marker::Send + 'static, <Fut as core::future::future::Future>::Output: core::marker::Send + 'static, F: core::future::future::Future<Output = R> + core::marker::Send, R: core::marker::Send
+pub trait veilid_tools::HasDuplicates<T: core::cmp::PartialEq>
+pub fn veilid_tools::HasDuplicates::has_duplicates(&self) -> bool
+impl<T: core::cmp::PartialEq + core::cmp::Ord> veilid_tools::HasDuplicates<T> for alloc::vec::Vec<T>
+pub fn alloc::vec::Vec<T>::has_duplicates(&self) -> bool
+pub trait veilid_tools::IoNetworkResultExt<T>
+pub fn veilid_tools::IoNetworkResultExt::into_network_result(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+impl<T> veilid_tools::IoNetworkResultExt<T> for core::io::error::Result<T>
+pub fn core::io::error::Result<T>::into_network_result(self) -> core::io::error::Result<veilid_tools::NetworkResult<T>>
+pub trait veilid_tools::IoTimeoutOrExt<T>
+pub fn veilid_tools::IoTimeoutOrExt::into_timeout_or(self) -> core::io::error::Result<veilid_tools::TimeoutOr<T>>
+impl<T> veilid_tools::IoTimeoutOrExt<T> for core::io::error::Result<T>
+pub fn core::io::error::Result<T>::into_timeout_or(self) -> core::io::error::Result<veilid_tools::TimeoutOr<T>>
+pub trait veilid_tools::NetworkResultExt<T>
+pub fn veilid_tools::NetworkResultExt::into_network_result(self) -> veilid_tools::NetworkResult<T>
+impl<T> veilid_tools::NetworkResultExt<T> for core::result::Result<T, veilid_tools::TimeoutError>
+pub fn core::result::Result<T, veilid_tools::TimeoutError>::into_network_result(self) -> veilid_tools::NetworkResult<T>
+pub trait veilid_tools::NetworkResultResultExt<T, E>
+pub fn veilid_tools::NetworkResultResultExt::into_result_network_result(self) -> core::result::Result<veilid_tools::NetworkResult<T>, E>
+impl<T, E> veilid_tools::NetworkResultResultExt<T, E> for veilid_tools::NetworkResult<core::result::Result<T, E>>
+pub fn veilid_tools::NetworkResult<core::result::Result<T, E>>::into_result_network_result(self) -> core::result::Result<veilid_tools::NetworkResult<T>, E>
+pub trait veilid_tools::OptionExt<T>
+pub fn veilid_tools::OptionExt::expect_none_or_log(self, &str) where T: core::fmt::Debug
+pub fn veilid_tools::OptionExt::expect_or_log(self, &str) -> T
+pub fn veilid_tools::OptionExt::unwrap_none_or_log(self) where T: core::fmt::Debug
+pub fn veilid_tools::OptionExt::unwrap_or_log(self) -> T
+impl<T> veilid_tools::OptionExt<T> for core::option::Option<T>
+pub fn core::option::Option<T>::expect_none_or_log(self, &str) where T: core::fmt::Debug
+pub fn core::option::Option<T>::expect_or_log(self, &str) -> T
+pub fn core::option::Option<T>::unwrap_none_or_log(self) where T: core::fmt::Debug
+pub fn core::option::Option<T>::unwrap_or_log(self) -> T
+pub trait veilid_tools::RemoveDuplicates<T: core::cmp::PartialEq>
+pub fn veilid_tools::RemoveDuplicates::remove_duplicates(&mut self)
+impl<T: core::cmp::PartialEq + core::cmp::Ord> veilid_tools::RemoveDuplicates<T> for alloc::vec::Vec<T>
+pub fn alloc::vec::Vec<T>::remove_duplicates(&mut self)
+pub trait veilid_tools::ResultExt<T, E>
+pub fn veilid_tools::ResultExt::expect_err_or_log(self, &str) -> E where T: core::fmt::Debug
+pub fn veilid_tools::ResultExt::expect_or_log(self, &str) -> T where E: core::fmt::Debug
+pub fn veilid_tools::ResultExt::ok_or_log(self) -> core::option::Option<T> where E: core::fmt::Debug
+pub fn veilid_tools::ResultExt::unwrap_err_or_log(self) -> E where T: core::fmt::Debug
+pub fn veilid_tools::ResultExt::unwrap_or_log(self) -> T where E: core::fmt::Debug
+impl<T, E> veilid_tools::ResultExt<T, E> for core::result::Result<T, E>
+pub fn core::result::Result<T, E>::expect_err_or_log(self, &str) -> E where T: core::fmt::Debug
+pub fn core::result::Result<T, E>::expect_or_log(self, &str) -> T where E: core::fmt::Debug
+pub fn core::result::Result<T, E>::ok_or_log(self) -> core::option::Option<T> where E: core::fmt::Debug
+pub fn core::result::Result<T, E>::unwrap_err_or_log(self) -> E where T: core::fmt::Debug
+pub fn core::result::Result<T, E>::unwrap_or_log(self) -> T where E: core::fmt::Debug
+pub trait veilid_tools::StaticStrTransform
+pub fn veilid_tools::StaticStrTransform::static_transform<F: core::ops::function::FnOnce(&'static str) -> &'static str>(self, F) -> &'static str
+impl veilid_tools::StaticStrTransform for &'static str
+pub fn &'static str::static_transform<F: core::ops::function::FnOnce(&'static str) -> &'static str>(self, F) -> &'static str
+pub trait veilid_tools::StringIfEmpty<X: alloc::string::ToString>
+pub fn veilid_tools::StringIfEmpty::string_if_empty(&self, X) -> alloc::string::String
+impl<S: core::convert::AsRef<str>, X: alloc::string::ToString> veilid_tools::StringIfEmpty<X> for S
+pub fn S::string_if_empty(&self, X) -> alloc::string::String
+pub trait veilid_tools::StripTrailingNewline
+pub fn veilid_tools::StripTrailingNewline::strip_trailing_newline(&self) -> &str
+impl<T: core::convert::AsRef<str>> veilid_tools::StripTrailingNewline for T
+pub fn T::strip_trailing_newline(&self) -> &str
+pub trait veilid_tools::TimeoutOrExt<T>
+pub fn veilid_tools::TimeoutOrExt::into_timeout_or(self) -> veilid_tools::TimeoutOr<T>
+impl<T> veilid_tools::TimeoutOrExt<T> for core::result::Result<T, veilid_tools::TimeoutError>
+pub fn core::result::Result<T, veilid_tools::TimeoutError>::into_timeout_or(self) -> veilid_tools::TimeoutOr<T>
+pub trait veilid_tools::TimeoutOrResultExt<T, E>
+pub fn veilid_tools::TimeoutOrResultExt::into_result(self) -> core::result::Result<veilid_tools::TimeoutOr<T>, E>
+impl<T, E> veilid_tools::TimeoutOrResultExt<T, E> for veilid_tools::TimeoutOr<core::result::Result<T, E>>
+pub fn veilid_tools::TimeoutOr<core::result::Result<T, E>>::into_result(self) -> core::result::Result<veilid_tools::TimeoutOr<T>, E>
+pub trait veilid_tools::ToMultilineString
+pub fn veilid_tools::ToMultilineString::to_multiline_indexed_string(&self) -> alloc::string::String
+pub fn veilid_tools::ToMultilineString::to_multiline_string(&self) -> alloc::string::String
+impl<T> veilid_tools::ToMultilineString for alloc::vec::Vec<T> where T: core::fmt::Display
+pub fn alloc::vec::Vec<T>::to_multiline_indexed_string(&self) -> alloc::string::String
+pub fn alloc::vec::Vec<T>::to_multiline_string(&self) -> alloc::string::String
+pub trait veilid_tools::ToStaticStr
+pub fn veilid_tools::ToStaticStr::to_static_str(&self) -> &'static str
+impl<T: core::convert::AsRef<str>> veilid_tools::ToStaticStr for T
+pub fn T::to_static_str(&self) -> &'static str
+pub trait veilid_tools::ToTableString
+pub fn veilid_tools::ToTableString::to_table_string(&self) -> alloc::string::String
+pub fn veilid_tools::ToTableString::to_table_string_custom(&self, usize, usize, bool, bool) -> alloc::string::String
+impl<T> veilid_tools::ToTableString for alloc::vec::Vec<T> where T: core::fmt::Display
+pub fn alloc::vec::Vec<T>::to_table_string(&self) -> alloc::string::String
+pub fn alloc::vec::Vec<T>::to_table_string_custom(&self, usize, usize, bool, bool) -> alloc::string::String
+pub unsafe fn veilid_tools::aligned_8_u8_vec_uninit(usize) -> alloc::vec::Vec<u8>
+pub fn veilid_tools::async_tcp_listener_incoming(tokio::net::tcp::listener::TcpListener) -> core::pin::Pin<alloc::boxed::Box<impl futures_core::stream::Stream<Item = core::io::error::Result<tokio::net::tcp::stream::TcpStream>> + core::marker::Send>>
+pub async fn veilid_tools::async_try_at_most_n_things<T, I, C, R, F>(usize, I, C) -> core::option::Option<R> where I: core::iter::traits::collect::IntoIterator<Item = T>, C: core::ops::function::Fn(T) -> F, F: core::future::future::Future<Output = core::option::Option<R>>
+pub fn veilid_tools::available_unspecified_addresses() -> alloc::vec::Vec<core::net::ip_addr::IpAddr>
+pub fn veilid_tools::bind_async_tcp_listener(core::net::socket_addr::SocketAddr) -> core::io::error::Result<core::option::Option<tokio::net::tcp::listener::TcpListener>>
+pub fn veilid_tools::bind_async_udp_socket(core::net::socket_addr::SocketAddr) -> core::io::error::Result<core::option::Option<tokio::net::udp::UdpSocket>>
+pub fn veilid_tools::bind_async_udp_socket_probed(core::net::socket_addr::SocketAddr) -> core::io::error::Result<core::option::Option<tokio::net::udp::UdpSocket>>
+pub async fn veilid_tools::blocking_wrapper<F, R>(F) -> R where F: core::ops::function::FnOnce() -> R + core::marker::Send + 'static, R: core::marker::Send + 'static
+pub async fn veilid_tools::blocking_yielding<R: core::marker::Send + 'static>(impl core::ops::function::FnOnce() -> R + core::marker::Send + 'static) -> R
+pub fn veilid_tools::compatible_unspecified_socket_addr(&core::net::socket_addr::SocketAddr) -> core::net::socket_addr::SocketAddr
+pub async fn veilid_tools::connect_async_tcp_stream(core::option::Option<core::net::socket_addr::SocketAddr>, core::net::socket_addr::SocketAddr, u32) -> core::io::error::Result<veilid_tools::TimeoutOr<tokio::net::tcp::stream::TcpStream>>
+pub fn veilid_tools::cpu_pool_spawn_fifo(alloc::boxed::Box<(dyn core::ops::function::FnOnce() + core::marker::Send)>)
+pub async fn veilid_tools::cpu_yielding<R: core::marker::Send + 'static>(impl core::ops::function::FnOnce() -> R + core::marker::Send + 'static) -> R
+pub fn veilid_tools::debugger_state() -> veilid_tools::DebuggerState
+pub fn veilid_tools::domain_for_address(core::net::socket_addr::SocketAddr) -> core::ffi::primitives::c_int
+pub fn veilid_tools::ensure_directory_private_owner<P: core::convert::AsRef<std::path::Path>>(P, bool) -> core::result::Result<(), alloc::string::String>
+pub fn veilid_tools::ensure_file_private_owner<P: core::convert::AsRef<std::path::Path>>(P) -> core::result::Result<(), alloc::string::String>
+pub fn veilid_tools::get_concurrency() -> u32
+pub fn veilid_tools::get_random_u32() -> u32
+pub fn veilid_tools::get_random_u64() -> u64
+pub fn veilid_tools::get_raw_timestamp() -> u64
+pub fn veilid_tools::human_byte_count<T: core::convert::Into<u64>>(T) -> alloc::string::String
+pub fn veilid_tools::human_byte_data<T: core::convert::AsRef<[u8]>>(T, core::option::Option<usize>) -> alloc::string::String
+pub fn veilid_tools::human_duration(u64) -> alloc::string::String
+pub fn veilid_tools::human_timestamp(u64) -> alloc::string::String
+pub fn veilid_tools::indent_all_string<S: core::convert::AsRef<str>>(S) -> alloc::string::String
+pub fn veilid_tools::indent_string<S: core::convert::AsRef<str>>(S) -> alloc::string::String
+pub fn veilid_tools::interval<F, FUT>(&str, u32, bool, F) -> veilid_tools::PinBoxFutureStatic<()> where F: core::ops::function::Fn() -> FUT + core::marker::Send + core::marker::Sync + 'static, FUT: core::future::future::Future<Output = ()> + core::marker::Send
+pub fn veilid_tools::ip_to_ipblock(usize, core::net::ip_addr::IpAddr) -> core::net::ip_addr::IpAddr
+pub fn veilid_tools::ipaddr_apply_netmask(core::net::ip_addr::IpAddr, core::net::ip_addr::IpAddr) -> core::option::Option<core::net::ip_addr::IpAddr>
+pub fn veilid_tools::ipaddr_in_network(core::net::ip_addr::IpAddr, core::net::ip_addr::IpAddr, core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ipaddr_is_documentation(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ipaddr_is_global(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ipaddr_is_loopback(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ipaddr_is_multicast(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ipaddr_is_unspecified(&core::net::ip_addr::IpAddr) -> bool
+pub fn veilid_tools::ipv4addr_is_benchmarking(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_broadcast(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_documentation(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_global(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_ietf_protocol_assignment(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_link_local(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_loopback(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_multicast(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_private(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_reserved(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_shared(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv4addr_is_unspecified(&core::net::ip_addr::Ipv4Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_6to4(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_documentation(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_global(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_loopback(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_multicast(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_nat64_well_known(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_teredo(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_unicast_global(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_unicast_link_local(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_unicast_link_local_strict(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_unicast_site_local(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_unique_local(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_is_unspecified(&core::net::ip_addr::Ipv6Addr) -> bool
+pub fn veilid_tools::ipv6addr_multicast_scope(&core::net::ip_addr::Ipv6Addr) -> core::option::Option<veilid_tools::Ipv6MulticastScope>
+pub fn veilid_tools::is_ipc_socket_path<P: core::convert::AsRef<std::path::Path>>(P) -> bool
+pub fn veilid_tools::is_ipv4_supported() -> bool
+pub fn veilid_tools::is_ipv6_supported() -> bool
+pub fn veilid_tools::listen_address_to_socket_addrs(&str) -> core::result::Result<alloc::vec::Vec<core::net::socket_addr::SocketAddr>, alloc::string::String>
+pub fn veilid_tools::map_to_string<X: alloc::string::ToString>(X) -> alloc::string::String
+pub fn veilid_tools::ms_to_us(u32) -> u64
+pub fn veilid_tools::new_default_socket2_tcp(core::ffi::primitives::c_int) -> core::io::error::Result<socket2::socket::Socket>
+pub fn veilid_tools::parse_duration(&str) -> core::option::Option<u64>
+pub fn veilid_tools::prepend_slash(alloc::string::String) -> alloc::string::String
+pub fn veilid_tools::primary_source_ipv4() -> core::option::Option<core::net::ip_addr::Ipv4Addr>
+pub fn veilid_tools::primary_source_ipv6() -> core::option::Option<core::net::ip_addr::Ipv6Addr>
+pub async fn veilid_tools::process_batched_future_queue_result<I, C, E, R>(I, usize, veilid_tools::stop_token::StopToken, C) -> core::result::Result<bool, E> where I: core::iter::traits::collect::IntoIterator, C: core::ops::function::Fn(R) -> core::result::Result<(), E>, <I as core::iter::traits::collect::IntoIterator>::Item: core::future::future::Future<Output = R>
+pub async fn veilid_tools::process_batched_future_queue_void<I>(I, usize, veilid_tools::stop_token::StopToken) -> bool where I: core::iter::traits::collect::IntoIterator, <I as core::iter::traits::collect::IntoIterator>::Item: core::future::future::Future<Output = ()>
+pub async fn veilid_tools::process_batched_future_stream_result<S, C, E, R>(S, usize, veilid_tools::stop_token::StopToken, C) -> core::result::Result<bool, E> where S: futures_core::stream::Stream, C: core::ops::function::Fn(R) -> core::result::Result<(), E>, <S as futures_core::stream::Stream>::Item: core::future::future::Future<Output = R>
+pub async fn veilid_tools::process_batched_future_stream_void<S>(S, usize, veilid_tools::stop_token::StopToken) -> bool where S: futures_core::stream::Stream, <S as futures_core::stream::Stream>::Item: core::future::future::Future<Output = ()>
+pub fn veilid_tools::random_bytes(&mut [u8])
+pub fn veilid_tools::retry_falloff_log(u64, u64, u64, u64, f64) -> bool
+pub async fn veilid_tools::scaled_yielding<N: core::cmp::PartialOrd, R: core::marker::Send + 'static, T: core::ops::function::FnOnce() -> R + core::marker::Send + 'static>(N, N, N, T) -> R
+pub fn veilid_tools::secs_to_timestamp_duration(f64) -> u64
+pub fn veilid_tools::set_tcp_stream_linger(&tokio::net::tcp::stream::TcpStream, core::option::Option<core::time::Duration>) -> core::io::error::Result<()>
+pub async fn veilid_tools::sleep(u32)
+pub fn veilid_tools::socket2_operation<S: std::os::fd::raw::AsRawFd, F: core::ops::function::FnOnce(&mut socket2::socket::Socket) -> R, R>(&S, F) -> R
+pub fn veilid_tools::spawn<Out>(&str, impl core::future::future::Future<Output = Out> + core::marker::Send + 'static) -> veilid_tools::MustJoinHandle<Out> where Out: core::marker::Send + 'static
+pub fn veilid_tools::spawn_detached<Out>(&str, impl core::future::future::Future<Output = Out> + core::marker::Send + 'static) where Out: core::marker::Send + 'static
+pub fn veilid_tools::spawn_detached_local<Out>(&str, impl core::future::future::Future<Output = Out> + 'static) where Out: 'static
+pub fn veilid_tools::spawn_local<Out>(&str, impl core::future::future::Future<Output = Out> + 'static) -> veilid_tools::MustJoinHandle<Out> where Out: 'static
+pub fn veilid_tools::split_async_tcp_stream(tokio::net::tcp::stream::TcpStream) -> (veilid_tools::ReadHalf, veilid_tools::WriteHalf)
+pub fn veilid_tools::split_port(&str) -> core::result::Result<(alloc::string::String, core::option::Option<u16>), alloc::string::String>
+pub async fn veilid_tools::timeout<F, T>(u32, F) -> core::result::Result<T, veilid_tools::TimeoutError> where F: core::future::future::Future<Output = T>
+pub fn veilid_tools::timestamp_duration_to_secs(u64) -> f64
+pub fn veilid_tools::to_io_error_other<E: core::error::Error + core::marker::Send + core::marker::Sync + 'static>(E) -> core::io::error::Error
+pub fn veilid_tools::total_memory_bytes() -> core::option::Option<u64>
+pub fn veilid_tools::try_at_most_n_things<T, I, C, R>(usize, I, C) -> core::option::Option<R> where I: core::iter::traits::collect::IntoIterator<Item = T>, C: core::ops::function::Fn(T) -> core::option::Option<R>
+pub fn veilid_tools::type_name_of_val<T: ?core::marker::Sized>(&T) -> &'static str
+pub unsafe fn veilid_tools::unaligned_u8_vec_uninit(usize) -> alloc::vec::Vec<u8>
+pub fn veilid_tools::us_to_ms(u64) -> core::result::Result<u32, alloc::string::String>
+pub fn veilid_tools::wait_until_debugger_attached<T: core::convert::Into<core::option::Option<core::time::Duration>>>(T) -> core::result::Result<(), &'static str>
+pub async fn veilid_tools::yielding<R, T: core::ops::function::FnOnce() -> R>(T) -> R
+pub type veilid_tools::PinBox<T> = core::pin::Pin<alloc::boxed::Box<T>>
+pub type veilid_tools::PinBoxFuture<'a, T> = veilid_tools::PinBox<(dyn core::future::future::Future<Output = T> + core::marker::Send + 'a)>
+pub type veilid_tools::PinBoxFutureStatic<T> = veilid_tools::PinBoxFuture<'static, T>
+pub type veilid_tools::ReadHalf = tokio::net::tcp::split_owned::OwnedReadHalf
+pub type veilid_tools::TrackedMutex<T> = parking_lot::mutex::Mutex<T>
+pub type veilid_tools::TrackedMutexGuard<'a, T> = parking_lot::mutex::MutexGuard<'a, T>
+pub type veilid_tools::WriteHalf = tokio::net::tcp::split_owned::OwnedWriteHalf

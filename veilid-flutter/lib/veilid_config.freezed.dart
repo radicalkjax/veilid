@@ -1,0 +1,9576 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'veilid_config.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+// dart format off
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+mixin _$VeilidFFIConfigLoggingTerminal implements DiagnosticableTreeMixin {
+
+ bool get enabled; VeilidConfigLogLevel get level; List<String> get directives;@Deprecated('Use directives instead') List<String> get ignoreLogTargets;
+/// Create a copy of VeilidFFIConfigLoggingTerminal
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingTerminalCopyWith<VeilidFFIConfigLoggingTerminal> get copyWith => _$VeilidFFIConfigLoggingTerminalCopyWithImpl<VeilidFFIConfigLoggingTerminal>(this as VeilidFFIConfigLoggingTerminal, _$identity);
+
+  /// Serializes this VeilidFFIConfigLoggingTerminal to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingTerminal'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidFFIConfigLoggingTerminal&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&const DeepCollectionEquality().equals(other.directives, directives)&&const DeepCollectionEquality().equals(other.ignoreLogTargets, ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,const DeepCollectionEquality().hash(directives),const DeepCollectionEquality().hash(ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingTerminal(enabled: $enabled, level: $level, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidFFIConfigLoggingTerminalCopyWith<$Res>  {
+  factory $VeilidFFIConfigLoggingTerminalCopyWith(VeilidFFIConfigLoggingTerminal value, $Res Function(VeilidFFIConfigLoggingTerminal) _then) = _$VeilidFFIConfigLoggingTerminalCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidFFIConfigLoggingTerminalCopyWithImpl<$Res>
+    implements $VeilidFFIConfigLoggingTerminalCopyWith<$Res> {
+  _$VeilidFFIConfigLoggingTerminalCopyWithImpl(this._self, this._then);
+
+  final VeilidFFIConfigLoggingTerminal _self;
+  final $Res Function(VeilidFFIConfigLoggingTerminal) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingTerminal
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? level = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,directives: null == directives ? _self.directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self.ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidFFIConfigLoggingTerminal].
+extension VeilidFFIConfigLoggingTerminalPatterns on VeilidFFIConfigLoggingTerminal {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingTerminal value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingTerminal() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingTerminal value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingTerminal():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidFFIConfigLoggingTerminal value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingTerminal() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingTerminal() when $default != null:
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingTerminal():
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingTerminal() when $default != null:
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidFFIConfigLoggingTerminal with DiagnosticableTreeMixin implements VeilidFFIConfigLoggingTerminal {
+  const _VeilidFFIConfigLoggingTerminal({this.enabled = true, this.level = VeilidConfigLogLevel.info, final  List<String> directives = const [], @Deprecated('Use directives instead') final  List<String> ignoreLogTargets = const []}): _directives = directives,_ignoreLogTargets = ignoreLogTargets;
+  factory _VeilidFFIConfigLoggingTerminal.fromJson(Map<String, dynamic> json) => _$VeilidFFIConfigLoggingTerminalFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override@JsonKey() final  VeilidConfigLogLevel level;
+ final  List<String> _directives;
+@override@JsonKey() List<String> get directives {
+  if (_directives is EqualUnmodifiableListView) return _directives;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_directives);
+}
+
+ final  List<String> _ignoreLogTargets;
+@override@JsonKey()@Deprecated('Use directives instead') List<String> get ignoreLogTargets {
+  if (_ignoreLogTargets is EqualUnmodifiableListView) return _ignoreLogTargets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_ignoreLogTargets);
+}
+
+
+/// Create a copy of VeilidFFIConfigLoggingTerminal
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidFFIConfigLoggingTerminalCopyWith<_VeilidFFIConfigLoggingTerminal> get copyWith => __$VeilidFFIConfigLoggingTerminalCopyWithImpl<_VeilidFFIConfigLoggingTerminal>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidFFIConfigLoggingTerminalToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingTerminal'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidFFIConfigLoggingTerminal&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&const DeepCollectionEquality().equals(other._directives, _directives)&&const DeepCollectionEquality().equals(other._ignoreLogTargets, _ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,const DeepCollectionEquality().hash(_directives),const DeepCollectionEquality().hash(_ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingTerminal(enabled: $enabled, level: $level, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidFFIConfigLoggingTerminalCopyWith<$Res> implements $VeilidFFIConfigLoggingTerminalCopyWith<$Res> {
+  factory _$VeilidFFIConfigLoggingTerminalCopyWith(_VeilidFFIConfigLoggingTerminal value, $Res Function(_VeilidFFIConfigLoggingTerminal) _then) = __$VeilidFFIConfigLoggingTerminalCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidFFIConfigLoggingTerminalCopyWithImpl<$Res>
+    implements _$VeilidFFIConfigLoggingTerminalCopyWith<$Res> {
+  __$VeilidFFIConfigLoggingTerminalCopyWithImpl(this._self, this._then);
+
+  final _VeilidFFIConfigLoggingTerminal _self;
+  final $Res Function(_VeilidFFIConfigLoggingTerminal) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingTerminal
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? level = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_VeilidFFIConfigLoggingTerminal(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,directives: null == directives ? _self._directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self._ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidFFIConfigLoggingOtlp implements DiagnosticableTreeMixin {
+
+ bool get enabled; VeilidConfigLogLevel get level; String get grpcEndpoint; String get serviceName; List<String> get directives;@Deprecated('Use directives instead') List<String> get ignoreLogTargets;
+/// Create a copy of VeilidFFIConfigLoggingOtlp
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingOtlpCopyWith<VeilidFFIConfigLoggingOtlp> get copyWith => _$VeilidFFIConfigLoggingOtlpCopyWithImpl<VeilidFFIConfigLoggingOtlp>(this as VeilidFFIConfigLoggingOtlp, _$identity);
+
+  /// Serializes this VeilidFFIConfigLoggingOtlp to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingOtlp'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('grpcEndpoint', grpcEndpoint))..add(DiagnosticsProperty('serviceName', serviceName))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidFFIConfigLoggingOtlp&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&(identical(other.grpcEndpoint, grpcEndpoint) || other.grpcEndpoint == grpcEndpoint)&&(identical(other.serviceName, serviceName) || other.serviceName == serviceName)&&const DeepCollectionEquality().equals(other.directives, directives)&&const DeepCollectionEquality().equals(other.ignoreLogTargets, ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,grpcEndpoint,serviceName,const DeepCollectionEquality().hash(directives),const DeepCollectionEquality().hash(ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingOtlp(enabled: $enabled, level: $level, grpcEndpoint: $grpcEndpoint, serviceName: $serviceName, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidFFIConfigLoggingOtlpCopyWith<$Res>  {
+  factory $VeilidFFIConfigLoggingOtlpCopyWith(VeilidFFIConfigLoggingOtlp value, $Res Function(VeilidFFIConfigLoggingOtlp) _then) = _$VeilidFFIConfigLoggingOtlpCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, String grpcEndpoint, String serviceName, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidFFIConfigLoggingOtlpCopyWithImpl<$Res>
+    implements $VeilidFFIConfigLoggingOtlpCopyWith<$Res> {
+  _$VeilidFFIConfigLoggingOtlpCopyWithImpl(this._self, this._then);
+
+  final VeilidFFIConfigLoggingOtlp _self;
+  final $Res Function(VeilidFFIConfigLoggingOtlp) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingOtlp
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? level = null,Object? grpcEndpoint = null,Object? serviceName = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,grpcEndpoint: null == grpcEndpoint ? _self.grpcEndpoint : grpcEndpoint // ignore: cast_nullable_to_non_nullable
+as String,serviceName: null == serviceName ? _self.serviceName : serviceName // ignore: cast_nullable_to_non_nullable
+as String,directives: null == directives ? _self.directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self.ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidFFIConfigLoggingOtlp].
+extension VeilidFFIConfigLoggingOtlpPatterns on VeilidFFIConfigLoggingOtlp {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingOtlp value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingOtlp() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingOtlp value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingOtlp():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidFFIConfigLoggingOtlp value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingOtlp() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  String grpcEndpoint,  String serviceName,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingOtlp() when $default != null:
+return $default(_that.enabled,_that.level,_that.grpcEndpoint,_that.serviceName,_that.directives,_that.ignoreLogTargets);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  String grpcEndpoint,  String serviceName,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingOtlp():
+return $default(_that.enabled,_that.level,_that.grpcEndpoint,_that.serviceName,_that.directives,_that.ignoreLogTargets);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  VeilidConfigLogLevel level,  String grpcEndpoint,  String serviceName,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingOtlp() when $default != null:
+return $default(_that.enabled,_that.level,_that.grpcEndpoint,_that.serviceName,_that.directives,_that.ignoreLogTargets);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidFFIConfigLoggingOtlp with DiagnosticableTreeMixin implements VeilidFFIConfigLoggingOtlp {
+  const _VeilidFFIConfigLoggingOtlp({this.enabled = true, this.level = VeilidConfigLogLevel.trace, required this.grpcEndpoint, required this.serviceName, final  List<String> directives = const [], @Deprecated('Use directives instead') final  List<String> ignoreLogTargets = const []}): _directives = directives,_ignoreLogTargets = ignoreLogTargets;
+  factory _VeilidFFIConfigLoggingOtlp.fromJson(Map<String, dynamic> json) => _$VeilidFFIConfigLoggingOtlpFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override@JsonKey() final  VeilidConfigLogLevel level;
+@override final  String grpcEndpoint;
+@override final  String serviceName;
+ final  List<String> _directives;
+@override@JsonKey() List<String> get directives {
+  if (_directives is EqualUnmodifiableListView) return _directives;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_directives);
+}
+
+ final  List<String> _ignoreLogTargets;
+@override@JsonKey()@Deprecated('Use directives instead') List<String> get ignoreLogTargets {
+  if (_ignoreLogTargets is EqualUnmodifiableListView) return _ignoreLogTargets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_ignoreLogTargets);
+}
+
+
+/// Create a copy of VeilidFFIConfigLoggingOtlp
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidFFIConfigLoggingOtlpCopyWith<_VeilidFFIConfigLoggingOtlp> get copyWith => __$VeilidFFIConfigLoggingOtlpCopyWithImpl<_VeilidFFIConfigLoggingOtlp>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidFFIConfigLoggingOtlpToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingOtlp'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('grpcEndpoint', grpcEndpoint))..add(DiagnosticsProperty('serviceName', serviceName))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidFFIConfigLoggingOtlp&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&(identical(other.grpcEndpoint, grpcEndpoint) || other.grpcEndpoint == grpcEndpoint)&&(identical(other.serviceName, serviceName) || other.serviceName == serviceName)&&const DeepCollectionEquality().equals(other._directives, _directives)&&const DeepCollectionEquality().equals(other._ignoreLogTargets, _ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,grpcEndpoint,serviceName,const DeepCollectionEquality().hash(_directives),const DeepCollectionEquality().hash(_ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingOtlp(enabled: $enabled, level: $level, grpcEndpoint: $grpcEndpoint, serviceName: $serviceName, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidFFIConfigLoggingOtlpCopyWith<$Res> implements $VeilidFFIConfigLoggingOtlpCopyWith<$Res> {
+  factory _$VeilidFFIConfigLoggingOtlpCopyWith(_VeilidFFIConfigLoggingOtlp value, $Res Function(_VeilidFFIConfigLoggingOtlp) _then) = __$VeilidFFIConfigLoggingOtlpCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, String grpcEndpoint, String serviceName, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidFFIConfigLoggingOtlpCopyWithImpl<$Res>
+    implements _$VeilidFFIConfigLoggingOtlpCopyWith<$Res> {
+  __$VeilidFFIConfigLoggingOtlpCopyWithImpl(this._self, this._then);
+
+  final _VeilidFFIConfigLoggingOtlp _self;
+  final $Res Function(_VeilidFFIConfigLoggingOtlp) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingOtlp
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? level = null,Object? grpcEndpoint = null,Object? serviceName = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_VeilidFFIConfigLoggingOtlp(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,grpcEndpoint: null == grpcEndpoint ? _self.grpcEndpoint : grpcEndpoint // ignore: cast_nullable_to_non_nullable
+as String,serviceName: null == serviceName ? _self.serviceName : serviceName // ignore: cast_nullable_to_non_nullable
+as String,directives: null == directives ? _self._directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self._ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidFFIConfigLoggingApi implements DiagnosticableTreeMixin {
+
+ bool get enabled; VeilidConfigLogLevel get level; List<String> get directives;@Deprecated('Use directives instead') List<String> get ignoreLogTargets;
+/// Create a copy of VeilidFFIConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingApiCopyWith<VeilidFFIConfigLoggingApi> get copyWith => _$VeilidFFIConfigLoggingApiCopyWithImpl<VeilidFFIConfigLoggingApi>(this as VeilidFFIConfigLoggingApi, _$identity);
+
+  /// Serializes this VeilidFFIConfigLoggingApi to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingApi'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidFFIConfigLoggingApi&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&const DeepCollectionEquality().equals(other.directives, directives)&&const DeepCollectionEquality().equals(other.ignoreLogTargets, ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,const DeepCollectionEquality().hash(directives),const DeepCollectionEquality().hash(ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingApi(enabled: $enabled, level: $level, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidFFIConfigLoggingApiCopyWith<$Res>  {
+  factory $VeilidFFIConfigLoggingApiCopyWith(VeilidFFIConfigLoggingApi value, $Res Function(VeilidFFIConfigLoggingApi) _then) = _$VeilidFFIConfigLoggingApiCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidFFIConfigLoggingApiCopyWithImpl<$Res>
+    implements $VeilidFFIConfigLoggingApiCopyWith<$Res> {
+  _$VeilidFFIConfigLoggingApiCopyWithImpl(this._self, this._then);
+
+  final VeilidFFIConfigLoggingApi _self;
+  final $Res Function(VeilidFFIConfigLoggingApi) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? level = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,directives: null == directives ? _self.directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self.ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidFFIConfigLoggingApi].
+extension VeilidFFIConfigLoggingApiPatterns on VeilidFFIConfigLoggingApi {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingApi value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingApi() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingApi value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingApi():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidFFIConfigLoggingApi value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingApi() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingApi() when $default != null:
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingApi():
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingApi() when $default != null:
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidFFIConfigLoggingApi with DiagnosticableTreeMixin implements VeilidFFIConfigLoggingApi {
+  const _VeilidFFIConfigLoggingApi({this.enabled = true, this.level = VeilidConfigLogLevel.info, final  List<String> directives = const [], @Deprecated('Use directives instead') final  List<String> ignoreLogTargets = const []}): _directives = directives,_ignoreLogTargets = ignoreLogTargets;
+  factory _VeilidFFIConfigLoggingApi.fromJson(Map<String, dynamic> json) => _$VeilidFFIConfigLoggingApiFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override@JsonKey() final  VeilidConfigLogLevel level;
+ final  List<String> _directives;
+@override@JsonKey() List<String> get directives {
+  if (_directives is EqualUnmodifiableListView) return _directives;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_directives);
+}
+
+ final  List<String> _ignoreLogTargets;
+@override@JsonKey()@Deprecated('Use directives instead') List<String> get ignoreLogTargets {
+  if (_ignoreLogTargets is EqualUnmodifiableListView) return _ignoreLogTargets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_ignoreLogTargets);
+}
+
+
+/// Create a copy of VeilidFFIConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidFFIConfigLoggingApiCopyWith<_VeilidFFIConfigLoggingApi> get copyWith => __$VeilidFFIConfigLoggingApiCopyWithImpl<_VeilidFFIConfigLoggingApi>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidFFIConfigLoggingApiToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingApi'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidFFIConfigLoggingApi&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&const DeepCollectionEquality().equals(other._directives, _directives)&&const DeepCollectionEquality().equals(other._ignoreLogTargets, _ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,const DeepCollectionEquality().hash(_directives),const DeepCollectionEquality().hash(_ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingApi(enabled: $enabled, level: $level, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidFFIConfigLoggingApiCopyWith<$Res> implements $VeilidFFIConfigLoggingApiCopyWith<$Res> {
+  factory _$VeilidFFIConfigLoggingApiCopyWith(_VeilidFFIConfigLoggingApi value, $Res Function(_VeilidFFIConfigLoggingApi) _then) = __$VeilidFFIConfigLoggingApiCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidFFIConfigLoggingApiCopyWithImpl<$Res>
+    implements _$VeilidFFIConfigLoggingApiCopyWith<$Res> {
+  __$VeilidFFIConfigLoggingApiCopyWithImpl(this._self, this._then);
+
+  final _VeilidFFIConfigLoggingApi _self;
+  final $Res Function(_VeilidFFIConfigLoggingApi) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? level = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_VeilidFFIConfigLoggingApi(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,directives: null == directives ? _self._directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self._ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidFFIConfigLoggingFlame implements DiagnosticableTreeMixin {
+
+ bool get enabled; String get path;
+/// Create a copy of VeilidFFIConfigLoggingFlame
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingFlameCopyWith<VeilidFFIConfigLoggingFlame> get copyWith => _$VeilidFFIConfigLoggingFlameCopyWithImpl<VeilidFFIConfigLoggingFlame>(this as VeilidFFIConfigLoggingFlame, _$identity);
+
+  /// Serializes this VeilidFFIConfigLoggingFlame to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingFlame'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('path', path));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidFFIConfigLoggingFlame&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.path, path) || other.path == path));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,path);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingFlame(enabled: $enabled, path: $path)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidFFIConfigLoggingFlameCopyWith<$Res>  {
+  factory $VeilidFFIConfigLoggingFlameCopyWith(VeilidFFIConfigLoggingFlame value, $Res Function(VeilidFFIConfigLoggingFlame) _then) = _$VeilidFFIConfigLoggingFlameCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, String path
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidFFIConfigLoggingFlameCopyWithImpl<$Res>
+    implements $VeilidFFIConfigLoggingFlameCopyWith<$Res> {
+  _$VeilidFFIConfigLoggingFlameCopyWithImpl(this._self, this._then);
+
+  final VeilidFFIConfigLoggingFlame _self;
+  final $Res Function(VeilidFFIConfigLoggingFlame) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingFlame
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? path = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidFFIConfigLoggingFlame].
+extension VeilidFFIConfigLoggingFlamePatterns on VeilidFFIConfigLoggingFlame {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingFlame value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingFlame() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidFFIConfigLoggingFlame value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingFlame():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidFFIConfigLoggingFlame value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingFlame() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  String path)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingFlame() when $default != null:
+return $default(_that.enabled,_that.path);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  String path)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingFlame():
+return $default(_that.enabled,_that.path);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  String path)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLoggingFlame() when $default != null:
+return $default(_that.enabled,_that.path);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidFFIConfigLoggingFlame with DiagnosticableTreeMixin implements VeilidFFIConfigLoggingFlame {
+  const _VeilidFFIConfigLoggingFlame({this.enabled = true, required this.path});
+  factory _VeilidFFIConfigLoggingFlame.fromJson(Map<String, dynamic> json) => _$VeilidFFIConfigLoggingFlameFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override final  String path;
+
+/// Create a copy of VeilidFFIConfigLoggingFlame
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidFFIConfigLoggingFlameCopyWith<_VeilidFFIConfigLoggingFlame> get copyWith => __$VeilidFFIConfigLoggingFlameCopyWithImpl<_VeilidFFIConfigLoggingFlame>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidFFIConfigLoggingFlameToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLoggingFlame'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('path', path));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidFFIConfigLoggingFlame&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.path, path) || other.path == path));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,path);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLoggingFlame(enabled: $enabled, path: $path)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidFFIConfigLoggingFlameCopyWith<$Res> implements $VeilidFFIConfigLoggingFlameCopyWith<$Res> {
+  factory _$VeilidFFIConfigLoggingFlameCopyWith(_VeilidFFIConfigLoggingFlame value, $Res Function(_VeilidFFIConfigLoggingFlame) _then) = __$VeilidFFIConfigLoggingFlameCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, String path
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidFFIConfigLoggingFlameCopyWithImpl<$Res>
+    implements _$VeilidFFIConfigLoggingFlameCopyWith<$Res> {
+  __$VeilidFFIConfigLoggingFlameCopyWithImpl(this._self, this._then);
+
+  final _VeilidFFIConfigLoggingFlame _self;
+  final $Res Function(_VeilidFFIConfigLoggingFlame) _then;
+
+/// Create a copy of VeilidFFIConfigLoggingFlame
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? path = null,}) {
+  return _then(_VeilidFFIConfigLoggingFlame(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidFFIConfigLogging implements DiagnosticableTreeMixin {
+
+ VeilidFFIConfigLoggingTerminal get terminal; VeilidFFIConfigLoggingApi get api; VeilidFFIConfigLoggingOtlp get otlp; VeilidFFIConfigLoggingFlame get flame;
+/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingCopyWith<VeilidFFIConfigLogging> get copyWith => _$VeilidFFIConfigLoggingCopyWithImpl<VeilidFFIConfigLogging>(this as VeilidFFIConfigLogging, _$identity);
+
+  /// Serializes this VeilidFFIConfigLogging to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLogging'))
+    ..add(DiagnosticsProperty('terminal', terminal))..add(DiagnosticsProperty('api', api))..add(DiagnosticsProperty('otlp', otlp))..add(DiagnosticsProperty('flame', flame));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidFFIConfigLogging&&(identical(other.terminal, terminal) || other.terminal == terminal)&&(identical(other.api, api) || other.api == api)&&(identical(other.otlp, otlp) || other.otlp == otlp)&&(identical(other.flame, flame) || other.flame == flame));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,terminal,api,otlp,flame);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLogging(terminal: $terminal, api: $api, otlp: $otlp, flame: $flame)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidFFIConfigLoggingCopyWith<$Res>  {
+  factory $VeilidFFIConfigLoggingCopyWith(VeilidFFIConfigLogging value, $Res Function(VeilidFFIConfigLogging) _then) = _$VeilidFFIConfigLoggingCopyWithImpl;
+@useResult
+$Res call({
+ VeilidFFIConfigLoggingTerminal terminal, VeilidFFIConfigLoggingApi api, VeilidFFIConfigLoggingOtlp otlp, VeilidFFIConfigLoggingFlame flame
+});
+
+
+$VeilidFFIConfigLoggingTerminalCopyWith<$Res> get terminal;$VeilidFFIConfigLoggingApiCopyWith<$Res> get api;$VeilidFFIConfigLoggingOtlpCopyWith<$Res> get otlp;$VeilidFFIConfigLoggingFlameCopyWith<$Res> get flame;
+
+}
+/// @nodoc
+class _$VeilidFFIConfigLoggingCopyWithImpl<$Res>
+    implements $VeilidFFIConfigLoggingCopyWith<$Res> {
+  _$VeilidFFIConfigLoggingCopyWithImpl(this._self, this._then);
+
+  final VeilidFFIConfigLogging _self;
+  final $Res Function(VeilidFFIConfigLogging) _then;
+
+/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? terminal = null,Object? api = null,Object? otlp = null,Object? flame = null,}) {
+  return _then(_self.copyWith(
+terminal: null == terminal ? _self.terminal : terminal // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingTerminal,api: null == api ? _self.api : api // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingApi,otlp: null == otlp ? _self.otlp : otlp // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingOtlp,flame: null == flame ? _self.flame : flame // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingFlame,
+  ));
+}
+/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingTerminalCopyWith<$Res> get terminal {
+  
+  return $VeilidFFIConfigLoggingTerminalCopyWith<$Res>(_self.terminal, (value) {
+    return _then(_self.copyWith(terminal: value));
+  });
+}/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingApiCopyWith<$Res> get api {
+  
+  return $VeilidFFIConfigLoggingApiCopyWith<$Res>(_self.api, (value) {
+    return _then(_self.copyWith(api: value));
+  });
+}/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingOtlpCopyWith<$Res> get otlp {
+  
+  return $VeilidFFIConfigLoggingOtlpCopyWith<$Res>(_self.otlp, (value) {
+    return _then(_self.copyWith(otlp: value));
+  });
+}/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingFlameCopyWith<$Res> get flame {
+  
+  return $VeilidFFIConfigLoggingFlameCopyWith<$Res>(_self.flame, (value) {
+    return _then(_self.copyWith(flame: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidFFIConfigLogging].
+extension VeilidFFIConfigLoggingPatterns on VeilidFFIConfigLogging {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidFFIConfigLogging value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLogging() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidFFIConfigLogging value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLogging():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidFFIConfigLogging value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLogging() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidFFIConfigLoggingTerminal terminal,  VeilidFFIConfigLoggingApi api,  VeilidFFIConfigLoggingOtlp otlp,  VeilidFFIConfigLoggingFlame flame)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLogging() when $default != null:
+return $default(_that.terminal,_that.api,_that.otlp,_that.flame);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidFFIConfigLoggingTerminal terminal,  VeilidFFIConfigLoggingApi api,  VeilidFFIConfigLoggingOtlp otlp,  VeilidFFIConfigLoggingFlame flame)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLogging():
+return $default(_that.terminal,_that.api,_that.otlp,_that.flame);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidFFIConfigLoggingTerminal terminal,  VeilidFFIConfigLoggingApi api,  VeilidFFIConfigLoggingOtlp otlp,  VeilidFFIConfigLoggingFlame flame)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfigLogging() when $default != null:
+return $default(_that.terminal,_that.api,_that.otlp,_that.flame);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidFFIConfigLogging with DiagnosticableTreeMixin implements VeilidFFIConfigLogging {
+  const _VeilidFFIConfigLogging({this.terminal = const VeilidFFIConfigLoggingTerminal(enabled: false), this.api = const VeilidFFIConfigLoggingApi(enabled: false), this.otlp = const VeilidFFIConfigLoggingOtlp(enabled: false, grpcEndpoint: '', serviceName: ''), this.flame = const VeilidFFIConfigLoggingFlame(enabled: false, path: '')});
+  factory _VeilidFFIConfigLogging.fromJson(Map<String, dynamic> json) => _$VeilidFFIConfigLoggingFromJson(json);
+
+@override@JsonKey() final  VeilidFFIConfigLoggingTerminal terminal;
+@override@JsonKey() final  VeilidFFIConfigLoggingApi api;
+@override@JsonKey() final  VeilidFFIConfigLoggingOtlp otlp;
+@override@JsonKey() final  VeilidFFIConfigLoggingFlame flame;
+
+/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidFFIConfigLoggingCopyWith<_VeilidFFIConfigLogging> get copyWith => __$VeilidFFIConfigLoggingCopyWithImpl<_VeilidFFIConfigLogging>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidFFIConfigLoggingToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfigLogging'))
+    ..add(DiagnosticsProperty('terminal', terminal))..add(DiagnosticsProperty('api', api))..add(DiagnosticsProperty('otlp', otlp))..add(DiagnosticsProperty('flame', flame));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidFFIConfigLogging&&(identical(other.terminal, terminal) || other.terminal == terminal)&&(identical(other.api, api) || other.api == api)&&(identical(other.otlp, otlp) || other.otlp == otlp)&&(identical(other.flame, flame) || other.flame == flame));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,terminal,api,otlp,flame);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfigLogging(terminal: $terminal, api: $api, otlp: $otlp, flame: $flame)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidFFIConfigLoggingCopyWith<$Res> implements $VeilidFFIConfigLoggingCopyWith<$Res> {
+  factory _$VeilidFFIConfigLoggingCopyWith(_VeilidFFIConfigLogging value, $Res Function(_VeilidFFIConfigLogging) _then) = __$VeilidFFIConfigLoggingCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidFFIConfigLoggingTerminal terminal, VeilidFFIConfigLoggingApi api, VeilidFFIConfigLoggingOtlp otlp, VeilidFFIConfigLoggingFlame flame
+});
+
+
+@override $VeilidFFIConfigLoggingTerminalCopyWith<$Res> get terminal;@override $VeilidFFIConfigLoggingApiCopyWith<$Res> get api;@override $VeilidFFIConfigLoggingOtlpCopyWith<$Res> get otlp;@override $VeilidFFIConfigLoggingFlameCopyWith<$Res> get flame;
+
+}
+/// @nodoc
+class __$VeilidFFIConfigLoggingCopyWithImpl<$Res>
+    implements _$VeilidFFIConfigLoggingCopyWith<$Res> {
+  __$VeilidFFIConfigLoggingCopyWithImpl(this._self, this._then);
+
+  final _VeilidFFIConfigLogging _self;
+  final $Res Function(_VeilidFFIConfigLogging) _then;
+
+/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? terminal = null,Object? api = null,Object? otlp = null,Object? flame = null,}) {
+  return _then(_VeilidFFIConfigLogging(
+terminal: null == terminal ? _self.terminal : terminal // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingTerminal,api: null == api ? _self.api : api // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingApi,otlp: null == otlp ? _self.otlp : otlp // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingOtlp,flame: null == flame ? _self.flame : flame // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLoggingFlame,
+  ));
+}
+
+/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingTerminalCopyWith<$Res> get terminal {
+  
+  return $VeilidFFIConfigLoggingTerminalCopyWith<$Res>(_self.terminal, (value) {
+    return _then(_self.copyWith(terminal: value));
+  });
+}/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingApiCopyWith<$Res> get api {
+  
+  return $VeilidFFIConfigLoggingApiCopyWith<$Res>(_self.api, (value) {
+    return _then(_self.copyWith(api: value));
+  });
+}/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingOtlpCopyWith<$Res> get otlp {
+  
+  return $VeilidFFIConfigLoggingOtlpCopyWith<$Res>(_self.otlp, (value) {
+    return _then(_self.copyWith(otlp: value));
+  });
+}/// Create a copy of VeilidFFIConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingFlameCopyWith<$Res> get flame {
+  
+  return $VeilidFFIConfigLoggingFlameCopyWith<$Res>(_self.flame, (value) {
+    return _then(_self.copyWith(flame: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidFFIConfig implements DiagnosticableTreeMixin {
+
+ VeilidFFIConfigLogging get logging;
+/// Create a copy of VeilidFFIConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigCopyWith<VeilidFFIConfig> get copyWith => _$VeilidFFIConfigCopyWithImpl<VeilidFFIConfig>(this as VeilidFFIConfig, _$identity);
+
+  /// Serializes this VeilidFFIConfig to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfig'))
+    ..add(DiagnosticsProperty('logging', logging));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidFFIConfig&&(identical(other.logging, logging) || other.logging == logging));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,logging);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfig(logging: $logging)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidFFIConfigCopyWith<$Res>  {
+  factory $VeilidFFIConfigCopyWith(VeilidFFIConfig value, $Res Function(VeilidFFIConfig) _then) = _$VeilidFFIConfigCopyWithImpl;
+@useResult
+$Res call({
+ VeilidFFIConfigLogging logging
+});
+
+
+$VeilidFFIConfigLoggingCopyWith<$Res> get logging;
+
+}
+/// @nodoc
+class _$VeilidFFIConfigCopyWithImpl<$Res>
+    implements $VeilidFFIConfigCopyWith<$Res> {
+  _$VeilidFFIConfigCopyWithImpl(this._self, this._then);
+
+  final VeilidFFIConfig _self;
+  final $Res Function(VeilidFFIConfig) _then;
+
+/// Create a copy of VeilidFFIConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? logging = null,}) {
+  return _then(_self.copyWith(
+logging: null == logging ? _self.logging : logging // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLogging,
+  ));
+}
+/// Create a copy of VeilidFFIConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingCopyWith<$Res> get logging {
+  
+  return $VeilidFFIConfigLoggingCopyWith<$Res>(_self.logging, (value) {
+    return _then(_self.copyWith(logging: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidFFIConfig].
+extension VeilidFFIConfigPatterns on VeilidFFIConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidFFIConfig value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfig() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidFFIConfig value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfig():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidFFIConfig value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidFFIConfig() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidFFIConfigLogging logging)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfig() when $default != null:
+return $default(_that.logging);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidFFIConfigLogging logging)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfig():
+return $default(_that.logging);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidFFIConfigLogging logging)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidFFIConfig() when $default != null:
+return $default(_that.logging);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidFFIConfig with DiagnosticableTreeMixin implements VeilidFFIConfig {
+  const _VeilidFFIConfig({required this.logging});
+  factory _VeilidFFIConfig.fromJson(Map<String, dynamic> json) => _$VeilidFFIConfigFromJson(json);
+
+@override final  VeilidFFIConfigLogging logging;
+
+/// Create a copy of VeilidFFIConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidFFIConfigCopyWith<_VeilidFFIConfig> get copyWith => __$VeilidFFIConfigCopyWithImpl<_VeilidFFIConfig>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidFFIConfigToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidFFIConfig'))
+    ..add(DiagnosticsProperty('logging', logging));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidFFIConfig&&(identical(other.logging, logging) || other.logging == logging));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,logging);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidFFIConfig(logging: $logging)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidFFIConfigCopyWith<$Res> implements $VeilidFFIConfigCopyWith<$Res> {
+  factory _$VeilidFFIConfigCopyWith(_VeilidFFIConfig value, $Res Function(_VeilidFFIConfig) _then) = __$VeilidFFIConfigCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidFFIConfigLogging logging
+});
+
+
+@override $VeilidFFIConfigLoggingCopyWith<$Res> get logging;
+
+}
+/// @nodoc
+class __$VeilidFFIConfigCopyWithImpl<$Res>
+    implements _$VeilidFFIConfigCopyWith<$Res> {
+  __$VeilidFFIConfigCopyWithImpl(this._self, this._then);
+
+  final _VeilidFFIConfig _self;
+  final $Res Function(_VeilidFFIConfig) _then;
+
+/// Create a copy of VeilidFFIConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? logging = null,}) {
+  return _then(_VeilidFFIConfig(
+logging: null == logging ? _self.logging : logging // ignore: cast_nullable_to_non_nullable
+as VeilidFFIConfigLogging,
+  ));
+}
+
+/// Create a copy of VeilidFFIConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidFFIConfigLoggingCopyWith<$Res> get logging {
+  
+  return $VeilidFFIConfigLoggingCopyWith<$Res>(_self.logging, (value) {
+    return _then(_self.copyWith(logging: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidWASMConfigLoggingPerformanceConsole implements DiagnosticableTreeMixin {
+
+ bool get enabled; bool get color; bool get timestamp; String? get originBaseUrl;
+/// Create a copy of VeilidWASMConfigLoggingPerformanceConsole
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<VeilidWASMConfigLoggingPerformanceConsole> get copyWith => _$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl<VeilidWASMConfigLoggingPerformanceConsole>(this as VeilidWASMConfigLoggingPerformanceConsole, _$identity);
+
+  /// Serializes this VeilidWASMConfigLoggingPerformanceConsole to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLoggingPerformanceConsole'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('color', color))..add(DiagnosticsProperty('timestamp', timestamp))..add(DiagnosticsProperty('originBaseUrl', originBaseUrl));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidWASMConfigLoggingPerformanceConsole&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.color, color) || other.color == color)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.originBaseUrl, originBaseUrl) || other.originBaseUrl == originBaseUrl));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,color,timestamp,originBaseUrl);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLoggingPerformanceConsole(enabled: $enabled, color: $color, timestamp: $timestamp, originBaseUrl: $originBaseUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res>  {
+  factory $VeilidWASMConfigLoggingPerformanceConsoleCopyWith(VeilidWASMConfigLoggingPerformanceConsole value, $Res Function(VeilidWASMConfigLoggingPerformanceConsole) _then) = _$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, bool color, bool timestamp, String? originBaseUrl
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl<$Res>
+    implements $VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> {
+  _$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl(this._self, this._then);
+
+  final VeilidWASMConfigLoggingPerformanceConsole _self;
+  final $Res Function(VeilidWASMConfigLoggingPerformanceConsole) _then;
+
+/// Create a copy of VeilidWASMConfigLoggingPerformanceConsole
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? color = null,Object? timestamp = null,Object? originBaseUrl = freezed,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as bool,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as bool,originBaseUrl: freezed == originBaseUrl ? _self.originBaseUrl : originBaseUrl // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidWASMConfigLoggingPerformanceConsole].
+extension VeilidWASMConfigLoggingPerformanceConsolePatterns on VeilidWASMConfigLoggingPerformanceConsole {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidWASMConfigLoggingPerformanceConsole value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformanceConsole() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidWASMConfigLoggingPerformanceConsole value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformanceConsole():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidWASMConfigLoggingPerformanceConsole value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformanceConsole() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  bool color,  bool timestamp,  String? originBaseUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformanceConsole() when $default != null:
+return $default(_that.enabled,_that.color,_that.timestamp,_that.originBaseUrl);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  bool color,  bool timestamp,  String? originBaseUrl)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformanceConsole():
+return $default(_that.enabled,_that.color,_that.timestamp,_that.originBaseUrl);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  bool color,  bool timestamp,  String? originBaseUrl)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformanceConsole() when $default != null:
+return $default(_that.enabled,_that.color,_that.timestamp,_that.originBaseUrl);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidWASMConfigLoggingPerformanceConsole with DiagnosticableTreeMixin implements VeilidWASMConfigLoggingPerformanceConsole {
+  const _VeilidWASMConfigLoggingPerformanceConsole({this.enabled = true, this.color = true, this.timestamp = true, this.originBaseUrl});
+  factory _VeilidWASMConfigLoggingPerformanceConsole.fromJson(Map<String, dynamic> json) => _$VeilidWASMConfigLoggingPerformanceConsoleFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override@JsonKey() final  bool color;
+@override@JsonKey() final  bool timestamp;
+@override final  String? originBaseUrl;
+
+/// Create a copy of VeilidWASMConfigLoggingPerformanceConsole
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<_VeilidWASMConfigLoggingPerformanceConsole> get copyWith => __$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl<_VeilidWASMConfigLoggingPerformanceConsole>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidWASMConfigLoggingPerformanceConsoleToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLoggingPerformanceConsole'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('color', color))..add(DiagnosticsProperty('timestamp', timestamp))..add(DiagnosticsProperty('originBaseUrl', originBaseUrl));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidWASMConfigLoggingPerformanceConsole&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.color, color) || other.color == color)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.originBaseUrl, originBaseUrl) || other.originBaseUrl == originBaseUrl));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,color,timestamp,originBaseUrl);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLoggingPerformanceConsole(enabled: $enabled, color: $color, timestamp: $timestamp, originBaseUrl: $originBaseUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> implements $VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> {
+  factory _$VeilidWASMConfigLoggingPerformanceConsoleCopyWith(_VeilidWASMConfigLoggingPerformanceConsole value, $Res Function(_VeilidWASMConfigLoggingPerformanceConsole) _then) = __$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, bool color, bool timestamp, String? originBaseUrl
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl<$Res>
+    implements _$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> {
+  __$VeilidWASMConfigLoggingPerformanceConsoleCopyWithImpl(this._self, this._then);
+
+  final _VeilidWASMConfigLoggingPerformanceConsole _self;
+  final $Res Function(_VeilidWASMConfigLoggingPerformanceConsole) _then;
+
+/// Create a copy of VeilidWASMConfigLoggingPerformanceConsole
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? color = null,Object? timestamp = null,Object? originBaseUrl = freezed,}) {
+  return _then(_VeilidWASMConfigLoggingPerformanceConsole(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as bool,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as bool,originBaseUrl: freezed == originBaseUrl ? _self.originBaseUrl : originBaseUrl // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidWASMConfigLoggingPerformance implements DiagnosticableTreeMixin {
+
+ bool get enabled; VeilidConfigLogLevel get level; bool get timings; VeilidWASMConfigLoggingPerformanceConsole get console; List<String> get directives;@Deprecated('Use directives instead') List<String> get ignoreLogTargets;
+/// Create a copy of VeilidWASMConfigLoggingPerformance
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingPerformanceCopyWith<VeilidWASMConfigLoggingPerformance> get copyWith => _$VeilidWASMConfigLoggingPerformanceCopyWithImpl<VeilidWASMConfigLoggingPerformance>(this as VeilidWASMConfigLoggingPerformance, _$identity);
+
+  /// Serializes this VeilidWASMConfigLoggingPerformance to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLoggingPerformance'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('timings', timings))..add(DiagnosticsProperty('console', console))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidWASMConfigLoggingPerformance&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&(identical(other.timings, timings) || other.timings == timings)&&(identical(other.console, console) || other.console == console)&&const DeepCollectionEquality().equals(other.directives, directives)&&const DeepCollectionEquality().equals(other.ignoreLogTargets, ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,timings,console,const DeepCollectionEquality().hash(directives),const DeepCollectionEquality().hash(ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLoggingPerformance(enabled: $enabled, level: $level, timings: $timings, console: $console, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidWASMConfigLoggingPerformanceCopyWith<$Res>  {
+  factory $VeilidWASMConfigLoggingPerformanceCopyWith(VeilidWASMConfigLoggingPerformance value, $Res Function(VeilidWASMConfigLoggingPerformance) _then) = _$VeilidWASMConfigLoggingPerformanceCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, bool timings, VeilidWASMConfigLoggingPerformanceConsole console, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> get console;
+
+}
+/// @nodoc
+class _$VeilidWASMConfigLoggingPerformanceCopyWithImpl<$Res>
+    implements $VeilidWASMConfigLoggingPerformanceCopyWith<$Res> {
+  _$VeilidWASMConfigLoggingPerformanceCopyWithImpl(this._self, this._then);
+
+  final VeilidWASMConfigLoggingPerformance _self;
+  final $Res Function(VeilidWASMConfigLoggingPerformance) _then;
+
+/// Create a copy of VeilidWASMConfigLoggingPerformance
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? level = null,Object? timings = null,Object? console = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,timings: null == timings ? _self.timings : timings // ignore: cast_nullable_to_non_nullable
+as bool,console: null == console ? _self.console : console // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLoggingPerformanceConsole,directives: null == directives ? _self.directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self.ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+/// Create a copy of VeilidWASMConfigLoggingPerformance
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> get console {
+  
+  return $VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res>(_self.console, (value) {
+    return _then(_self.copyWith(console: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidWASMConfigLoggingPerformance].
+extension VeilidWASMConfigLoggingPerformancePatterns on VeilidWASMConfigLoggingPerformance {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidWASMConfigLoggingPerformance value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformance() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidWASMConfigLoggingPerformance value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformance():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidWASMConfigLoggingPerformance value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformance() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  bool timings,  VeilidWASMConfigLoggingPerformanceConsole console,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformance() when $default != null:
+return $default(_that.enabled,_that.level,_that.timings,_that.console,_that.directives,_that.ignoreLogTargets);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  bool timings,  VeilidWASMConfigLoggingPerformanceConsole console,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformance():
+return $default(_that.enabled,_that.level,_that.timings,_that.console,_that.directives,_that.ignoreLogTargets);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  VeilidConfigLogLevel level,  bool timings,  VeilidWASMConfigLoggingPerformanceConsole console,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingPerformance() when $default != null:
+return $default(_that.enabled,_that.level,_that.timings,_that.console,_that.directives,_that.ignoreLogTargets);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidWASMConfigLoggingPerformance with DiagnosticableTreeMixin implements VeilidWASMConfigLoggingPerformance {
+  const _VeilidWASMConfigLoggingPerformance({this.enabled = true, this.level = VeilidConfigLogLevel.info, this.timings = false, this.console = const VeilidWASMConfigLoggingPerformanceConsole(enabled: true), final  List<String> directives = const [], @Deprecated('Use directives instead') final  List<String> ignoreLogTargets = const []}): _directives = directives,_ignoreLogTargets = ignoreLogTargets;
+  factory _VeilidWASMConfigLoggingPerformance.fromJson(Map<String, dynamic> json) => _$VeilidWASMConfigLoggingPerformanceFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override@JsonKey() final  VeilidConfigLogLevel level;
+@override@JsonKey() final  bool timings;
+@override@JsonKey() final  VeilidWASMConfigLoggingPerformanceConsole console;
+ final  List<String> _directives;
+@override@JsonKey() List<String> get directives {
+  if (_directives is EqualUnmodifiableListView) return _directives;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_directives);
+}
+
+ final  List<String> _ignoreLogTargets;
+@override@JsonKey()@Deprecated('Use directives instead') List<String> get ignoreLogTargets {
+  if (_ignoreLogTargets is EqualUnmodifiableListView) return _ignoreLogTargets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_ignoreLogTargets);
+}
+
+
+/// Create a copy of VeilidWASMConfigLoggingPerformance
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidWASMConfigLoggingPerformanceCopyWith<_VeilidWASMConfigLoggingPerformance> get copyWith => __$VeilidWASMConfigLoggingPerformanceCopyWithImpl<_VeilidWASMConfigLoggingPerformance>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidWASMConfigLoggingPerformanceToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLoggingPerformance'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('timings', timings))..add(DiagnosticsProperty('console', console))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidWASMConfigLoggingPerformance&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&(identical(other.timings, timings) || other.timings == timings)&&(identical(other.console, console) || other.console == console)&&const DeepCollectionEquality().equals(other._directives, _directives)&&const DeepCollectionEquality().equals(other._ignoreLogTargets, _ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,timings,console,const DeepCollectionEquality().hash(_directives),const DeepCollectionEquality().hash(_ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLoggingPerformance(enabled: $enabled, level: $level, timings: $timings, console: $console, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidWASMConfigLoggingPerformanceCopyWith<$Res> implements $VeilidWASMConfigLoggingPerformanceCopyWith<$Res> {
+  factory _$VeilidWASMConfigLoggingPerformanceCopyWith(_VeilidWASMConfigLoggingPerformance value, $Res Function(_VeilidWASMConfigLoggingPerformance) _then) = __$VeilidWASMConfigLoggingPerformanceCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, bool timings, VeilidWASMConfigLoggingPerformanceConsole console, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+@override $VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> get console;
+
+}
+/// @nodoc
+class __$VeilidWASMConfigLoggingPerformanceCopyWithImpl<$Res>
+    implements _$VeilidWASMConfigLoggingPerformanceCopyWith<$Res> {
+  __$VeilidWASMConfigLoggingPerformanceCopyWithImpl(this._self, this._then);
+
+  final _VeilidWASMConfigLoggingPerformance _self;
+  final $Res Function(_VeilidWASMConfigLoggingPerformance) _then;
+
+/// Create a copy of VeilidWASMConfigLoggingPerformance
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? level = null,Object? timings = null,Object? console = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_VeilidWASMConfigLoggingPerformance(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,timings: null == timings ? _self.timings : timings // ignore: cast_nullable_to_non_nullable
+as bool,console: null == console ? _self.console : console // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLoggingPerformanceConsole,directives: null == directives ? _self._directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self._ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+/// Create a copy of VeilidWASMConfigLoggingPerformance
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res> get console {
+  
+  return $VeilidWASMConfigLoggingPerformanceConsoleCopyWith<$Res>(_self.console, (value) {
+    return _then(_self.copyWith(console: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidWASMConfigLoggingApi implements DiagnosticableTreeMixin {
+
+ bool get enabled; VeilidConfigLogLevel get level; List<String> get directives;@Deprecated('Use directives instead') List<String> get ignoreLogTargets;
+/// Create a copy of VeilidWASMConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingApiCopyWith<VeilidWASMConfigLoggingApi> get copyWith => _$VeilidWASMConfigLoggingApiCopyWithImpl<VeilidWASMConfigLoggingApi>(this as VeilidWASMConfigLoggingApi, _$identity);
+
+  /// Serializes this VeilidWASMConfigLoggingApi to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLoggingApi'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidWASMConfigLoggingApi&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&const DeepCollectionEquality().equals(other.directives, directives)&&const DeepCollectionEquality().equals(other.ignoreLogTargets, ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,const DeepCollectionEquality().hash(directives),const DeepCollectionEquality().hash(ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLoggingApi(enabled: $enabled, level: $level, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidWASMConfigLoggingApiCopyWith<$Res>  {
+  factory $VeilidWASMConfigLoggingApiCopyWith(VeilidWASMConfigLoggingApi value, $Res Function(VeilidWASMConfigLoggingApi) _then) = _$VeilidWASMConfigLoggingApiCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidWASMConfigLoggingApiCopyWithImpl<$Res>
+    implements $VeilidWASMConfigLoggingApiCopyWith<$Res> {
+  _$VeilidWASMConfigLoggingApiCopyWithImpl(this._self, this._then);
+
+  final VeilidWASMConfigLoggingApi _self;
+  final $Res Function(VeilidWASMConfigLoggingApi) _then;
+
+/// Create a copy of VeilidWASMConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? level = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,directives: null == directives ? _self.directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self.ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidWASMConfigLoggingApi].
+extension VeilidWASMConfigLoggingApiPatterns on VeilidWASMConfigLoggingApi {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidWASMConfigLoggingApi value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingApi() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidWASMConfigLoggingApi value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingApi():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidWASMConfigLoggingApi value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingApi() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingApi() when $default != null:
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingApi():
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  VeilidConfigLogLevel level,  List<String> directives, @Deprecated('Use directives instead')  List<String> ignoreLogTargets)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLoggingApi() when $default != null:
+return $default(_that.enabled,_that.level,_that.directives,_that.ignoreLogTargets);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidWASMConfigLoggingApi with DiagnosticableTreeMixin implements VeilidWASMConfigLoggingApi {
+  const _VeilidWASMConfigLoggingApi({this.enabled = true, this.level = VeilidConfigLogLevel.info, final  List<String> directives = const [], @Deprecated('Use directives instead') final  List<String> ignoreLogTargets = const []}): _directives = directives,_ignoreLogTargets = ignoreLogTargets;
+  factory _VeilidWASMConfigLoggingApi.fromJson(Map<String, dynamic> json) => _$VeilidWASMConfigLoggingApiFromJson(json);
+
+@override@JsonKey() final  bool enabled;
+@override@JsonKey() final  VeilidConfigLogLevel level;
+ final  List<String> _directives;
+@override@JsonKey() List<String> get directives {
+  if (_directives is EqualUnmodifiableListView) return _directives;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_directives);
+}
+
+ final  List<String> _ignoreLogTargets;
+@override@JsonKey()@Deprecated('Use directives instead') List<String> get ignoreLogTargets {
+  if (_ignoreLogTargets is EqualUnmodifiableListView) return _ignoreLogTargets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_ignoreLogTargets);
+}
+
+
+/// Create a copy of VeilidWASMConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidWASMConfigLoggingApiCopyWith<_VeilidWASMConfigLoggingApi> get copyWith => __$VeilidWASMConfigLoggingApiCopyWithImpl<_VeilidWASMConfigLoggingApi>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidWASMConfigLoggingApiToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLoggingApi'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('level', level))..add(DiagnosticsProperty('directives', directives))..add(DiagnosticsProperty('ignoreLogTargets', ignoreLogTargets));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidWASMConfigLoggingApi&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.level, level) || other.level == level)&&const DeepCollectionEquality().equals(other._directives, _directives)&&const DeepCollectionEquality().equals(other._ignoreLogTargets, _ignoreLogTargets));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,level,const DeepCollectionEquality().hash(_directives),const DeepCollectionEquality().hash(_ignoreLogTargets));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLoggingApi(enabled: $enabled, level: $level, directives: $directives, ignoreLogTargets: $ignoreLogTargets)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidWASMConfigLoggingApiCopyWith<$Res> implements $VeilidWASMConfigLoggingApiCopyWith<$Res> {
+  factory _$VeilidWASMConfigLoggingApiCopyWith(_VeilidWASMConfigLoggingApi value, $Res Function(_VeilidWASMConfigLoggingApi) _then) = __$VeilidWASMConfigLoggingApiCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, VeilidConfigLogLevel level, List<String> directives,@Deprecated('Use directives instead') List<String> ignoreLogTargets
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidWASMConfigLoggingApiCopyWithImpl<$Res>
+    implements _$VeilidWASMConfigLoggingApiCopyWith<$Res> {
+  __$VeilidWASMConfigLoggingApiCopyWithImpl(this._self, this._then);
+
+  final _VeilidWASMConfigLoggingApi _self;
+  final $Res Function(_VeilidWASMConfigLoggingApi) _then;
+
+/// Create a copy of VeilidWASMConfigLoggingApi
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? level = null,Object? directives = null,Object? ignoreLogTargets = null,}) {
+  return _then(_VeilidWASMConfigLoggingApi(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as VeilidConfigLogLevel,directives: null == directives ? _self._directives : directives // ignore: cast_nullable_to_non_nullable
+as List<String>,ignoreLogTargets: null == ignoreLogTargets ? _self._ignoreLogTargets : ignoreLogTargets // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidWASMConfigLogging implements DiagnosticableTreeMixin {
+
+ VeilidWASMConfigLoggingPerformance get performance; VeilidWASMConfigLoggingApi get api;
+/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingCopyWith<VeilidWASMConfigLogging> get copyWith => _$VeilidWASMConfigLoggingCopyWithImpl<VeilidWASMConfigLogging>(this as VeilidWASMConfigLogging, _$identity);
+
+  /// Serializes this VeilidWASMConfigLogging to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLogging'))
+    ..add(DiagnosticsProperty('performance', performance))..add(DiagnosticsProperty('api', api));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidWASMConfigLogging&&(identical(other.performance, performance) || other.performance == performance)&&(identical(other.api, api) || other.api == api));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,performance,api);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLogging(performance: $performance, api: $api)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidWASMConfigLoggingCopyWith<$Res>  {
+  factory $VeilidWASMConfigLoggingCopyWith(VeilidWASMConfigLogging value, $Res Function(VeilidWASMConfigLogging) _then) = _$VeilidWASMConfigLoggingCopyWithImpl;
+@useResult
+$Res call({
+ VeilidWASMConfigLoggingPerformance performance, VeilidWASMConfigLoggingApi api
+});
+
+
+$VeilidWASMConfigLoggingPerformanceCopyWith<$Res> get performance;$VeilidWASMConfigLoggingApiCopyWith<$Res> get api;
+
+}
+/// @nodoc
+class _$VeilidWASMConfigLoggingCopyWithImpl<$Res>
+    implements $VeilidWASMConfigLoggingCopyWith<$Res> {
+  _$VeilidWASMConfigLoggingCopyWithImpl(this._self, this._then);
+
+  final VeilidWASMConfigLogging _self;
+  final $Res Function(VeilidWASMConfigLogging) _then;
+
+/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? performance = null,Object? api = null,}) {
+  return _then(_self.copyWith(
+performance: null == performance ? _self.performance : performance // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLoggingPerformance,api: null == api ? _self.api : api // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLoggingApi,
+  ));
+}
+/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingPerformanceCopyWith<$Res> get performance {
+  
+  return $VeilidWASMConfigLoggingPerformanceCopyWith<$Res>(_self.performance, (value) {
+    return _then(_self.copyWith(performance: value));
+  });
+}/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingApiCopyWith<$Res> get api {
+  
+  return $VeilidWASMConfigLoggingApiCopyWith<$Res>(_self.api, (value) {
+    return _then(_self.copyWith(api: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidWASMConfigLogging].
+extension VeilidWASMConfigLoggingPatterns on VeilidWASMConfigLogging {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidWASMConfigLogging value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLogging() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidWASMConfigLogging value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLogging():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidWASMConfigLogging value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLogging() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidWASMConfigLoggingPerformance performance,  VeilidWASMConfigLoggingApi api)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLogging() when $default != null:
+return $default(_that.performance,_that.api);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidWASMConfigLoggingPerformance performance,  VeilidWASMConfigLoggingApi api)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLogging():
+return $default(_that.performance,_that.api);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidWASMConfigLoggingPerformance performance,  VeilidWASMConfigLoggingApi api)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfigLogging() when $default != null:
+return $default(_that.performance,_that.api);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidWASMConfigLogging with DiagnosticableTreeMixin implements VeilidWASMConfigLogging {
+  const _VeilidWASMConfigLogging({this.performance = const VeilidWASMConfigLoggingPerformance(enabled: false), this.api = const VeilidWASMConfigLoggingApi(enabled: false)});
+  factory _VeilidWASMConfigLogging.fromJson(Map<String, dynamic> json) => _$VeilidWASMConfigLoggingFromJson(json);
+
+@override@JsonKey() final  VeilidWASMConfigLoggingPerformance performance;
+@override@JsonKey() final  VeilidWASMConfigLoggingApi api;
+
+/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidWASMConfigLoggingCopyWith<_VeilidWASMConfigLogging> get copyWith => __$VeilidWASMConfigLoggingCopyWithImpl<_VeilidWASMConfigLogging>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidWASMConfigLoggingToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfigLogging'))
+    ..add(DiagnosticsProperty('performance', performance))..add(DiagnosticsProperty('api', api));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidWASMConfigLogging&&(identical(other.performance, performance) || other.performance == performance)&&(identical(other.api, api) || other.api == api));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,performance,api);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfigLogging(performance: $performance, api: $api)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidWASMConfigLoggingCopyWith<$Res> implements $VeilidWASMConfigLoggingCopyWith<$Res> {
+  factory _$VeilidWASMConfigLoggingCopyWith(_VeilidWASMConfigLogging value, $Res Function(_VeilidWASMConfigLogging) _then) = __$VeilidWASMConfigLoggingCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidWASMConfigLoggingPerformance performance, VeilidWASMConfigLoggingApi api
+});
+
+
+@override $VeilidWASMConfigLoggingPerformanceCopyWith<$Res> get performance;@override $VeilidWASMConfigLoggingApiCopyWith<$Res> get api;
+
+}
+/// @nodoc
+class __$VeilidWASMConfigLoggingCopyWithImpl<$Res>
+    implements _$VeilidWASMConfigLoggingCopyWith<$Res> {
+  __$VeilidWASMConfigLoggingCopyWithImpl(this._self, this._then);
+
+  final _VeilidWASMConfigLogging _self;
+  final $Res Function(_VeilidWASMConfigLogging) _then;
+
+/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? performance = null,Object? api = null,}) {
+  return _then(_VeilidWASMConfigLogging(
+performance: null == performance ? _self.performance : performance // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLoggingPerformance,api: null == api ? _self.api : api // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLoggingApi,
+  ));
+}
+
+/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingPerformanceCopyWith<$Res> get performance {
+  
+  return $VeilidWASMConfigLoggingPerformanceCopyWith<$Res>(_self.performance, (value) {
+    return _then(_self.copyWith(performance: value));
+  });
+}/// Create a copy of VeilidWASMConfigLogging
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingApiCopyWith<$Res> get api {
+  
+  return $VeilidWASMConfigLoggingApiCopyWith<$Res>(_self.api, (value) {
+    return _then(_self.copyWith(api: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidWASMConfig implements DiagnosticableTreeMixin {
+
+ VeilidWASMConfigLogging get logging;
+/// Create a copy of VeilidWASMConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigCopyWith<VeilidWASMConfig> get copyWith => _$VeilidWASMConfigCopyWithImpl<VeilidWASMConfig>(this as VeilidWASMConfig, _$identity);
+
+  /// Serializes this VeilidWASMConfig to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfig'))
+    ..add(DiagnosticsProperty('logging', logging));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidWASMConfig&&(identical(other.logging, logging) || other.logging == logging));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,logging);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfig(logging: $logging)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidWASMConfigCopyWith<$Res>  {
+  factory $VeilidWASMConfigCopyWith(VeilidWASMConfig value, $Res Function(VeilidWASMConfig) _then) = _$VeilidWASMConfigCopyWithImpl;
+@useResult
+$Res call({
+ VeilidWASMConfigLogging logging
+});
+
+
+$VeilidWASMConfigLoggingCopyWith<$Res> get logging;
+
+}
+/// @nodoc
+class _$VeilidWASMConfigCopyWithImpl<$Res>
+    implements $VeilidWASMConfigCopyWith<$Res> {
+  _$VeilidWASMConfigCopyWithImpl(this._self, this._then);
+
+  final VeilidWASMConfig _self;
+  final $Res Function(VeilidWASMConfig) _then;
+
+/// Create a copy of VeilidWASMConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? logging = null,}) {
+  return _then(_self.copyWith(
+logging: null == logging ? _self.logging : logging // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLogging,
+  ));
+}
+/// Create a copy of VeilidWASMConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingCopyWith<$Res> get logging {
+  
+  return $VeilidWASMConfigLoggingCopyWith<$Res>(_self.logging, (value) {
+    return _then(_self.copyWith(logging: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidWASMConfig].
+extension VeilidWASMConfigPatterns on VeilidWASMConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidWASMConfig value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfig() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidWASMConfig value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfig():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidWASMConfig value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidWASMConfig() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidWASMConfigLogging logging)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfig() when $default != null:
+return $default(_that.logging);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidWASMConfigLogging logging)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfig():
+return $default(_that.logging);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidWASMConfigLogging logging)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidWASMConfig() when $default != null:
+return $default(_that.logging);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidWASMConfig with DiagnosticableTreeMixin implements VeilidWASMConfig {
+  const _VeilidWASMConfig({this.logging = const VeilidWASMConfigLogging()});
+  factory _VeilidWASMConfig.fromJson(Map<String, dynamic> json) => _$VeilidWASMConfigFromJson(json);
+
+@override@JsonKey() final  VeilidWASMConfigLogging logging;
+
+/// Create a copy of VeilidWASMConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidWASMConfigCopyWith<_VeilidWASMConfig> get copyWith => __$VeilidWASMConfigCopyWithImpl<_VeilidWASMConfig>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidWASMConfigToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidWASMConfig'))
+    ..add(DiagnosticsProperty('logging', logging));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidWASMConfig&&(identical(other.logging, logging) || other.logging == logging));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,logging);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidWASMConfig(logging: $logging)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidWASMConfigCopyWith<$Res> implements $VeilidWASMConfigCopyWith<$Res> {
+  factory _$VeilidWASMConfigCopyWith(_VeilidWASMConfig value, $Res Function(_VeilidWASMConfig) _then) = __$VeilidWASMConfigCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidWASMConfigLogging logging
+});
+
+
+@override $VeilidWASMConfigLoggingCopyWith<$Res> get logging;
+
+}
+/// @nodoc
+class __$VeilidWASMConfigCopyWithImpl<$Res>
+    implements _$VeilidWASMConfigCopyWith<$Res> {
+  __$VeilidWASMConfigCopyWithImpl(this._self, this._then);
+
+  final _VeilidWASMConfig _self;
+  final $Res Function(_VeilidWASMConfig) _then;
+
+/// Create a copy of VeilidWASMConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? logging = null,}) {
+  return _then(_VeilidWASMConfig(
+logging: null == logging ? _self.logging : logging // ignore: cast_nullable_to_non_nullable
+as VeilidWASMConfigLogging,
+  ));
+}
+
+/// Create a copy of VeilidWASMConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidWASMConfigLoggingCopyWith<$Res> get logging {
+  
+  return $VeilidWASMConfigLoggingCopyWith<$Res>(_self.logging, (value) {
+    return _then(_self.copyWith(logging: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigUDP implements DiagnosticableTreeMixin {
+
+ bool get enabled; String get listenAddress; String? get publicAddress;
+/// Create a copy of VeilidConfigUDP
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigUDPCopyWith<VeilidConfigUDP> get copyWith => _$VeilidConfigUDPCopyWithImpl<VeilidConfigUDP>(this as VeilidConfigUDP, _$identity);
+
+  /// Serializes this VeilidConfigUDP to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigUDP'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('listenAddress', listenAddress))..add(DiagnosticsProperty('publicAddress', publicAddress));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigUDP&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.listenAddress, listenAddress) || other.listenAddress == listenAddress)&&(identical(other.publicAddress, publicAddress) || other.publicAddress == publicAddress));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,listenAddress,publicAddress);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigUDP(enabled: $enabled, listenAddress: $listenAddress, publicAddress: $publicAddress)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigUDPCopyWith<$Res>  {
+  factory $VeilidConfigUDPCopyWith(VeilidConfigUDP value, $Res Function(VeilidConfigUDP) _then) = _$VeilidConfigUDPCopyWithImpl;
+@useResult
+$Res call({
+ bool enabled, String listenAddress, String? publicAddress
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigUDPCopyWithImpl<$Res>
+    implements $VeilidConfigUDPCopyWith<$Res> {
+  _$VeilidConfigUDPCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigUDP _self;
+  final $Res Function(VeilidConfigUDP) _then;
+
+/// Create a copy of VeilidConfigUDP
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? listenAddress = null,Object? publicAddress = freezed,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,listenAddress: null == listenAddress ? _self.listenAddress : listenAddress // ignore: cast_nullable_to_non_nullable
+as String,publicAddress: freezed == publicAddress ? _self.publicAddress : publicAddress // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigUDP].
+extension VeilidConfigUDPPatterns on VeilidConfigUDP {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigUDP value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigUDP() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigUDP value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigUDP():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigUDP value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigUDP() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enabled,  String listenAddress,  String? publicAddress)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigUDP() when $default != null:
+return $default(_that.enabled,_that.listenAddress,_that.publicAddress);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enabled,  String listenAddress,  String? publicAddress)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigUDP():
+return $default(_that.enabled,_that.listenAddress,_that.publicAddress);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enabled,  String listenAddress,  String? publicAddress)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigUDP() when $default != null:
+return $default(_that.enabled,_that.listenAddress,_that.publicAddress);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigUDP with DiagnosticableTreeMixin implements VeilidConfigUDP {
+  const _VeilidConfigUDP({required this.enabled, required this.listenAddress, this.publicAddress});
+  factory _VeilidConfigUDP.fromJson(Map<String, dynamic> json) => _$VeilidConfigUDPFromJson(json);
+
+@override final  bool enabled;
+@override final  String listenAddress;
+@override final  String? publicAddress;
+
+/// Create a copy of VeilidConfigUDP
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigUDPCopyWith<_VeilidConfigUDP> get copyWith => __$VeilidConfigUDPCopyWithImpl<_VeilidConfigUDP>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigUDPToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigUDP'))
+    ..add(DiagnosticsProperty('enabled', enabled))..add(DiagnosticsProperty('listenAddress', listenAddress))..add(DiagnosticsProperty('publicAddress', publicAddress));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigUDP&&(identical(other.enabled, enabled) || other.enabled == enabled)&&(identical(other.listenAddress, listenAddress) || other.listenAddress == listenAddress)&&(identical(other.publicAddress, publicAddress) || other.publicAddress == publicAddress));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enabled,listenAddress,publicAddress);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigUDP(enabled: $enabled, listenAddress: $listenAddress, publicAddress: $publicAddress)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigUDPCopyWith<$Res> implements $VeilidConfigUDPCopyWith<$Res> {
+  factory _$VeilidConfigUDPCopyWith(_VeilidConfigUDP value, $Res Function(_VeilidConfigUDP) _then) = __$VeilidConfigUDPCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enabled, String listenAddress, String? publicAddress
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigUDPCopyWithImpl<$Res>
+    implements _$VeilidConfigUDPCopyWith<$Res> {
+  __$VeilidConfigUDPCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigUDP _self;
+  final $Res Function(_VeilidConfigUDP) _then;
+
+/// Create a copy of VeilidConfigUDP
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? listenAddress = null,Object? publicAddress = freezed,}) {
+  return _then(_VeilidConfigUDP(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as bool,listenAddress: null == listenAddress ? _self.listenAddress : listenAddress // ignore: cast_nullable_to_non_nullable
+as String,publicAddress: freezed == publicAddress ? _self.publicAddress : publicAddress // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigTCP implements DiagnosticableTreeMixin {
+
+ bool get connect; bool get listen; String get listenAddress; String? get publicAddress;
+/// Create a copy of VeilidConfigTCP
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigTCPCopyWith<VeilidConfigTCP> get copyWith => _$VeilidConfigTCPCopyWithImpl<VeilidConfigTCP>(this as VeilidConfigTCP, _$identity);
+
+  /// Serializes this VeilidConfigTCP to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigTCP'))
+    ..add(DiagnosticsProperty('connect', connect))..add(DiagnosticsProperty('listen', listen))..add(DiagnosticsProperty('listenAddress', listenAddress))..add(DiagnosticsProperty('publicAddress', publicAddress));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigTCP&&(identical(other.connect, connect) || other.connect == connect)&&(identical(other.listen, listen) || other.listen == listen)&&(identical(other.listenAddress, listenAddress) || other.listenAddress == listenAddress)&&(identical(other.publicAddress, publicAddress) || other.publicAddress == publicAddress));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,connect,listen,listenAddress,publicAddress);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigTCP(connect: $connect, listen: $listen, listenAddress: $listenAddress, publicAddress: $publicAddress)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigTCPCopyWith<$Res>  {
+  factory $VeilidConfigTCPCopyWith(VeilidConfigTCP value, $Res Function(VeilidConfigTCP) _then) = _$VeilidConfigTCPCopyWithImpl;
+@useResult
+$Res call({
+ bool connect, bool listen, String listenAddress, String? publicAddress
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigTCPCopyWithImpl<$Res>
+    implements $VeilidConfigTCPCopyWith<$Res> {
+  _$VeilidConfigTCPCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigTCP _self;
+  final $Res Function(VeilidConfigTCP) _then;
+
+/// Create a copy of VeilidConfigTCP
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? connect = null,Object? listen = null,Object? listenAddress = null,Object? publicAddress = freezed,}) {
+  return _then(_self.copyWith(
+connect: null == connect ? _self.connect : connect // ignore: cast_nullable_to_non_nullable
+as bool,listen: null == listen ? _self.listen : listen // ignore: cast_nullable_to_non_nullable
+as bool,listenAddress: null == listenAddress ? _self.listenAddress : listenAddress // ignore: cast_nullable_to_non_nullable
+as String,publicAddress: freezed == publicAddress ? _self.publicAddress : publicAddress // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigTCP].
+extension VeilidConfigTCPPatterns on VeilidConfigTCP {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigTCP value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTCP() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigTCP value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTCP():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigTCP value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTCP() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool connect,  bool listen,  String listenAddress,  String? publicAddress)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigTCP() when $default != null:
+return $default(_that.connect,_that.listen,_that.listenAddress,_that.publicAddress);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool connect,  bool listen,  String listenAddress,  String? publicAddress)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigTCP():
+return $default(_that.connect,_that.listen,_that.listenAddress,_that.publicAddress);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool connect,  bool listen,  String listenAddress,  String? publicAddress)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigTCP() when $default != null:
+return $default(_that.connect,_that.listen,_that.listenAddress,_that.publicAddress);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigTCP with DiagnosticableTreeMixin implements VeilidConfigTCP {
+  const _VeilidConfigTCP({required this.connect, required this.listen, required this.listenAddress, this.publicAddress});
+  factory _VeilidConfigTCP.fromJson(Map<String, dynamic> json) => _$VeilidConfigTCPFromJson(json);
+
+@override final  bool connect;
+@override final  bool listen;
+@override final  String listenAddress;
+@override final  String? publicAddress;
+
+/// Create a copy of VeilidConfigTCP
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigTCPCopyWith<_VeilidConfigTCP> get copyWith => __$VeilidConfigTCPCopyWithImpl<_VeilidConfigTCP>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigTCPToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigTCP'))
+    ..add(DiagnosticsProperty('connect', connect))..add(DiagnosticsProperty('listen', listen))..add(DiagnosticsProperty('listenAddress', listenAddress))..add(DiagnosticsProperty('publicAddress', publicAddress));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigTCP&&(identical(other.connect, connect) || other.connect == connect)&&(identical(other.listen, listen) || other.listen == listen)&&(identical(other.listenAddress, listenAddress) || other.listenAddress == listenAddress)&&(identical(other.publicAddress, publicAddress) || other.publicAddress == publicAddress));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,connect,listen,listenAddress,publicAddress);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigTCP(connect: $connect, listen: $listen, listenAddress: $listenAddress, publicAddress: $publicAddress)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigTCPCopyWith<$Res> implements $VeilidConfigTCPCopyWith<$Res> {
+  factory _$VeilidConfigTCPCopyWith(_VeilidConfigTCP value, $Res Function(_VeilidConfigTCP) _then) = __$VeilidConfigTCPCopyWithImpl;
+@override @useResult
+$Res call({
+ bool connect, bool listen, String listenAddress, String? publicAddress
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigTCPCopyWithImpl<$Res>
+    implements _$VeilidConfigTCPCopyWith<$Res> {
+  __$VeilidConfigTCPCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigTCP _self;
+  final $Res Function(_VeilidConfigTCP) _then;
+
+/// Create a copy of VeilidConfigTCP
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? connect = null,Object? listen = null,Object? listenAddress = null,Object? publicAddress = freezed,}) {
+  return _then(_VeilidConfigTCP(
+connect: null == connect ? _self.connect : connect // ignore: cast_nullable_to_non_nullable
+as bool,listen: null == listen ? _self.listen : listen // ignore: cast_nullable_to_non_nullable
+as bool,listenAddress: null == listenAddress ? _self.listenAddress : listenAddress // ignore: cast_nullable_to_non_nullable
+as String,publicAddress: freezed == publicAddress ? _self.publicAddress : publicAddress // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigWS implements DiagnosticableTreeMixin {
+
+ bool get connect; bool get listen; String get listenAddress; String get path; String? get url;
+/// Create a copy of VeilidConfigWS
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigWSCopyWith<VeilidConfigWS> get copyWith => _$VeilidConfigWSCopyWithImpl<VeilidConfigWS>(this as VeilidConfigWS, _$identity);
+
+  /// Serializes this VeilidConfigWS to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigWS'))
+    ..add(DiagnosticsProperty('connect', connect))..add(DiagnosticsProperty('listen', listen))..add(DiagnosticsProperty('listenAddress', listenAddress))..add(DiagnosticsProperty('path', path))..add(DiagnosticsProperty('url', url));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigWS&&(identical(other.connect, connect) || other.connect == connect)&&(identical(other.listen, listen) || other.listen == listen)&&(identical(other.listenAddress, listenAddress) || other.listenAddress == listenAddress)&&(identical(other.path, path) || other.path == path)&&(identical(other.url, url) || other.url == url));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,connect,listen,listenAddress,path,url);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigWS(connect: $connect, listen: $listen, listenAddress: $listenAddress, path: $path, url: $url)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigWSCopyWith<$Res>  {
+  factory $VeilidConfigWSCopyWith(VeilidConfigWS value, $Res Function(VeilidConfigWS) _then) = _$VeilidConfigWSCopyWithImpl;
+@useResult
+$Res call({
+ bool connect, bool listen, String listenAddress, String path, String? url
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigWSCopyWithImpl<$Res>
+    implements $VeilidConfigWSCopyWith<$Res> {
+  _$VeilidConfigWSCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigWS _self;
+  final $Res Function(VeilidConfigWS) _then;
+
+/// Create a copy of VeilidConfigWS
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? connect = null,Object? listen = null,Object? listenAddress = null,Object? path = null,Object? url = freezed,}) {
+  return _then(_self.copyWith(
+connect: null == connect ? _self.connect : connect // ignore: cast_nullable_to_non_nullable
+as bool,listen: null == listen ? _self.listen : listen // ignore: cast_nullable_to_non_nullable
+as bool,listenAddress: null == listenAddress ? _self.listenAddress : listenAddress // ignore: cast_nullable_to_non_nullable
+as String,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigWS].
+extension VeilidConfigWSPatterns on VeilidConfigWS {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigWS value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigWS() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigWS value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigWS():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigWS value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigWS() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool connect,  bool listen,  String listenAddress,  String path,  String? url)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigWS() when $default != null:
+return $default(_that.connect,_that.listen,_that.listenAddress,_that.path,_that.url);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool connect,  bool listen,  String listenAddress,  String path,  String? url)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigWS():
+return $default(_that.connect,_that.listen,_that.listenAddress,_that.path,_that.url);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool connect,  bool listen,  String listenAddress,  String path,  String? url)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigWS() when $default != null:
+return $default(_that.connect,_that.listen,_that.listenAddress,_that.path,_that.url);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigWS with DiagnosticableTreeMixin implements VeilidConfigWS {
+  const _VeilidConfigWS({required this.connect, required this.listen, required this.listenAddress, required this.path, this.url});
+  factory _VeilidConfigWS.fromJson(Map<String, dynamic> json) => _$VeilidConfigWSFromJson(json);
+
+@override final  bool connect;
+@override final  bool listen;
+@override final  String listenAddress;
+@override final  String path;
+@override final  String? url;
+
+/// Create a copy of VeilidConfigWS
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigWSCopyWith<_VeilidConfigWS> get copyWith => __$VeilidConfigWSCopyWithImpl<_VeilidConfigWS>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigWSToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigWS'))
+    ..add(DiagnosticsProperty('connect', connect))..add(DiagnosticsProperty('listen', listen))..add(DiagnosticsProperty('listenAddress', listenAddress))..add(DiagnosticsProperty('path', path))..add(DiagnosticsProperty('url', url));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigWS&&(identical(other.connect, connect) || other.connect == connect)&&(identical(other.listen, listen) || other.listen == listen)&&(identical(other.listenAddress, listenAddress) || other.listenAddress == listenAddress)&&(identical(other.path, path) || other.path == path)&&(identical(other.url, url) || other.url == url));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,connect,listen,listenAddress,path,url);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigWS(connect: $connect, listen: $listen, listenAddress: $listenAddress, path: $path, url: $url)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigWSCopyWith<$Res> implements $VeilidConfigWSCopyWith<$Res> {
+  factory _$VeilidConfigWSCopyWith(_VeilidConfigWS value, $Res Function(_VeilidConfigWS) _then) = __$VeilidConfigWSCopyWithImpl;
+@override @useResult
+$Res call({
+ bool connect, bool listen, String listenAddress, String path, String? url
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigWSCopyWithImpl<$Res>
+    implements _$VeilidConfigWSCopyWith<$Res> {
+  __$VeilidConfigWSCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigWS _self;
+  final $Res Function(_VeilidConfigWS) _then;
+
+/// Create a copy of VeilidConfigWS
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? connect = null,Object? listen = null,Object? listenAddress = null,Object? path = null,Object? url = freezed,}) {
+  return _then(_VeilidConfigWS(
+connect: null == connect ? _self.connect : connect // ignore: cast_nullable_to_non_nullable
+as bool,listen: null == listen ? _self.listen : listen // ignore: cast_nullable_to_non_nullable
+as bool,listenAddress: null == listenAddress ? _self.listenAddress : listenAddress // ignore: cast_nullable_to_non_nullable
+as String,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigProtocol implements DiagnosticableTreeMixin {
+
+ VeilidConfigUDP get udp; VeilidConfigTCP get tcp; VeilidConfigWS get ws;
+/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigProtocolCopyWith<VeilidConfigProtocol> get copyWith => _$VeilidConfigProtocolCopyWithImpl<VeilidConfigProtocol>(this as VeilidConfigProtocol, _$identity);
+
+  /// Serializes this VeilidConfigProtocol to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigProtocol'))
+    ..add(DiagnosticsProperty('udp', udp))..add(DiagnosticsProperty('tcp', tcp))..add(DiagnosticsProperty('ws', ws));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigProtocol&&(identical(other.udp, udp) || other.udp == udp)&&(identical(other.tcp, tcp) || other.tcp == tcp)&&(identical(other.ws, ws) || other.ws == ws));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,udp,tcp,ws);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigProtocol(udp: $udp, tcp: $tcp, ws: $ws)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigProtocolCopyWith<$Res>  {
+  factory $VeilidConfigProtocolCopyWith(VeilidConfigProtocol value, $Res Function(VeilidConfigProtocol) _then) = _$VeilidConfigProtocolCopyWithImpl;
+@useResult
+$Res call({
+ VeilidConfigUDP udp, VeilidConfigTCP tcp, VeilidConfigWS ws
+});
+
+
+$VeilidConfigUDPCopyWith<$Res> get udp;$VeilidConfigTCPCopyWith<$Res> get tcp;$VeilidConfigWSCopyWith<$Res> get ws;
+
+}
+/// @nodoc
+class _$VeilidConfigProtocolCopyWithImpl<$Res>
+    implements $VeilidConfigProtocolCopyWith<$Res> {
+  _$VeilidConfigProtocolCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigProtocol _self;
+  final $Res Function(VeilidConfigProtocol) _then;
+
+/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? udp = null,Object? tcp = null,Object? ws = null,}) {
+  return _then(_self.copyWith(
+udp: null == udp ? _self.udp : udp // ignore: cast_nullable_to_non_nullable
+as VeilidConfigUDP,tcp: null == tcp ? _self.tcp : tcp // ignore: cast_nullable_to_non_nullable
+as VeilidConfigTCP,ws: null == ws ? _self.ws : ws // ignore: cast_nullable_to_non_nullable
+as VeilidConfigWS,
+  ));
+}
+/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigUDPCopyWith<$Res> get udp {
+  
+  return $VeilidConfigUDPCopyWith<$Res>(_self.udp, (value) {
+    return _then(_self.copyWith(udp: value));
+  });
+}/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigTCPCopyWith<$Res> get tcp {
+  
+  return $VeilidConfigTCPCopyWith<$Res>(_self.tcp, (value) {
+    return _then(_self.copyWith(tcp: value));
+  });
+}/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigWSCopyWith<$Res> get ws {
+  
+  return $VeilidConfigWSCopyWith<$Res>(_self.ws, (value) {
+    return _then(_self.copyWith(ws: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigProtocol].
+extension VeilidConfigProtocolPatterns on VeilidConfigProtocol {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigProtocol value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigProtocol() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigProtocol value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigProtocol():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigProtocol value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigProtocol() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidConfigUDP udp,  VeilidConfigTCP tcp,  VeilidConfigWS ws)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigProtocol() when $default != null:
+return $default(_that.udp,_that.tcp,_that.ws);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidConfigUDP udp,  VeilidConfigTCP tcp,  VeilidConfigWS ws)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigProtocol():
+return $default(_that.udp,_that.tcp,_that.ws);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidConfigUDP udp,  VeilidConfigTCP tcp,  VeilidConfigWS ws)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigProtocol() when $default != null:
+return $default(_that.udp,_that.tcp,_that.ws);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigProtocol with DiagnosticableTreeMixin implements VeilidConfigProtocol {
+  const _VeilidConfigProtocol({required this.udp, required this.tcp, required this.ws});
+  factory _VeilidConfigProtocol.fromJson(Map<String, dynamic> json) => _$VeilidConfigProtocolFromJson(json);
+
+@override final  VeilidConfigUDP udp;
+@override final  VeilidConfigTCP tcp;
+@override final  VeilidConfigWS ws;
+
+/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigProtocolCopyWith<_VeilidConfigProtocol> get copyWith => __$VeilidConfigProtocolCopyWithImpl<_VeilidConfigProtocol>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigProtocolToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigProtocol'))
+    ..add(DiagnosticsProperty('udp', udp))..add(DiagnosticsProperty('tcp', tcp))..add(DiagnosticsProperty('ws', ws));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigProtocol&&(identical(other.udp, udp) || other.udp == udp)&&(identical(other.tcp, tcp) || other.tcp == tcp)&&(identical(other.ws, ws) || other.ws == ws));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,udp,tcp,ws);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigProtocol(udp: $udp, tcp: $tcp, ws: $ws)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigProtocolCopyWith<$Res> implements $VeilidConfigProtocolCopyWith<$Res> {
+  factory _$VeilidConfigProtocolCopyWith(_VeilidConfigProtocol value, $Res Function(_VeilidConfigProtocol) _then) = __$VeilidConfigProtocolCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidConfigUDP udp, VeilidConfigTCP tcp, VeilidConfigWS ws
+});
+
+
+@override $VeilidConfigUDPCopyWith<$Res> get udp;@override $VeilidConfigTCPCopyWith<$Res> get tcp;@override $VeilidConfigWSCopyWith<$Res> get ws;
+
+}
+/// @nodoc
+class __$VeilidConfigProtocolCopyWithImpl<$Res>
+    implements _$VeilidConfigProtocolCopyWith<$Res> {
+  __$VeilidConfigProtocolCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigProtocol _self;
+  final $Res Function(_VeilidConfigProtocol) _then;
+
+/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? udp = null,Object? tcp = null,Object? ws = null,}) {
+  return _then(_VeilidConfigProtocol(
+udp: null == udp ? _self.udp : udp // ignore: cast_nullable_to_non_nullable
+as VeilidConfigUDP,tcp: null == tcp ? _self.tcp : tcp // ignore: cast_nullable_to_non_nullable
+as VeilidConfigTCP,ws: null == ws ? _self.ws : ws // ignore: cast_nullable_to_non_nullable
+as VeilidConfigWS,
+  ));
+}
+
+/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigUDPCopyWith<$Res> get udp {
+  
+  return $VeilidConfigUDPCopyWith<$Res>(_self.udp, (value) {
+    return _then(_self.copyWith(udp: value));
+  });
+}/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigTCPCopyWith<$Res> get tcp {
+  
+  return $VeilidConfigTCPCopyWith<$Res>(_self.tcp, (value) {
+    return _then(_self.copyWith(tcp: value));
+  });
+}/// Create a copy of VeilidConfigProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigWSCopyWith<$Res> get ws {
+  
+  return $VeilidConfigWSCopyWith<$Res>(_self.ws, (value) {
+    return _then(_self.copyWith(ws: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigPrivacy implements DiagnosticableTreeMixin {
+
+ bool get requireInboundRelay;
+/// Create a copy of VeilidConfigPrivacy
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigPrivacyCopyWith<VeilidConfigPrivacy> get copyWith => _$VeilidConfigPrivacyCopyWithImpl<VeilidConfigPrivacy>(this as VeilidConfigPrivacy, _$identity);
+
+  /// Serializes this VeilidConfigPrivacy to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigPrivacy'))
+    ..add(DiagnosticsProperty('requireInboundRelay', requireInboundRelay));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigPrivacy&&(identical(other.requireInboundRelay, requireInboundRelay) || other.requireInboundRelay == requireInboundRelay));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,requireInboundRelay);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigPrivacy(requireInboundRelay: $requireInboundRelay)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigPrivacyCopyWith<$Res>  {
+  factory $VeilidConfigPrivacyCopyWith(VeilidConfigPrivacy value, $Res Function(VeilidConfigPrivacy) _then) = _$VeilidConfigPrivacyCopyWithImpl;
+@useResult
+$Res call({
+ bool requireInboundRelay
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigPrivacyCopyWithImpl<$Res>
+    implements $VeilidConfigPrivacyCopyWith<$Res> {
+  _$VeilidConfigPrivacyCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigPrivacy _self;
+  final $Res Function(VeilidConfigPrivacy) _then;
+
+/// Create a copy of VeilidConfigPrivacy
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? requireInboundRelay = null,}) {
+  return _then(_self.copyWith(
+requireInboundRelay: null == requireInboundRelay ? _self.requireInboundRelay : requireInboundRelay // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigPrivacy].
+extension VeilidConfigPrivacyPatterns on VeilidConfigPrivacy {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigPrivacy value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigPrivacy() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigPrivacy value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigPrivacy():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigPrivacy value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigPrivacy() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool requireInboundRelay)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigPrivacy() when $default != null:
+return $default(_that.requireInboundRelay);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool requireInboundRelay)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigPrivacy():
+return $default(_that.requireInboundRelay);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool requireInboundRelay)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigPrivacy() when $default != null:
+return $default(_that.requireInboundRelay);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigPrivacy with DiagnosticableTreeMixin implements VeilidConfigPrivacy {
+  const _VeilidConfigPrivacy({required this.requireInboundRelay});
+  factory _VeilidConfigPrivacy.fromJson(Map<String, dynamic> json) => _$VeilidConfigPrivacyFromJson(json);
+
+@override final  bool requireInboundRelay;
+
+/// Create a copy of VeilidConfigPrivacy
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigPrivacyCopyWith<_VeilidConfigPrivacy> get copyWith => __$VeilidConfigPrivacyCopyWithImpl<_VeilidConfigPrivacy>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigPrivacyToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigPrivacy'))
+    ..add(DiagnosticsProperty('requireInboundRelay', requireInboundRelay));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigPrivacy&&(identical(other.requireInboundRelay, requireInboundRelay) || other.requireInboundRelay == requireInboundRelay));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,requireInboundRelay);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigPrivacy(requireInboundRelay: $requireInboundRelay)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigPrivacyCopyWith<$Res> implements $VeilidConfigPrivacyCopyWith<$Res> {
+  factory _$VeilidConfigPrivacyCopyWith(_VeilidConfigPrivacy value, $Res Function(_VeilidConfigPrivacy) _then) = __$VeilidConfigPrivacyCopyWithImpl;
+@override @useResult
+$Res call({
+ bool requireInboundRelay
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigPrivacyCopyWithImpl<$Res>
+    implements _$VeilidConfigPrivacyCopyWith<$Res> {
+  __$VeilidConfigPrivacyCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigPrivacy _self;
+  final $Res Function(_VeilidConfigPrivacy) _then;
+
+/// Create a copy of VeilidConfigPrivacy
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? requireInboundRelay = null,}) {
+  return _then(_VeilidConfigPrivacy(
+requireInboundRelay: null == requireInboundRelay ? _self.requireInboundRelay : requireInboundRelay // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigTLS implements DiagnosticableTreeMixin {
+
+ String get certificatePath; String get privateKeyPath; int get connectionInitialTimeoutMs;
+/// Create a copy of VeilidConfigTLS
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigTLSCopyWith<VeilidConfigTLS> get copyWith => _$VeilidConfigTLSCopyWithImpl<VeilidConfigTLS>(this as VeilidConfigTLS, _$identity);
+
+  /// Serializes this VeilidConfigTLS to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigTLS'))
+    ..add(DiagnosticsProperty('certificatePath', certificatePath))..add(DiagnosticsProperty('privateKeyPath', privateKeyPath))..add(DiagnosticsProperty('connectionInitialTimeoutMs', connectionInitialTimeoutMs));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigTLS&&(identical(other.certificatePath, certificatePath) || other.certificatePath == certificatePath)&&(identical(other.privateKeyPath, privateKeyPath) || other.privateKeyPath == privateKeyPath)&&(identical(other.connectionInitialTimeoutMs, connectionInitialTimeoutMs) || other.connectionInitialTimeoutMs == connectionInitialTimeoutMs));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,certificatePath,privateKeyPath,connectionInitialTimeoutMs);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigTLS(certificatePath: $certificatePath, privateKeyPath: $privateKeyPath, connectionInitialTimeoutMs: $connectionInitialTimeoutMs)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigTLSCopyWith<$Res>  {
+  factory $VeilidConfigTLSCopyWith(VeilidConfigTLS value, $Res Function(VeilidConfigTLS) _then) = _$VeilidConfigTLSCopyWithImpl;
+@useResult
+$Res call({
+ String certificatePath, String privateKeyPath, int connectionInitialTimeoutMs
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigTLSCopyWithImpl<$Res>
+    implements $VeilidConfigTLSCopyWith<$Res> {
+  _$VeilidConfigTLSCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigTLS _self;
+  final $Res Function(VeilidConfigTLS) _then;
+
+/// Create a copy of VeilidConfigTLS
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? certificatePath = null,Object? privateKeyPath = null,Object? connectionInitialTimeoutMs = null,}) {
+  return _then(_self.copyWith(
+certificatePath: null == certificatePath ? _self.certificatePath : certificatePath // ignore: cast_nullable_to_non_nullable
+as String,privateKeyPath: null == privateKeyPath ? _self.privateKeyPath : privateKeyPath // ignore: cast_nullable_to_non_nullable
+as String,connectionInitialTimeoutMs: null == connectionInitialTimeoutMs ? _self.connectionInitialTimeoutMs : connectionInitialTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigTLS].
+extension VeilidConfigTLSPatterns on VeilidConfigTLS {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigTLS value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTLS() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigTLS value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTLS():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigTLS value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTLS() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String certificatePath,  String privateKeyPath,  int connectionInitialTimeoutMs)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigTLS() when $default != null:
+return $default(_that.certificatePath,_that.privateKeyPath,_that.connectionInitialTimeoutMs);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String certificatePath,  String privateKeyPath,  int connectionInitialTimeoutMs)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigTLS():
+return $default(_that.certificatePath,_that.privateKeyPath,_that.connectionInitialTimeoutMs);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String certificatePath,  String privateKeyPath,  int connectionInitialTimeoutMs)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigTLS() when $default != null:
+return $default(_that.certificatePath,_that.privateKeyPath,_that.connectionInitialTimeoutMs);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigTLS with DiagnosticableTreeMixin implements VeilidConfigTLS {
+  const _VeilidConfigTLS({required this.certificatePath, required this.privateKeyPath, required this.connectionInitialTimeoutMs});
+  factory _VeilidConfigTLS.fromJson(Map<String, dynamic> json) => _$VeilidConfigTLSFromJson(json);
+
+@override final  String certificatePath;
+@override final  String privateKeyPath;
+@override final  int connectionInitialTimeoutMs;
+
+/// Create a copy of VeilidConfigTLS
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigTLSCopyWith<_VeilidConfigTLS> get copyWith => __$VeilidConfigTLSCopyWithImpl<_VeilidConfigTLS>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigTLSToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigTLS'))
+    ..add(DiagnosticsProperty('certificatePath', certificatePath))..add(DiagnosticsProperty('privateKeyPath', privateKeyPath))..add(DiagnosticsProperty('connectionInitialTimeoutMs', connectionInitialTimeoutMs));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigTLS&&(identical(other.certificatePath, certificatePath) || other.certificatePath == certificatePath)&&(identical(other.privateKeyPath, privateKeyPath) || other.privateKeyPath == privateKeyPath)&&(identical(other.connectionInitialTimeoutMs, connectionInitialTimeoutMs) || other.connectionInitialTimeoutMs == connectionInitialTimeoutMs));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,certificatePath,privateKeyPath,connectionInitialTimeoutMs);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigTLS(certificatePath: $certificatePath, privateKeyPath: $privateKeyPath, connectionInitialTimeoutMs: $connectionInitialTimeoutMs)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigTLSCopyWith<$Res> implements $VeilidConfigTLSCopyWith<$Res> {
+  factory _$VeilidConfigTLSCopyWith(_VeilidConfigTLS value, $Res Function(_VeilidConfigTLS) _then) = __$VeilidConfigTLSCopyWithImpl;
+@override @useResult
+$Res call({
+ String certificatePath, String privateKeyPath, int connectionInitialTimeoutMs
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigTLSCopyWithImpl<$Res>
+    implements _$VeilidConfigTLSCopyWith<$Res> {
+  __$VeilidConfigTLSCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigTLS _self;
+  final $Res Function(_VeilidConfigTLS) _then;
+
+/// Create a copy of VeilidConfigTLS
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? certificatePath = null,Object? privateKeyPath = null,Object? connectionInitialTimeoutMs = null,}) {
+  return _then(_VeilidConfigTLS(
+certificatePath: null == certificatePath ? _self.certificatePath : certificatePath // ignore: cast_nullable_to_non_nullable
+as String,privateKeyPath: null == privateKeyPath ? _self.privateKeyPath : privateKeyPath // ignore: cast_nullable_to_non_nullable
+as String,connectionInitialTimeoutMs: null == connectionInitialTimeoutMs ? _self.connectionInitialTimeoutMs : connectionInitialTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigDHT implements DiagnosticableTreeMixin {
+
+ int get localSubkeyCacheSize; int get localMaxSubkeyCacheMemoryMb; int get remoteSubkeyCacheSize; int get remoteMaxRecords; int get remoteMaxSubkeyCacheMemoryMb; int get remoteMaxStorageSpaceMb; int get maxConcurrentOperations;
+/// Create a copy of VeilidConfigDHT
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigDHTCopyWith<VeilidConfigDHT> get copyWith => _$VeilidConfigDHTCopyWithImpl<VeilidConfigDHT>(this as VeilidConfigDHT, _$identity);
+
+  /// Serializes this VeilidConfigDHT to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigDHT'))
+    ..add(DiagnosticsProperty('localSubkeyCacheSize', localSubkeyCacheSize))..add(DiagnosticsProperty('localMaxSubkeyCacheMemoryMb', localMaxSubkeyCacheMemoryMb))..add(DiagnosticsProperty('remoteSubkeyCacheSize', remoteSubkeyCacheSize))..add(DiagnosticsProperty('remoteMaxRecords', remoteMaxRecords))..add(DiagnosticsProperty('remoteMaxSubkeyCacheMemoryMb', remoteMaxSubkeyCacheMemoryMb))..add(DiagnosticsProperty('remoteMaxStorageSpaceMb', remoteMaxStorageSpaceMb))..add(DiagnosticsProperty('maxConcurrentOperations', maxConcurrentOperations));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigDHT&&(identical(other.localSubkeyCacheSize, localSubkeyCacheSize) || other.localSubkeyCacheSize == localSubkeyCacheSize)&&(identical(other.localMaxSubkeyCacheMemoryMb, localMaxSubkeyCacheMemoryMb) || other.localMaxSubkeyCacheMemoryMb == localMaxSubkeyCacheMemoryMb)&&(identical(other.remoteSubkeyCacheSize, remoteSubkeyCacheSize) || other.remoteSubkeyCacheSize == remoteSubkeyCacheSize)&&(identical(other.remoteMaxRecords, remoteMaxRecords) || other.remoteMaxRecords == remoteMaxRecords)&&(identical(other.remoteMaxSubkeyCacheMemoryMb, remoteMaxSubkeyCacheMemoryMb) || other.remoteMaxSubkeyCacheMemoryMb == remoteMaxSubkeyCacheMemoryMb)&&(identical(other.remoteMaxStorageSpaceMb, remoteMaxStorageSpaceMb) || other.remoteMaxStorageSpaceMb == remoteMaxStorageSpaceMb)&&(identical(other.maxConcurrentOperations, maxConcurrentOperations) || other.maxConcurrentOperations == maxConcurrentOperations));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,localSubkeyCacheSize,localMaxSubkeyCacheMemoryMb,remoteSubkeyCacheSize,remoteMaxRecords,remoteMaxSubkeyCacheMemoryMb,remoteMaxStorageSpaceMb,maxConcurrentOperations);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigDHT(localSubkeyCacheSize: $localSubkeyCacheSize, localMaxSubkeyCacheMemoryMb: $localMaxSubkeyCacheMemoryMb, remoteSubkeyCacheSize: $remoteSubkeyCacheSize, remoteMaxRecords: $remoteMaxRecords, remoteMaxSubkeyCacheMemoryMb: $remoteMaxSubkeyCacheMemoryMb, remoteMaxStorageSpaceMb: $remoteMaxStorageSpaceMb, maxConcurrentOperations: $maxConcurrentOperations)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigDHTCopyWith<$Res>  {
+  factory $VeilidConfigDHTCopyWith(VeilidConfigDHT value, $Res Function(VeilidConfigDHT) _then) = _$VeilidConfigDHTCopyWithImpl;
+@useResult
+$Res call({
+ int localSubkeyCacheSize, int localMaxSubkeyCacheMemoryMb, int remoteSubkeyCacheSize, int remoteMaxRecords, int remoteMaxSubkeyCacheMemoryMb, int remoteMaxStorageSpaceMb, int maxConcurrentOperations
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigDHTCopyWithImpl<$Res>
+    implements $VeilidConfigDHTCopyWith<$Res> {
+  _$VeilidConfigDHTCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigDHT _self;
+  final $Res Function(VeilidConfigDHT) _then;
+
+/// Create a copy of VeilidConfigDHT
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? localSubkeyCacheSize = null,Object? localMaxSubkeyCacheMemoryMb = null,Object? remoteSubkeyCacheSize = null,Object? remoteMaxRecords = null,Object? remoteMaxSubkeyCacheMemoryMb = null,Object? remoteMaxStorageSpaceMb = null,Object? maxConcurrentOperations = null,}) {
+  return _then(_self.copyWith(
+localSubkeyCacheSize: null == localSubkeyCacheSize ? _self.localSubkeyCacheSize : localSubkeyCacheSize // ignore: cast_nullable_to_non_nullable
+as int,localMaxSubkeyCacheMemoryMb: null == localMaxSubkeyCacheMemoryMb ? _self.localMaxSubkeyCacheMemoryMb : localMaxSubkeyCacheMemoryMb // ignore: cast_nullable_to_non_nullable
+as int,remoteSubkeyCacheSize: null == remoteSubkeyCacheSize ? _self.remoteSubkeyCacheSize : remoteSubkeyCacheSize // ignore: cast_nullable_to_non_nullable
+as int,remoteMaxRecords: null == remoteMaxRecords ? _self.remoteMaxRecords : remoteMaxRecords // ignore: cast_nullable_to_non_nullable
+as int,remoteMaxSubkeyCacheMemoryMb: null == remoteMaxSubkeyCacheMemoryMb ? _self.remoteMaxSubkeyCacheMemoryMb : remoteMaxSubkeyCacheMemoryMb // ignore: cast_nullable_to_non_nullable
+as int,remoteMaxStorageSpaceMb: null == remoteMaxStorageSpaceMb ? _self.remoteMaxStorageSpaceMb : remoteMaxStorageSpaceMb // ignore: cast_nullable_to_non_nullable
+as int,maxConcurrentOperations: null == maxConcurrentOperations ? _self.maxConcurrentOperations : maxConcurrentOperations // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigDHT].
+extension VeilidConfigDHTPatterns on VeilidConfigDHT {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigDHT value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigDHT() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigDHT value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigDHT():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigDHT value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigDHT() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int localSubkeyCacheSize,  int localMaxSubkeyCacheMemoryMb,  int remoteSubkeyCacheSize,  int remoteMaxRecords,  int remoteMaxSubkeyCacheMemoryMb,  int remoteMaxStorageSpaceMb,  int maxConcurrentOperations)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigDHT() when $default != null:
+return $default(_that.localSubkeyCacheSize,_that.localMaxSubkeyCacheMemoryMb,_that.remoteSubkeyCacheSize,_that.remoteMaxRecords,_that.remoteMaxSubkeyCacheMemoryMb,_that.remoteMaxStorageSpaceMb,_that.maxConcurrentOperations);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int localSubkeyCacheSize,  int localMaxSubkeyCacheMemoryMb,  int remoteSubkeyCacheSize,  int remoteMaxRecords,  int remoteMaxSubkeyCacheMemoryMb,  int remoteMaxStorageSpaceMb,  int maxConcurrentOperations)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigDHT():
+return $default(_that.localSubkeyCacheSize,_that.localMaxSubkeyCacheMemoryMb,_that.remoteSubkeyCacheSize,_that.remoteMaxRecords,_that.remoteMaxSubkeyCacheMemoryMb,_that.remoteMaxStorageSpaceMb,_that.maxConcurrentOperations);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int localSubkeyCacheSize,  int localMaxSubkeyCacheMemoryMb,  int remoteSubkeyCacheSize,  int remoteMaxRecords,  int remoteMaxSubkeyCacheMemoryMb,  int remoteMaxStorageSpaceMb,  int maxConcurrentOperations)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigDHT() when $default != null:
+return $default(_that.localSubkeyCacheSize,_that.localMaxSubkeyCacheMemoryMb,_that.remoteSubkeyCacheSize,_that.remoteMaxRecords,_that.remoteMaxSubkeyCacheMemoryMb,_that.remoteMaxStorageSpaceMb,_that.maxConcurrentOperations);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigDHT with DiagnosticableTreeMixin implements VeilidConfigDHT {
+  const _VeilidConfigDHT({required this.localSubkeyCacheSize, required this.localMaxSubkeyCacheMemoryMb, required this.remoteSubkeyCacheSize, required this.remoteMaxRecords, required this.remoteMaxSubkeyCacheMemoryMb, required this.remoteMaxStorageSpaceMb, required this.maxConcurrentOperations});
+  factory _VeilidConfigDHT.fromJson(Map<String, dynamic> json) => _$VeilidConfigDHTFromJson(json);
+
+@override final  int localSubkeyCacheSize;
+@override final  int localMaxSubkeyCacheMemoryMb;
+@override final  int remoteSubkeyCacheSize;
+@override final  int remoteMaxRecords;
+@override final  int remoteMaxSubkeyCacheMemoryMb;
+@override final  int remoteMaxStorageSpaceMb;
+@override final  int maxConcurrentOperations;
+
+/// Create a copy of VeilidConfigDHT
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigDHTCopyWith<_VeilidConfigDHT> get copyWith => __$VeilidConfigDHTCopyWithImpl<_VeilidConfigDHT>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigDHTToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigDHT'))
+    ..add(DiagnosticsProperty('localSubkeyCacheSize', localSubkeyCacheSize))..add(DiagnosticsProperty('localMaxSubkeyCacheMemoryMb', localMaxSubkeyCacheMemoryMb))..add(DiagnosticsProperty('remoteSubkeyCacheSize', remoteSubkeyCacheSize))..add(DiagnosticsProperty('remoteMaxRecords', remoteMaxRecords))..add(DiagnosticsProperty('remoteMaxSubkeyCacheMemoryMb', remoteMaxSubkeyCacheMemoryMb))..add(DiagnosticsProperty('remoteMaxStorageSpaceMb', remoteMaxStorageSpaceMb))..add(DiagnosticsProperty('maxConcurrentOperations', maxConcurrentOperations));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigDHT&&(identical(other.localSubkeyCacheSize, localSubkeyCacheSize) || other.localSubkeyCacheSize == localSubkeyCacheSize)&&(identical(other.localMaxSubkeyCacheMemoryMb, localMaxSubkeyCacheMemoryMb) || other.localMaxSubkeyCacheMemoryMb == localMaxSubkeyCacheMemoryMb)&&(identical(other.remoteSubkeyCacheSize, remoteSubkeyCacheSize) || other.remoteSubkeyCacheSize == remoteSubkeyCacheSize)&&(identical(other.remoteMaxRecords, remoteMaxRecords) || other.remoteMaxRecords == remoteMaxRecords)&&(identical(other.remoteMaxSubkeyCacheMemoryMb, remoteMaxSubkeyCacheMemoryMb) || other.remoteMaxSubkeyCacheMemoryMb == remoteMaxSubkeyCacheMemoryMb)&&(identical(other.remoteMaxStorageSpaceMb, remoteMaxStorageSpaceMb) || other.remoteMaxStorageSpaceMb == remoteMaxStorageSpaceMb)&&(identical(other.maxConcurrentOperations, maxConcurrentOperations) || other.maxConcurrentOperations == maxConcurrentOperations));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,localSubkeyCacheSize,localMaxSubkeyCacheMemoryMb,remoteSubkeyCacheSize,remoteMaxRecords,remoteMaxSubkeyCacheMemoryMb,remoteMaxStorageSpaceMb,maxConcurrentOperations);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigDHT(localSubkeyCacheSize: $localSubkeyCacheSize, localMaxSubkeyCacheMemoryMb: $localMaxSubkeyCacheMemoryMb, remoteSubkeyCacheSize: $remoteSubkeyCacheSize, remoteMaxRecords: $remoteMaxRecords, remoteMaxSubkeyCacheMemoryMb: $remoteMaxSubkeyCacheMemoryMb, remoteMaxStorageSpaceMb: $remoteMaxStorageSpaceMb, maxConcurrentOperations: $maxConcurrentOperations)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigDHTCopyWith<$Res> implements $VeilidConfigDHTCopyWith<$Res> {
+  factory _$VeilidConfigDHTCopyWith(_VeilidConfigDHT value, $Res Function(_VeilidConfigDHT) _then) = __$VeilidConfigDHTCopyWithImpl;
+@override @useResult
+$Res call({
+ int localSubkeyCacheSize, int localMaxSubkeyCacheMemoryMb, int remoteSubkeyCacheSize, int remoteMaxRecords, int remoteMaxSubkeyCacheMemoryMb, int remoteMaxStorageSpaceMb, int maxConcurrentOperations
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigDHTCopyWithImpl<$Res>
+    implements _$VeilidConfigDHTCopyWith<$Res> {
+  __$VeilidConfigDHTCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigDHT _self;
+  final $Res Function(_VeilidConfigDHT) _then;
+
+/// Create a copy of VeilidConfigDHT
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? localSubkeyCacheSize = null,Object? localMaxSubkeyCacheMemoryMb = null,Object? remoteSubkeyCacheSize = null,Object? remoteMaxRecords = null,Object? remoteMaxSubkeyCacheMemoryMb = null,Object? remoteMaxStorageSpaceMb = null,Object? maxConcurrentOperations = null,}) {
+  return _then(_VeilidConfigDHT(
+localSubkeyCacheSize: null == localSubkeyCacheSize ? _self.localSubkeyCacheSize : localSubkeyCacheSize // ignore: cast_nullable_to_non_nullable
+as int,localMaxSubkeyCacheMemoryMb: null == localMaxSubkeyCacheMemoryMb ? _self.localMaxSubkeyCacheMemoryMb : localMaxSubkeyCacheMemoryMb // ignore: cast_nullable_to_non_nullable
+as int,remoteSubkeyCacheSize: null == remoteSubkeyCacheSize ? _self.remoteSubkeyCacheSize : remoteSubkeyCacheSize // ignore: cast_nullable_to_non_nullable
+as int,remoteMaxRecords: null == remoteMaxRecords ? _self.remoteMaxRecords : remoteMaxRecords // ignore: cast_nullable_to_non_nullable
+as int,remoteMaxSubkeyCacheMemoryMb: null == remoteMaxSubkeyCacheMemoryMb ? _self.remoteMaxSubkeyCacheMemoryMb : remoteMaxSubkeyCacheMemoryMb // ignore: cast_nullable_to_non_nullable
+as int,remoteMaxStorageSpaceMb: null == remoteMaxStorageSpaceMb ? _self.remoteMaxStorageSpaceMb : remoteMaxStorageSpaceMb // ignore: cast_nullable_to_non_nullable
+as int,maxConcurrentOperations: null == maxConcurrentOperations ? _self.maxConcurrentOperations : maxConcurrentOperations // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigRPC implements DiagnosticableTreeMixin {
+
+ int get defaultRouteHopCount;
+/// Create a copy of VeilidConfigRPC
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigRPCCopyWith<VeilidConfigRPC> get copyWith => _$VeilidConfigRPCCopyWithImpl<VeilidConfigRPC>(this as VeilidConfigRPC, _$identity);
+
+  /// Serializes this VeilidConfigRPC to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigRPC'))
+    ..add(DiagnosticsProperty('defaultRouteHopCount', defaultRouteHopCount));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigRPC&&(identical(other.defaultRouteHopCount, defaultRouteHopCount) || other.defaultRouteHopCount == defaultRouteHopCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,defaultRouteHopCount);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigRPC(defaultRouteHopCount: $defaultRouteHopCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigRPCCopyWith<$Res>  {
+  factory $VeilidConfigRPCCopyWith(VeilidConfigRPC value, $Res Function(VeilidConfigRPC) _then) = _$VeilidConfigRPCCopyWithImpl;
+@useResult
+$Res call({
+ int defaultRouteHopCount
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigRPCCopyWithImpl<$Res>
+    implements $VeilidConfigRPCCopyWith<$Res> {
+  _$VeilidConfigRPCCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigRPC _self;
+  final $Res Function(VeilidConfigRPC) _then;
+
+/// Create a copy of VeilidConfigRPC
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? defaultRouteHopCount = null,}) {
+  return _then(_self.copyWith(
+defaultRouteHopCount: null == defaultRouteHopCount ? _self.defaultRouteHopCount : defaultRouteHopCount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigRPC].
+extension VeilidConfigRPCPatterns on VeilidConfigRPC {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigRPC value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigRPC() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigRPC value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigRPC():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigRPC value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigRPC() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int defaultRouteHopCount)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigRPC() when $default != null:
+return $default(_that.defaultRouteHopCount);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int defaultRouteHopCount)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigRPC():
+return $default(_that.defaultRouteHopCount);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int defaultRouteHopCount)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigRPC() when $default != null:
+return $default(_that.defaultRouteHopCount);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigRPC with DiagnosticableTreeMixin implements VeilidConfigRPC {
+  const _VeilidConfigRPC({required this.defaultRouteHopCount});
+  factory _VeilidConfigRPC.fromJson(Map<String, dynamic> json) => _$VeilidConfigRPCFromJson(json);
+
+@override final  int defaultRouteHopCount;
+
+/// Create a copy of VeilidConfigRPC
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigRPCCopyWith<_VeilidConfigRPC> get copyWith => __$VeilidConfigRPCCopyWithImpl<_VeilidConfigRPC>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigRPCToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigRPC'))
+    ..add(DiagnosticsProperty('defaultRouteHopCount', defaultRouteHopCount));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigRPC&&(identical(other.defaultRouteHopCount, defaultRouteHopCount) || other.defaultRouteHopCount == defaultRouteHopCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,defaultRouteHopCount);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigRPC(defaultRouteHopCount: $defaultRouteHopCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigRPCCopyWith<$Res> implements $VeilidConfigRPCCopyWith<$Res> {
+  factory _$VeilidConfigRPCCopyWith(_VeilidConfigRPC value, $Res Function(_VeilidConfigRPC) _then) = __$VeilidConfigRPCCopyWithImpl;
+@override @useResult
+$Res call({
+ int defaultRouteHopCount
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigRPCCopyWithImpl<$Res>
+    implements _$VeilidConfigRPCCopyWith<$Res> {
+  __$VeilidConfigRPCCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigRPC _self;
+  final $Res Function(_VeilidConfigRPC) _then;
+
+/// Create a copy of VeilidConfigRPC
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? defaultRouteHopCount = null,}) {
+  return _then(_VeilidConfigRPC(
+defaultRouteHopCount: null == defaultRouteHopCount ? _self.defaultRouteHopCount : defaultRouteHopCount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigRoutingTable implements DiagnosticableTreeMixin {
+
+ List<PublicKey> get publicKeys; List<SecretKey> get secretKeys; List<String> get bootstrap; List<PublicKey> get bootstrapKeys;
+/// Create a copy of VeilidConfigRoutingTable
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigRoutingTableCopyWith<VeilidConfigRoutingTable> get copyWith => _$VeilidConfigRoutingTableCopyWithImpl<VeilidConfigRoutingTable>(this as VeilidConfigRoutingTable, _$identity);
+
+  /// Serializes this VeilidConfigRoutingTable to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigRoutingTable'))
+    ..add(DiagnosticsProperty('publicKeys', publicKeys))..add(DiagnosticsProperty('secretKeys', secretKeys))..add(DiagnosticsProperty('bootstrap', bootstrap))..add(DiagnosticsProperty('bootstrapKeys', bootstrapKeys));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigRoutingTable&&const DeepCollectionEquality().equals(other.publicKeys, publicKeys)&&const DeepCollectionEquality().equals(other.secretKeys, secretKeys)&&const DeepCollectionEquality().equals(other.bootstrap, bootstrap)&&const DeepCollectionEquality().equals(other.bootstrapKeys, bootstrapKeys));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(publicKeys),const DeepCollectionEquality().hash(secretKeys),const DeepCollectionEquality().hash(bootstrap),const DeepCollectionEquality().hash(bootstrapKeys));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigRoutingTable(publicKeys: $publicKeys, secretKeys: $secretKeys, bootstrap: $bootstrap, bootstrapKeys: $bootstrapKeys)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigRoutingTableCopyWith<$Res>  {
+  factory $VeilidConfigRoutingTableCopyWith(VeilidConfigRoutingTable value, $Res Function(VeilidConfigRoutingTable) _then) = _$VeilidConfigRoutingTableCopyWithImpl;
+@useResult
+$Res call({
+ List<PublicKey> publicKeys, List<SecretKey> secretKeys, List<String> bootstrap, List<PublicKey> bootstrapKeys
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigRoutingTableCopyWithImpl<$Res>
+    implements $VeilidConfigRoutingTableCopyWith<$Res> {
+  _$VeilidConfigRoutingTableCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigRoutingTable _self;
+  final $Res Function(VeilidConfigRoutingTable) _then;
+
+/// Create a copy of VeilidConfigRoutingTable
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? publicKeys = null,Object? secretKeys = null,Object? bootstrap = null,Object? bootstrapKeys = null,}) {
+  return _then(_self.copyWith(
+publicKeys: null == publicKeys ? _self.publicKeys : publicKeys // ignore: cast_nullable_to_non_nullable
+as List<PublicKey>,secretKeys: null == secretKeys ? _self.secretKeys : secretKeys // ignore: cast_nullable_to_non_nullable
+as List<SecretKey>,bootstrap: null == bootstrap ? _self.bootstrap : bootstrap // ignore: cast_nullable_to_non_nullable
+as List<String>,bootstrapKeys: null == bootstrapKeys ? _self.bootstrapKeys : bootstrapKeys // ignore: cast_nullable_to_non_nullable
+as List<PublicKey>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigRoutingTable].
+extension VeilidConfigRoutingTablePatterns on VeilidConfigRoutingTable {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigRoutingTable value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigRoutingTable() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigRoutingTable value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigRoutingTable():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigRoutingTable value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigRoutingTable() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<PublicKey> publicKeys,  List<SecretKey> secretKeys,  List<String> bootstrap,  List<PublicKey> bootstrapKeys)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigRoutingTable() when $default != null:
+return $default(_that.publicKeys,_that.secretKeys,_that.bootstrap,_that.bootstrapKeys);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<PublicKey> publicKeys,  List<SecretKey> secretKeys,  List<String> bootstrap,  List<PublicKey> bootstrapKeys)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigRoutingTable():
+return $default(_that.publicKeys,_that.secretKeys,_that.bootstrap,_that.bootstrapKeys);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<PublicKey> publicKeys,  List<SecretKey> secretKeys,  List<String> bootstrap,  List<PublicKey> bootstrapKeys)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigRoutingTable() when $default != null:
+return $default(_that.publicKeys,_that.secretKeys,_that.bootstrap,_that.bootstrapKeys);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigRoutingTable with DiagnosticableTreeMixin implements VeilidConfigRoutingTable {
+  const _VeilidConfigRoutingTable({required final  List<PublicKey> publicKeys, required final  List<SecretKey> secretKeys, required final  List<String> bootstrap, required final  List<PublicKey> bootstrapKeys}): _publicKeys = publicKeys,_secretKeys = secretKeys,_bootstrap = bootstrap,_bootstrapKeys = bootstrapKeys;
+  factory _VeilidConfigRoutingTable.fromJson(Map<String, dynamic> json) => _$VeilidConfigRoutingTableFromJson(json);
+
+ final  List<PublicKey> _publicKeys;
+@override List<PublicKey> get publicKeys {
+  if (_publicKeys is EqualUnmodifiableListView) return _publicKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_publicKeys);
+}
+
+ final  List<SecretKey> _secretKeys;
+@override List<SecretKey> get secretKeys {
+  if (_secretKeys is EqualUnmodifiableListView) return _secretKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_secretKeys);
+}
+
+ final  List<String> _bootstrap;
+@override List<String> get bootstrap {
+  if (_bootstrap is EqualUnmodifiableListView) return _bootstrap;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_bootstrap);
+}
+
+ final  List<PublicKey> _bootstrapKeys;
+@override List<PublicKey> get bootstrapKeys {
+  if (_bootstrapKeys is EqualUnmodifiableListView) return _bootstrapKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_bootstrapKeys);
+}
+
+
+/// Create a copy of VeilidConfigRoutingTable
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigRoutingTableCopyWith<_VeilidConfigRoutingTable> get copyWith => __$VeilidConfigRoutingTableCopyWithImpl<_VeilidConfigRoutingTable>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigRoutingTableToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigRoutingTable'))
+    ..add(DiagnosticsProperty('publicKeys', publicKeys))..add(DiagnosticsProperty('secretKeys', secretKeys))..add(DiagnosticsProperty('bootstrap', bootstrap))..add(DiagnosticsProperty('bootstrapKeys', bootstrapKeys));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigRoutingTable&&const DeepCollectionEquality().equals(other._publicKeys, _publicKeys)&&const DeepCollectionEquality().equals(other._secretKeys, _secretKeys)&&const DeepCollectionEquality().equals(other._bootstrap, _bootstrap)&&const DeepCollectionEquality().equals(other._bootstrapKeys, _bootstrapKeys));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_publicKeys),const DeepCollectionEquality().hash(_secretKeys),const DeepCollectionEquality().hash(_bootstrap),const DeepCollectionEquality().hash(_bootstrapKeys));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigRoutingTable(publicKeys: $publicKeys, secretKeys: $secretKeys, bootstrap: $bootstrap, bootstrapKeys: $bootstrapKeys)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigRoutingTableCopyWith<$Res> implements $VeilidConfigRoutingTableCopyWith<$Res> {
+  factory _$VeilidConfigRoutingTableCopyWith(_VeilidConfigRoutingTable value, $Res Function(_VeilidConfigRoutingTable) _then) = __$VeilidConfigRoutingTableCopyWithImpl;
+@override @useResult
+$Res call({
+ List<PublicKey> publicKeys, List<SecretKey> secretKeys, List<String> bootstrap, List<PublicKey> bootstrapKeys
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigRoutingTableCopyWithImpl<$Res>
+    implements _$VeilidConfigRoutingTableCopyWith<$Res> {
+  __$VeilidConfigRoutingTableCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigRoutingTable _self;
+  final $Res Function(_VeilidConfigRoutingTable) _then;
+
+/// Create a copy of VeilidConfigRoutingTable
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? publicKeys = null,Object? secretKeys = null,Object? bootstrap = null,Object? bootstrapKeys = null,}) {
+  return _then(_VeilidConfigRoutingTable(
+publicKeys: null == publicKeys ? _self._publicKeys : publicKeys // ignore: cast_nullable_to_non_nullable
+as List<PublicKey>,secretKeys: null == secretKeys ? _self._secretKeys : secretKeys // ignore: cast_nullable_to_non_nullable
+as List<SecretKey>,bootstrap: null == bootstrap ? _self._bootstrap : bootstrap // ignore: cast_nullable_to_non_nullable
+as List<String>,bootstrapKeys: null == bootstrapKeys ? _self._bootstrapKeys : bootstrapKeys // ignore: cast_nullable_to_non_nullable
+as List<PublicKey>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigNetwork implements DiagnosticableTreeMixin {
+
+ int get maxConnections; VeilidConfigRoutingTable get routingTable; VeilidConfigRPC get rpc; VeilidConfigDHT get dht; List<VeilidConfigAddressType> get addressTypes; bool get upnp; bool? get detectAddressChanges; VeilidConfigTLS get tls; VeilidConfigProtocol get protocol; VeilidConfigPrivacy get privacy; String? get networkKeyPassword;
+/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigNetworkCopyWith<VeilidConfigNetwork> get copyWith => _$VeilidConfigNetworkCopyWithImpl<VeilidConfigNetwork>(this as VeilidConfigNetwork, _$identity);
+
+  /// Serializes this VeilidConfigNetwork to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigNetwork'))
+    ..add(DiagnosticsProperty('maxConnections', maxConnections))..add(DiagnosticsProperty('routingTable', routingTable))..add(DiagnosticsProperty('rpc', rpc))..add(DiagnosticsProperty('dht', dht))..add(DiagnosticsProperty('addressTypes', addressTypes))..add(DiagnosticsProperty('upnp', upnp))..add(DiagnosticsProperty('detectAddressChanges', detectAddressChanges))..add(DiagnosticsProperty('tls', tls))..add(DiagnosticsProperty('protocol', protocol))..add(DiagnosticsProperty('privacy', privacy))..add(DiagnosticsProperty('networkKeyPassword', networkKeyPassword));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigNetwork&&(identical(other.maxConnections, maxConnections) || other.maxConnections == maxConnections)&&(identical(other.routingTable, routingTable) || other.routingTable == routingTable)&&(identical(other.rpc, rpc) || other.rpc == rpc)&&(identical(other.dht, dht) || other.dht == dht)&&const DeepCollectionEquality().equals(other.addressTypes, addressTypes)&&(identical(other.upnp, upnp) || other.upnp == upnp)&&(identical(other.detectAddressChanges, detectAddressChanges) || other.detectAddressChanges == detectAddressChanges)&&(identical(other.tls, tls) || other.tls == tls)&&(identical(other.protocol, protocol) || other.protocol == protocol)&&(identical(other.privacy, privacy) || other.privacy == privacy)&&(identical(other.networkKeyPassword, networkKeyPassword) || other.networkKeyPassword == networkKeyPassword));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,maxConnections,routingTable,rpc,dht,const DeepCollectionEquality().hash(addressTypes),upnp,detectAddressChanges,tls,protocol,privacy,networkKeyPassword);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigNetwork(maxConnections: $maxConnections, routingTable: $routingTable, rpc: $rpc, dht: $dht, addressTypes: $addressTypes, upnp: $upnp, detectAddressChanges: $detectAddressChanges, tls: $tls, protocol: $protocol, privacy: $privacy, networkKeyPassword: $networkKeyPassword)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigNetworkCopyWith<$Res>  {
+  factory $VeilidConfigNetworkCopyWith(VeilidConfigNetwork value, $Res Function(VeilidConfigNetwork) _then) = _$VeilidConfigNetworkCopyWithImpl;
+@useResult
+$Res call({
+ int maxConnections, VeilidConfigRoutingTable routingTable, VeilidConfigRPC rpc, VeilidConfigDHT dht, List<VeilidConfigAddressType> addressTypes, bool upnp, bool? detectAddressChanges, VeilidConfigTLS tls, VeilidConfigProtocol protocol, VeilidConfigPrivacy privacy, String? networkKeyPassword
+});
+
+
+$VeilidConfigRoutingTableCopyWith<$Res> get routingTable;$VeilidConfigRPCCopyWith<$Res> get rpc;$VeilidConfigDHTCopyWith<$Res> get dht;$VeilidConfigTLSCopyWith<$Res> get tls;$VeilidConfigProtocolCopyWith<$Res> get protocol;$VeilidConfigPrivacyCopyWith<$Res> get privacy;
+
+}
+/// @nodoc
+class _$VeilidConfigNetworkCopyWithImpl<$Res>
+    implements $VeilidConfigNetworkCopyWith<$Res> {
+  _$VeilidConfigNetworkCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigNetwork _self;
+  final $Res Function(VeilidConfigNetwork) _then;
+
+/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? maxConnections = null,Object? routingTable = null,Object? rpc = null,Object? dht = null,Object? addressTypes = null,Object? upnp = null,Object? detectAddressChanges = freezed,Object? tls = null,Object? protocol = null,Object? privacy = null,Object? networkKeyPassword = freezed,}) {
+  return _then(_self.copyWith(
+maxConnections: null == maxConnections ? _self.maxConnections : maxConnections // ignore: cast_nullable_to_non_nullable
+as int,routingTable: null == routingTable ? _self.routingTable : routingTable // ignore: cast_nullable_to_non_nullable
+as VeilidConfigRoutingTable,rpc: null == rpc ? _self.rpc : rpc // ignore: cast_nullable_to_non_nullable
+as VeilidConfigRPC,dht: null == dht ? _self.dht : dht // ignore: cast_nullable_to_non_nullable
+as VeilidConfigDHT,addressTypes: null == addressTypes ? _self.addressTypes : addressTypes // ignore: cast_nullable_to_non_nullable
+as List<VeilidConfigAddressType>,upnp: null == upnp ? _self.upnp : upnp // ignore: cast_nullable_to_non_nullable
+as bool,detectAddressChanges: freezed == detectAddressChanges ? _self.detectAddressChanges : detectAddressChanges // ignore: cast_nullable_to_non_nullable
+as bool?,tls: null == tls ? _self.tls : tls // ignore: cast_nullable_to_non_nullable
+as VeilidConfigTLS,protocol: null == protocol ? _self.protocol : protocol // ignore: cast_nullable_to_non_nullable
+as VeilidConfigProtocol,privacy: null == privacy ? _self.privacy : privacy // ignore: cast_nullable_to_non_nullable
+as VeilidConfigPrivacy,networkKeyPassword: freezed == networkKeyPassword ? _self.networkKeyPassword : networkKeyPassword // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigRoutingTableCopyWith<$Res> get routingTable {
+  
+  return $VeilidConfigRoutingTableCopyWith<$Res>(_self.routingTable, (value) {
+    return _then(_self.copyWith(routingTable: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigRPCCopyWith<$Res> get rpc {
+  
+  return $VeilidConfigRPCCopyWith<$Res>(_self.rpc, (value) {
+    return _then(_self.copyWith(rpc: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigDHTCopyWith<$Res> get dht {
+  
+  return $VeilidConfigDHTCopyWith<$Res>(_self.dht, (value) {
+    return _then(_self.copyWith(dht: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigTLSCopyWith<$Res> get tls {
+  
+  return $VeilidConfigTLSCopyWith<$Res>(_self.tls, (value) {
+    return _then(_self.copyWith(tls: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigProtocolCopyWith<$Res> get protocol {
+  
+  return $VeilidConfigProtocolCopyWith<$Res>(_self.protocol, (value) {
+    return _then(_self.copyWith(protocol: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigPrivacyCopyWith<$Res> get privacy {
+  
+  return $VeilidConfigPrivacyCopyWith<$Res>(_self.privacy, (value) {
+    return _then(_self.copyWith(privacy: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigNetwork].
+extension VeilidConfigNetworkPatterns on VeilidConfigNetwork {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigNetwork value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigNetwork() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigNetwork value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigNetwork():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigNetwork value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigNetwork() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int maxConnections,  VeilidConfigRoutingTable routingTable,  VeilidConfigRPC rpc,  VeilidConfigDHT dht,  List<VeilidConfigAddressType> addressTypes,  bool upnp,  bool? detectAddressChanges,  VeilidConfigTLS tls,  VeilidConfigProtocol protocol,  VeilidConfigPrivacy privacy,  String? networkKeyPassword)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigNetwork() when $default != null:
+return $default(_that.maxConnections,_that.routingTable,_that.rpc,_that.dht,_that.addressTypes,_that.upnp,_that.detectAddressChanges,_that.tls,_that.protocol,_that.privacy,_that.networkKeyPassword);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int maxConnections,  VeilidConfigRoutingTable routingTable,  VeilidConfigRPC rpc,  VeilidConfigDHT dht,  List<VeilidConfigAddressType> addressTypes,  bool upnp,  bool? detectAddressChanges,  VeilidConfigTLS tls,  VeilidConfigProtocol protocol,  VeilidConfigPrivacy privacy,  String? networkKeyPassword)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigNetwork():
+return $default(_that.maxConnections,_that.routingTable,_that.rpc,_that.dht,_that.addressTypes,_that.upnp,_that.detectAddressChanges,_that.tls,_that.protocol,_that.privacy,_that.networkKeyPassword);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int maxConnections,  VeilidConfigRoutingTable routingTable,  VeilidConfigRPC rpc,  VeilidConfigDHT dht,  List<VeilidConfigAddressType> addressTypes,  bool upnp,  bool? detectAddressChanges,  VeilidConfigTLS tls,  VeilidConfigProtocol protocol,  VeilidConfigPrivacy privacy,  String? networkKeyPassword)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigNetwork() when $default != null:
+return $default(_that.maxConnections,_that.routingTable,_that.rpc,_that.dht,_that.addressTypes,_that.upnp,_that.detectAddressChanges,_that.tls,_that.protocol,_that.privacy,_that.networkKeyPassword);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigNetwork with DiagnosticableTreeMixin implements VeilidConfigNetwork {
+  const _VeilidConfigNetwork({required this.maxConnections, required this.routingTable, required this.rpc, required this.dht, final  List<VeilidConfigAddressType> addressTypes = const <VeilidConfigAddressType>[], required this.upnp, required this.detectAddressChanges, required this.tls, required this.protocol, required this.privacy, this.networkKeyPassword}): _addressTypes = addressTypes;
+  factory _VeilidConfigNetwork.fromJson(Map<String, dynamic> json) => _$VeilidConfigNetworkFromJson(json);
+
+@override final  int maxConnections;
+@override final  VeilidConfigRoutingTable routingTable;
+@override final  VeilidConfigRPC rpc;
+@override final  VeilidConfigDHT dht;
+ final  List<VeilidConfigAddressType> _addressTypes;
+@override@JsonKey() List<VeilidConfigAddressType> get addressTypes {
+  if (_addressTypes is EqualUnmodifiableListView) return _addressTypes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_addressTypes);
+}
+
+@override final  bool upnp;
+@override final  bool? detectAddressChanges;
+@override final  VeilidConfigTLS tls;
+@override final  VeilidConfigProtocol protocol;
+@override final  VeilidConfigPrivacy privacy;
+@override final  String? networkKeyPassword;
+
+/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigNetworkCopyWith<_VeilidConfigNetwork> get copyWith => __$VeilidConfigNetworkCopyWithImpl<_VeilidConfigNetwork>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigNetworkToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigNetwork'))
+    ..add(DiagnosticsProperty('maxConnections', maxConnections))..add(DiagnosticsProperty('routingTable', routingTable))..add(DiagnosticsProperty('rpc', rpc))..add(DiagnosticsProperty('dht', dht))..add(DiagnosticsProperty('addressTypes', addressTypes))..add(DiagnosticsProperty('upnp', upnp))..add(DiagnosticsProperty('detectAddressChanges', detectAddressChanges))..add(DiagnosticsProperty('tls', tls))..add(DiagnosticsProperty('protocol', protocol))..add(DiagnosticsProperty('privacy', privacy))..add(DiagnosticsProperty('networkKeyPassword', networkKeyPassword));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigNetwork&&(identical(other.maxConnections, maxConnections) || other.maxConnections == maxConnections)&&(identical(other.routingTable, routingTable) || other.routingTable == routingTable)&&(identical(other.rpc, rpc) || other.rpc == rpc)&&(identical(other.dht, dht) || other.dht == dht)&&const DeepCollectionEquality().equals(other._addressTypes, _addressTypes)&&(identical(other.upnp, upnp) || other.upnp == upnp)&&(identical(other.detectAddressChanges, detectAddressChanges) || other.detectAddressChanges == detectAddressChanges)&&(identical(other.tls, tls) || other.tls == tls)&&(identical(other.protocol, protocol) || other.protocol == protocol)&&(identical(other.privacy, privacy) || other.privacy == privacy)&&(identical(other.networkKeyPassword, networkKeyPassword) || other.networkKeyPassword == networkKeyPassword));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,maxConnections,routingTable,rpc,dht,const DeepCollectionEquality().hash(_addressTypes),upnp,detectAddressChanges,tls,protocol,privacy,networkKeyPassword);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigNetwork(maxConnections: $maxConnections, routingTable: $routingTable, rpc: $rpc, dht: $dht, addressTypes: $addressTypes, upnp: $upnp, detectAddressChanges: $detectAddressChanges, tls: $tls, protocol: $protocol, privacy: $privacy, networkKeyPassword: $networkKeyPassword)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigNetworkCopyWith<$Res> implements $VeilidConfigNetworkCopyWith<$Res> {
+  factory _$VeilidConfigNetworkCopyWith(_VeilidConfigNetwork value, $Res Function(_VeilidConfigNetwork) _then) = __$VeilidConfigNetworkCopyWithImpl;
+@override @useResult
+$Res call({
+ int maxConnections, VeilidConfigRoutingTable routingTable, VeilidConfigRPC rpc, VeilidConfigDHT dht, List<VeilidConfigAddressType> addressTypes, bool upnp, bool? detectAddressChanges, VeilidConfigTLS tls, VeilidConfigProtocol protocol, VeilidConfigPrivacy privacy, String? networkKeyPassword
+});
+
+
+@override $VeilidConfigRoutingTableCopyWith<$Res> get routingTable;@override $VeilidConfigRPCCopyWith<$Res> get rpc;@override $VeilidConfigDHTCopyWith<$Res> get dht;@override $VeilidConfigTLSCopyWith<$Res> get tls;@override $VeilidConfigProtocolCopyWith<$Res> get protocol;@override $VeilidConfigPrivacyCopyWith<$Res> get privacy;
+
+}
+/// @nodoc
+class __$VeilidConfigNetworkCopyWithImpl<$Res>
+    implements _$VeilidConfigNetworkCopyWith<$Res> {
+  __$VeilidConfigNetworkCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigNetwork _self;
+  final $Res Function(_VeilidConfigNetwork) _then;
+
+/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? maxConnections = null,Object? routingTable = null,Object? rpc = null,Object? dht = null,Object? addressTypes = null,Object? upnp = null,Object? detectAddressChanges = freezed,Object? tls = null,Object? protocol = null,Object? privacy = null,Object? networkKeyPassword = freezed,}) {
+  return _then(_VeilidConfigNetwork(
+maxConnections: null == maxConnections ? _self.maxConnections : maxConnections // ignore: cast_nullable_to_non_nullable
+as int,routingTable: null == routingTable ? _self.routingTable : routingTable // ignore: cast_nullable_to_non_nullable
+as VeilidConfigRoutingTable,rpc: null == rpc ? _self.rpc : rpc // ignore: cast_nullable_to_non_nullable
+as VeilidConfigRPC,dht: null == dht ? _self.dht : dht // ignore: cast_nullable_to_non_nullable
+as VeilidConfigDHT,addressTypes: null == addressTypes ? _self._addressTypes : addressTypes // ignore: cast_nullable_to_non_nullable
+as List<VeilidConfigAddressType>,upnp: null == upnp ? _self.upnp : upnp // ignore: cast_nullable_to_non_nullable
+as bool,detectAddressChanges: freezed == detectAddressChanges ? _self.detectAddressChanges : detectAddressChanges // ignore: cast_nullable_to_non_nullable
+as bool?,tls: null == tls ? _self.tls : tls // ignore: cast_nullable_to_non_nullable
+as VeilidConfigTLS,protocol: null == protocol ? _self.protocol : protocol // ignore: cast_nullable_to_non_nullable
+as VeilidConfigProtocol,privacy: null == privacy ? _self.privacy : privacy // ignore: cast_nullable_to_non_nullable
+as VeilidConfigPrivacy,networkKeyPassword: freezed == networkKeyPassword ? _self.networkKeyPassword : networkKeyPassword // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigRoutingTableCopyWith<$Res> get routingTable {
+  
+  return $VeilidConfigRoutingTableCopyWith<$Res>(_self.routingTable, (value) {
+    return _then(_self.copyWith(routingTable: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigRPCCopyWith<$Res> get rpc {
+  
+  return $VeilidConfigRPCCopyWith<$Res>(_self.rpc, (value) {
+    return _then(_self.copyWith(rpc: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigDHTCopyWith<$Res> get dht {
+  
+  return $VeilidConfigDHTCopyWith<$Res>(_self.dht, (value) {
+    return _then(_self.copyWith(dht: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigTLSCopyWith<$Res> get tls {
+  
+  return $VeilidConfigTLSCopyWith<$Res>(_self.tls, (value) {
+    return _then(_self.copyWith(tls: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigProtocolCopyWith<$Res> get protocol {
+  
+  return $VeilidConfigProtocolCopyWith<$Res>(_self.protocol, (value) {
+    return _then(_self.copyWith(protocol: value));
+  });
+}/// Create a copy of VeilidConfigNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigPrivacyCopyWith<$Res> get privacy {
+  
+  return $VeilidConfigPrivacyCopyWith<$Res>(_self.privacy, (value) {
+    return _then(_self.copyWith(privacy: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigTableStore implements DiagnosticableTreeMixin {
+
+ String get directory; bool get delete; bool get wipeOnInvalidDeviceEncryptionKey; int get maxValueSizeMb;
+/// Create a copy of VeilidConfigTableStore
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigTableStoreCopyWith<VeilidConfigTableStore> get copyWith => _$VeilidConfigTableStoreCopyWithImpl<VeilidConfigTableStore>(this as VeilidConfigTableStore, _$identity);
+
+  /// Serializes this VeilidConfigTableStore to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigTableStore'))
+    ..add(DiagnosticsProperty('directory', directory))..add(DiagnosticsProperty('delete', delete))..add(DiagnosticsProperty('wipeOnInvalidDeviceEncryptionKey', wipeOnInvalidDeviceEncryptionKey))..add(DiagnosticsProperty('maxValueSizeMb', maxValueSizeMb));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigTableStore&&(identical(other.directory, directory) || other.directory == directory)&&(identical(other.delete, delete) || other.delete == delete)&&(identical(other.wipeOnInvalidDeviceEncryptionKey, wipeOnInvalidDeviceEncryptionKey) || other.wipeOnInvalidDeviceEncryptionKey == wipeOnInvalidDeviceEncryptionKey)&&(identical(other.maxValueSizeMb, maxValueSizeMb) || other.maxValueSizeMb == maxValueSizeMb));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,directory,delete,wipeOnInvalidDeviceEncryptionKey,maxValueSizeMb);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigTableStore(directory: $directory, delete: $delete, wipeOnInvalidDeviceEncryptionKey: $wipeOnInvalidDeviceEncryptionKey, maxValueSizeMb: $maxValueSizeMb)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigTableStoreCopyWith<$Res>  {
+  factory $VeilidConfigTableStoreCopyWith(VeilidConfigTableStore value, $Res Function(VeilidConfigTableStore) _then) = _$VeilidConfigTableStoreCopyWithImpl;
+@useResult
+$Res call({
+ String directory, bool delete, bool wipeOnInvalidDeviceEncryptionKey, int maxValueSizeMb
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigTableStoreCopyWithImpl<$Res>
+    implements $VeilidConfigTableStoreCopyWith<$Res> {
+  _$VeilidConfigTableStoreCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigTableStore _self;
+  final $Res Function(VeilidConfigTableStore) _then;
+
+/// Create a copy of VeilidConfigTableStore
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? directory = null,Object? delete = null,Object? wipeOnInvalidDeviceEncryptionKey = null,Object? maxValueSizeMb = null,}) {
+  return _then(_self.copyWith(
+directory: null == directory ? _self.directory : directory // ignore: cast_nullable_to_non_nullable
+as String,delete: null == delete ? _self.delete : delete // ignore: cast_nullable_to_non_nullable
+as bool,wipeOnInvalidDeviceEncryptionKey: null == wipeOnInvalidDeviceEncryptionKey ? _self.wipeOnInvalidDeviceEncryptionKey : wipeOnInvalidDeviceEncryptionKey // ignore: cast_nullable_to_non_nullable
+as bool,maxValueSizeMb: null == maxValueSizeMb ? _self.maxValueSizeMb : maxValueSizeMb // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigTableStore].
+extension VeilidConfigTableStorePatterns on VeilidConfigTableStore {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigTableStore value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTableStore() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigTableStore value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTableStore():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigTableStore value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigTableStore() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String directory,  bool delete,  bool wipeOnInvalidDeviceEncryptionKey,  int maxValueSizeMb)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigTableStore() when $default != null:
+return $default(_that.directory,_that.delete,_that.wipeOnInvalidDeviceEncryptionKey,_that.maxValueSizeMb);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String directory,  bool delete,  bool wipeOnInvalidDeviceEncryptionKey,  int maxValueSizeMb)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigTableStore():
+return $default(_that.directory,_that.delete,_that.wipeOnInvalidDeviceEncryptionKey,_that.maxValueSizeMb);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String directory,  bool delete,  bool wipeOnInvalidDeviceEncryptionKey,  int maxValueSizeMb)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigTableStore() when $default != null:
+return $default(_that.directory,_that.delete,_that.wipeOnInvalidDeviceEncryptionKey,_that.maxValueSizeMb);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigTableStore with DiagnosticableTreeMixin implements VeilidConfigTableStore {
+  const _VeilidConfigTableStore({required this.directory, required this.delete, required this.wipeOnInvalidDeviceEncryptionKey, required this.maxValueSizeMb});
+  factory _VeilidConfigTableStore.fromJson(Map<String, dynamic> json) => _$VeilidConfigTableStoreFromJson(json);
+
+@override final  String directory;
+@override final  bool delete;
+@override final  bool wipeOnInvalidDeviceEncryptionKey;
+@override final  int maxValueSizeMb;
+
+/// Create a copy of VeilidConfigTableStore
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigTableStoreCopyWith<_VeilidConfigTableStore> get copyWith => __$VeilidConfigTableStoreCopyWithImpl<_VeilidConfigTableStore>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigTableStoreToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigTableStore'))
+    ..add(DiagnosticsProperty('directory', directory))..add(DiagnosticsProperty('delete', delete))..add(DiagnosticsProperty('wipeOnInvalidDeviceEncryptionKey', wipeOnInvalidDeviceEncryptionKey))..add(DiagnosticsProperty('maxValueSizeMb', maxValueSizeMb));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigTableStore&&(identical(other.directory, directory) || other.directory == directory)&&(identical(other.delete, delete) || other.delete == delete)&&(identical(other.wipeOnInvalidDeviceEncryptionKey, wipeOnInvalidDeviceEncryptionKey) || other.wipeOnInvalidDeviceEncryptionKey == wipeOnInvalidDeviceEncryptionKey)&&(identical(other.maxValueSizeMb, maxValueSizeMb) || other.maxValueSizeMb == maxValueSizeMb));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,directory,delete,wipeOnInvalidDeviceEncryptionKey,maxValueSizeMb);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigTableStore(directory: $directory, delete: $delete, wipeOnInvalidDeviceEncryptionKey: $wipeOnInvalidDeviceEncryptionKey, maxValueSizeMb: $maxValueSizeMb)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigTableStoreCopyWith<$Res> implements $VeilidConfigTableStoreCopyWith<$Res> {
+  factory _$VeilidConfigTableStoreCopyWith(_VeilidConfigTableStore value, $Res Function(_VeilidConfigTableStore) _then) = __$VeilidConfigTableStoreCopyWithImpl;
+@override @useResult
+$Res call({
+ String directory, bool delete, bool wipeOnInvalidDeviceEncryptionKey, int maxValueSizeMb
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigTableStoreCopyWithImpl<$Res>
+    implements _$VeilidConfigTableStoreCopyWith<$Res> {
+  __$VeilidConfigTableStoreCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigTableStore _self;
+  final $Res Function(_VeilidConfigTableStore) _then;
+
+/// Create a copy of VeilidConfigTableStore
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? directory = null,Object? delete = null,Object? wipeOnInvalidDeviceEncryptionKey = null,Object? maxValueSizeMb = null,}) {
+  return _then(_VeilidConfigTableStore(
+directory: null == directory ? _self.directory : directory // ignore: cast_nullable_to_non_nullable
+as String,delete: null == delete ? _self.delete : delete // ignore: cast_nullable_to_non_nullable
+as bool,wipeOnInvalidDeviceEncryptionKey: null == wipeOnInvalidDeviceEncryptionKey ? _self.wipeOnInvalidDeviceEncryptionKey : wipeOnInvalidDeviceEncryptionKey // ignore: cast_nullable_to_non_nullable
+as bool,maxValueSizeMb: null == maxValueSizeMb ? _self.maxValueSizeMb : maxValueSizeMb // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigBlockStore implements DiagnosticableTreeMixin {
+
+ String get directory; bool get delete;
+/// Create a copy of VeilidConfigBlockStore
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigBlockStoreCopyWith<VeilidConfigBlockStore> get copyWith => _$VeilidConfigBlockStoreCopyWithImpl<VeilidConfigBlockStore>(this as VeilidConfigBlockStore, _$identity);
+
+  /// Serializes this VeilidConfigBlockStore to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigBlockStore'))
+    ..add(DiagnosticsProperty('directory', directory))..add(DiagnosticsProperty('delete', delete));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigBlockStore&&(identical(other.directory, directory) || other.directory == directory)&&(identical(other.delete, delete) || other.delete == delete));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,directory,delete);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigBlockStore(directory: $directory, delete: $delete)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigBlockStoreCopyWith<$Res>  {
+  factory $VeilidConfigBlockStoreCopyWith(VeilidConfigBlockStore value, $Res Function(VeilidConfigBlockStore) _then) = _$VeilidConfigBlockStoreCopyWithImpl;
+@useResult
+$Res call({
+ String directory, bool delete
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigBlockStoreCopyWithImpl<$Res>
+    implements $VeilidConfigBlockStoreCopyWith<$Res> {
+  _$VeilidConfigBlockStoreCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigBlockStore _self;
+  final $Res Function(VeilidConfigBlockStore) _then;
+
+/// Create a copy of VeilidConfigBlockStore
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? directory = null,Object? delete = null,}) {
+  return _then(_self.copyWith(
+directory: null == directory ? _self.directory : directory // ignore: cast_nullable_to_non_nullable
+as String,delete: null == delete ? _self.delete : delete // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigBlockStore].
+extension VeilidConfigBlockStorePatterns on VeilidConfigBlockStore {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigBlockStore value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigBlockStore() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigBlockStore value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigBlockStore():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigBlockStore value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigBlockStore() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String directory,  bool delete)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigBlockStore() when $default != null:
+return $default(_that.directory,_that.delete);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String directory,  bool delete)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigBlockStore():
+return $default(_that.directory,_that.delete);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String directory,  bool delete)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigBlockStore() when $default != null:
+return $default(_that.directory,_that.delete);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigBlockStore with DiagnosticableTreeMixin implements VeilidConfigBlockStore {
+  const _VeilidConfigBlockStore({required this.directory, required this.delete});
+  factory _VeilidConfigBlockStore.fromJson(Map<String, dynamic> json) => _$VeilidConfigBlockStoreFromJson(json);
+
+@override final  String directory;
+@override final  bool delete;
+
+/// Create a copy of VeilidConfigBlockStore
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigBlockStoreCopyWith<_VeilidConfigBlockStore> get copyWith => __$VeilidConfigBlockStoreCopyWithImpl<_VeilidConfigBlockStore>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigBlockStoreToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigBlockStore'))
+    ..add(DiagnosticsProperty('directory', directory))..add(DiagnosticsProperty('delete', delete));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigBlockStore&&(identical(other.directory, directory) || other.directory == directory)&&(identical(other.delete, delete) || other.delete == delete));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,directory,delete);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigBlockStore(directory: $directory, delete: $delete)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigBlockStoreCopyWith<$Res> implements $VeilidConfigBlockStoreCopyWith<$Res> {
+  factory _$VeilidConfigBlockStoreCopyWith(_VeilidConfigBlockStore value, $Res Function(_VeilidConfigBlockStore) _then) = __$VeilidConfigBlockStoreCopyWithImpl;
+@override @useResult
+$Res call({
+ String directory, bool delete
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigBlockStoreCopyWithImpl<$Res>
+    implements _$VeilidConfigBlockStoreCopyWith<$Res> {
+  __$VeilidConfigBlockStoreCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigBlockStore _self;
+  final $Res Function(_VeilidConfigBlockStore) _then;
+
+/// Create a copy of VeilidConfigBlockStore
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? directory = null,Object? delete = null,}) {
+  return _then(_VeilidConfigBlockStore(
+directory: null == directory ? _self.directory : directory // ignore: cast_nullable_to_non_nullable
+as String,delete: null == delete ? _self.delete : delete // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigProtectedStore implements DiagnosticableTreeMixin {
+
+ bool get allowInsecureFallback; bool get alwaysUseInsecureStorage; String get directory; bool get delete; String get deviceEncryptionKeyPassword; String? get newDeviceEncryptionKeyPassword;
+/// Create a copy of VeilidConfigProtectedStore
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigProtectedStoreCopyWith<VeilidConfigProtectedStore> get copyWith => _$VeilidConfigProtectedStoreCopyWithImpl<VeilidConfigProtectedStore>(this as VeilidConfigProtectedStore, _$identity);
+
+  /// Serializes this VeilidConfigProtectedStore to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigProtectedStore'))
+    ..add(DiagnosticsProperty('allowInsecureFallback', allowInsecureFallback))..add(DiagnosticsProperty('alwaysUseInsecureStorage', alwaysUseInsecureStorage))..add(DiagnosticsProperty('directory', directory))..add(DiagnosticsProperty('delete', delete))..add(DiagnosticsProperty('deviceEncryptionKeyPassword', deviceEncryptionKeyPassword))..add(DiagnosticsProperty('newDeviceEncryptionKeyPassword', newDeviceEncryptionKeyPassword));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigProtectedStore&&(identical(other.allowInsecureFallback, allowInsecureFallback) || other.allowInsecureFallback == allowInsecureFallback)&&(identical(other.alwaysUseInsecureStorage, alwaysUseInsecureStorage) || other.alwaysUseInsecureStorage == alwaysUseInsecureStorage)&&(identical(other.directory, directory) || other.directory == directory)&&(identical(other.delete, delete) || other.delete == delete)&&(identical(other.deviceEncryptionKeyPassword, deviceEncryptionKeyPassword) || other.deviceEncryptionKeyPassword == deviceEncryptionKeyPassword)&&(identical(other.newDeviceEncryptionKeyPassword, newDeviceEncryptionKeyPassword) || other.newDeviceEncryptionKeyPassword == newDeviceEncryptionKeyPassword));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,allowInsecureFallback,alwaysUseInsecureStorage,directory,delete,deviceEncryptionKeyPassword,newDeviceEncryptionKeyPassword);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigProtectedStore(allowInsecureFallback: $allowInsecureFallback, alwaysUseInsecureStorage: $alwaysUseInsecureStorage, directory: $directory, delete: $delete, deviceEncryptionKeyPassword: $deviceEncryptionKeyPassword, newDeviceEncryptionKeyPassword: $newDeviceEncryptionKeyPassword)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigProtectedStoreCopyWith<$Res>  {
+  factory $VeilidConfigProtectedStoreCopyWith(VeilidConfigProtectedStore value, $Res Function(VeilidConfigProtectedStore) _then) = _$VeilidConfigProtectedStoreCopyWithImpl;
+@useResult
+$Res call({
+ bool allowInsecureFallback, bool alwaysUseInsecureStorage, String directory, bool delete, String deviceEncryptionKeyPassword, String? newDeviceEncryptionKeyPassword
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigProtectedStoreCopyWithImpl<$Res>
+    implements $VeilidConfigProtectedStoreCopyWith<$Res> {
+  _$VeilidConfigProtectedStoreCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigProtectedStore _self;
+  final $Res Function(VeilidConfigProtectedStore) _then;
+
+/// Create a copy of VeilidConfigProtectedStore
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? allowInsecureFallback = null,Object? alwaysUseInsecureStorage = null,Object? directory = null,Object? delete = null,Object? deviceEncryptionKeyPassword = null,Object? newDeviceEncryptionKeyPassword = freezed,}) {
+  return _then(_self.copyWith(
+allowInsecureFallback: null == allowInsecureFallback ? _self.allowInsecureFallback : allowInsecureFallback // ignore: cast_nullable_to_non_nullable
+as bool,alwaysUseInsecureStorage: null == alwaysUseInsecureStorage ? _self.alwaysUseInsecureStorage : alwaysUseInsecureStorage // ignore: cast_nullable_to_non_nullable
+as bool,directory: null == directory ? _self.directory : directory // ignore: cast_nullable_to_non_nullable
+as String,delete: null == delete ? _self.delete : delete // ignore: cast_nullable_to_non_nullable
+as bool,deviceEncryptionKeyPassword: null == deviceEncryptionKeyPassword ? _self.deviceEncryptionKeyPassword : deviceEncryptionKeyPassword // ignore: cast_nullable_to_non_nullable
+as String,newDeviceEncryptionKeyPassword: freezed == newDeviceEncryptionKeyPassword ? _self.newDeviceEncryptionKeyPassword : newDeviceEncryptionKeyPassword // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigProtectedStore].
+extension VeilidConfigProtectedStorePatterns on VeilidConfigProtectedStore {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigProtectedStore value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigProtectedStore() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigProtectedStore value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigProtectedStore():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigProtectedStore value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigProtectedStore() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool allowInsecureFallback,  bool alwaysUseInsecureStorage,  String directory,  bool delete,  String deviceEncryptionKeyPassword,  String? newDeviceEncryptionKeyPassword)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigProtectedStore() when $default != null:
+return $default(_that.allowInsecureFallback,_that.alwaysUseInsecureStorage,_that.directory,_that.delete,_that.deviceEncryptionKeyPassword,_that.newDeviceEncryptionKeyPassword);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool allowInsecureFallback,  bool alwaysUseInsecureStorage,  String directory,  bool delete,  String deviceEncryptionKeyPassword,  String? newDeviceEncryptionKeyPassword)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigProtectedStore():
+return $default(_that.allowInsecureFallback,_that.alwaysUseInsecureStorage,_that.directory,_that.delete,_that.deviceEncryptionKeyPassword,_that.newDeviceEncryptionKeyPassword);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool allowInsecureFallback,  bool alwaysUseInsecureStorage,  String directory,  bool delete,  String deviceEncryptionKeyPassword,  String? newDeviceEncryptionKeyPassword)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigProtectedStore() when $default != null:
+return $default(_that.allowInsecureFallback,_that.alwaysUseInsecureStorage,_that.directory,_that.delete,_that.deviceEncryptionKeyPassword,_that.newDeviceEncryptionKeyPassword);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigProtectedStore with DiagnosticableTreeMixin implements VeilidConfigProtectedStore {
+  const _VeilidConfigProtectedStore({required this.allowInsecureFallback, required this.alwaysUseInsecureStorage, required this.directory, required this.delete, required this.deviceEncryptionKeyPassword, this.newDeviceEncryptionKeyPassword});
+  factory _VeilidConfigProtectedStore.fromJson(Map<String, dynamic> json) => _$VeilidConfigProtectedStoreFromJson(json);
+
+@override final  bool allowInsecureFallback;
+@override final  bool alwaysUseInsecureStorage;
+@override final  String directory;
+@override final  bool delete;
+@override final  String deviceEncryptionKeyPassword;
+@override final  String? newDeviceEncryptionKeyPassword;
+
+/// Create a copy of VeilidConfigProtectedStore
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigProtectedStoreCopyWith<_VeilidConfigProtectedStore> get copyWith => __$VeilidConfigProtectedStoreCopyWithImpl<_VeilidConfigProtectedStore>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigProtectedStoreToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigProtectedStore'))
+    ..add(DiagnosticsProperty('allowInsecureFallback', allowInsecureFallback))..add(DiagnosticsProperty('alwaysUseInsecureStorage', alwaysUseInsecureStorage))..add(DiagnosticsProperty('directory', directory))..add(DiagnosticsProperty('delete', delete))..add(DiagnosticsProperty('deviceEncryptionKeyPassword', deviceEncryptionKeyPassword))..add(DiagnosticsProperty('newDeviceEncryptionKeyPassword', newDeviceEncryptionKeyPassword));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigProtectedStore&&(identical(other.allowInsecureFallback, allowInsecureFallback) || other.allowInsecureFallback == allowInsecureFallback)&&(identical(other.alwaysUseInsecureStorage, alwaysUseInsecureStorage) || other.alwaysUseInsecureStorage == alwaysUseInsecureStorage)&&(identical(other.directory, directory) || other.directory == directory)&&(identical(other.delete, delete) || other.delete == delete)&&(identical(other.deviceEncryptionKeyPassword, deviceEncryptionKeyPassword) || other.deviceEncryptionKeyPassword == deviceEncryptionKeyPassword)&&(identical(other.newDeviceEncryptionKeyPassword, newDeviceEncryptionKeyPassword) || other.newDeviceEncryptionKeyPassword == newDeviceEncryptionKeyPassword));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,allowInsecureFallback,alwaysUseInsecureStorage,directory,delete,deviceEncryptionKeyPassword,newDeviceEncryptionKeyPassword);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigProtectedStore(allowInsecureFallback: $allowInsecureFallback, alwaysUseInsecureStorage: $alwaysUseInsecureStorage, directory: $directory, delete: $delete, deviceEncryptionKeyPassword: $deviceEncryptionKeyPassword, newDeviceEncryptionKeyPassword: $newDeviceEncryptionKeyPassword)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigProtectedStoreCopyWith<$Res> implements $VeilidConfigProtectedStoreCopyWith<$Res> {
+  factory _$VeilidConfigProtectedStoreCopyWith(_VeilidConfigProtectedStore value, $Res Function(_VeilidConfigProtectedStore) _then) = __$VeilidConfigProtectedStoreCopyWithImpl;
+@override @useResult
+$Res call({
+ bool allowInsecureFallback, bool alwaysUseInsecureStorage, String directory, bool delete, String deviceEncryptionKeyPassword, String? newDeviceEncryptionKeyPassword
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigProtectedStoreCopyWithImpl<$Res>
+    implements _$VeilidConfigProtectedStoreCopyWith<$Res> {
+  __$VeilidConfigProtectedStoreCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigProtectedStore _self;
+  final $Res Function(_VeilidConfigProtectedStore) _then;
+
+/// Create a copy of VeilidConfigProtectedStore
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? allowInsecureFallback = null,Object? alwaysUseInsecureStorage = null,Object? directory = null,Object? delete = null,Object? deviceEncryptionKeyPassword = null,Object? newDeviceEncryptionKeyPassword = freezed,}) {
+  return _then(_VeilidConfigProtectedStore(
+allowInsecureFallback: null == allowInsecureFallback ? _self.allowInsecureFallback : allowInsecureFallback // ignore: cast_nullable_to_non_nullable
+as bool,alwaysUseInsecureStorage: null == alwaysUseInsecureStorage ? _self.alwaysUseInsecureStorage : alwaysUseInsecureStorage // ignore: cast_nullable_to_non_nullable
+as bool,directory: null == directory ? _self.directory : directory // ignore: cast_nullable_to_non_nullable
+as String,delete: null == delete ? _self.delete : delete // ignore: cast_nullable_to_non_nullable
+as bool,deviceEncryptionKeyPassword: null == deviceEncryptionKeyPassword ? _self.deviceEncryptionKeyPassword : deviceEncryptionKeyPassword // ignore: cast_nullable_to_non_nullable
+as String,newDeviceEncryptionKeyPassword: freezed == newDeviceEncryptionKeyPassword ? _self.newDeviceEncryptionKeyPassword : newDeviceEncryptionKeyPassword // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigCapabilities implements DiagnosticableTreeMixin {
+
+ List<String> get disable;
+/// Create a copy of VeilidConfigCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigCapabilitiesCopyWith<VeilidConfigCapabilities> get copyWith => _$VeilidConfigCapabilitiesCopyWithImpl<VeilidConfigCapabilities>(this as VeilidConfigCapabilities, _$identity);
+
+  /// Serializes this VeilidConfigCapabilities to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigCapabilities'))
+    ..add(DiagnosticsProperty('disable', disable));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigCapabilities&&const DeepCollectionEquality().equals(other.disable, disable));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(disable));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigCapabilities(disable: $disable)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigCapabilitiesCopyWith<$Res>  {
+  factory $VeilidConfigCapabilitiesCopyWith(VeilidConfigCapabilities value, $Res Function(VeilidConfigCapabilities) _then) = _$VeilidConfigCapabilitiesCopyWithImpl;
+@useResult
+$Res call({
+ List<String> disable
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigCapabilitiesCopyWithImpl<$Res>
+    implements $VeilidConfigCapabilitiesCopyWith<$Res> {
+  _$VeilidConfigCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigCapabilities _self;
+  final $Res Function(VeilidConfigCapabilities) _then;
+
+/// Create a copy of VeilidConfigCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? disable = null,}) {
+  return _then(_self.copyWith(
+disable: null == disable ? _self.disable : disable // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigCapabilities].
+extension VeilidConfigCapabilitiesPatterns on VeilidConfigCapabilities {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigCapabilities value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigCapabilities() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigCapabilities value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigCapabilities():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigCapabilities value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigCapabilities() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> disable)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigCapabilities() when $default != null:
+return $default(_that.disable);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> disable)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigCapabilities():
+return $default(_that.disable);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> disable)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigCapabilities() when $default != null:
+return $default(_that.disable);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigCapabilities with DiagnosticableTreeMixin implements VeilidConfigCapabilities {
+  const _VeilidConfigCapabilities({required final  List<String> disable}): _disable = disable;
+  factory _VeilidConfigCapabilities.fromJson(Map<String, dynamic> json) => _$VeilidConfigCapabilitiesFromJson(json);
+
+ final  List<String> _disable;
+@override List<String> get disable {
+  if (_disable is EqualUnmodifiableListView) return _disable;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_disable);
+}
+
+
+/// Create a copy of VeilidConfigCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigCapabilitiesCopyWith<_VeilidConfigCapabilities> get copyWith => __$VeilidConfigCapabilitiesCopyWithImpl<_VeilidConfigCapabilities>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigCapabilitiesToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigCapabilities'))
+    ..add(DiagnosticsProperty('disable', disable));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigCapabilities&&const DeepCollectionEquality().equals(other._disable, _disable));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_disable));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigCapabilities(disable: $disable)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigCapabilitiesCopyWith<$Res> implements $VeilidConfigCapabilitiesCopyWith<$Res> {
+  factory _$VeilidConfigCapabilitiesCopyWith(_VeilidConfigCapabilities value, $Res Function(_VeilidConfigCapabilities) _then) = __$VeilidConfigCapabilitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> disable
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigCapabilitiesCopyWithImpl<$Res>
+    implements _$VeilidConfigCapabilitiesCopyWith<$Res> {
+  __$VeilidConfigCapabilitiesCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigCapabilities _self;
+  final $Res Function(_VeilidConfigCapabilities) _then;
+
+/// Create a copy of VeilidConfigCapabilities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? disable = null,}) {
+  return _then(_VeilidConfigCapabilities(
+disable: null == disable ? _self._disable : disable // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigInternalUDP implements DiagnosticableTreeMixin {
+
+ int get socketPoolSize;
+/// Create a copy of VeilidConfigInternalUDP
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalUDPCopyWith<VeilidConfigInternalUDP> get copyWith => _$VeilidConfigInternalUDPCopyWithImpl<VeilidConfigInternalUDP>(this as VeilidConfigInternalUDP, _$identity);
+
+  /// Serializes this VeilidConfigInternalUDP to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalUDP'))
+    ..add(DiagnosticsProperty('socketPoolSize', socketPoolSize));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigInternalUDP&&(identical(other.socketPoolSize, socketPoolSize) || other.socketPoolSize == socketPoolSize));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,socketPoolSize);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalUDP(socketPoolSize: $socketPoolSize)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigInternalUDPCopyWith<$Res>  {
+  factory $VeilidConfigInternalUDPCopyWith(VeilidConfigInternalUDP value, $Res Function(VeilidConfigInternalUDP) _then) = _$VeilidConfigInternalUDPCopyWithImpl;
+@useResult
+$Res call({
+ int socketPoolSize
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigInternalUDPCopyWithImpl<$Res>
+    implements $VeilidConfigInternalUDPCopyWith<$Res> {
+  _$VeilidConfigInternalUDPCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigInternalUDP _self;
+  final $Res Function(VeilidConfigInternalUDP) _then;
+
+/// Create a copy of VeilidConfigInternalUDP
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? socketPoolSize = null,}) {
+  return _then(_self.copyWith(
+socketPoolSize: null == socketPoolSize ? _self.socketPoolSize : socketPoolSize // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigInternalUDP].
+extension VeilidConfigInternalUDPPatterns on VeilidConfigInternalUDP {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigInternalUDP value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalUDP() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigInternalUDP value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalUDP():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigInternalUDP value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalUDP() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int socketPoolSize)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalUDP() when $default != null:
+return $default(_that.socketPoolSize);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int socketPoolSize)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalUDP():
+return $default(_that.socketPoolSize);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int socketPoolSize)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalUDP() when $default != null:
+return $default(_that.socketPoolSize);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigInternalUDP with DiagnosticableTreeMixin implements VeilidConfigInternalUDP {
+  const _VeilidConfigInternalUDP({required this.socketPoolSize});
+  factory _VeilidConfigInternalUDP.fromJson(Map<String, dynamic> json) => _$VeilidConfigInternalUDPFromJson(json);
+
+@override final  int socketPoolSize;
+
+/// Create a copy of VeilidConfigInternalUDP
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigInternalUDPCopyWith<_VeilidConfigInternalUDP> get copyWith => __$VeilidConfigInternalUDPCopyWithImpl<_VeilidConfigInternalUDP>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigInternalUDPToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalUDP'))
+    ..add(DiagnosticsProperty('socketPoolSize', socketPoolSize));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigInternalUDP&&(identical(other.socketPoolSize, socketPoolSize) || other.socketPoolSize == socketPoolSize));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,socketPoolSize);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalUDP(socketPoolSize: $socketPoolSize)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigInternalUDPCopyWith<$Res> implements $VeilidConfigInternalUDPCopyWith<$Res> {
+  factory _$VeilidConfigInternalUDPCopyWith(_VeilidConfigInternalUDP value, $Res Function(_VeilidConfigInternalUDP) _then) = __$VeilidConfigInternalUDPCopyWithImpl;
+@override @useResult
+$Res call({
+ int socketPoolSize
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigInternalUDPCopyWithImpl<$Res>
+    implements _$VeilidConfigInternalUDPCopyWith<$Res> {
+  __$VeilidConfigInternalUDPCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigInternalUDP _self;
+  final $Res Function(_VeilidConfigInternalUDP) _then;
+
+/// Create a copy of VeilidConfigInternalUDP
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? socketPoolSize = null,}) {
+  return _then(_VeilidConfigInternalUDP(
+socketPoolSize: null == socketPoolSize ? _self.socketPoolSize : socketPoolSize // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigInternalProtocol implements DiagnosticableTreeMixin {
+
+ VeilidConfigInternalUDP get udp;
+/// Create a copy of VeilidConfigInternalProtocol
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalProtocolCopyWith<VeilidConfigInternalProtocol> get copyWith => _$VeilidConfigInternalProtocolCopyWithImpl<VeilidConfigInternalProtocol>(this as VeilidConfigInternalProtocol, _$identity);
+
+  /// Serializes this VeilidConfigInternalProtocol to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalProtocol'))
+    ..add(DiagnosticsProperty('udp', udp));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigInternalProtocol&&(identical(other.udp, udp) || other.udp == udp));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,udp);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalProtocol(udp: $udp)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigInternalProtocolCopyWith<$Res>  {
+  factory $VeilidConfigInternalProtocolCopyWith(VeilidConfigInternalProtocol value, $Res Function(VeilidConfigInternalProtocol) _then) = _$VeilidConfigInternalProtocolCopyWithImpl;
+@useResult
+$Res call({
+ VeilidConfigInternalUDP udp
+});
+
+
+$VeilidConfigInternalUDPCopyWith<$Res> get udp;
+
+}
+/// @nodoc
+class _$VeilidConfigInternalProtocolCopyWithImpl<$Res>
+    implements $VeilidConfigInternalProtocolCopyWith<$Res> {
+  _$VeilidConfigInternalProtocolCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigInternalProtocol _self;
+  final $Res Function(VeilidConfigInternalProtocol) _then;
+
+/// Create a copy of VeilidConfigInternalProtocol
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? udp = null,}) {
+  return _then(_self.copyWith(
+udp: null == udp ? _self.udp : udp // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalUDP,
+  ));
+}
+/// Create a copy of VeilidConfigInternalProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalUDPCopyWith<$Res> get udp {
+  
+  return $VeilidConfigInternalUDPCopyWith<$Res>(_self.udp, (value) {
+    return _then(_self.copyWith(udp: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigInternalProtocol].
+extension VeilidConfigInternalProtocolPatterns on VeilidConfigInternalProtocol {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigInternalProtocol value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalProtocol() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigInternalProtocol value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalProtocol():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigInternalProtocol value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalProtocol() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidConfigInternalUDP udp)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalProtocol() when $default != null:
+return $default(_that.udp);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidConfigInternalUDP udp)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalProtocol():
+return $default(_that.udp);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidConfigInternalUDP udp)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalProtocol() when $default != null:
+return $default(_that.udp);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigInternalProtocol with DiagnosticableTreeMixin implements VeilidConfigInternalProtocol {
+  const _VeilidConfigInternalProtocol({required this.udp});
+  factory _VeilidConfigInternalProtocol.fromJson(Map<String, dynamic> json) => _$VeilidConfigInternalProtocolFromJson(json);
+
+@override final  VeilidConfigInternalUDP udp;
+
+/// Create a copy of VeilidConfigInternalProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigInternalProtocolCopyWith<_VeilidConfigInternalProtocol> get copyWith => __$VeilidConfigInternalProtocolCopyWithImpl<_VeilidConfigInternalProtocol>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigInternalProtocolToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalProtocol'))
+    ..add(DiagnosticsProperty('udp', udp));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigInternalProtocol&&(identical(other.udp, udp) || other.udp == udp));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,udp);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalProtocol(udp: $udp)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigInternalProtocolCopyWith<$Res> implements $VeilidConfigInternalProtocolCopyWith<$Res> {
+  factory _$VeilidConfigInternalProtocolCopyWith(_VeilidConfigInternalProtocol value, $Res Function(_VeilidConfigInternalProtocol) _then) = __$VeilidConfigInternalProtocolCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidConfigInternalUDP udp
+});
+
+
+@override $VeilidConfigInternalUDPCopyWith<$Res> get udp;
+
+}
+/// @nodoc
+class __$VeilidConfigInternalProtocolCopyWithImpl<$Res>
+    implements _$VeilidConfigInternalProtocolCopyWith<$Res> {
+  __$VeilidConfigInternalProtocolCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigInternalProtocol _self;
+  final $Res Function(_VeilidConfigInternalProtocol) _then;
+
+/// Create a copy of VeilidConfigInternalProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? udp = null,}) {
+  return _then(_VeilidConfigInternalProtocol(
+udp: null == udp ? _self.udp : udp // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalUDP,
+  ));
+}
+
+/// Create a copy of VeilidConfigInternalProtocol
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalUDPCopyWith<$Res> get udp {
+  
+  return $VeilidConfigInternalUDPCopyWith<$Res>(_self.udp, (value) {
+    return _then(_self.copyWith(udp: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigInternalRPC implements DiagnosticableTreeMixin {
+
+ int get concurrency; int get queueSize; int get timeoutMs; int get maxRouteHopCount; int? get maxTimestampBehindMs; int? get maxTimestampAheadMs;
+/// Create a copy of VeilidConfigInternalRPC
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalRPCCopyWith<VeilidConfigInternalRPC> get copyWith => _$VeilidConfigInternalRPCCopyWithImpl<VeilidConfigInternalRPC>(this as VeilidConfigInternalRPC, _$identity);
+
+  /// Serializes this VeilidConfigInternalRPC to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalRPC'))
+    ..add(DiagnosticsProperty('concurrency', concurrency))..add(DiagnosticsProperty('queueSize', queueSize))..add(DiagnosticsProperty('timeoutMs', timeoutMs))..add(DiagnosticsProperty('maxRouteHopCount', maxRouteHopCount))..add(DiagnosticsProperty('maxTimestampBehindMs', maxTimestampBehindMs))..add(DiagnosticsProperty('maxTimestampAheadMs', maxTimestampAheadMs));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigInternalRPC&&(identical(other.concurrency, concurrency) || other.concurrency == concurrency)&&(identical(other.queueSize, queueSize) || other.queueSize == queueSize)&&(identical(other.timeoutMs, timeoutMs) || other.timeoutMs == timeoutMs)&&(identical(other.maxRouteHopCount, maxRouteHopCount) || other.maxRouteHopCount == maxRouteHopCount)&&(identical(other.maxTimestampBehindMs, maxTimestampBehindMs) || other.maxTimestampBehindMs == maxTimestampBehindMs)&&(identical(other.maxTimestampAheadMs, maxTimestampAheadMs) || other.maxTimestampAheadMs == maxTimestampAheadMs));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,concurrency,queueSize,timeoutMs,maxRouteHopCount,maxTimestampBehindMs,maxTimestampAheadMs);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalRPC(concurrency: $concurrency, queueSize: $queueSize, timeoutMs: $timeoutMs, maxRouteHopCount: $maxRouteHopCount, maxTimestampBehindMs: $maxTimestampBehindMs, maxTimestampAheadMs: $maxTimestampAheadMs)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigInternalRPCCopyWith<$Res>  {
+  factory $VeilidConfigInternalRPCCopyWith(VeilidConfigInternalRPC value, $Res Function(VeilidConfigInternalRPC) _then) = _$VeilidConfigInternalRPCCopyWithImpl;
+@useResult
+$Res call({
+ int concurrency, int queueSize, int timeoutMs, int maxRouteHopCount, int? maxTimestampBehindMs, int? maxTimestampAheadMs
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigInternalRPCCopyWithImpl<$Res>
+    implements $VeilidConfigInternalRPCCopyWith<$Res> {
+  _$VeilidConfigInternalRPCCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigInternalRPC _self;
+  final $Res Function(VeilidConfigInternalRPC) _then;
+
+/// Create a copy of VeilidConfigInternalRPC
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? concurrency = null,Object? queueSize = null,Object? timeoutMs = null,Object? maxRouteHopCount = null,Object? maxTimestampBehindMs = freezed,Object? maxTimestampAheadMs = freezed,}) {
+  return _then(_self.copyWith(
+concurrency: null == concurrency ? _self.concurrency : concurrency // ignore: cast_nullable_to_non_nullable
+as int,queueSize: null == queueSize ? _self.queueSize : queueSize // ignore: cast_nullable_to_non_nullable
+as int,timeoutMs: null == timeoutMs ? _self.timeoutMs : timeoutMs // ignore: cast_nullable_to_non_nullable
+as int,maxRouteHopCount: null == maxRouteHopCount ? _self.maxRouteHopCount : maxRouteHopCount // ignore: cast_nullable_to_non_nullable
+as int,maxTimestampBehindMs: freezed == maxTimestampBehindMs ? _self.maxTimestampBehindMs : maxTimestampBehindMs // ignore: cast_nullable_to_non_nullable
+as int?,maxTimestampAheadMs: freezed == maxTimestampAheadMs ? _self.maxTimestampAheadMs : maxTimestampAheadMs // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigInternalRPC].
+extension VeilidConfigInternalRPCPatterns on VeilidConfigInternalRPC {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigInternalRPC value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalRPC() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigInternalRPC value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalRPC():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigInternalRPC value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalRPC() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int concurrency,  int queueSize,  int timeoutMs,  int maxRouteHopCount,  int? maxTimestampBehindMs,  int? maxTimestampAheadMs)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalRPC() when $default != null:
+return $default(_that.concurrency,_that.queueSize,_that.timeoutMs,_that.maxRouteHopCount,_that.maxTimestampBehindMs,_that.maxTimestampAheadMs);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int concurrency,  int queueSize,  int timeoutMs,  int maxRouteHopCount,  int? maxTimestampBehindMs,  int? maxTimestampAheadMs)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalRPC():
+return $default(_that.concurrency,_that.queueSize,_that.timeoutMs,_that.maxRouteHopCount,_that.maxTimestampBehindMs,_that.maxTimestampAheadMs);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int concurrency,  int queueSize,  int timeoutMs,  int maxRouteHopCount,  int? maxTimestampBehindMs,  int? maxTimestampAheadMs)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalRPC() when $default != null:
+return $default(_that.concurrency,_that.queueSize,_that.timeoutMs,_that.maxRouteHopCount,_that.maxTimestampBehindMs,_that.maxTimestampAheadMs);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigInternalRPC with DiagnosticableTreeMixin implements VeilidConfigInternalRPC {
+  const _VeilidConfigInternalRPC({required this.concurrency, required this.queueSize, required this.timeoutMs, required this.maxRouteHopCount, this.maxTimestampBehindMs, this.maxTimestampAheadMs});
+  factory _VeilidConfigInternalRPC.fromJson(Map<String, dynamic> json) => _$VeilidConfigInternalRPCFromJson(json);
+
+@override final  int concurrency;
+@override final  int queueSize;
+@override final  int timeoutMs;
+@override final  int maxRouteHopCount;
+@override final  int? maxTimestampBehindMs;
+@override final  int? maxTimestampAheadMs;
+
+/// Create a copy of VeilidConfigInternalRPC
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigInternalRPCCopyWith<_VeilidConfigInternalRPC> get copyWith => __$VeilidConfigInternalRPCCopyWithImpl<_VeilidConfigInternalRPC>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigInternalRPCToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalRPC'))
+    ..add(DiagnosticsProperty('concurrency', concurrency))..add(DiagnosticsProperty('queueSize', queueSize))..add(DiagnosticsProperty('timeoutMs', timeoutMs))..add(DiagnosticsProperty('maxRouteHopCount', maxRouteHopCount))..add(DiagnosticsProperty('maxTimestampBehindMs', maxTimestampBehindMs))..add(DiagnosticsProperty('maxTimestampAheadMs', maxTimestampAheadMs));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigInternalRPC&&(identical(other.concurrency, concurrency) || other.concurrency == concurrency)&&(identical(other.queueSize, queueSize) || other.queueSize == queueSize)&&(identical(other.timeoutMs, timeoutMs) || other.timeoutMs == timeoutMs)&&(identical(other.maxRouteHopCount, maxRouteHopCount) || other.maxRouteHopCount == maxRouteHopCount)&&(identical(other.maxTimestampBehindMs, maxTimestampBehindMs) || other.maxTimestampBehindMs == maxTimestampBehindMs)&&(identical(other.maxTimestampAheadMs, maxTimestampAheadMs) || other.maxTimestampAheadMs == maxTimestampAheadMs));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,concurrency,queueSize,timeoutMs,maxRouteHopCount,maxTimestampBehindMs,maxTimestampAheadMs);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalRPC(concurrency: $concurrency, queueSize: $queueSize, timeoutMs: $timeoutMs, maxRouteHopCount: $maxRouteHopCount, maxTimestampBehindMs: $maxTimestampBehindMs, maxTimestampAheadMs: $maxTimestampAheadMs)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigInternalRPCCopyWith<$Res> implements $VeilidConfigInternalRPCCopyWith<$Res> {
+  factory _$VeilidConfigInternalRPCCopyWith(_VeilidConfigInternalRPC value, $Res Function(_VeilidConfigInternalRPC) _then) = __$VeilidConfigInternalRPCCopyWithImpl;
+@override @useResult
+$Res call({
+ int concurrency, int queueSize, int timeoutMs, int maxRouteHopCount, int? maxTimestampBehindMs, int? maxTimestampAheadMs
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigInternalRPCCopyWithImpl<$Res>
+    implements _$VeilidConfigInternalRPCCopyWith<$Res> {
+  __$VeilidConfigInternalRPCCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigInternalRPC _self;
+  final $Res Function(_VeilidConfigInternalRPC) _then;
+
+/// Create a copy of VeilidConfigInternalRPC
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? concurrency = null,Object? queueSize = null,Object? timeoutMs = null,Object? maxRouteHopCount = null,Object? maxTimestampBehindMs = freezed,Object? maxTimestampAheadMs = freezed,}) {
+  return _then(_VeilidConfigInternalRPC(
+concurrency: null == concurrency ? _self.concurrency : concurrency // ignore: cast_nullable_to_non_nullable
+as int,queueSize: null == queueSize ? _self.queueSize : queueSize // ignore: cast_nullable_to_non_nullable
+as int,timeoutMs: null == timeoutMs ? _self.timeoutMs : timeoutMs // ignore: cast_nullable_to_non_nullable
+as int,maxRouteHopCount: null == maxRouteHopCount ? _self.maxRouteHopCount : maxRouteHopCount // ignore: cast_nullable_to_non_nullable
+as int,maxTimestampBehindMs: freezed == maxTimestampBehindMs ? _self.maxTimestampBehindMs : maxTimestampBehindMs // ignore: cast_nullable_to_non_nullable
+as int?,maxTimestampAheadMs: freezed == maxTimestampAheadMs ? _self.maxTimestampAheadMs : maxTimestampAheadMs // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigInternalDHT implements DiagnosticableTreeMixin {
+
+ int get maxFindNodeCount; int get resolveNodeTimeoutMs; int get resolveNodeCount; int get resolveNodeFanout; int get getValueTimeoutMs; int get getValueCount; int get getValueFanout; int get setValueTimeoutMs; int get setValueCount; int get setValueFanout; int get consensusWidth; int get minPeerCount; int get minPeerRefreshTimeMs; int get validateDialInfoReceiptTimeMs; int get maxWatchExpirationMs; int get publicWatchLimit; int get memberWatchLimit; int get publicTransactionLimit; int get memberTransactionLimit;
+/// Create a copy of VeilidConfigInternalDHT
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalDHTCopyWith<VeilidConfigInternalDHT> get copyWith => _$VeilidConfigInternalDHTCopyWithImpl<VeilidConfigInternalDHT>(this as VeilidConfigInternalDHT, _$identity);
+
+  /// Serializes this VeilidConfigInternalDHT to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalDHT'))
+    ..add(DiagnosticsProperty('maxFindNodeCount', maxFindNodeCount))..add(DiagnosticsProperty('resolveNodeTimeoutMs', resolveNodeTimeoutMs))..add(DiagnosticsProperty('resolveNodeCount', resolveNodeCount))..add(DiagnosticsProperty('resolveNodeFanout', resolveNodeFanout))..add(DiagnosticsProperty('getValueTimeoutMs', getValueTimeoutMs))..add(DiagnosticsProperty('getValueCount', getValueCount))..add(DiagnosticsProperty('getValueFanout', getValueFanout))..add(DiagnosticsProperty('setValueTimeoutMs', setValueTimeoutMs))..add(DiagnosticsProperty('setValueCount', setValueCount))..add(DiagnosticsProperty('setValueFanout', setValueFanout))..add(DiagnosticsProperty('consensusWidth', consensusWidth))..add(DiagnosticsProperty('minPeerCount', minPeerCount))..add(DiagnosticsProperty('minPeerRefreshTimeMs', minPeerRefreshTimeMs))..add(DiagnosticsProperty('validateDialInfoReceiptTimeMs', validateDialInfoReceiptTimeMs))..add(DiagnosticsProperty('maxWatchExpirationMs', maxWatchExpirationMs))..add(DiagnosticsProperty('publicWatchLimit', publicWatchLimit))..add(DiagnosticsProperty('memberWatchLimit', memberWatchLimit))..add(DiagnosticsProperty('publicTransactionLimit', publicTransactionLimit))..add(DiagnosticsProperty('memberTransactionLimit', memberTransactionLimit));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigInternalDHT&&(identical(other.maxFindNodeCount, maxFindNodeCount) || other.maxFindNodeCount == maxFindNodeCount)&&(identical(other.resolveNodeTimeoutMs, resolveNodeTimeoutMs) || other.resolveNodeTimeoutMs == resolveNodeTimeoutMs)&&(identical(other.resolveNodeCount, resolveNodeCount) || other.resolveNodeCount == resolveNodeCount)&&(identical(other.resolveNodeFanout, resolveNodeFanout) || other.resolveNodeFanout == resolveNodeFanout)&&(identical(other.getValueTimeoutMs, getValueTimeoutMs) || other.getValueTimeoutMs == getValueTimeoutMs)&&(identical(other.getValueCount, getValueCount) || other.getValueCount == getValueCount)&&(identical(other.getValueFanout, getValueFanout) || other.getValueFanout == getValueFanout)&&(identical(other.setValueTimeoutMs, setValueTimeoutMs) || other.setValueTimeoutMs == setValueTimeoutMs)&&(identical(other.setValueCount, setValueCount) || other.setValueCount == setValueCount)&&(identical(other.setValueFanout, setValueFanout) || other.setValueFanout == setValueFanout)&&(identical(other.consensusWidth, consensusWidth) || other.consensusWidth == consensusWidth)&&(identical(other.minPeerCount, minPeerCount) || other.minPeerCount == minPeerCount)&&(identical(other.minPeerRefreshTimeMs, minPeerRefreshTimeMs) || other.minPeerRefreshTimeMs == minPeerRefreshTimeMs)&&(identical(other.validateDialInfoReceiptTimeMs, validateDialInfoReceiptTimeMs) || other.validateDialInfoReceiptTimeMs == validateDialInfoReceiptTimeMs)&&(identical(other.maxWatchExpirationMs, maxWatchExpirationMs) || other.maxWatchExpirationMs == maxWatchExpirationMs)&&(identical(other.publicWatchLimit, publicWatchLimit) || other.publicWatchLimit == publicWatchLimit)&&(identical(other.memberWatchLimit, memberWatchLimit) || other.memberWatchLimit == memberWatchLimit)&&(identical(other.publicTransactionLimit, publicTransactionLimit) || other.publicTransactionLimit == publicTransactionLimit)&&(identical(other.memberTransactionLimit, memberTransactionLimit) || other.memberTransactionLimit == memberTransactionLimit));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hashAll([runtimeType,maxFindNodeCount,resolveNodeTimeoutMs,resolveNodeCount,resolveNodeFanout,getValueTimeoutMs,getValueCount,getValueFanout,setValueTimeoutMs,setValueCount,setValueFanout,consensusWidth,minPeerCount,minPeerRefreshTimeMs,validateDialInfoReceiptTimeMs,maxWatchExpirationMs,publicWatchLimit,memberWatchLimit,publicTransactionLimit,memberTransactionLimit]);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalDHT(maxFindNodeCount: $maxFindNodeCount, resolveNodeTimeoutMs: $resolveNodeTimeoutMs, resolveNodeCount: $resolveNodeCount, resolveNodeFanout: $resolveNodeFanout, getValueTimeoutMs: $getValueTimeoutMs, getValueCount: $getValueCount, getValueFanout: $getValueFanout, setValueTimeoutMs: $setValueTimeoutMs, setValueCount: $setValueCount, setValueFanout: $setValueFanout, consensusWidth: $consensusWidth, minPeerCount: $minPeerCount, minPeerRefreshTimeMs: $minPeerRefreshTimeMs, validateDialInfoReceiptTimeMs: $validateDialInfoReceiptTimeMs, maxWatchExpirationMs: $maxWatchExpirationMs, publicWatchLimit: $publicWatchLimit, memberWatchLimit: $memberWatchLimit, publicTransactionLimit: $publicTransactionLimit, memberTransactionLimit: $memberTransactionLimit)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigInternalDHTCopyWith<$Res>  {
+  factory $VeilidConfigInternalDHTCopyWith(VeilidConfigInternalDHT value, $Res Function(VeilidConfigInternalDHT) _then) = _$VeilidConfigInternalDHTCopyWithImpl;
+@useResult
+$Res call({
+ int maxFindNodeCount, int resolveNodeTimeoutMs, int resolveNodeCount, int resolveNodeFanout, int getValueTimeoutMs, int getValueCount, int getValueFanout, int setValueTimeoutMs, int setValueCount, int setValueFanout, int consensusWidth, int minPeerCount, int minPeerRefreshTimeMs, int validateDialInfoReceiptTimeMs, int maxWatchExpirationMs, int publicWatchLimit, int memberWatchLimit, int publicTransactionLimit, int memberTransactionLimit
+});
+
+
+
+
+}
+/// @nodoc
+class _$VeilidConfigInternalDHTCopyWithImpl<$Res>
+    implements $VeilidConfigInternalDHTCopyWith<$Res> {
+  _$VeilidConfigInternalDHTCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigInternalDHT _self;
+  final $Res Function(VeilidConfigInternalDHT) _then;
+
+/// Create a copy of VeilidConfigInternalDHT
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? maxFindNodeCount = null,Object? resolveNodeTimeoutMs = null,Object? resolveNodeCount = null,Object? resolveNodeFanout = null,Object? getValueTimeoutMs = null,Object? getValueCount = null,Object? getValueFanout = null,Object? setValueTimeoutMs = null,Object? setValueCount = null,Object? setValueFanout = null,Object? consensusWidth = null,Object? minPeerCount = null,Object? minPeerRefreshTimeMs = null,Object? validateDialInfoReceiptTimeMs = null,Object? maxWatchExpirationMs = null,Object? publicWatchLimit = null,Object? memberWatchLimit = null,Object? publicTransactionLimit = null,Object? memberTransactionLimit = null,}) {
+  return _then(_self.copyWith(
+maxFindNodeCount: null == maxFindNodeCount ? _self.maxFindNodeCount : maxFindNodeCount // ignore: cast_nullable_to_non_nullable
+as int,resolveNodeTimeoutMs: null == resolveNodeTimeoutMs ? _self.resolveNodeTimeoutMs : resolveNodeTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,resolveNodeCount: null == resolveNodeCount ? _self.resolveNodeCount : resolveNodeCount // ignore: cast_nullable_to_non_nullable
+as int,resolveNodeFanout: null == resolveNodeFanout ? _self.resolveNodeFanout : resolveNodeFanout // ignore: cast_nullable_to_non_nullable
+as int,getValueTimeoutMs: null == getValueTimeoutMs ? _self.getValueTimeoutMs : getValueTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,getValueCount: null == getValueCount ? _self.getValueCount : getValueCount // ignore: cast_nullable_to_non_nullable
+as int,getValueFanout: null == getValueFanout ? _self.getValueFanout : getValueFanout // ignore: cast_nullable_to_non_nullable
+as int,setValueTimeoutMs: null == setValueTimeoutMs ? _self.setValueTimeoutMs : setValueTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,setValueCount: null == setValueCount ? _self.setValueCount : setValueCount // ignore: cast_nullable_to_non_nullable
+as int,setValueFanout: null == setValueFanout ? _self.setValueFanout : setValueFanout // ignore: cast_nullable_to_non_nullable
+as int,consensusWidth: null == consensusWidth ? _self.consensusWidth : consensusWidth // ignore: cast_nullable_to_non_nullable
+as int,minPeerCount: null == minPeerCount ? _self.minPeerCount : minPeerCount // ignore: cast_nullable_to_non_nullable
+as int,minPeerRefreshTimeMs: null == minPeerRefreshTimeMs ? _self.minPeerRefreshTimeMs : minPeerRefreshTimeMs // ignore: cast_nullable_to_non_nullable
+as int,validateDialInfoReceiptTimeMs: null == validateDialInfoReceiptTimeMs ? _self.validateDialInfoReceiptTimeMs : validateDialInfoReceiptTimeMs // ignore: cast_nullable_to_non_nullable
+as int,maxWatchExpirationMs: null == maxWatchExpirationMs ? _self.maxWatchExpirationMs : maxWatchExpirationMs // ignore: cast_nullable_to_non_nullable
+as int,publicWatchLimit: null == publicWatchLimit ? _self.publicWatchLimit : publicWatchLimit // ignore: cast_nullable_to_non_nullable
+as int,memberWatchLimit: null == memberWatchLimit ? _self.memberWatchLimit : memberWatchLimit // ignore: cast_nullable_to_non_nullable
+as int,publicTransactionLimit: null == publicTransactionLimit ? _self.publicTransactionLimit : publicTransactionLimit // ignore: cast_nullable_to_non_nullable
+as int,memberTransactionLimit: null == memberTransactionLimit ? _self.memberTransactionLimit : memberTransactionLimit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigInternalDHT].
+extension VeilidConfigInternalDHTPatterns on VeilidConfigInternalDHT {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigInternalDHT value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalDHT() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigInternalDHT value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalDHT():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigInternalDHT value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalDHT() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int maxFindNodeCount,  int resolveNodeTimeoutMs,  int resolveNodeCount,  int resolveNodeFanout,  int getValueTimeoutMs,  int getValueCount,  int getValueFanout,  int setValueTimeoutMs,  int setValueCount,  int setValueFanout,  int consensusWidth,  int minPeerCount,  int minPeerRefreshTimeMs,  int validateDialInfoReceiptTimeMs,  int maxWatchExpirationMs,  int publicWatchLimit,  int memberWatchLimit,  int publicTransactionLimit,  int memberTransactionLimit)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalDHT() when $default != null:
+return $default(_that.maxFindNodeCount,_that.resolveNodeTimeoutMs,_that.resolveNodeCount,_that.resolveNodeFanout,_that.getValueTimeoutMs,_that.getValueCount,_that.getValueFanout,_that.setValueTimeoutMs,_that.setValueCount,_that.setValueFanout,_that.consensusWidth,_that.minPeerCount,_that.minPeerRefreshTimeMs,_that.validateDialInfoReceiptTimeMs,_that.maxWatchExpirationMs,_that.publicWatchLimit,_that.memberWatchLimit,_that.publicTransactionLimit,_that.memberTransactionLimit);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int maxFindNodeCount,  int resolveNodeTimeoutMs,  int resolveNodeCount,  int resolveNodeFanout,  int getValueTimeoutMs,  int getValueCount,  int getValueFanout,  int setValueTimeoutMs,  int setValueCount,  int setValueFanout,  int consensusWidth,  int minPeerCount,  int minPeerRefreshTimeMs,  int validateDialInfoReceiptTimeMs,  int maxWatchExpirationMs,  int publicWatchLimit,  int memberWatchLimit,  int publicTransactionLimit,  int memberTransactionLimit)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalDHT():
+return $default(_that.maxFindNodeCount,_that.resolveNodeTimeoutMs,_that.resolveNodeCount,_that.resolveNodeFanout,_that.getValueTimeoutMs,_that.getValueCount,_that.getValueFanout,_that.setValueTimeoutMs,_that.setValueCount,_that.setValueFanout,_that.consensusWidth,_that.minPeerCount,_that.minPeerRefreshTimeMs,_that.validateDialInfoReceiptTimeMs,_that.maxWatchExpirationMs,_that.publicWatchLimit,_that.memberWatchLimit,_that.publicTransactionLimit,_that.memberTransactionLimit);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int maxFindNodeCount,  int resolveNodeTimeoutMs,  int resolveNodeCount,  int resolveNodeFanout,  int getValueTimeoutMs,  int getValueCount,  int getValueFanout,  int setValueTimeoutMs,  int setValueCount,  int setValueFanout,  int consensusWidth,  int minPeerCount,  int minPeerRefreshTimeMs,  int validateDialInfoReceiptTimeMs,  int maxWatchExpirationMs,  int publicWatchLimit,  int memberWatchLimit,  int publicTransactionLimit,  int memberTransactionLimit)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalDHT() when $default != null:
+return $default(_that.maxFindNodeCount,_that.resolveNodeTimeoutMs,_that.resolveNodeCount,_that.resolveNodeFanout,_that.getValueTimeoutMs,_that.getValueCount,_that.getValueFanout,_that.setValueTimeoutMs,_that.setValueCount,_that.setValueFanout,_that.consensusWidth,_that.minPeerCount,_that.minPeerRefreshTimeMs,_that.validateDialInfoReceiptTimeMs,_that.maxWatchExpirationMs,_that.publicWatchLimit,_that.memberWatchLimit,_that.publicTransactionLimit,_that.memberTransactionLimit);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigInternalDHT with DiagnosticableTreeMixin implements VeilidConfigInternalDHT {
+  const _VeilidConfigInternalDHT({required this.maxFindNodeCount, required this.resolveNodeTimeoutMs, required this.resolveNodeCount, required this.resolveNodeFanout, required this.getValueTimeoutMs, required this.getValueCount, required this.getValueFanout, required this.setValueTimeoutMs, required this.setValueCount, required this.setValueFanout, required this.consensusWidth, required this.minPeerCount, required this.minPeerRefreshTimeMs, required this.validateDialInfoReceiptTimeMs, required this.maxWatchExpirationMs, required this.publicWatchLimit, required this.memberWatchLimit, required this.publicTransactionLimit, required this.memberTransactionLimit});
+  factory _VeilidConfigInternalDHT.fromJson(Map<String, dynamic> json) => _$VeilidConfigInternalDHTFromJson(json);
+
+@override final  int maxFindNodeCount;
+@override final  int resolveNodeTimeoutMs;
+@override final  int resolveNodeCount;
+@override final  int resolveNodeFanout;
+@override final  int getValueTimeoutMs;
+@override final  int getValueCount;
+@override final  int getValueFanout;
+@override final  int setValueTimeoutMs;
+@override final  int setValueCount;
+@override final  int setValueFanout;
+@override final  int consensusWidth;
+@override final  int minPeerCount;
+@override final  int minPeerRefreshTimeMs;
+@override final  int validateDialInfoReceiptTimeMs;
+@override final  int maxWatchExpirationMs;
+@override final  int publicWatchLimit;
+@override final  int memberWatchLimit;
+@override final  int publicTransactionLimit;
+@override final  int memberTransactionLimit;
+
+/// Create a copy of VeilidConfigInternalDHT
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigInternalDHTCopyWith<_VeilidConfigInternalDHT> get copyWith => __$VeilidConfigInternalDHTCopyWithImpl<_VeilidConfigInternalDHT>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigInternalDHTToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalDHT'))
+    ..add(DiagnosticsProperty('maxFindNodeCount', maxFindNodeCount))..add(DiagnosticsProperty('resolveNodeTimeoutMs', resolveNodeTimeoutMs))..add(DiagnosticsProperty('resolveNodeCount', resolveNodeCount))..add(DiagnosticsProperty('resolveNodeFanout', resolveNodeFanout))..add(DiagnosticsProperty('getValueTimeoutMs', getValueTimeoutMs))..add(DiagnosticsProperty('getValueCount', getValueCount))..add(DiagnosticsProperty('getValueFanout', getValueFanout))..add(DiagnosticsProperty('setValueTimeoutMs', setValueTimeoutMs))..add(DiagnosticsProperty('setValueCount', setValueCount))..add(DiagnosticsProperty('setValueFanout', setValueFanout))..add(DiagnosticsProperty('consensusWidth', consensusWidth))..add(DiagnosticsProperty('minPeerCount', minPeerCount))..add(DiagnosticsProperty('minPeerRefreshTimeMs', minPeerRefreshTimeMs))..add(DiagnosticsProperty('validateDialInfoReceiptTimeMs', validateDialInfoReceiptTimeMs))..add(DiagnosticsProperty('maxWatchExpirationMs', maxWatchExpirationMs))..add(DiagnosticsProperty('publicWatchLimit', publicWatchLimit))..add(DiagnosticsProperty('memberWatchLimit', memberWatchLimit))..add(DiagnosticsProperty('publicTransactionLimit', publicTransactionLimit))..add(DiagnosticsProperty('memberTransactionLimit', memberTransactionLimit));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigInternalDHT&&(identical(other.maxFindNodeCount, maxFindNodeCount) || other.maxFindNodeCount == maxFindNodeCount)&&(identical(other.resolveNodeTimeoutMs, resolveNodeTimeoutMs) || other.resolveNodeTimeoutMs == resolveNodeTimeoutMs)&&(identical(other.resolveNodeCount, resolveNodeCount) || other.resolveNodeCount == resolveNodeCount)&&(identical(other.resolveNodeFanout, resolveNodeFanout) || other.resolveNodeFanout == resolveNodeFanout)&&(identical(other.getValueTimeoutMs, getValueTimeoutMs) || other.getValueTimeoutMs == getValueTimeoutMs)&&(identical(other.getValueCount, getValueCount) || other.getValueCount == getValueCount)&&(identical(other.getValueFanout, getValueFanout) || other.getValueFanout == getValueFanout)&&(identical(other.setValueTimeoutMs, setValueTimeoutMs) || other.setValueTimeoutMs == setValueTimeoutMs)&&(identical(other.setValueCount, setValueCount) || other.setValueCount == setValueCount)&&(identical(other.setValueFanout, setValueFanout) || other.setValueFanout == setValueFanout)&&(identical(other.consensusWidth, consensusWidth) || other.consensusWidth == consensusWidth)&&(identical(other.minPeerCount, minPeerCount) || other.minPeerCount == minPeerCount)&&(identical(other.minPeerRefreshTimeMs, minPeerRefreshTimeMs) || other.minPeerRefreshTimeMs == minPeerRefreshTimeMs)&&(identical(other.validateDialInfoReceiptTimeMs, validateDialInfoReceiptTimeMs) || other.validateDialInfoReceiptTimeMs == validateDialInfoReceiptTimeMs)&&(identical(other.maxWatchExpirationMs, maxWatchExpirationMs) || other.maxWatchExpirationMs == maxWatchExpirationMs)&&(identical(other.publicWatchLimit, publicWatchLimit) || other.publicWatchLimit == publicWatchLimit)&&(identical(other.memberWatchLimit, memberWatchLimit) || other.memberWatchLimit == memberWatchLimit)&&(identical(other.publicTransactionLimit, publicTransactionLimit) || other.publicTransactionLimit == publicTransactionLimit)&&(identical(other.memberTransactionLimit, memberTransactionLimit) || other.memberTransactionLimit == memberTransactionLimit));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hashAll([runtimeType,maxFindNodeCount,resolveNodeTimeoutMs,resolveNodeCount,resolveNodeFanout,getValueTimeoutMs,getValueCount,getValueFanout,setValueTimeoutMs,setValueCount,setValueFanout,consensusWidth,minPeerCount,minPeerRefreshTimeMs,validateDialInfoReceiptTimeMs,maxWatchExpirationMs,publicWatchLimit,memberWatchLimit,publicTransactionLimit,memberTransactionLimit]);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalDHT(maxFindNodeCount: $maxFindNodeCount, resolveNodeTimeoutMs: $resolveNodeTimeoutMs, resolveNodeCount: $resolveNodeCount, resolveNodeFanout: $resolveNodeFanout, getValueTimeoutMs: $getValueTimeoutMs, getValueCount: $getValueCount, getValueFanout: $getValueFanout, setValueTimeoutMs: $setValueTimeoutMs, setValueCount: $setValueCount, setValueFanout: $setValueFanout, consensusWidth: $consensusWidth, minPeerCount: $minPeerCount, minPeerRefreshTimeMs: $minPeerRefreshTimeMs, validateDialInfoReceiptTimeMs: $validateDialInfoReceiptTimeMs, maxWatchExpirationMs: $maxWatchExpirationMs, publicWatchLimit: $publicWatchLimit, memberWatchLimit: $memberWatchLimit, publicTransactionLimit: $publicTransactionLimit, memberTransactionLimit: $memberTransactionLimit)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigInternalDHTCopyWith<$Res> implements $VeilidConfigInternalDHTCopyWith<$Res> {
+  factory _$VeilidConfigInternalDHTCopyWith(_VeilidConfigInternalDHT value, $Res Function(_VeilidConfigInternalDHT) _then) = __$VeilidConfigInternalDHTCopyWithImpl;
+@override @useResult
+$Res call({
+ int maxFindNodeCount, int resolveNodeTimeoutMs, int resolveNodeCount, int resolveNodeFanout, int getValueTimeoutMs, int getValueCount, int getValueFanout, int setValueTimeoutMs, int setValueCount, int setValueFanout, int consensusWidth, int minPeerCount, int minPeerRefreshTimeMs, int validateDialInfoReceiptTimeMs, int maxWatchExpirationMs, int publicWatchLimit, int memberWatchLimit, int publicTransactionLimit, int memberTransactionLimit
+});
+
+
+
+
+}
+/// @nodoc
+class __$VeilidConfigInternalDHTCopyWithImpl<$Res>
+    implements _$VeilidConfigInternalDHTCopyWith<$Res> {
+  __$VeilidConfigInternalDHTCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigInternalDHT _self;
+  final $Res Function(_VeilidConfigInternalDHT) _then;
+
+/// Create a copy of VeilidConfigInternalDHT
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? maxFindNodeCount = null,Object? resolveNodeTimeoutMs = null,Object? resolveNodeCount = null,Object? resolveNodeFanout = null,Object? getValueTimeoutMs = null,Object? getValueCount = null,Object? getValueFanout = null,Object? setValueTimeoutMs = null,Object? setValueCount = null,Object? setValueFanout = null,Object? consensusWidth = null,Object? minPeerCount = null,Object? minPeerRefreshTimeMs = null,Object? validateDialInfoReceiptTimeMs = null,Object? maxWatchExpirationMs = null,Object? publicWatchLimit = null,Object? memberWatchLimit = null,Object? publicTransactionLimit = null,Object? memberTransactionLimit = null,}) {
+  return _then(_VeilidConfigInternalDHT(
+maxFindNodeCount: null == maxFindNodeCount ? _self.maxFindNodeCount : maxFindNodeCount // ignore: cast_nullable_to_non_nullable
+as int,resolveNodeTimeoutMs: null == resolveNodeTimeoutMs ? _self.resolveNodeTimeoutMs : resolveNodeTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,resolveNodeCount: null == resolveNodeCount ? _self.resolveNodeCount : resolveNodeCount // ignore: cast_nullable_to_non_nullable
+as int,resolveNodeFanout: null == resolveNodeFanout ? _self.resolveNodeFanout : resolveNodeFanout // ignore: cast_nullable_to_non_nullable
+as int,getValueTimeoutMs: null == getValueTimeoutMs ? _self.getValueTimeoutMs : getValueTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,getValueCount: null == getValueCount ? _self.getValueCount : getValueCount // ignore: cast_nullable_to_non_nullable
+as int,getValueFanout: null == getValueFanout ? _self.getValueFanout : getValueFanout // ignore: cast_nullable_to_non_nullable
+as int,setValueTimeoutMs: null == setValueTimeoutMs ? _self.setValueTimeoutMs : setValueTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,setValueCount: null == setValueCount ? _self.setValueCount : setValueCount // ignore: cast_nullable_to_non_nullable
+as int,setValueFanout: null == setValueFanout ? _self.setValueFanout : setValueFanout // ignore: cast_nullable_to_non_nullable
+as int,consensusWidth: null == consensusWidth ? _self.consensusWidth : consensusWidth // ignore: cast_nullable_to_non_nullable
+as int,minPeerCount: null == minPeerCount ? _self.minPeerCount : minPeerCount // ignore: cast_nullable_to_non_nullable
+as int,minPeerRefreshTimeMs: null == minPeerRefreshTimeMs ? _self.minPeerRefreshTimeMs : minPeerRefreshTimeMs // ignore: cast_nullable_to_non_nullable
+as int,validateDialInfoReceiptTimeMs: null == validateDialInfoReceiptTimeMs ? _self.validateDialInfoReceiptTimeMs : validateDialInfoReceiptTimeMs // ignore: cast_nullable_to_non_nullable
+as int,maxWatchExpirationMs: null == maxWatchExpirationMs ? _self.maxWatchExpirationMs : maxWatchExpirationMs // ignore: cast_nullable_to_non_nullable
+as int,publicWatchLimit: null == publicWatchLimit ? _self.publicWatchLimit : publicWatchLimit // ignore: cast_nullable_to_non_nullable
+as int,memberWatchLimit: null == memberWatchLimit ? _self.memberWatchLimit : memberWatchLimit // ignore: cast_nullable_to_non_nullable
+as int,publicTransactionLimit: null == publicTransactionLimit ? _self.publicTransactionLimit : publicTransactionLimit // ignore: cast_nullable_to_non_nullable
+as int,memberTransactionLimit: null == memberTransactionLimit ? _self.memberTransactionLimit : memberTransactionLimit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigInternalNetwork implements DiagnosticableTreeMixin {
+
+ int get connectionInitialTimeoutMs; int get connectionInactivityTimeoutMs; int get maxConnectionsPerIp4; int get maxConnectionsPerIp6Prefix; int get maxConnectionsPerIp6PrefixSize; int get maxConnectionFrequencyPerMin; int get clientAllowlistTimeoutMs; int get reverseConnectionReceiptTimeMs; int get holePunchReceiptTimeMs; int get restrictedNatRetries; VeilidConfigInternalRPC get rpc; VeilidConfigInternalDHT get dht; VeilidConfigInternalProtocol get protocol;
+/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalNetworkCopyWith<VeilidConfigInternalNetwork> get copyWith => _$VeilidConfigInternalNetworkCopyWithImpl<VeilidConfigInternalNetwork>(this as VeilidConfigInternalNetwork, _$identity);
+
+  /// Serializes this VeilidConfigInternalNetwork to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalNetwork'))
+    ..add(DiagnosticsProperty('connectionInitialTimeoutMs', connectionInitialTimeoutMs))..add(DiagnosticsProperty('connectionInactivityTimeoutMs', connectionInactivityTimeoutMs))..add(DiagnosticsProperty('maxConnectionsPerIp4', maxConnectionsPerIp4))..add(DiagnosticsProperty('maxConnectionsPerIp6Prefix', maxConnectionsPerIp6Prefix))..add(DiagnosticsProperty('maxConnectionsPerIp6PrefixSize', maxConnectionsPerIp6PrefixSize))..add(DiagnosticsProperty('maxConnectionFrequencyPerMin', maxConnectionFrequencyPerMin))..add(DiagnosticsProperty('clientAllowlistTimeoutMs', clientAllowlistTimeoutMs))..add(DiagnosticsProperty('reverseConnectionReceiptTimeMs', reverseConnectionReceiptTimeMs))..add(DiagnosticsProperty('holePunchReceiptTimeMs', holePunchReceiptTimeMs))..add(DiagnosticsProperty('restrictedNatRetries', restrictedNatRetries))..add(DiagnosticsProperty('rpc', rpc))..add(DiagnosticsProperty('dht', dht))..add(DiagnosticsProperty('protocol', protocol));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigInternalNetwork&&(identical(other.connectionInitialTimeoutMs, connectionInitialTimeoutMs) || other.connectionInitialTimeoutMs == connectionInitialTimeoutMs)&&(identical(other.connectionInactivityTimeoutMs, connectionInactivityTimeoutMs) || other.connectionInactivityTimeoutMs == connectionInactivityTimeoutMs)&&(identical(other.maxConnectionsPerIp4, maxConnectionsPerIp4) || other.maxConnectionsPerIp4 == maxConnectionsPerIp4)&&(identical(other.maxConnectionsPerIp6Prefix, maxConnectionsPerIp6Prefix) || other.maxConnectionsPerIp6Prefix == maxConnectionsPerIp6Prefix)&&(identical(other.maxConnectionsPerIp6PrefixSize, maxConnectionsPerIp6PrefixSize) || other.maxConnectionsPerIp6PrefixSize == maxConnectionsPerIp6PrefixSize)&&(identical(other.maxConnectionFrequencyPerMin, maxConnectionFrequencyPerMin) || other.maxConnectionFrequencyPerMin == maxConnectionFrequencyPerMin)&&(identical(other.clientAllowlistTimeoutMs, clientAllowlistTimeoutMs) || other.clientAllowlistTimeoutMs == clientAllowlistTimeoutMs)&&(identical(other.reverseConnectionReceiptTimeMs, reverseConnectionReceiptTimeMs) || other.reverseConnectionReceiptTimeMs == reverseConnectionReceiptTimeMs)&&(identical(other.holePunchReceiptTimeMs, holePunchReceiptTimeMs) || other.holePunchReceiptTimeMs == holePunchReceiptTimeMs)&&(identical(other.restrictedNatRetries, restrictedNatRetries) || other.restrictedNatRetries == restrictedNatRetries)&&(identical(other.rpc, rpc) || other.rpc == rpc)&&(identical(other.dht, dht) || other.dht == dht)&&(identical(other.protocol, protocol) || other.protocol == protocol));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,connectionInitialTimeoutMs,connectionInactivityTimeoutMs,maxConnectionsPerIp4,maxConnectionsPerIp6Prefix,maxConnectionsPerIp6PrefixSize,maxConnectionFrequencyPerMin,clientAllowlistTimeoutMs,reverseConnectionReceiptTimeMs,holePunchReceiptTimeMs,restrictedNatRetries,rpc,dht,protocol);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalNetwork(connectionInitialTimeoutMs: $connectionInitialTimeoutMs, connectionInactivityTimeoutMs: $connectionInactivityTimeoutMs, maxConnectionsPerIp4: $maxConnectionsPerIp4, maxConnectionsPerIp6Prefix: $maxConnectionsPerIp6Prefix, maxConnectionsPerIp6PrefixSize: $maxConnectionsPerIp6PrefixSize, maxConnectionFrequencyPerMin: $maxConnectionFrequencyPerMin, clientAllowlistTimeoutMs: $clientAllowlistTimeoutMs, reverseConnectionReceiptTimeMs: $reverseConnectionReceiptTimeMs, holePunchReceiptTimeMs: $holePunchReceiptTimeMs, restrictedNatRetries: $restrictedNatRetries, rpc: $rpc, dht: $dht, protocol: $protocol)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigInternalNetworkCopyWith<$Res>  {
+  factory $VeilidConfigInternalNetworkCopyWith(VeilidConfigInternalNetwork value, $Res Function(VeilidConfigInternalNetwork) _then) = _$VeilidConfigInternalNetworkCopyWithImpl;
+@useResult
+$Res call({
+ int connectionInitialTimeoutMs, int connectionInactivityTimeoutMs, int maxConnectionsPerIp4, int maxConnectionsPerIp6Prefix, int maxConnectionsPerIp6PrefixSize, int maxConnectionFrequencyPerMin, int clientAllowlistTimeoutMs, int reverseConnectionReceiptTimeMs, int holePunchReceiptTimeMs, int restrictedNatRetries, VeilidConfigInternalRPC rpc, VeilidConfigInternalDHT dht, VeilidConfigInternalProtocol protocol
+});
+
+
+$VeilidConfigInternalRPCCopyWith<$Res> get rpc;$VeilidConfigInternalDHTCopyWith<$Res> get dht;$VeilidConfigInternalProtocolCopyWith<$Res> get protocol;
+
+}
+/// @nodoc
+class _$VeilidConfigInternalNetworkCopyWithImpl<$Res>
+    implements $VeilidConfigInternalNetworkCopyWith<$Res> {
+  _$VeilidConfigInternalNetworkCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigInternalNetwork _self;
+  final $Res Function(VeilidConfigInternalNetwork) _then;
+
+/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? connectionInitialTimeoutMs = null,Object? connectionInactivityTimeoutMs = null,Object? maxConnectionsPerIp4 = null,Object? maxConnectionsPerIp6Prefix = null,Object? maxConnectionsPerIp6PrefixSize = null,Object? maxConnectionFrequencyPerMin = null,Object? clientAllowlistTimeoutMs = null,Object? reverseConnectionReceiptTimeMs = null,Object? holePunchReceiptTimeMs = null,Object? restrictedNatRetries = null,Object? rpc = null,Object? dht = null,Object? protocol = null,}) {
+  return _then(_self.copyWith(
+connectionInitialTimeoutMs: null == connectionInitialTimeoutMs ? _self.connectionInitialTimeoutMs : connectionInitialTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,connectionInactivityTimeoutMs: null == connectionInactivityTimeoutMs ? _self.connectionInactivityTimeoutMs : connectionInactivityTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionsPerIp4: null == maxConnectionsPerIp4 ? _self.maxConnectionsPerIp4 : maxConnectionsPerIp4 // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionsPerIp6Prefix: null == maxConnectionsPerIp6Prefix ? _self.maxConnectionsPerIp6Prefix : maxConnectionsPerIp6Prefix // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionsPerIp6PrefixSize: null == maxConnectionsPerIp6PrefixSize ? _self.maxConnectionsPerIp6PrefixSize : maxConnectionsPerIp6PrefixSize // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionFrequencyPerMin: null == maxConnectionFrequencyPerMin ? _self.maxConnectionFrequencyPerMin : maxConnectionFrequencyPerMin // ignore: cast_nullable_to_non_nullable
+as int,clientAllowlistTimeoutMs: null == clientAllowlistTimeoutMs ? _self.clientAllowlistTimeoutMs : clientAllowlistTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,reverseConnectionReceiptTimeMs: null == reverseConnectionReceiptTimeMs ? _self.reverseConnectionReceiptTimeMs : reverseConnectionReceiptTimeMs // ignore: cast_nullable_to_non_nullable
+as int,holePunchReceiptTimeMs: null == holePunchReceiptTimeMs ? _self.holePunchReceiptTimeMs : holePunchReceiptTimeMs // ignore: cast_nullable_to_non_nullable
+as int,restrictedNatRetries: null == restrictedNatRetries ? _self.restrictedNatRetries : restrictedNatRetries // ignore: cast_nullable_to_non_nullable
+as int,rpc: null == rpc ? _self.rpc : rpc // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalRPC,dht: null == dht ? _self.dht : dht // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalDHT,protocol: null == protocol ? _self.protocol : protocol // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalProtocol,
+  ));
+}
+/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalRPCCopyWith<$Res> get rpc {
+  
+  return $VeilidConfigInternalRPCCopyWith<$Res>(_self.rpc, (value) {
+    return _then(_self.copyWith(rpc: value));
+  });
+}/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalDHTCopyWith<$Res> get dht {
+  
+  return $VeilidConfigInternalDHTCopyWith<$Res>(_self.dht, (value) {
+    return _then(_self.copyWith(dht: value));
+  });
+}/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalProtocolCopyWith<$Res> get protocol {
+  
+  return $VeilidConfigInternalProtocolCopyWith<$Res>(_self.protocol, (value) {
+    return _then(_self.copyWith(protocol: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigInternalNetwork].
+extension VeilidConfigInternalNetworkPatterns on VeilidConfigInternalNetwork {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigInternalNetwork value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalNetwork() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigInternalNetwork value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalNetwork():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigInternalNetwork value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternalNetwork() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int connectionInitialTimeoutMs,  int connectionInactivityTimeoutMs,  int maxConnectionsPerIp4,  int maxConnectionsPerIp6Prefix,  int maxConnectionsPerIp6PrefixSize,  int maxConnectionFrequencyPerMin,  int clientAllowlistTimeoutMs,  int reverseConnectionReceiptTimeMs,  int holePunchReceiptTimeMs,  int restrictedNatRetries,  VeilidConfigInternalRPC rpc,  VeilidConfigInternalDHT dht,  VeilidConfigInternalProtocol protocol)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalNetwork() when $default != null:
+return $default(_that.connectionInitialTimeoutMs,_that.connectionInactivityTimeoutMs,_that.maxConnectionsPerIp4,_that.maxConnectionsPerIp6Prefix,_that.maxConnectionsPerIp6PrefixSize,_that.maxConnectionFrequencyPerMin,_that.clientAllowlistTimeoutMs,_that.reverseConnectionReceiptTimeMs,_that.holePunchReceiptTimeMs,_that.restrictedNatRetries,_that.rpc,_that.dht,_that.protocol);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int connectionInitialTimeoutMs,  int connectionInactivityTimeoutMs,  int maxConnectionsPerIp4,  int maxConnectionsPerIp6Prefix,  int maxConnectionsPerIp6PrefixSize,  int maxConnectionFrequencyPerMin,  int clientAllowlistTimeoutMs,  int reverseConnectionReceiptTimeMs,  int holePunchReceiptTimeMs,  int restrictedNatRetries,  VeilidConfigInternalRPC rpc,  VeilidConfigInternalDHT dht,  VeilidConfigInternalProtocol protocol)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalNetwork():
+return $default(_that.connectionInitialTimeoutMs,_that.connectionInactivityTimeoutMs,_that.maxConnectionsPerIp4,_that.maxConnectionsPerIp6Prefix,_that.maxConnectionsPerIp6PrefixSize,_that.maxConnectionFrequencyPerMin,_that.clientAllowlistTimeoutMs,_that.reverseConnectionReceiptTimeMs,_that.holePunchReceiptTimeMs,_that.restrictedNatRetries,_that.rpc,_that.dht,_that.protocol);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int connectionInitialTimeoutMs,  int connectionInactivityTimeoutMs,  int maxConnectionsPerIp4,  int maxConnectionsPerIp6Prefix,  int maxConnectionsPerIp6PrefixSize,  int maxConnectionFrequencyPerMin,  int clientAllowlistTimeoutMs,  int reverseConnectionReceiptTimeMs,  int holePunchReceiptTimeMs,  int restrictedNatRetries,  VeilidConfigInternalRPC rpc,  VeilidConfigInternalDHT dht,  VeilidConfigInternalProtocol protocol)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternalNetwork() when $default != null:
+return $default(_that.connectionInitialTimeoutMs,_that.connectionInactivityTimeoutMs,_that.maxConnectionsPerIp4,_that.maxConnectionsPerIp6Prefix,_that.maxConnectionsPerIp6PrefixSize,_that.maxConnectionFrequencyPerMin,_that.clientAllowlistTimeoutMs,_that.reverseConnectionReceiptTimeMs,_that.holePunchReceiptTimeMs,_that.restrictedNatRetries,_that.rpc,_that.dht,_that.protocol);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigInternalNetwork with DiagnosticableTreeMixin implements VeilidConfigInternalNetwork {
+  const _VeilidConfigInternalNetwork({required this.connectionInitialTimeoutMs, required this.connectionInactivityTimeoutMs, required this.maxConnectionsPerIp4, required this.maxConnectionsPerIp6Prefix, required this.maxConnectionsPerIp6PrefixSize, required this.maxConnectionFrequencyPerMin, required this.clientAllowlistTimeoutMs, required this.reverseConnectionReceiptTimeMs, required this.holePunchReceiptTimeMs, required this.restrictedNatRetries, required this.rpc, required this.dht, required this.protocol});
+  factory _VeilidConfigInternalNetwork.fromJson(Map<String, dynamic> json) => _$VeilidConfigInternalNetworkFromJson(json);
+
+@override final  int connectionInitialTimeoutMs;
+@override final  int connectionInactivityTimeoutMs;
+@override final  int maxConnectionsPerIp4;
+@override final  int maxConnectionsPerIp6Prefix;
+@override final  int maxConnectionsPerIp6PrefixSize;
+@override final  int maxConnectionFrequencyPerMin;
+@override final  int clientAllowlistTimeoutMs;
+@override final  int reverseConnectionReceiptTimeMs;
+@override final  int holePunchReceiptTimeMs;
+@override final  int restrictedNatRetries;
+@override final  VeilidConfigInternalRPC rpc;
+@override final  VeilidConfigInternalDHT dht;
+@override final  VeilidConfigInternalProtocol protocol;
+
+/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigInternalNetworkCopyWith<_VeilidConfigInternalNetwork> get copyWith => __$VeilidConfigInternalNetworkCopyWithImpl<_VeilidConfigInternalNetwork>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigInternalNetworkToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternalNetwork'))
+    ..add(DiagnosticsProperty('connectionInitialTimeoutMs', connectionInitialTimeoutMs))..add(DiagnosticsProperty('connectionInactivityTimeoutMs', connectionInactivityTimeoutMs))..add(DiagnosticsProperty('maxConnectionsPerIp4', maxConnectionsPerIp4))..add(DiagnosticsProperty('maxConnectionsPerIp6Prefix', maxConnectionsPerIp6Prefix))..add(DiagnosticsProperty('maxConnectionsPerIp6PrefixSize', maxConnectionsPerIp6PrefixSize))..add(DiagnosticsProperty('maxConnectionFrequencyPerMin', maxConnectionFrequencyPerMin))..add(DiagnosticsProperty('clientAllowlistTimeoutMs', clientAllowlistTimeoutMs))..add(DiagnosticsProperty('reverseConnectionReceiptTimeMs', reverseConnectionReceiptTimeMs))..add(DiagnosticsProperty('holePunchReceiptTimeMs', holePunchReceiptTimeMs))..add(DiagnosticsProperty('restrictedNatRetries', restrictedNatRetries))..add(DiagnosticsProperty('rpc', rpc))..add(DiagnosticsProperty('dht', dht))..add(DiagnosticsProperty('protocol', protocol));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigInternalNetwork&&(identical(other.connectionInitialTimeoutMs, connectionInitialTimeoutMs) || other.connectionInitialTimeoutMs == connectionInitialTimeoutMs)&&(identical(other.connectionInactivityTimeoutMs, connectionInactivityTimeoutMs) || other.connectionInactivityTimeoutMs == connectionInactivityTimeoutMs)&&(identical(other.maxConnectionsPerIp4, maxConnectionsPerIp4) || other.maxConnectionsPerIp4 == maxConnectionsPerIp4)&&(identical(other.maxConnectionsPerIp6Prefix, maxConnectionsPerIp6Prefix) || other.maxConnectionsPerIp6Prefix == maxConnectionsPerIp6Prefix)&&(identical(other.maxConnectionsPerIp6PrefixSize, maxConnectionsPerIp6PrefixSize) || other.maxConnectionsPerIp6PrefixSize == maxConnectionsPerIp6PrefixSize)&&(identical(other.maxConnectionFrequencyPerMin, maxConnectionFrequencyPerMin) || other.maxConnectionFrequencyPerMin == maxConnectionFrequencyPerMin)&&(identical(other.clientAllowlistTimeoutMs, clientAllowlistTimeoutMs) || other.clientAllowlistTimeoutMs == clientAllowlistTimeoutMs)&&(identical(other.reverseConnectionReceiptTimeMs, reverseConnectionReceiptTimeMs) || other.reverseConnectionReceiptTimeMs == reverseConnectionReceiptTimeMs)&&(identical(other.holePunchReceiptTimeMs, holePunchReceiptTimeMs) || other.holePunchReceiptTimeMs == holePunchReceiptTimeMs)&&(identical(other.restrictedNatRetries, restrictedNatRetries) || other.restrictedNatRetries == restrictedNatRetries)&&(identical(other.rpc, rpc) || other.rpc == rpc)&&(identical(other.dht, dht) || other.dht == dht)&&(identical(other.protocol, protocol) || other.protocol == protocol));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,connectionInitialTimeoutMs,connectionInactivityTimeoutMs,maxConnectionsPerIp4,maxConnectionsPerIp6Prefix,maxConnectionsPerIp6PrefixSize,maxConnectionFrequencyPerMin,clientAllowlistTimeoutMs,reverseConnectionReceiptTimeMs,holePunchReceiptTimeMs,restrictedNatRetries,rpc,dht,protocol);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternalNetwork(connectionInitialTimeoutMs: $connectionInitialTimeoutMs, connectionInactivityTimeoutMs: $connectionInactivityTimeoutMs, maxConnectionsPerIp4: $maxConnectionsPerIp4, maxConnectionsPerIp6Prefix: $maxConnectionsPerIp6Prefix, maxConnectionsPerIp6PrefixSize: $maxConnectionsPerIp6PrefixSize, maxConnectionFrequencyPerMin: $maxConnectionFrequencyPerMin, clientAllowlistTimeoutMs: $clientAllowlistTimeoutMs, reverseConnectionReceiptTimeMs: $reverseConnectionReceiptTimeMs, holePunchReceiptTimeMs: $holePunchReceiptTimeMs, restrictedNatRetries: $restrictedNatRetries, rpc: $rpc, dht: $dht, protocol: $protocol)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigInternalNetworkCopyWith<$Res> implements $VeilidConfigInternalNetworkCopyWith<$Res> {
+  factory _$VeilidConfigInternalNetworkCopyWith(_VeilidConfigInternalNetwork value, $Res Function(_VeilidConfigInternalNetwork) _then) = __$VeilidConfigInternalNetworkCopyWithImpl;
+@override @useResult
+$Res call({
+ int connectionInitialTimeoutMs, int connectionInactivityTimeoutMs, int maxConnectionsPerIp4, int maxConnectionsPerIp6Prefix, int maxConnectionsPerIp6PrefixSize, int maxConnectionFrequencyPerMin, int clientAllowlistTimeoutMs, int reverseConnectionReceiptTimeMs, int holePunchReceiptTimeMs, int restrictedNatRetries, VeilidConfigInternalRPC rpc, VeilidConfigInternalDHT dht, VeilidConfigInternalProtocol protocol
+});
+
+
+@override $VeilidConfigInternalRPCCopyWith<$Res> get rpc;@override $VeilidConfigInternalDHTCopyWith<$Res> get dht;@override $VeilidConfigInternalProtocolCopyWith<$Res> get protocol;
+
+}
+/// @nodoc
+class __$VeilidConfigInternalNetworkCopyWithImpl<$Res>
+    implements _$VeilidConfigInternalNetworkCopyWith<$Res> {
+  __$VeilidConfigInternalNetworkCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigInternalNetwork _self;
+  final $Res Function(_VeilidConfigInternalNetwork) _then;
+
+/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? connectionInitialTimeoutMs = null,Object? connectionInactivityTimeoutMs = null,Object? maxConnectionsPerIp4 = null,Object? maxConnectionsPerIp6Prefix = null,Object? maxConnectionsPerIp6PrefixSize = null,Object? maxConnectionFrequencyPerMin = null,Object? clientAllowlistTimeoutMs = null,Object? reverseConnectionReceiptTimeMs = null,Object? holePunchReceiptTimeMs = null,Object? restrictedNatRetries = null,Object? rpc = null,Object? dht = null,Object? protocol = null,}) {
+  return _then(_VeilidConfigInternalNetwork(
+connectionInitialTimeoutMs: null == connectionInitialTimeoutMs ? _self.connectionInitialTimeoutMs : connectionInitialTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,connectionInactivityTimeoutMs: null == connectionInactivityTimeoutMs ? _self.connectionInactivityTimeoutMs : connectionInactivityTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionsPerIp4: null == maxConnectionsPerIp4 ? _self.maxConnectionsPerIp4 : maxConnectionsPerIp4 // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionsPerIp6Prefix: null == maxConnectionsPerIp6Prefix ? _self.maxConnectionsPerIp6Prefix : maxConnectionsPerIp6Prefix // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionsPerIp6PrefixSize: null == maxConnectionsPerIp6PrefixSize ? _self.maxConnectionsPerIp6PrefixSize : maxConnectionsPerIp6PrefixSize // ignore: cast_nullable_to_non_nullable
+as int,maxConnectionFrequencyPerMin: null == maxConnectionFrequencyPerMin ? _self.maxConnectionFrequencyPerMin : maxConnectionFrequencyPerMin // ignore: cast_nullable_to_non_nullable
+as int,clientAllowlistTimeoutMs: null == clientAllowlistTimeoutMs ? _self.clientAllowlistTimeoutMs : clientAllowlistTimeoutMs // ignore: cast_nullable_to_non_nullable
+as int,reverseConnectionReceiptTimeMs: null == reverseConnectionReceiptTimeMs ? _self.reverseConnectionReceiptTimeMs : reverseConnectionReceiptTimeMs // ignore: cast_nullable_to_non_nullable
+as int,holePunchReceiptTimeMs: null == holePunchReceiptTimeMs ? _self.holePunchReceiptTimeMs : holePunchReceiptTimeMs // ignore: cast_nullable_to_non_nullable
+as int,restrictedNatRetries: null == restrictedNatRetries ? _self.restrictedNatRetries : restrictedNatRetries // ignore: cast_nullable_to_non_nullable
+as int,rpc: null == rpc ? _self.rpc : rpc // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalRPC,dht: null == dht ? _self.dht : dht // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalDHT,protocol: null == protocol ? _self.protocol : protocol // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalProtocol,
+  ));
+}
+
+/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalRPCCopyWith<$Res> get rpc {
+  
+  return $VeilidConfigInternalRPCCopyWith<$Res>(_self.rpc, (value) {
+    return _then(_self.copyWith(rpc: value));
+  });
+}/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalDHTCopyWith<$Res> get dht {
+  
+  return $VeilidConfigInternalDHTCopyWith<$Res>(_self.dht, (value) {
+    return _then(_self.copyWith(dht: value));
+  });
+}/// Create a copy of VeilidConfigInternalNetwork
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalProtocolCopyWith<$Res> get protocol {
+  
+  return $VeilidConfigInternalProtocolCopyWith<$Res>(_self.protocol, (value) {
+    return _then(_self.copyWith(protocol: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidConfigInternal implements DiagnosticableTreeMixin {
+
+ VeilidConfigInternalNetwork get network;
+/// Create a copy of VeilidConfigInternal
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalCopyWith<VeilidConfigInternal> get copyWith => _$VeilidConfigInternalCopyWithImpl<VeilidConfigInternal>(this as VeilidConfigInternal, _$identity);
+
+  /// Serializes this VeilidConfigInternal to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternal'))
+    ..add(DiagnosticsProperty('network', network));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfigInternal&&(identical(other.network, network) || other.network == network));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,network);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternal(network: $network)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigInternalCopyWith<$Res>  {
+  factory $VeilidConfigInternalCopyWith(VeilidConfigInternal value, $Res Function(VeilidConfigInternal) _then) = _$VeilidConfigInternalCopyWithImpl;
+@useResult
+$Res call({
+ VeilidConfigInternalNetwork network
+});
+
+
+$VeilidConfigInternalNetworkCopyWith<$Res> get network;
+
+}
+/// @nodoc
+class _$VeilidConfigInternalCopyWithImpl<$Res>
+    implements $VeilidConfigInternalCopyWith<$Res> {
+  _$VeilidConfigInternalCopyWithImpl(this._self, this._then);
+
+  final VeilidConfigInternal _self;
+  final $Res Function(VeilidConfigInternal) _then;
+
+/// Create a copy of VeilidConfigInternal
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? network = null,}) {
+  return _then(_self.copyWith(
+network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalNetwork,
+  ));
+}
+/// Create a copy of VeilidConfigInternal
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalNetworkCopyWith<$Res> get network {
+  
+  return $VeilidConfigInternalNetworkCopyWith<$Res>(_self.network, (value) {
+    return _then(_self.copyWith(network: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfigInternal].
+extension VeilidConfigInternalPatterns on VeilidConfigInternal {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfigInternal value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternal() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfigInternal value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternal():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfigInternal value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfigInternal() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VeilidConfigInternalNetwork network)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternal() when $default != null:
+return $default(_that.network);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VeilidConfigInternalNetwork network)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternal():
+return $default(_that.network);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VeilidConfigInternalNetwork network)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfigInternal() when $default != null:
+return $default(_that.network);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfigInternal with DiagnosticableTreeMixin implements VeilidConfigInternal {
+  const _VeilidConfigInternal({required this.network});
+  factory _VeilidConfigInternal.fromJson(Map<String, dynamic> json) => _$VeilidConfigInternalFromJson(json);
+
+@override final  VeilidConfigInternalNetwork network;
+
+/// Create a copy of VeilidConfigInternal
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigInternalCopyWith<_VeilidConfigInternal> get copyWith => __$VeilidConfigInternalCopyWithImpl<_VeilidConfigInternal>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigInternalToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfigInternal'))
+    ..add(DiagnosticsProperty('network', network));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfigInternal&&(identical(other.network, network) || other.network == network));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,network);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfigInternal(network: $network)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigInternalCopyWith<$Res> implements $VeilidConfigInternalCopyWith<$Res> {
+  factory _$VeilidConfigInternalCopyWith(_VeilidConfigInternal value, $Res Function(_VeilidConfigInternal) _then) = __$VeilidConfigInternalCopyWithImpl;
+@override @useResult
+$Res call({
+ VeilidConfigInternalNetwork network
+});
+
+
+@override $VeilidConfigInternalNetworkCopyWith<$Res> get network;
+
+}
+/// @nodoc
+class __$VeilidConfigInternalCopyWithImpl<$Res>
+    implements _$VeilidConfigInternalCopyWith<$Res> {
+  __$VeilidConfigInternalCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfigInternal _self;
+  final $Res Function(_VeilidConfigInternal) _then;
+
+/// Create a copy of VeilidConfigInternal
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? network = null,}) {
+  return _then(_VeilidConfigInternal(
+network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternalNetwork,
+  ));
+}
+
+/// Create a copy of VeilidConfigInternal
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalNetworkCopyWith<$Res> get network {
+  
+  return $VeilidConfigInternalNetworkCopyWith<$Res>(_self.network, (value) {
+    return _then(_self.copyWith(network: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$VeilidConfig implements DiagnosticableTreeMixin {
+
+ String get programName; String get namespace; VeilidConfigCapabilities get capabilities; VeilidConfigProtectedStore get protectedStore; VeilidConfigTableStore get tableStore; VeilidConfigBlockStore get blockStore; VeilidConfigNetwork get network; VeilidConfigInternal? get internal;
+/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VeilidConfigCopyWith<VeilidConfig> get copyWith => _$VeilidConfigCopyWithImpl<VeilidConfig>(this as VeilidConfig, _$identity);
+
+  /// Serializes this VeilidConfig to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfig'))
+    ..add(DiagnosticsProperty('programName', programName))..add(DiagnosticsProperty('namespace', namespace))..add(DiagnosticsProperty('capabilities', capabilities))..add(DiagnosticsProperty('protectedStore', protectedStore))..add(DiagnosticsProperty('tableStore', tableStore))..add(DiagnosticsProperty('blockStore', blockStore))..add(DiagnosticsProperty('network', network))..add(DiagnosticsProperty('internal', internal));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VeilidConfig&&(identical(other.programName, programName) || other.programName == programName)&&(identical(other.namespace, namespace) || other.namespace == namespace)&&(identical(other.capabilities, capabilities) || other.capabilities == capabilities)&&(identical(other.protectedStore, protectedStore) || other.protectedStore == protectedStore)&&(identical(other.tableStore, tableStore) || other.tableStore == tableStore)&&(identical(other.blockStore, blockStore) || other.blockStore == blockStore)&&(identical(other.network, network) || other.network == network)&&(identical(other.internal, internal) || other.internal == internal));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,programName,namespace,capabilities,protectedStore,tableStore,blockStore,network,internal);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfig(programName: $programName, namespace: $namespace, capabilities: $capabilities, protectedStore: $protectedStore, tableStore: $tableStore, blockStore: $blockStore, network: $network, internal: $internal)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VeilidConfigCopyWith<$Res>  {
+  factory $VeilidConfigCopyWith(VeilidConfig value, $Res Function(VeilidConfig) _then) = _$VeilidConfigCopyWithImpl;
+@useResult
+$Res call({
+ String programName, String namespace, VeilidConfigCapabilities capabilities, VeilidConfigProtectedStore protectedStore, VeilidConfigTableStore tableStore, VeilidConfigBlockStore blockStore, VeilidConfigNetwork network, VeilidConfigInternal? internal
+});
+
+
+$VeilidConfigCapabilitiesCopyWith<$Res> get capabilities;$VeilidConfigProtectedStoreCopyWith<$Res> get protectedStore;$VeilidConfigTableStoreCopyWith<$Res> get tableStore;$VeilidConfigBlockStoreCopyWith<$Res> get blockStore;$VeilidConfigNetworkCopyWith<$Res> get network;$VeilidConfigInternalCopyWith<$Res>? get internal;
+
+}
+/// @nodoc
+class _$VeilidConfigCopyWithImpl<$Res>
+    implements $VeilidConfigCopyWith<$Res> {
+  _$VeilidConfigCopyWithImpl(this._self, this._then);
+
+  final VeilidConfig _self;
+  final $Res Function(VeilidConfig) _then;
+
+/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? programName = null,Object? namespace = null,Object? capabilities = null,Object? protectedStore = null,Object? tableStore = null,Object? blockStore = null,Object? network = null,Object? internal = freezed,}) {
+  return _then(_self.copyWith(
+programName: null == programName ? _self.programName : programName // ignore: cast_nullable_to_non_nullable
+as String,namespace: null == namespace ? _self.namespace : namespace // ignore: cast_nullable_to_non_nullable
+as String,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+as VeilidConfigCapabilities,protectedStore: null == protectedStore ? _self.protectedStore : protectedStore // ignore: cast_nullable_to_non_nullable
+as VeilidConfigProtectedStore,tableStore: null == tableStore ? _self.tableStore : tableStore // ignore: cast_nullable_to_non_nullable
+as VeilidConfigTableStore,blockStore: null == blockStore ? _self.blockStore : blockStore // ignore: cast_nullable_to_non_nullable
+as VeilidConfigBlockStore,network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
+as VeilidConfigNetwork,internal: freezed == internal ? _self.internal : internal // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternal?,
+  ));
+}
+/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigCapabilitiesCopyWith<$Res> get capabilities {
+  
+  return $VeilidConfigCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
+    return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigProtectedStoreCopyWith<$Res> get protectedStore {
+  
+  return $VeilidConfigProtectedStoreCopyWith<$Res>(_self.protectedStore, (value) {
+    return _then(_self.copyWith(protectedStore: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigTableStoreCopyWith<$Res> get tableStore {
+  
+  return $VeilidConfigTableStoreCopyWith<$Res>(_self.tableStore, (value) {
+    return _then(_self.copyWith(tableStore: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigBlockStoreCopyWith<$Res> get blockStore {
+  
+  return $VeilidConfigBlockStoreCopyWith<$Res>(_self.blockStore, (value) {
+    return _then(_self.copyWith(blockStore: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigNetworkCopyWith<$Res> get network {
+  
+  return $VeilidConfigNetworkCopyWith<$Res>(_self.network, (value) {
+    return _then(_self.copyWith(network: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalCopyWith<$Res>? get internal {
+    if (_self.internal == null) {
+    return null;
+  }
+
+  return $VeilidConfigInternalCopyWith<$Res>(_self.internal!, (value) {
+    return _then(_self.copyWith(internal: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [VeilidConfig].
+extension VeilidConfigPatterns on VeilidConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VeilidConfig value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VeilidConfig() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VeilidConfig value)  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfig():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VeilidConfig value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VeilidConfig() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String programName,  String namespace,  VeilidConfigCapabilities capabilities,  VeilidConfigProtectedStore protectedStore,  VeilidConfigTableStore tableStore,  VeilidConfigBlockStore blockStore,  VeilidConfigNetwork network,  VeilidConfigInternal? internal)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VeilidConfig() when $default != null:
+return $default(_that.programName,_that.namespace,_that.capabilities,_that.protectedStore,_that.tableStore,_that.blockStore,_that.network,_that.internal);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String programName,  String namespace,  VeilidConfigCapabilities capabilities,  VeilidConfigProtectedStore protectedStore,  VeilidConfigTableStore tableStore,  VeilidConfigBlockStore blockStore,  VeilidConfigNetwork network,  VeilidConfigInternal? internal)  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfig():
+return $default(_that.programName,_that.namespace,_that.capabilities,_that.protectedStore,_that.tableStore,_that.blockStore,_that.network,_that.internal);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String programName,  String namespace,  VeilidConfigCapabilities capabilities,  VeilidConfigProtectedStore protectedStore,  VeilidConfigTableStore tableStore,  VeilidConfigBlockStore blockStore,  VeilidConfigNetwork network,  VeilidConfigInternal? internal)?  $default,) {final _that = this;
+switch (_that) {
+case _VeilidConfig() when $default != null:
+return $default(_that.programName,_that.namespace,_that.capabilities,_that.protectedStore,_that.tableStore,_that.blockStore,_that.network,_that.internal);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _VeilidConfig with DiagnosticableTreeMixin implements VeilidConfig {
+  const _VeilidConfig({required this.programName, required this.namespace, required this.capabilities, required this.protectedStore, required this.tableStore, required this.blockStore, required this.network, this.internal});
+  factory _VeilidConfig.fromJson(Map<String, dynamic> json) => _$VeilidConfigFromJson(json);
+
+@override final  String programName;
+@override final  String namespace;
+@override final  VeilidConfigCapabilities capabilities;
+@override final  VeilidConfigProtectedStore protectedStore;
+@override final  VeilidConfigTableStore tableStore;
+@override final  VeilidConfigBlockStore blockStore;
+@override final  VeilidConfigNetwork network;
+@override final  VeilidConfigInternal? internal;
+
+/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VeilidConfigCopyWith<_VeilidConfig> get copyWith => __$VeilidConfigCopyWithImpl<_VeilidConfig>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VeilidConfigToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'VeilidConfig'))
+    ..add(DiagnosticsProperty('programName', programName))..add(DiagnosticsProperty('namespace', namespace))..add(DiagnosticsProperty('capabilities', capabilities))..add(DiagnosticsProperty('protectedStore', protectedStore))..add(DiagnosticsProperty('tableStore', tableStore))..add(DiagnosticsProperty('blockStore', blockStore))..add(DiagnosticsProperty('network', network))..add(DiagnosticsProperty('internal', internal));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VeilidConfig&&(identical(other.programName, programName) || other.programName == programName)&&(identical(other.namespace, namespace) || other.namespace == namespace)&&(identical(other.capabilities, capabilities) || other.capabilities == capabilities)&&(identical(other.protectedStore, protectedStore) || other.protectedStore == protectedStore)&&(identical(other.tableStore, tableStore) || other.tableStore == tableStore)&&(identical(other.blockStore, blockStore) || other.blockStore == blockStore)&&(identical(other.network, network) || other.network == network)&&(identical(other.internal, internal) || other.internal == internal));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,programName,namespace,capabilities,protectedStore,tableStore,blockStore,network,internal);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'VeilidConfig(programName: $programName, namespace: $namespace, capabilities: $capabilities, protectedStore: $protectedStore, tableStore: $tableStore, blockStore: $blockStore, network: $network, internal: $internal)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VeilidConfigCopyWith<$Res> implements $VeilidConfigCopyWith<$Res> {
+  factory _$VeilidConfigCopyWith(_VeilidConfig value, $Res Function(_VeilidConfig) _then) = __$VeilidConfigCopyWithImpl;
+@override @useResult
+$Res call({
+ String programName, String namespace, VeilidConfigCapabilities capabilities, VeilidConfigProtectedStore protectedStore, VeilidConfigTableStore tableStore, VeilidConfigBlockStore blockStore, VeilidConfigNetwork network, VeilidConfigInternal? internal
+});
+
+
+@override $VeilidConfigCapabilitiesCopyWith<$Res> get capabilities;@override $VeilidConfigProtectedStoreCopyWith<$Res> get protectedStore;@override $VeilidConfigTableStoreCopyWith<$Res> get tableStore;@override $VeilidConfigBlockStoreCopyWith<$Res> get blockStore;@override $VeilidConfigNetworkCopyWith<$Res> get network;@override $VeilidConfigInternalCopyWith<$Res>? get internal;
+
+}
+/// @nodoc
+class __$VeilidConfigCopyWithImpl<$Res>
+    implements _$VeilidConfigCopyWith<$Res> {
+  __$VeilidConfigCopyWithImpl(this._self, this._then);
+
+  final _VeilidConfig _self;
+  final $Res Function(_VeilidConfig) _then;
+
+/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? programName = null,Object? namespace = null,Object? capabilities = null,Object? protectedStore = null,Object? tableStore = null,Object? blockStore = null,Object? network = null,Object? internal = freezed,}) {
+  return _then(_VeilidConfig(
+programName: null == programName ? _self.programName : programName // ignore: cast_nullable_to_non_nullable
+as String,namespace: null == namespace ? _self.namespace : namespace // ignore: cast_nullable_to_non_nullable
+as String,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+as VeilidConfigCapabilities,protectedStore: null == protectedStore ? _self.protectedStore : protectedStore // ignore: cast_nullable_to_non_nullable
+as VeilidConfigProtectedStore,tableStore: null == tableStore ? _self.tableStore : tableStore // ignore: cast_nullable_to_non_nullable
+as VeilidConfigTableStore,blockStore: null == blockStore ? _self.blockStore : blockStore // ignore: cast_nullable_to_non_nullable
+as VeilidConfigBlockStore,network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
+as VeilidConfigNetwork,internal: freezed == internal ? _self.internal : internal // ignore: cast_nullable_to_non_nullable
+as VeilidConfigInternal?,
+  ));
+}
+
+/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigCapabilitiesCopyWith<$Res> get capabilities {
+  
+  return $VeilidConfigCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
+    return _then(_self.copyWith(capabilities: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigProtectedStoreCopyWith<$Res> get protectedStore {
+  
+  return $VeilidConfigProtectedStoreCopyWith<$Res>(_self.protectedStore, (value) {
+    return _then(_self.copyWith(protectedStore: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigTableStoreCopyWith<$Res> get tableStore {
+  
+  return $VeilidConfigTableStoreCopyWith<$Res>(_self.tableStore, (value) {
+    return _then(_self.copyWith(tableStore: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigBlockStoreCopyWith<$Res> get blockStore {
+  
+  return $VeilidConfigBlockStoreCopyWith<$Res>(_self.blockStore, (value) {
+    return _then(_self.copyWith(blockStore: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigNetworkCopyWith<$Res> get network {
+  
+  return $VeilidConfigNetworkCopyWith<$Res>(_self.network, (value) {
+    return _then(_self.copyWith(network: value));
+  });
+}/// Create a copy of VeilidConfig
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VeilidConfigInternalCopyWith<$Res>? get internal {
+    if (_self.internal == null) {
+    return null;
+  }
+
+  return $VeilidConfigInternalCopyWith<$Res>(_self.internal!, (value) {
+    return _then(_self.copyWith(internal: value));
+  });
+}
+}
+
+// dart format on

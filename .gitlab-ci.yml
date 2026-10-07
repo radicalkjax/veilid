@@ -1,0 +1,535 @@
+variables:
+  NO_DOCKER: 1
+  FORCE_COLOR: 1
+  EARTHLY_EXEC_CMD: "/bin/sh"
+  EARTHLY_DISABLE_REMOTE_REGISTRY_PROXY: 1
+  GIT_SUBMODULE_STRATEGY: normal
+
+###########################################################################
+# Stages
+
+stages:
+  - prepare
+  - test
+  - build_packages
+  - distribute
+  - release
+  - cleanup
+  - failed
+
+###########################################################################
+# Common YAML fragments
+
+# Base earthly setup for jobs
+.base:
+  tags: [saas-linux-medium-amd64]
+  image: docker
+  services:
+    - docker:dind
+
+# Common earthly setup for jobs
+.earthly: &earthly_setup
+  - apk update && apk add git
+  - wget https://github.com/earthly/earthly/releases/download/v0.8.15/earthly-linux-amd64 -O /usr/local/bin/earthly
+  - chmod +x /usr/local/bin/earthly
+  - earthly bootstrap
+  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  - test "$CI_PROJECT_PATH" != "veilid/veilid" && project_args="--CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE"
+
+# Rules for running tests
+# Runs on merge requests and events that cause update to merge requests (like pushing to a branch with an open merge request)
+# Only runs if files have been changed in the veilid-* directories or in Cargo files
+.branch_test_rules: &branch_test_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    changes:
+      - veilid-*/**/*
+      - "**/*[Cc]argo*"
+    when: on_success
+  # Do not run any other pipeline types
+  - when: never
+
+# Rules for running formatting checks
+.branch_format_rules: &branch_format_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    changes:
+      - veilid-*/**/*.rs # Should fire when rust source files are changed
+      - "**/*[Cc]argo*"
+    when: on_success
+  # Do not run any other pipeline types
+  - when: never
+
+# Common unit test base
+.unit_test:
+  extends: .base
+  variables:
+    earthly_target: test-all
+  stage: test
+  before_script:
+    # Use branch name as tag, sanitize for Docker tag compatibility
+    - |
+      # Tagged releases first
+      if [[ -n "$CI_COMMIT_TAG" ]]; then
+        CACHE_TAG="main" 
+        CACHE_NAME="build-cache"
+      # Then branch commits
+      elif [[ -n "$CI_COMMIT_BRANCH" ]]; then
+        CACHE_TAG=$(echo "$CI_COMMIT_BRANCH" | sed 's/[^a-zA-Z0-9._-]/-/g')
+        CACHE_NAME="build-cache"
+      # Then MR tests
+      elif [[ -n "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" ]]; then
+        CACHE_TAG="$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+        CACHE_NAME="build-cache"
+      # Catch all fallback to main
+      else
+        CACHE_TAG="main"
+        CACHE_NAME="build-cache"
+      fi
+    - 'echo "Using cache from: $CACHE_NAME:$CACHE_TAG"'
+    - *earthly_setup
+  script:
+    - earthly --use-inline-cache +$earthly_target --BASE=container $project_args --CACHE_TAG=$CACHE_TAG --CACHE_NAME=$CACHE_NAME
+  rules:
+    - *branch_test_rules
+
+###########################################################################
+# Jobs
+
+format:
+  stage: test
+  image: rust:slim
+  before_script:
+    - rustup component add rustfmt
+
+  script:
+    - cargo fmt --all -- --check --verbose
+
+  rules:
+    - *branch_format_rules
+
+# Create the build container if:
+#  - no container in the registry
+#  - run as part of a schedule
+#  - run manually from the pipelines web page
+build_cache:
+  extends: .base
+  stage: prepare
+  script:
+    - 'echo "CI_PIPELINE_SOURCE: $CI_PIPELINE_SOURCE"'
+    - 'echo "CI_COMMIT_BRANCH: $CI_COMMIT_BRANCH"'
+    - 'echo "CI_DEFAULT_BRANCH: $CI_DEFAULT_BRANCH"'
+    - 'echo "CI_MERGE_REQUEST_TARGET_BRANCH_NAME: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME"'
+    - apk update && apk add jq && apk add curl
+    # Determine cache tag based on branch use branch name as tag, sanitize for Docker tag compatibility
+    - |
+      # Tagged releases first
+      if [[ -n "$CI_COMMIT_TAG" ]]; then
+        CACHE_TAG="main" 
+        CACHE_NAME="build-cache"
+      # Then branch commits
+      elif [[ -n "$CI_COMMIT_BRANCH" ]]; then
+        CACHE_TAG=$(echo "$CI_COMMIT_BRANCH" | sed 's/[^a-zA-Z0-9._-]/-/g')
+        CACHE_NAME="build-cache"
+      # Then MR tests
+      elif [[ -n "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" ]]; then
+        CACHE_TAG="$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+        CACHE_NAME="build-cache"
+      # Catch all fallback to main
+      else
+        CACHE_TAG="main"
+        CACHE_NAME="build-cache"
+      fi
+    - 'echo "Using cache tag: $CACHE_TAG in image: $CACHE_NAME"'
+    # Check if cache exists
+    - if ! docker manifest inspect $CI_REGISTRY_IMAGE/$CACHE_NAME:$CACHE_TAG > /dev/null 2>&1; then
+    - CACHE_EPOCH=0
+    - echo "Cache not found, will create new cache"
+    - else
+    - 'CONT_REPO_ID=$(curl "https://gitlab.com/api/graphql" --header "Content-Type: application/json" --request POST --data "{\"query\": \"query { project(fullPath: \\\"$CI_PROJECT_PATH\\\" ) { containerRepositories( name: \\\"$CACHE_NAME\\\" ) { nodes { id }}}} \"}" | jq -r ".data.project.containerRepositories.nodes[0].id")'
+    - echo "CONTAINER REPO ID = $CONT_REPO_ID"
+    - 'CACHE_TS=$(curl "https://gitlab.com/api/graphql" --header "Content-Type: application/json" --request POST --data "{\"query\": \"query { containerRepository(id: \\\"$CONT_REPO_ID\\\") { tags( first: 1 name: \\\"$CACHE_TAG\\\" ) { nodes { location publishedAt }}}} \"}" | jq -r ".data.containerRepository.tags.nodes[0].publishedAt" | cut -d "+" -f1 | sed "s/T/ /g" )'
+    - CACHE_EPOCH=$(date -d "$CACHE_TS" +%s)
+    - 'echo "Cache found with timestamp: $CACHE_TS"'
+    # Check if branch cache is older than 7 days
+    - |
+      if [[ "$CI_COMMIT_BRANCH" != "$CI_DEFAULT_BRANCH" ]]; then
+        CURRENT_EPOCH=$(date +%s)
+        SEVEN_DAYS_SECONDS=$((7 * 24 * 60 * 60))
+        CACHE_AGE=$((CURRENT_EPOCH - CACHE_EPOCH))
+        if [[ $CACHE_AGE -gt $SEVEN_DAYS_SECONDS ]]; then
+          echo "Branch cache is older than 7 days, will rebuild"
+          CACHE_EPOCH=0
+        fi
+      fi
+    - fi
+    - EARTHLY_EPOCH=$(git log -1 --format=%ct Earthfile)
+    - echo "CACHE EPOCH = $CACHE_EPOCH, EARTHLY EPOCH = $EARTHLY_EPOCH"
+    # Build cache if needed
+    - if [[ $EARTHLY_EPOCH -gt $CACHE_EPOCH ]] || [[ "$CI_PIPELINE_SOURCE" == "schedule" ]] || [[ "$CI_PIPELINE_SOURCE" == "web" ]] ; then
+    - *earthly_setup
+    - earthly --use-inline-cache --save-inline-cache --strict --push -P +build-linux-cache $project_args --CACHE_TAG=$CACHE_TAG --CACHE_NAME=$CACHE_NAME
+    - else
+    - echo "No need to rebuild cache"
+    - fi
+  rules:
+    # Do not run in pipeline dry runs or nightly releases
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/ || $IS_NIGHTLY == "true"
+      when: never
+    # Otherwise, default to whenever tests run
+    - *branch_test_rules
+
+# Runs
+test_msrv_all:
+  extends: .unit_test
+  variables:
+    earthly_target: test-msrv-all
+
+# test_check_wasm_builds_dart:
+#   extends: .unit_test
+#   variables:
+#     earthly_target: test-check-wasm-builds-dart
+
+# test_check_wasm_builds_js:
+#   extends: .unit_test
+#   variables:
+#     earthly_target: test-check-wasm-builds-js
+
+test_clippy_wasm32_unknown_unknown:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-wasm32-unknown-unknown
+
+test_clippy_x86_64_pc_windows_gnu:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-x86-64-pc-windows-gnu
+
+test_clippy_aarch64_apple_darwin:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-aarch64-apple-darwin
+
+test_clippy_x86_64_unknown_linux_gnu:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-x86-64-unknown-linux-gnu
+
+test_clippy_x86_64_unknown_linux_gnu_async_std:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-x86-64-unknown-linux-gnu-async-std
+
+# test_build_docs:
+#   extends: .unit_test
+#   variables:
+#     earthly_target: test-build-docs
+
+test_unit_tests_all:
+  extends: .unit_test
+  variables:
+    earthly_target: test-unit-tests-all
+
+semgrep:
+  # A Docker image with Semgrep installed.
+  image: semgrep/semgrep
+
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+  variables:
+    # Connect to Semgrep AppSec Platform through your SEMGREP_APP_TOKEN.
+    # Generate a token from Semgrep AppSec Platform > Settings
+    # and add it as a variable in your GitLab CI/CD project settings.
+    SEMGREP_APP_TOKEN: $SEMGREP_APP_TOKEN
+
+    # Upload findings to GitLab SAST Dashboard:
+    SEMGREP_GITLAB_JSON: "1"
+
+  # Other optional settings in the `variables` block:
+
+  # Receive inline MR comments (requires Semgrep AppSec Platform account)
+  # Setup instructions:
+  # https://semgrep.dev/docs/semgrep-appsec-platform/gitlab-mr-comments
+  #   GITLAB_TOKEN: $PAT
+
+  # Run the "semgrep ci" command on the command line of the docker image and send findings
+  # to GitLab SAST.
+  script: semgrep ci --gitlab-sast > gl-sast-report.json || true
+  allow_failure: true
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+
+# Actual release -- triggered by pushing a new version tag
+
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "running release_job"
+  release: # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
+    tag_name: "$CI_COMMIT_TAG"
+    description: "$CI_COMMIT_TAG"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+create_build_machine:
+  stage: prepare
+  tags:
+    - build-orchestration
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --create-build-machine
+  artifacts:
+    paths:
+      - scripts/cicd-python/config.json
+    expire_in: 6 hours
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+package_linux:
+  stage: build_packages
+  timeout: 120m
+  tags:
+    - build-amd64-deb
+  script:
+    - earthly bootstrap
+    - earthly +package-linux --BASE="uncached"
+  artifacts:
+    paths:
+      - target/packages/*
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+build_repositories:
+  stage: distribute
+  tags:
+    - build-orchestration
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/Dockerfile ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/repobuild.sh ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/generate-stable-release.sh ~
+    - bash scripts/cicd/build-orchestration/distribute-stable-packages.sh
+  dependencies:
+    - package_linux
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+publish_crates:
+  stage: distribute
+  needs:
+    - build_repositories
+  tags:
+    - build-amd64-deb
+  script:
+    - cargo publish -p veilid-tools --dry-run
+    - cargo publish -p veilid-tools
+    - cargo publish -p veilid-core --dry-run
+    - cargo publish -p veilid-core
+    - cargo publish -p veilid-remote-api --dry-run
+    - cargo publish -p veilid-remote-api
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+publish_python:
+  stage: distribute
+  needs:
+    - build_repositories
+  tags:
+    - build-amd64-deb
+  script:
+    - uv --directory veilid-python build
+    - uv --directory veilid-python publish
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+delete_build_machines:
+  stage: cleanup
+  tags:
+    - build-orchestration
+  dependencies:
+    - create_build_machine
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+# Dryrun release -- triggered by changes in .gitlab-ci.yml, CICD scripts, or Earthfile
+
+dryrun_create_build_machine:
+  stage: prepare
+  tags:
+    - build-orchestration
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --create-build-machine
+  artifacts:
+    paths:
+      - scripts/cicd-python/config.json
+    expire_in: 6 hours
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_package_linux:
+  stage: build_packages
+  tags:
+    - build-amd64-deb
+  script:
+    - earthly bootstrap
+    - earthly +package-linux
+  artifacts:
+    paths:
+      - target/packages/*
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_publish_crates:
+  stage: build_packages
+  needs:
+    - dryrun_package_linux
+  tags:
+    - build-amd64-deb
+  script:
+    - vlt login
+    - vlt run --command="cargo publish -p veilid-tools --dry-run"
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_publish_python:
+  stage: build_packages
+  needs:
+    - dryrun_package_linux
+  tags:
+    - build-amd64-deb
+  script:
+    - uv --directory veilid-python build
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_build_repositories:
+  stage: distribute
+  tags:
+    - build-orchestration
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/Dockerfile ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/repobuild.sh ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/generate-stable-release.sh ~
+    - bash scripts/cicd/build-orchestration/distribute-stable-packages.sh
+  dependencies:
+    - dryrun_package_linux
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_deploy_repos:
+  stage: distribute
+  needs:
+    - dryrun_build_repositories
+  tags:
+    - repo-server
+  script:
+    - ls -al $HOME/repo.tar
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_delete_build_machines:
+  stage: cleanup
+  tags:
+    - build-orchestration
+  dependencies:
+    - dryrun_create_build_machine
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+# Nightly build pipeline
+
+nightly_create_build_machines:
+  stage: prepare
+  tags:
+    - build-orchestration
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --create-build-machine
+  artifacts:
+    paths:
+      - scripts/cicd-python/config.json
+    expire_in: 6 hours
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+nightly_package_linux:
+  stage: build_packages
+  tags:
+    - build-amd64-deb
+  timeout: 120m
+  script:
+    - earthly bootstrap
+    - earthly +package-linux --IS_NIGHTLY="$IS_NIGHTLY" --BASE="uncached"
+  artifacts:
+    paths:
+      - target/packages/*
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+nightly_build_repositories:
+  stage: distribute
+  tags:
+    - build-orchestration
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/Dockerfile ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/repobuild.sh ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/generate-nightly-release.sh ~
+    - bash scripts/cicd/build-orchestration/distribute-nightly-packages.sh
+  dependencies:
+    - nightly_package_linux
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+nightly_delete_build_machines:
+  stage: cleanup
+  tags:
+    - build-orchestration
+  dependencies:
+    - nightly_create_build_machines
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+# If any steps fail this will run the build machine tear down scripts
+
+stable_failed_pipeline_actions:
+  stage: failed
+  tags:
+    - build-orchestration
+  dependencies:
+    - create_build_machine
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  when: on_failure
+
+nightly_failed_pipeline_actions:
+  stage: failed
+  tags:
+    - build-orchestration
+  dependencies:
+    - nightly_create_build_machines
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  when: on_failure

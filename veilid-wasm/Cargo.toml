@@ -1,0 +1,62 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-wasm"
+version = "0.5.7"
+# ---
+description = "Veilid bindings for WebAssembly"
+resolver = "2"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+path = "src/lib.rs"
+
+[features]
+default = ["enable-crypto-vld0"]
+debug-api = ["veilid-core/debug-api"]
+enable-crypto-vld0 = ["veilid-core/enable-crypto-vld0"]
+# enable-crypto-vld1 = ["veilid-core/enable-crypto-vld1"]
+enable-crypto-none = ["veilid-core/enable-crypto-none"]
+crypto-test = ["enable-crypto-vld0", "enable-crypto-none"]
+crypto-test-none = ["enable-crypto-none"]
+enable-protocol-wss = ["veilid-core/enable-protocol-wss"]
+footgun-nodeid-target = ["veilid-core/footgun-nodeid-target"]
+footgun-config = ["veilid-core/footgun-config"]
+unstable-tunnels = ["veilid-core/unstable-tunnels"]
+unstable-blockstore = ["veilid-core/unstable-blockstore"]
+
+[dependencies]
+veilid-core = { version = "0.5.7", path = "../veilid-core", default-features = false, features = [
+    "json-camel-case",
+    "default-wasm",
+] }
+
+tracing-subscriber = "0.3.23"
+
+js-sys = "0.3.83"
+wasm-bindgen = "0.2.121"
+wasm-bindgen-futures = "0.4.58"
+
+console_error_panic_hook = "0.1.7"
+cfg-if = "1.0.4"
+pastey = "0.2.1"
+serde = "1.0.218"
+serde_bytes = { version = "0.11", default-features = false, features = [
+    "alloc",
+] }
+lazy_static = "1.5.0"
+send_wrapper = "0.6.0"
+futures-util = { version = "0.3.32" }
+tsify = { version = "0.5.6", features = ["js"] }
+
+[lints]
+workspace = true
+
+[package.metadata.cargo-machete]
+# ignore crates that are only used in derives
+ignored = ["wasm-bindgen"]

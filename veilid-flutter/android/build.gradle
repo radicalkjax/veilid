@@ -1,0 +1,111 @@
+buildscript {
+    ext.kotlin_version = '1.9.25'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "org.mozilla.rust-android-gradle.rust-android" version "0.9.6"
+}
+
+group 'com.veilid.veilid'
+version '1.0-SNAPSHOT'
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion flutter.compileSdkVersion
+    namespace = "com.veilid.veilid"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+
+        // Required to copy libc++_shared.so
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+                targets "cpplink"
+            }
+        }
+    }
+
+    ndkVersion = flutter.ndkVersion
+
+    // Required to copy libc++_shared.so
+    externalNativeBuild {
+        cmake {
+            path file('CMakeLists.txt')
+        }
+    }
+}
+
+dependencies {
+    implementation "androidx.security:security-crypto:1.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+}
+
+apply plugin: 'org.mozilla.rust-android-gradle.rust-android'
+
+cargo {
+    module  = "../rust"
+    libname = "veilid_flutter"
+    targets = ["arm", "arm64", "x86", "x86_64"]
+    // cargo inherits CARGO_TARGET_DIR from the environment (CI relocates the
+    // target dir to a cacheable path); the plugin's artifact pickup must follow
+    targetDirectory = System.getenv("CARGO_TARGET_DIR") ?: "../../target"
+    pythonCommand = "python3"
+    prebuiltToolchains = true
+    profile = gradle.startParameter.taskNames.any{it.toLowerCase().contains("debug")} ? "debug" : "release"
+    exec { spec, toolchain ->
+        // Support 16KB page sizes
+        // https://developer.android.com/guide/practices/page-sizes#other-build-systems
+        spec.environment("RUST_ANDROID_GRADLE_CC_LINK_ARG", "-Wl,-z,max-page-size=16384,-soname,lib${libname}.so")
+    }
+}
+
+afterEvaluate {
+    // The `cargoBuild` task isn't available until after evaluation.
+    android.libraryVariants.all { variant ->
+        def productFlavor = ""
+        variant.productFlavors.each {
+            productFlavor += "${it.name.capitalize()}"
+        }
+        def buildType = "${variant.buildType.name.capitalize()}"
+        tasks["pre${productFlavor}${buildType}Build"].dependsOn(tasks["cargoBuild"])
+    }
+}

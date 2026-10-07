@@ -1,0 +1,192 @@
+[workspace]
+members = [
+    "veilid-tools",
+    "veilid-core",
+    "veilid-core/examples/basic",
+    "veilid-core/examples/private_route",
+    "veilid-server",
+    "veilid-cli",
+    "veilid-flutter/rust",
+    "veilid-wasm",
+    "veilid-remote-api",
+]
+resolver = "2"
+
+[workspace.package]
+repository = "https://gitlab.com/veilid/veilid"
+authors = ["Veilid Team <contact@veilid.com>"]
+license = "MPL-2.0"
+edition = "2021"
+rust-version = "1.89.0"
+
+[patch.crates-io]
+
+# For local development
+# keyring-manager = { path = "../keyring-manager" }
+# keyvaluedb = { path = "../keyvaluedb/keyvaluedb" }
+# keyvaluedb-memorydb = { path = "../keyvaluedb/keyvaluedb-memorydb" }
+# keyvaluedb-sqlite = { path = "../keyvaluedb/keyvaluedb-sqlite" }
+# keyvaluedb-web = { path = "../keyvaluedb/keyvaluedb-web" }
+
+# Size-optimized overall; crypto packages below stay at full opt for throughput
+[profile.release]
+opt-level = "z"
+lto = true
+panic = "abort"
+codegen-units = 1
+
+[profile.release.package.curve25519-dalek]
+opt-level = 3
+[profile.release.package.ed25519-dalek]
+opt-level = 3
+[profile.release.package.x25519-dalek]
+opt-level = 3
+[profile.release.package.chacha20poly1305]
+opt-level = 3
+[profile.release.package.chacha20]
+opt-level = 3
+[profile.release.package.poly1305]
+opt-level = 3
+[profile.release.package.blake3]
+opt-level = 3
+[profile.release.package.blake2]
+opt-level = 3
+[profile.release.package.sha2]
+opt-level = 3
+[profile.release.package.argon2]
+opt-level = 3
+[profile.release.package.cipher]
+opt-level = 3
+[profile.release.package.digest]
+opt-level = 3
+[profile.release.package.crypto-common]
+opt-level = 3
+[profile.release.package.generic-array]
+opt-level = 3
+[profile.release.package.hpke]
+opt-level = 3
+[profile.release.package.hkdf]
+opt-level = 3
+[profile.release.package.hmac]
+opt-level = 3
+
+[profile.dev.package.backtrace]
+opt-level = 3
+
+[profile.dev.package.argon2]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.ed25519-dalek]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.x25519-dalek]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.curve25519-dalek]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.chacha20poly1305]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.blake3]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.chacha20]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.sha2]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.poly1305]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.cipher]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.crypto-common]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.generic-array]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.capnp]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.data-encoding]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.lz4_flex]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.signature]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.digest]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.hpke]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.hkdf]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[profile.dev.package.hmac]
+opt-level = 3
+overflow-checks = false
+debug-assertions = false
+
+[workspace.lints.clippy]
+all = { level = "deny", priority = -1 }
+must_use_candidate = "deny"
+large_futures = "deny"
+large_stack_arrays = "deny"
+large_stack_frames = "deny"
+large_types_passed_by_value = "deny"
+unused_async = "deny"
+ptr_cast_constness = "deny"
+comparison_chain = "allow"
+upper_case_acronyms = "allow"
+needless_range_loop = "allow"
+mutable_key_type = "allow" # Until this is merged (NodeRef is safe to hash/eq): https://github.com/rust-lang/rust-clippy/pull/15844
+
+[workspace.lints.rust]
+unused_must_use = "deny"
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tokio_unstable)'] }
