@@ -149,7 +149,6 @@ impl fmt::Display for RemoteRouteSetRef {
 impl RouteSpecStore {
     /// Acquire an `AllocatedRouteSetRef` by route set id. Returns None if
     /// the set is not in the cache.
-    #[expect(dead_code)]
     pub(super) fn lock_allocated_route_set_by_id(
         &self,
         set_id: &AllocatedRouteSetId,

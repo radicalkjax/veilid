@@ -2,6 +2,7 @@ pub mod mocks;
 pub mod test_bucket_entry_state;
 pub mod test_network_estimator;
 pub mod test_nodes_needed;
+pub mod test_route_drain;
 pub mod test_routing_metrics;
 pub mod test_serialize_routing_table;
 pub mod test_signed_node_info;
@@ -11,6 +12,8 @@ pub use mocks::*;
 use super::*;
 
 pub async fn test_all() {
+    test_route_drain::test_held_route_drains_on_release().await;
+    test_route_drain::test_unheld_route_releases_at_once().await;
     test_serialize_routing_table::test_kick_preserves_best_node_id().await;
     test_serialize_routing_table::test_load_rejects_entries_without_node_ids().await;
     test_serialize_routing_table::test_replace_node_ids_rejects_without_valid_id().await;

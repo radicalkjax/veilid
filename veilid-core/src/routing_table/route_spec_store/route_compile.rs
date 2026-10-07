@@ -418,9 +418,11 @@ impl RouteSpecStore {
             }
         };
 
-        let (safety_route_id, sr_pubkey) =
-            if let Some(safety_route_id_and_public_key) = opt_safety_route_id_and_public_key {
-                safety_route_id_and_public_key
+        // A selected safety route is held until the compile is done
+        // (`SelectedRoute`): a release meanwhile marks it, not removes it.
+        let (safety_route_id, sr_pubkey, _held_safety_route) =
+            if let Some((id, key)) = opt_safety_route_id_and_public_key {
+                (id, key, None)
             } else {
                 let Some(avoid_node_id) = params.private_route.first_hop_node_id() else {
                     apibail_generic!("compiled private route should have first hop");
@@ -439,11 +441,12 @@ impl RouteSpecStore {
                     is_destination_safe: !params.private_route.is_stub(),
                 };
 
-                let RouteIdAndKeys {
-                    route_id,
-                    route_set_keys: public_keys,
-                } = self.select_single_route(select_params).await?;
-                (route_id, public_keys.get(crypto_kind).unwrap())
+                let selected = self.select_single_route(select_params).await?;
+                (
+                    selected.route_id().clone(),
+                    selected.route_set_keys.get(crypto_kind).unwrap(),
+                    Some(selected),
+                )
             };
 
         // Get the compile context (shared state for both optimized and unoptimized paths)

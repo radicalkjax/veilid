@@ -386,10 +386,9 @@ impl RPCProcessor {
                 SafetySelection::Safe(safety_spec) => {
                     // Sent directly but with a safety route, respond to private route
                     let crypto_kind = target.best_node_id().kind();
-                    let RouteIdAndKeys {
-                        route_id: _,
-                        route_set_keys: public_keys,
-                    } = network_result_try!(rss
+                    // Held through the assemble below (`SelectedRoute`): a
+                    // release meanwhile marks the route, it does not remove it.
+                    let selected = network_result_try!(rss
                         .select_single_route(RouteSelectParams {
                             crypto_kind,
                             preferred_route: safety_spec
@@ -406,7 +405,7 @@ impl RPCProcessor {
                         .await
                         .to_rpc_network_result()?);
 
-                    let pr_key = public_keys.get(crypto_kind).unwrap_or_log();
+                    let pr_key = selected.route_set_keys.get(crypto_kind).unwrap_or_log();
 
                     // Get the assembled route for response
                     let private_route = network_result_try!(rss
@@ -471,14 +470,16 @@ impl RPCProcessor {
                         // Check for loopback test
                         let opt_private_route_id =
                             rss.get_route_id_for_key(&private_route.public_key);
-                        let pr_key = if opt_private_route_id.is_some()
+                        // A selected reply route is held through the assemble
+                        // below (`SelectedRoute`).
+                        let (pr_key, _held_reply_route) = if opt_private_route_id.is_some()
                             && safety_spec.preferred_route == opt_private_route_id
                         {
                             // Private route is also safety route during loopback test
-                            private_route.public_key.clone()
+                            (private_route.public_key.clone(), None)
                         } else {
                             // Get the private route to respond to that matches the safety route spec we sent the request with
-                            network_result_try!(rss
+                            let selected = network_result_try!(rss
                                 .select_single_route(RouteSelectParams {
                                     crypto_kind,
                                     preferred_route: safety_spec
@@ -493,10 +494,9 @@ impl RPCProcessor {
                                     is_destination_safe: true,
                                 })
                                 .await
-                                .to_rpc_network_result()?)
-                            .route_set_keys
-                            .get(crypto_kind)
-                            .unwrap_or_log()
+                                .to_rpc_network_result()?);
+                            let key = selected.route_set_keys.get(crypto_kind).unwrap_or_log();
+                            (key, Some(selected))
                         };
 
                         // Get the assembled route for response

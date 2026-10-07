@@ -402,7 +402,14 @@ impl RouteSpecStore {
         })
     }
 
-    /// Release an allocated route that is no longer in use
+    /// Release an allocated route that is no longer in use.
+    ///
+    /// A route someone holds (an [`AllocatedRouteSetRef`] or
+    /// [`AllocatedRouteRef`] taken at selection) is not removed under them:
+    /// it is marked for release, which takes it out of selection, and the
+    /// last ref's drop releases it. Release only stops new use; in-flight
+    /// use finishes on the route it chose. Returns true when the route was
+    /// released or is now draining.
     #[cfg_attr(
         feature = "instrument",
         instrument(level = "trace", target = "rtab::route", skip(self), ret, fields(__VEILID_LOG_KEY = self.log_key()))
@@ -412,6 +419,16 @@ impl RouteSpecStore {
             // Careful with locking order here, we need to lock the content before the cache
             let mut content = self.content.write();
             let mut cache = self.cache.write();
+
+            // Refs are taken under the cache read lock, so none can appear
+            // while this write lock is held.
+            if let Some(arce) = cache.get_allocated_route_by_id(&id) {
+                if arce.is_locked() {
+                    veilid_log!(self debug "route {} in use; marked for release", id);
+                    arce.mark_for_release();
+                    return true;
+                }
+            }
 
             let Some(rssd) = content.remove_detail(&id) else {
                 return false;
@@ -981,5 +998,61 @@ impl RouteSpecStore {
             vcrypto.kind(),
             BareRouteId::new(vcrypto.generate_hash(&pkbytes).ref_value()),
         )))
+    }
+}
+
+#[cfg(any(test, feature = "test-util"))]
+impl RouteSpecStore {
+    /// Insert a one-hop automatic route through `hop`, as allocation does
+    /// after choosing hops (test only: allocation needs a live network).
+    pub(crate) async fn test_insert_allocated_route(
+        &self,
+        hop: NodeRef,
+    ) -> (AllocatedRouteSetId, PublicKey) {
+        let kind = hop.best_node_id().kind();
+        let crypto = self.crypto();
+        let vcrypto = crypto.get_async(kind).expect("crypto kind");
+        let keypair = vcrypto.generate_keypair().await;
+        let mut route_set = BTreeMap::new();
+        route_set.insert(
+            keypair.key(),
+            RouteSpecDetail {
+                secret_key: keypair.secret(),
+                hops: vec![hop.best_node_id()],
+            },
+        );
+        let rssd = RouteSetSpecDetail::new(
+            route_set,
+            DirectionSet::all(),
+            Stability::default(),
+            SequenceOrderingSet::all(),
+            true,
+        )
+        .expect("route set");
+        let id = self.generate_allocated_route_id(&rssd).expect("route id");
+        {
+            let mut content = self.content.write();
+            let mut cache = self.cache.write();
+            cache
+                .add_allocated_route(id.clone(), &rssd, vec![hop])
+                .expect("add route");
+            content.add_detail(id.clone(), rssd);
+        }
+        (id, keypair.key())
+    }
+
+    pub(crate) fn test_is_allocated(&self, id: &AllocatedRouteSetId) -> bool {
+        self.cache.read().get_allocated_route_by_id(id).is_some()
+    }
+
+    pub(crate) fn test_is_marked_for_release(&self, id: &AllocatedRouteSetId) -> bool {
+        self.cache
+            .read()
+            .get_allocated_route_by_id(id)
+            .is_some_and(|arce| arce.is_marked_for_release())
+    }
+
+    pub(crate) fn test_release(&self, id: &AllocatedRouteSetId) -> bool {
+        self.release_allocated_route(id.clone())
     }
 }

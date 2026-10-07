@@ -29,8 +29,28 @@ pub struct RouteIdAndKeys {
     pub route_set_keys: PublicKeyGroup,
 }
 
+/// A route chosen by [`RouteSpecStore::select_single_route`], held.
+///
+/// The selection is used after an await (a reply route is assembled, a
+/// safety route compiled), and a route can be released in between: by the
+/// API, by the ping validator, by route management. Holding the
+/// [`AllocatedRouteSetRef`] keeps the cache entry until the caller is done;
+/// a release meanwhile marks the route and the last drop releases it.
+#[derive(Clone, Debug)]
+pub(crate) struct SelectedRoute {
+    pub route_ref: AllocatedRouteSetRef,
+    pub route_set_keys: PublicKeyGroup,
+}
+
+impl SelectedRoute {
+    pub fn route_id(&self) -> &AllocatedRouteSetId {
+        self.route_ref.route_set_id()
+    }
+}
+
 impl RouteSpecStore {
-    /// Get a single allocated route that matches a particular safety spec
+    /// Get a single allocated route that matches a particular safety spec,
+    /// held until the returned [`SelectedRoute`] drops
     /// Returns the public key associated with a single allocated route
     #[cfg_attr(
         feature = "instrument",
@@ -49,10 +69,10 @@ impl RouteSpecStore {
             selected_route_id = tracing::field::Empty,
         ))
     )]
-    pub async fn select_single_route(
+    pub(crate) async fn select_single_route(
         &self,
         mut params: RouteSelectParams,
-    ) -> VeilidAPIResult<RouteIdAndKeys> {
+    ) -> VeilidAPIResult<SelectedRoute> {
         #[cfg(feature = "instrument")]
         let requested_hop_count = params.hop_count;
 
@@ -102,9 +122,12 @@ impl RouteSpecStore {
 
             // See if the preferred route is already available
             if let Some(preferred_route) = &params.preferred_route {
-                if let Some(preferred_arce) = cache.get_allocated_route_by_id(preferred_route) {
+                if let Some(preferred_arce) = cache
+                    .get_allocated_route_by_id(preferred_route)
+                    .filter(|arce| !arce.is_marked_for_release())
+                {
                     // Only use the preferred route if it has the desired crypto kind
-                    let public_keys = preferred_arce.route_set_keys();
+                    let public_keys = preferred_arce.route_set_keys().clone();
                     if public_keys.contains_kind(params.crypto_kind) {
                         // Only use the preferred route if it doesn't contain the avoid nodes
                         if !preferred_arce.contains_nodes(&first_available_route_params.avoid_nodes)
@@ -118,9 +141,13 @@ impl RouteSpecStore {
                                     tracing::field::display(preferred_route),
                                 );
                             }
-                            return Ok(RouteIdAndKeys {
-                                route_id: preferred_route.clone(),
-                                route_set_keys: public_keys.clone(),
+                            return Ok(SelectedRoute {
+                                route_ref: AllocatedRouteSetRef::new(
+                                    self.registry(),
+                                    preferred_arce,
+                                    preferred_route.clone(),
+                                ),
+                                route_set_keys: public_keys,
                             });
                         }
                     }
@@ -129,7 +156,7 @@ impl RouteSpecStore {
 
             // Select a safety route from the pool or make one if we don't have one that matches
             // Try this outside of the allocate lock to see if we can do this lock-free first
-            if let Some(sr_route_id_and_public_keys) = Self::first_available_route_inner(
+            if let Some(sr_route_id_and_public_keys) = self.first_available_route_inner(
                 &cache,
                 &first_available_route_params,
                 &self.route_selection_counter,
@@ -141,7 +168,7 @@ impl RouteSpecStore {
                     span.record("selected_via", "first_available");
                     span.record(
                         "selected_route_id",
-                        tracing::field::display(&sr_route_id_and_public_keys.route_id),
+                        tracing::field::display(sr_route_id_and_public_keys.route_id()),
                     );
                 }
                 return Ok(sr_route_id_and_public_keys);
@@ -167,7 +194,7 @@ impl RouteSpecStore {
                 // Must re-check first available route to avoid race condition due to await
                 // Because during the time we didn't hold the allocate lock, the first available route may have been allocated
                 let cache = self.cache.read();
-                if let Some(sr_route_id_and_public_keys) = Self::first_available_route_inner(
+                if let Some(sr_route_id_and_public_keys) = self.first_available_route_inner(
                     &cache,
                     &first_available_route_params,
                     &self.route_selection_counter,
@@ -179,7 +206,7 @@ impl RouteSpecStore {
                         span.record("selected_via", "first_available_post_lock");
                         span.record(
                             "selected_route_id",
-                            tracing::field::display(&sr_route_id_and_public_keys.route_id),
+                            tracing::field::display(sr_route_id_and_public_keys.route_id()),
                         );
                     }
                     return Ok(sr_route_id_and_public_keys);
@@ -202,7 +229,18 @@ impl RouteSpecStore {
         };
         let allocated = self
             .allocate_route_inner(&allocate_route_lock_guard, params)
-            .await;
+            .await
+            .and_then(|RouteIdAndKeys { route_id, route_set_keys }| {
+                // Held before the allocate lock drops; a release cannot have
+                // happened yet, but say so if one did.
+                let route_ref = self
+                    .lock_allocated_route_set_by_id(&route_id)
+                    .ok_or_else(|| VeilidAPIError::try_again("allocated route released before use"))?;
+                Ok(SelectedRoute {
+                    route_ref,
+                    route_set_keys,
+                })
+            });
         #[cfg(feature = "instrument")]
         {
             let span = tracing::Span::current();
@@ -222,10 +260,11 @@ impl RouteSpecStore {
         instrument(level = "trace", target = "rtab::route", skip_all, fields(__VEILID_LOG_KEY = cache.log_key()))
     )]
     fn first_available_route_inner(
+        &self,
         cache: &RouteSpecStoreCache,
         params: &FirstAvailableRouteParams,
         route_selection_counter: &AtomicUsize,
-    ) -> Option<RouteIdAndKeys> {
+    ) -> Option<SelectedRoute> {
         let cur_ts = Timestamp::now();
 
         let mut routes = Vec::new();
@@ -242,6 +281,8 @@ impl RouteSpecStore {
                     .iter()
                     .any(|x| x.kind() == params.crypto_kind)
                 && !arce.is_published()
+                // A route marked for release is draining: in use, not chosen again.
+                && !arce.is_marked_for_release()
                 && !arce.contains_nodes(&params.avoid_nodes)
             {
                 // snapshot stats (interior mutability) to avoid race conditions and sort instability
@@ -300,16 +341,23 @@ impl RouteSpecStore {
         if good_count > 1 {
             // Round-robin among top-tier routes to distribute load
             let idx = route_selection_counter.fetch_add(1, Ordering::Relaxed) % good_count;
-            routes.get(idx).map(|r| RouteIdAndKeys {
-                route_id: r.0.clone(),
-                route_set_keys: r.1.route_set_keys().clone(),
-            })
+            routes.get(idx).map(|r| self.hold_selected(r.0, r.1))
         } else {
             // Only one or zero good routes, just return the best available
-            routes.first().map(|r| RouteIdAndKeys {
-                route_id: r.0.clone(),
-                route_set_keys: r.1.route_set_keys().clone(),
-            })
+            routes.first().map(|r| self.hold_selected(r.0, r.1))
+        }
+    }
+
+    /// Hold a route chosen under the cache read lock, so no release can come
+    /// between the choice and the hold.
+    fn hold_selected(
+        &self,
+        id: &AllocatedRouteSetId,
+        arce: &Arc<AllocatedRouteCacheEntry>,
+    ) -> SelectedRoute {
+        SelectedRoute {
+            route_set_keys: arce.route_set_keys().clone(),
+            route_ref: AllocatedRouteSetRef::new(self.registry(), arce.clone(), id.clone()),
         }
     }
 }
