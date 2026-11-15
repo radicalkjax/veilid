@@ -48,6 +48,16 @@ pub async fn test_all() {
     test_persisted_cbor::test_persisted_network_estimator().await;
     route_spec_store::tests_route_spec_store::test_persisted_route_spec_store_content().await;
     route_spec_store::tests_route_spec_store::test_route_test_state_survives_restart().await;
+    route_spec_store::tests_route_spec_store::test_route_drain::test_held_route_drains_on_release()
+        .await;
+    route_spec_store::tests_route_spec_store::test_route_drain::test_unheld_route_releases_at_once(
+    )
+    .await;
+    route_spec_store::tests_route_spec_store::test_route_drain::test_held_route_drains_on_legacy_expiry().await;
+    route_spec_store::tests_route_spec_store::test_route_drain::test_held_route_drains_on_cell_expiry().await;
+    route_spec_store::tests_route_spec_store::test_route_drain::test_route_found_after_allocate_wait_is_held().await;
+    route_spec_store::tests_route_spec_store::test_route_drain::test_marked_route_is_not_saved()
+        .await;
     route_spec_store::tests_route_spec_store::test_remote_routes::test_remote_route_testing_cadence(
     );
     test_signed_node_info::test_signed_node_info().await;

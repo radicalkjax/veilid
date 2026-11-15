@@ -195,9 +195,18 @@ impl RouteSpecStore {
         let content = {
             // Careful with locking order here, we need to lock the content before the cache
             let content = self.content.read();
+            let cache = self.cache.read();
             // Test state changes with every keepalive; take it as it is now
-            content.update_per_ordering(&self.cache.read());
-            content.clone()
+            content.update_per_ordering(&cache);
+            let mut content = content.clone();
+            // A route marked for release stays until its last ref drops; never reload it live
+            for (id, _) in cache
+                .iter_allocated_routes()
+                .filter(|(_, arce)| arce.is_marked_for_release())
+            {
+                content.remove_detail(id);
+            }
+            content
         };
 
         // Save our content to the tablestore

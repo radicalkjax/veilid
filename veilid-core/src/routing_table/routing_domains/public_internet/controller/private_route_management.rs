@@ -80,7 +80,10 @@ impl PublicInternetRoutingDomainController {
     ///
     /// If a route doesn't 'need_testing', then we neither test nor drop it
     #[cfg_attr(feature = "instrument", instrument(level = "trace", skip(self), ret, fields(__VEILID_LOG_KEY = self.log_key())))]
-    fn get_allocated_routes_to_test(&self, cur_ts: Timestamp) -> Vec<AllocatedRouteSetId> {
+    pub(in crate::routing_table) fn get_allocated_routes_to_test(
+        &self,
+        cur_ts: Timestamp,
+    ) -> Vec<AllocatedRouteSetId> {
         let routing_table = self.routing_table();
         let rss = routing_table.route_spec_store();
         let default_route_hop_count_safe = rss.get_default_route_hop_count_safe();

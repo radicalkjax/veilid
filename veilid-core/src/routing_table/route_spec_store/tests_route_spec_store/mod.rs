@@ -1,6 +1,7 @@
 //! The route spec store content comes back from the table store as it was saved.
 
 pub mod test_remote_routes;
+pub mod test_route_drain;
 
 use super::*;
 use crate::crypto::tests_crypto::*;

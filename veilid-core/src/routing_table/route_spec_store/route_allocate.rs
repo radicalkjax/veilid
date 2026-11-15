@@ -433,7 +433,14 @@ impl RouteSpecStore {
         })
     }
 
-    /// Release an allocated route that is no longer in use
+    /// Release an allocated route that is no longer in use.
+    ///
+    /// A route someone holds (an [`AllocatedRouteSetRef`] or
+    /// [`AllocatedRouteRef`] taken at selection) is not removed under them:
+    /// it is marked for release, which takes it out of selection, and the
+    /// last ref's drop releases it. Release only stops new use; in-flight
+    /// use finishes on the route it chose. Returns true when the route was
+    /// released or is now draining.
     #[cfg_attr(
         feature = "instrument",
         instrument(level = "trace", target = "rtab::route", skip(self), ret, fields(__VEILID_LOG_KEY = self.log_key()))
@@ -443,6 +450,16 @@ impl RouteSpecStore {
             // Careful with locking order here, we need to lock the content before the cache
             let mut content = self.content.write();
             let mut cache = self.cache.write();
+
+            // Refs are taken under the cache read lock, so none can appear
+            // while this write lock is held.
+            if let Some(arce) = cache.get_allocated_route_by_id(&id) {
+                if arce.is_locked() {
+                    veilid_log!(self debug "route {} in use; marked for release", id);
+                    arce.mark_for_release();
+                    return true;
+                }
+            }
 
             let Some(rssd) = content.remove_detail(&id) else {
                 return false;
