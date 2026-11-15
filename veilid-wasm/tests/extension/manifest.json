@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "veilid-wasm extension context test",
+  "version": "1.0",
+  "description": "Runs the veilid-wasm ProtectedStore suite inside an MV3 background service worker.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqYiQMUt5t5GbnJgX1BSpVQUBoA1mHxeZzpAUbEdbUzPPHTbmzMKwXTV7aR19LMh9YLZnY5RpxUSYUySIoA2pKBp2EmGfnBQjcEkuIemGhiezJYNCDZpaEC1ZY1M3YxvC1KUesg+q2YHZU+aMv6Qhkx2K4cYt8GSGIELTcDXDeXo4w2LC4AquvUf36wMQgUIKhClG402OCcpooBU3G7tikVCNi1mbtwwh9GZXAQhwOCHq0Foat+iOiryJu1Qtb9UvNbyX3l0n44wa9zrh2VYceXpJxJQX7A3qkWS1LqsRaXRAU7GtSMRUFNH2ajRx3/WKD0x9frrg7BadNmVsyRijyQIDAQAB",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "http://localhost/*"
+    ]
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

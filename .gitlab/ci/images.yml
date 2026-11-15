@@ -1,0 +1,168 @@
+# Image-build child pipeline, generated-by-selection rather than generated-by-text: every job
+# below exists in this file, and plan_images decides which ones run by setting BUILD_* variables.
+#
+# Two properties make this worth the indirection:
+#   - A warm pipeline runs none of these, so it costs one curl-only job instead of a chain of
+#     ~110s earthly jobs that each start a docker-in-docker service to discover there is nothing
+#     to do.
+#   - needs: are optional throughout. An image that was already cached has no job here, and the
+#     build that would have depended on it pulls it from the registry instead. That is what lets
+#     the layer stack be as deep as it likes (deps-base -> tools -> deps-linux -> crate-cache)
+#     without a warm pipeline paying for the depth.
+#
+# Note these jobs are NOT gated on .branch_test_rules: in a child pipeline CI_PIPELINE_SOURCE is
+# "parent_pipeline", so those rules would skip everything. The parent gates the trigger instead.
+
+include:
+  - local: .gitlab/ci/common.yml
+
+stages:
+  - images
+
+.image_build:
+  # These compile ast-grep, cargo-zigbuild and the cargo helpers from source.
+  extends: .base_large
+  stage: images
+  interruptible: true
+  script:
+    - !reference [.earthly_setup, script]
+    - earthly --use-inline-cache --push "+$EARTHLY_TARGET" --TOOLS=container --TOOLS_IMAGE=$CI_REGISTRY_IMAGE $project_args
+
+# --- wave 0: nothing above them --------------------------------------------------------------
+deps_base:
+  extends: .image_build
+  variables:
+    EARTHLY_TARGET: deps-base-build
+  rules:
+    - if: $BUILD_DEPS_BASE == "true"
+
+tool_flutter:
+  extends: .image_build
+  variables:
+    EARTHLY_TARGET: tool-flutter-build
+  rules:
+    - if: $BUILD_TOOL_FLUTTER == "true"
+
+# --- wave 1: FROM +deps-base -----------------------------------------------------------------
+tool_rust:
+  extends: .image_build
+  needs: [{job: deps_base, optional: true}]
+  variables:
+    EARTHLY_TARGET: tool-rust-build
+  rules:
+    - if: $BUILD_TOOL_RUST == "true"
+
+tool_zig:
+  extends: .image_build
+  needs: [{job: deps_base, optional: true}]
+  variables:
+    EARTHLY_TARGET: tool-zig-build
+  rules:
+    - if: $BUILD_TOOL_ZIG == "true"
+
+tool_binaryen:
+  extends: .image_build
+  needs: [{job: deps_base, optional: true}]
+  variables:
+    EARTHLY_TARGET: tool-binaryen-build
+  rules:
+    - if: $BUILD_TOOL_BINARYEN == "true"
+
+# --- wave 2: FROM +tool-rust -----------------------------------------------------------------
+tool_cargo_bins:
+  extends: .image_build
+  needs: [{job: tool_rust, optional: true}]
+  variables:
+    EARTHLY_TARGET: tool-cargo-bins-build
+  rules:
+    - if: $BUILD_TOOL_CARGO_BINS == "true"
+
+tool_astgrep:
+  extends: .image_build
+  needs: [{job: tool_rust, optional: true}]
+  variables:
+    EARTHLY_TARGET: tool-astgrep-build
+  rules:
+    - if: $BUILD_TOOL_ASTGREP == "true"
+
+tool_zigbuild:
+  extends: .image_build
+  needs: [{job: tool_rust, optional: true}]
+  variables:
+    EARTHLY_TARGET: tool-zigbuild-build
+  rules:
+    - if: $BUILD_TOOL_ZIGBUILD == "true"
+
+# --- wave 3: the assembled toolchain ---------------------------------------------------------
+deps_linux:
+  extends: .image_build
+  needs:
+    - {job: deps_base, optional: true}
+    - {job: tool_rust, optional: true}
+    - {job: tool_zig, optional: true}
+    - {job: tool_binaryen, optional: true}
+    - {job: tool_cargo_bins, optional: true}
+    - {job: tool_astgrep, optional: true}
+    - {job: tool_zigbuild, optional: true}
+  variables:
+    EARTHLY_TARGET: deps-linux-build
+  rules:
+    - if: $BUILD_DEPS_LINUX == "true"
+
+# --- wave 3: the flutter gates' base, in parallel with deps_linux ---------------------------
+deps_flutter:
+  extends: .image_build
+  needs: [{job: tool_flutter, optional: true}]
+  variables:
+    EARTHLY_TARGET: deps-flutter-build
+  rules:
+    - if: $BUILD_DEPS_FLUTTER == "true"
+
+deps_flutter_rust:
+  extends: .image_build
+  needs:
+    - {job: deps_flutter, optional: true}
+    - {job: tool_rust, optional: true}
+  variables:
+    EARTHLY_TARGET: deps-flutter-rust-build
+  rules:
+    - if: $BUILD_DEPS_FLUTTER_RUST == "true"
+
+# --- wave 3: the prebuilt veilid-flutter Windows library's cross toolchain -----------------
+deps_xwin:
+  extends: .image_build
+  needs:
+    - {job: deps_base, optional: true}
+    - {job: tool_rust, optional: true}
+  variables:
+    EARTHLY_TARGET: deps-xwin-build
+  rules:
+    - if: $BUILD_DEPS_XWIN == "true"
+
+# --- wave 4: the crates, keyed on Cargo.lock -------------------------------------------------
+crate_cache:
+  extends: .image_build
+  needs: [{job: deps_linux, optional: true}]
+  script:
+    - !reference [.earthly_setup, script]
+    - earthly --use-inline-cache --strict --push +fetch-cache --TOOLS=container --TOOLS_IMAGE=$CI_REGISTRY_IMAGE $project_args --CRATE_CACHE_TAG=$(sh scripts/cache_tags.sh crate)
+  rules:
+    - if: $BUILD_CRATE_CACHE == "true"
+
+# A child pipeline may not be empty, and on a warm pipeline none of the above run.
+#
+# The `rules:` here is load-bearing and is NOT decoration. A job with no rules/only gets GitLab's
+# legacy default of `only: [branches, tags]`, which excludes merge_request_event -- and these
+# children descend from an MR pipeline. Without it this job is silently dropped, which is exactly
+# what happened: every child so far created its image jobs (they have rules) and never this one,
+# so the first fully-cached pipeline produced a child with zero jobs and failed with
+# `downstream_pipeline_creation_failed`.
+noop:
+  stage: images
+  image: alpine:latest
+  variables:
+    GIT_STRATEGY: none
+  rules:
+    - when: always
+  script:
+    - echo "all build images already present"

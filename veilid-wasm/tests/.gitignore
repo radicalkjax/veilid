@@ -1,0 +1,12 @@
+node_modules
+coverage
+test_results
+
+# Built ahead of time by `npm run build:sw` / `npm run build:ext`: service workers and
+# extensions can't run the dev server's module output.
+public/service-worker.js
+public/swassets/
+extensionDist/
+*.crx
+# Only needed to pack a CRX; the extension is loaded unpacked, keyed by manifest "key".
+extension/key.pem

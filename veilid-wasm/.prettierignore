@@ -1,0 +1,7 @@
+# Build outputs (all gitignored); node_modules and pkg/ are ignored by default and .gitignore
+tests/coverage/
+tests/extensionDist/
+tests/public/service-worker.js
+tests/public/swassets/
+tests/test_results/
+example/test-bench/dist/

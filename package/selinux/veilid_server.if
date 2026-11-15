@@ -1,0 +1,20 @@
+## <summary>policy for veilid-server</summary>
+
+########################################
+## <summary>
+##      Connect to veilid-server over its client-API IPC stream socket.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed to connect (e.g. the domain veilid-cli runs in).
+##      </summary>
+## </param>
+#
+interface(`veilid_server_stream_connect',`
+        gen_require(`
+                type veilid_server_t, veilid_server_var_lib_t;
+        ')
+
+        files_search_var($1)
+        stream_connect_pattern($1, veilid_server_var_lib_t, veilid_server_var_lib_t, veilid_server_t)
+')

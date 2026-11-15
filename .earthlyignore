@@ -1,0 +1,7 @@
+.vscode
+.git
+target
+**/target
+veilid-core/pkg
+**/build
+**/node_modules

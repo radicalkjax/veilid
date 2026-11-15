@@ -1,0 +1,106 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-core-optimized"
+version = "0.5.8"
+# ---
+description = "Internal crate for veilid-core, do not use directly. Monomorphic entry points for the hot dependencies of veilid-core, compiled at full optimization in every build profile"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+documentation = "https://docs.rs/veilid-core-optimized"
+homepage = "https://veilid.gitlab.io/developer-book/"
+
+[lib]
+crate-type = ["rlib"]
+path = "src/lib.rs"
+
+[features]
+default = []
+
+# One feature per cryptosystem; each pulls in only the crates that kind needs
+enable-crypto-vld0 = [
+    "dep:ed25519-dalek",
+    "dep:x25519-dalek",
+    "dep:curve25519-dalek",
+    "dep:blake3",
+    "dep:chacha20poly1305",
+    "dep:chacha20",
+    "dep:argon2",
+    "dep:blake2",
+    "dep:hpke",
+    "dep:rand_core",
+]
+enable-crypto-none = [
+    "dep:blake3",
+    "dep:argon2",
+    "dep:blake2",
+    "dep:hpke",
+    "dep:subtle",
+    "dep:rand_core",
+]
+
+[dependencies]
+# Crypto
+ed25519-dalek = { version = "3.0.0", optional = true, default-features = false, features = [
+    "alloc",
+    "rand_core",
+    "digest",
+    "zeroize",
+] }
+x25519-dalek = { version = "3.0.0", optional = true, default-features = false, features = [
+    "static_secrets",
+    "zeroize",
+    "precomputed-tables",
+] }
+curve25519-dalek = { version = "5.0.0", optional = true, default-features = false, features = [
+    "alloc",
+    "zeroize",
+    "precomputed-tables",
+] }
+blake3 = { version = "1.8.3", optional = true }
+blake2 = { version = "0.11.0-rc.5", optional = true, default-features = false, features = [
+    "size_opt",
+] } # Size optimization for c crate (via feature unification)
+chacha20poly1305 = { version = "0.11.0", optional = true, features = [
+    "zeroize",
+    "rand_core",
+] }
+chacha20 = { version = "0.10", optional = true, features = ["xchacha"] }
+argon2 = { version = "0.6.0-rc.8", optional = true, default-features = false, features = [
+    "alloc",
+    "password-hash",
+    "getrandom",
+    "rand_core",
+] }
+hpke = { version = "0.14.0", optional = true, default-features = false, features = [
+    "alloc",
+    "x25519",
+    "chacha",
+] }
+subtle = { version = "2.6", optional = true, default-features = false }
+rand_core = { version = "0.10.1", optional = true, default-features = false }
+
+# Compression
+lz4_flex = { version = "0.14.0", default-features = false, features = [
+    "alloc",
+    "safe-encode",
+    "safe-decode",
+] }
+
+### Dependencies for WASM builds only
+
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+# argon2's getrandom needs the browser backend selected
+getrandom = { version = "0.4.2", features = ["wasm_js"] }
+# simd128 has no runtime detection on wasm, so blake3 assumes it; the module then requires a
+# SIMD-capable runtime (Safari 16.4, Chrome 91, Firefox 89)
+blake3 = { version = "1.8.3", optional = true, features = ["wasm32_simd"] }
+
+[package.metadata.cargo-machete]
+# Feature unification only: blake2's size_opt for argon2, curve25519-dalek's tables for the dalek crates
+ignored = ["blake2", "curve25519-dalek"]
+
+[lints]
+workspace = true

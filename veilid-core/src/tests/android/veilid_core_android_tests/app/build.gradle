@@ -1,0 +1,139 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 36
+
+    defaultConfig {
+        applicationId "com.veilid.veilid_core_android_tests"
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+
+        // Required to copy libc++_shared.so
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+                targets "cpplink"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    ndkVersion = '28.2.13676358'
+
+    // Required to copy libc++_shared.so
+    externalNativeBuild {
+        cmake {
+            version = '3.22.1'
+            path file('CMakeLists.txt')
+        }
+    }
+    namespace = 'com.veilid.veilid_core_android_tests'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.security:security-crypto:1.1.0-alpha04'
+}
+
+// Rust for the JNI libraries, built by cargo directly.
+//
+// This replaced org.mozilla.rust-android-gradle. Its newest release (0.9.6)
+// calls Gradle APIs that 9 removed - CopyProcessingSpec.setFileMode, and AGP's
+// old AppExtension DSL - so it pinned this project to Gradle 8 and the
+// deprecation warnings that come with it. Upstream's Gradle 9 fix is still an
+// open PR. veilid-flutter dropped the plugin too; its rust comes from the Dart
+// build hook, which a plain Android test app has no equivalent of.
+def rustLibName = 'veilid_core'
+def rustFeatures = ['veilid_core_android_tests']
+def rustCrateDir = file('../../../../../')
+def rustTargetDir = file('../../../../../../target')
+
+// ABI -> [cargo target triple, NDK clang prefix]
+def rustAbis = [
+    'armeabi-v7a': ['armv7-linux-androideabi', 'armv7a-linux-androideabi'],
+    'arm64-v8a'  : ['aarch64-linux-android', 'aarch64-linux-android'],
+    'x86'        : ['i686-linux-android', 'i686-linux-android'],
+    'x86_64'     : ['x86_64-linux-android', 'x86_64-linux-android'],
+]
+
+// The rule the plugin used: any task name mentioning debug builds debug
+def rustRelease = !gradle.startParameter.taskNames.any { it.toLowerCase().contains('debug') }
+def rustProfileDir = rustRelease ? 'release' : 'debug'
+def rustJniLibs = layout.buildDirectory.dir('rustJniLibs').get().asFile
+
+def currentOs = org.gradle.internal.os.OperatingSystem.current()
+def ndkHostTag = currentOs.isMacOsX() ? 'darwin-x86_64'
+    : currentOs.isWindows() ? 'windows-x86_64' : 'linux-x86_64'
+// AGP 9 dropped android.ndkDirectory from the DSL; sdkComponents is the
+// supported way to ask, and it installs the pinned ndkVersion if missing
+def ndkDir = androidComponents.sdkComponents.ndkDirectory.get().asFile
+def ndkBinDir = "${ndkDir}/toolchains/llvm/prebuilt/${ndkHostTag}/bin"
+def rustApiLevel = android.defaultConfig.minSdk
+
+def rustTargetTasks = rustAbis.collect { abi, spec ->
+    def triple = spec[0]
+    def clang = "${ndkBinDir}/${spec[1]}${rustApiLevel}-clang"
+    def suffix = abi.split('[-_]').collect { it.capitalize() }.join()
+    tasks.register("cargoBuild${suffix}", Exec) {
+        description = "Cross-compiles ${rustLibName} for ${abi}"
+        workingDir rustCrateDir
+        environment 'CARGO_TARGET_DIR', rustTargetDir
+        environment "CARGO_TARGET_${triple.replace('-', '_').toUpperCase()}_LINKER", clang
+        // cc-rs, for any build.rs that compiles C
+        environment "CC_${triple}", clang
+        environment "AR_${triple}", "${ndkBinDir}/llvm-ar"
+        environment 'ANDROID_NDK_HOME', ndkDir
+        // 16KB page sizes, and the soname the loader expects
+        // https://developer.android.com/guide/practices/page-sizes#other-build-systems
+        environment 'RUSTFLAGS',
+            "-C link-arg=-Wl,-z,max-page-size=16384 -C link-arg=-Wl,-soname,lib${rustLibName}.so"
+        def cargoArgs = ['cargo', 'build', '--target', triple,
+                         '--features', rustFeatures.join(',')]
+        if (rustRelease) {
+            cargoArgs << '--release'
+        }
+        commandLine cargoArgs
+    }
+}
+
+// Named cargoBuild because the helper scripts and the old plugin both used it
+def cargoBuild = tasks.register('cargoBuild', Sync) {
+    description = 'Collects the cross-compiled rust libraries into jniLibs'
+    dependsOn rustTargetTasks
+    into rustJniLibs
+    rustAbis.each { abi, spec ->
+        from("${rustTargetDir}/${spec[0]}/${rustProfileDir}") {
+            include "lib${rustLibName}.so"
+            into abi
+        }
+    }
+}
+
+android.sourceSets.main.jniLibs.srcDir(rustJniLibs)
+
+// The variant API this used to hang off is gone in AGP 9; the task names are
+// the same either way
+tasks.matching { it.name ==~ /^pre[A-Z]\w*Build$/ }.configureEach {
+    dependsOn cargoBuild
+}

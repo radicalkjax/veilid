@@ -1,0 +1,28 @@
+{
+  "name": "veilid-wasm",
+  "type": "module",
+  "collaborators": [
+    "Veilid Team <contact@veilid.com>"
+  ],
+  "description": "Veilid bindings for WebAssembly",
+  "version": "{{VERSION}}",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/veilid/veilid"
+  },
+  "files": [
+    "veilid_wasm_bg.wasm",
+    "veilid_wasm.js",
+    "veilid_wasm.d.ts",
+    "veilid_errors.js",
+    "veilid_errors.d.ts",
+    "snippets/",
+    "LICENSE.md"
+  ],
+  "main": "veilid_wasm.js",
+  "types": "veilid_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

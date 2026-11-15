@@ -1,0 +1,31 @@
+id: panic-census-opaque
+language: rust
+severity: hint
+message: "panic-family macro inside a macro body, invisible to panic-census"
+note: |
+  tree-sitter parses a macro invocation's body as an opaque token tree, not as Rust items,
+  so panic-census cannot see inside `cfg_if! { ... }`. Every site hidden this way today is
+  one that would be declared anyway (raw_timestamp, the debug-locks deadlock detectors,
+  MustJoinHandle, the wss build-config unreachable), so nothing is being missed.
+
+  This rule exists so that stops being true silently. It counts the hidden sites, the count
+  lands in the census, and a new panic added inside a cfg_if! shows up as a census diff
+  rather than as nothing at all.
+files:
+  - "veilid-core-optimized/src/**"
+  - "veilid-core/src/**"
+  - "veilid-tools/src/**"
+  - "veilid-flutter/rust/src/**"
+ignores:
+  - "**/tests/**"
+  - "**/tests_*/**"
+  - "**/test_*.rs"
+rule:
+  kind: macro_invocation
+  all:
+    - has:
+        field: macro
+        regex: 'cfg_if$'
+    - has:
+        kind: token_tree
+        regex: '(^|[^A-Za-z_])(panic|unreachable|assert|assert_eq|assert_ne)!'

@@ -1,0 +1,2 @@
+# Rules that must have no undeclared sites. See scripts/update_census.sh.
+panic-census

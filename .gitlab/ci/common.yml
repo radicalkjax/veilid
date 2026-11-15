@@ -1,0 +1,104 @@
+# Shared by .gitlab-ci.yml and the image-build child pipeline (.gitlab/ci/images.yml).
+# A child pipeline does not inherit the parent's YAML and YAML anchors do not cross an include
+# boundary, so everything both need lives here as hidden jobs consumed with !reference.
+
+variables:
+  NO_DOCKER: 1
+  FORCE_COLOR: 1
+  EARTHLY_EXEC_CMD: "/bin/sh"
+  EARTHLY_DISABLE_REMOTE_REGISTRY_PROXY: 1
+  # There are no submodules, and nothing in CI or scripts/ reads git history any more (the
+  # Earthfile-mtime cache invalidator went with the old build-cache scheme). Both of these are
+  # per-job time on every job in the pipeline.
+  GIT_SUBMODULE_STRATEGY: none
+  GIT_DEPTH: 1
+
+
+# Runner tiers. GitLab hosted linux sizes (docs.gitlab.com/ci/runners/hosted_runners/linux/):
+#   small 2 vCPU/8GB/30GB (the default)   medium 4/16/50
+#   large 8/32/100                        xlarge 16/64/200        2xlarge 32/128/200
+# large and above need Premium/Ultimate.
+#
+# Worth upsizing only because CARGO_BUILD_JOBS autodetects (scripts/build_jobs.sh) -- a bigger
+# runner with the job count pinned is paid for and not used, which is exactly what was happening:
+# it was hardcoded to 1 on medium, so three of four cores sat idle through the phase that dominates
+# every rust job (test_unit_tests_all measured 732s compiling against 37s running tests).
+#
+# TRADE-OFF: larger runners bill at a higher per-minute multiplier, so this buys wall clock with CI
+# minutes. Worth it on the critical path, wasteful on jobs that are over in seconds -- which is why
+# the cheap jobs below stay small rather than everything moving up. Scaling is sub-linear anyway:
+# rustc's frontend is single-threaded and dev-profile codegen-units is already 256.
+.runner_small:
+  tags: [saas-linux-small-amd64]
+
+.runner_medium:
+  tags: [saas-linux-medium-amd64]
+
+.runner_large:
+  tags: [saas-linux-large-amd64]
+
+# Anything running earthly needs docker-in-docker. Medium (4 vCPU) is what these jobs have always
+# used; .base_large (8 vCPU) is for the compile-bound ones that can actually use the cores.
+# The MTU: hosted runners carry smaller packets than dind's default 1500 and drop larger ones
+# silently, which stalls TLS handshakes (gl-infra/production#22276); 1360 is GitLab's value.
+.base:
+  extends: .runner_medium
+  image: docker
+  services:
+    - name: docker:dind
+      command: ["--mtu=1360"]
+
+.base_large:
+  extends: .runner_large
+  image: docker
+  services:
+    - name: docker:dind
+      command: ["--mtu=1360"]
+
+# Common earthly setup, as a hidden job so the child pipeline can !reference it.
+.earthly_setup:
+  script:
+  - EARTHLY_VERSION=$(. .dagger/versions.env && echo $EARTHLY_VERSION)
+  # Yes, this installs software in a job. Running on earthly/earthly instead was tried and
+  # REVERTED: the official `docker` image's entrypoint is what wires the client to the docker:dind
+  # service (DOCKER_HOST plus the shared TLS certs under /certs/client), and an image with
+  # entrypoint cleared gets none of it -- earthly then fails with "could not determine buildkit
+  # address". `docker login` and `docker manifest inspect` still appear to work there, because
+  # neither needs a daemon, so the breakage surfaces late. Reproducing that wiring by hand is
+  # possible (DOCKER_HOST/DOCKER_TLS_CERTDIR/DOCKER_CERT_PATH) but buys only this download, which
+  # measurement never showed to be significant: the zero-compute probe jobs (test_census,
+  # test_readme_sync) sat at 132s/131s whether or not the buildkit image was mirrored.
+  - apk update && apk add git
+  - wget https://github.com/earthly/earthly/releases/download/v$EARTHLY_VERSION/earthly-linux-amd64 -O /usr/local/bin/earthly
+  - chmod +x /usr/local/bin/earthly
+  # Log in before bootstrap: the mirror below needs registry access, and bootstrap is what pulls
+  # the buildkit daemon we are trying to redirect.
+  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  # Take the buildkit daemon from a mirror in THIS project's registry rather than Docker Hub:
+  # it is nearer the runners and not subject to Hub rate limits, and EVERY earthly job pays this
+  # pull. The first job to find the tag missing populates it; if that fails, earthly falls back to
+  # its own default, so this is an optimisation and never a hard dependency. Version- and
+  # arch-keyed, so an EARTHLY_VERSION bump mirrors on its first pipeline and the arm64 runners
+  # never clobber the amd64 tag.
+  - BK_ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+  - BK_UPSTREAM="earthly/buildkitd:v$EARTHLY_VERSION"
+  - BK_MIRROR="$CI_REGISTRY_IMAGE/earthly-buildkitd:v$EARTHLY_VERSION-$BK_ARCH"
+  - |
+    if ! docker manifest inspect "$BK_MIRROR" > /dev/null 2>&1; then
+      echo "mirroring $BK_UPSTREAM -> $BK_MIRROR"
+      if docker pull "$BK_UPSTREAM"; then
+        docker tag "$BK_UPSTREAM" "$BK_MIRROR"
+        docker push "$BK_MIRROR" || echo "WARNING - could not push $BK_MIRROR; every job keeps paying the Docker Hub pull"
+      fi
+    fi
+  - |
+    if docker manifest inspect "$BK_MIRROR" > /dev/null 2>&1; then
+      export EARTHLY_BUILDKIT_IMAGE="$BK_MIRROR"
+    fi
+  - echo "earthly buildkit = ${EARTHLY_BUILDKIT_IMAGE:-$BK_UPSTREAM}"
+  # buildkit's own network for RUN steps sits inside dind and needs the same MTU; the logged
+  # bridge MTU is what to check if downloads inside RUN steps stall again
+  - earthly config global.cni_mtu 1360
+  - docker network inspect bridge --format 'dind bridge mtu={{index .Options "com.docker.network.driver.mtu"}}' || true
+  - earthly bootstrap
+  - test "$CI_PROJECT_PATH" != "veilid/veilid" && project_args="--CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE"

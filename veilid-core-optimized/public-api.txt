@@ -1,0 +1,73 @@
+pub mod veilid_core_optimized
+pub enum veilid_core_optimized::Error
+pub veilid_core_optimized::Error::Aead
+pub veilid_core_optimized::Error::Argon2(alloc::string::String)
+pub veilid_core_optimized::Error::Decompress(alloc::string::String)
+pub veilid_core_optimized::Error::Hpke(alloc::string::String)
+pub veilid_core_optimized::Error::InvalidKey
+pub veilid_core_optimized::Error::InvalidLength
+pub veilid_core_optimized::Error::InvalidLength::actual: usize
+pub veilid_core_optimized::Error::InvalidLength::expected: usize
+pub veilid_core_optimized::Error::InvalidPasswordHash(alloc::string::String)
+pub veilid_core_optimized::Error::LengthMismatch
+pub veilid_core_optimized::Error::NotContributory
+pub veilid_core_optimized::Error::Signature(alloc::string::String)
+impl core::error::Error for veilid_core_optimized::Error
+impl core::fmt::Display for veilid_core_optimized::Error
+pub fn veilid_core_optimized::Error::fmt(&self, &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+pub struct veilid_core_optimized::Blake3Hasher(_)
+impl veilid_core_optimized::Blake3Hasher
+pub fn veilid_core_optimized::Blake3Hasher::finalize(&self) -> [u8; 32]
+pub fn veilid_core_optimized::Blake3Hasher::new() -> Self
+pub fn veilid_core_optimized::Blake3Hasher::update(&mut self, &[u8])
+impl core::io::write::Write for veilid_core_optimized::Blake3Hasher
+pub fn veilid_core_optimized::Blake3Hasher::flush(&mut self) -> core::io::error::Result<()>
+pub fn veilid_core_optimized::Blake3Hasher::write(&mut self, &[u8]) -> core::io::error::Result<usize>
+pub const veilid_core_optimized::ARGON2_SALT_MAX_LENGTH: usize
+pub const veilid_core_optimized::ARGON2_SALT_MIN_LENGTH: usize
+pub const veilid_core_optimized::BLAKE3_HASH_LENGTH: usize
+pub const veilid_core_optimized::ED25519_PUBLIC_KEY_LENGTH: usize
+pub const veilid_core_optimized::ED25519_SECRET_KEY_LENGTH: usize
+pub const veilid_core_optimized::ED25519_SIGNATURE_LENGTH: usize
+pub const veilid_core_optimized::HPKE_NONE_KEY_LENGTH: usize
+pub const veilid_core_optimized::HPKE_X25519_KEY_LENGTH: usize
+pub const veilid_core_optimized::X25519_KEY_LENGTH: usize
+pub const veilid_core_optimized::XCHACHA20POLY1305_TAG_LENGTH: usize
+pub const veilid_core_optimized::XCHACHA20_KEY_LENGTH: usize
+pub const veilid_core_optimized::XCHACHA20_NONCE_LENGTH: usize
+pub trait veilid_core_optimized::AeadBuffer: core::convert::AsRef<[u8]> + core::convert::AsMut<[u8]>
+pub fn veilid_core_optimized::AeadBuffer::extend_from_slice(&mut self, &[u8])
+pub fn veilid_core_optimized::AeadBuffer::is_empty(&self) -> bool
+pub fn veilid_core_optimized::AeadBuffer::len(&self) -> usize
+pub fn veilid_core_optimized::AeadBuffer::truncate(&mut self, usize)
+impl veilid_core_optimized::AeadBuffer for alloc::vec::Vec<u8>
+pub fn alloc::vec::Vec<u8>::extend_from_slice(&mut self, &[u8])
+pub fn alloc::vec::Vec<u8>::is_empty(&self) -> bool
+pub fn alloc::vec::Vec<u8>::len(&self) -> usize
+pub fn alloc::vec::Vec<u8>::truncate(&mut self, usize)
+pub fn veilid_core_optimized::argon2_derive_key(&[u8], &[u8], &mut [u8]) -> core::result::Result<(), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::argon2_hash_password(&[u8], &[u8]) -> core::result::Result<alloc::string::String, veilid_core_optimized::Error>
+pub fn veilid_core_optimized::argon2_verify_password(&[u8], &str) -> core::result::Result<bool, veilid_core_optimized::Error>
+pub fn veilid_core_optimized::blake3_hash(&[u8]) -> [u8; 32]
+pub fn veilid_core_optimized::blake3_hash_xof(&[u8], &mut [u8])
+pub fn veilid_core_optimized::ed25519_generate_keypair(veilid_core_optimized::FillBytes<'_>) -> ([u8; 32], [u8; 32])
+pub fn veilid_core_optimized::ed25519_public_to_x25519(&[u8]) -> core::result::Result<[u8; 32], veilid_core_optimized::Error>
+pub fn veilid_core_optimized::ed25519_secret_to_x25519(&[u8]) -> core::result::Result<[u8; 32], veilid_core_optimized::Error>
+pub fn veilid_core_optimized::ed25519_sign_prehashed(&[u8], &[u8], &[u8], &[u8]) -> core::result::Result<[u8; 64], veilid_core_optimized::Error>
+pub fn veilid_core_optimized::ed25519_verify_prehashed(&[u8], &[u8], &[u8], &[u8]) -> core::result::Result<bool, veilid_core_optimized::Error>
+pub fn veilid_core_optimized::hpke_none_open(&[u8], &[u8], &[u8], &[u8], &[u8]) -> core::result::Result<alloc::vec::Vec<u8>, veilid_core_optimized::Error>
+pub fn veilid_core_optimized::hpke_none_seal(&[u8], &[u8], &[u8], &[u8], veilid_core_optimized::FillBytes<'_>) -> core::result::Result<(alloc::vec::Vec<u8>, alloc::vec::Vec<u8>), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::hpke_x25519_derive_keypair(&[u8]) -> ([u8; 32], [u8; 32])
+pub fn veilid_core_optimized::hpke_x25519_generate_keypair(veilid_core_optimized::FillBytes<'_>) -> ([u8; 32], [u8; 32])
+pub fn veilid_core_optimized::hpke_x25519_open(&[u8], &[u8], &[u8], &[u8], &[u8]) -> core::result::Result<alloc::vec::Vec<u8>, veilid_core_optimized::Error>
+pub fn veilid_core_optimized::hpke_x25519_public_from_secret(&[u8]) -> core::result::Result<[u8; 32], veilid_core_optimized::Error>
+pub fn veilid_core_optimized::hpke_x25519_seal(&[u8], &[u8], &[u8], &[u8], veilid_core_optimized::FillBytes<'_>) -> core::result::Result<(alloc::vec::Vec<u8>, alloc::vec::Vec<u8>), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::lz4_compress_prepend_size(&[u8]) -> alloc::vec::Vec<u8>
+pub fn veilid_core_optimized::lz4_decompress(&[u8], usize) -> core::result::Result<alloc::vec::Vec<u8>, veilid_core_optimized::Error>
+pub fn veilid_core_optimized::lz4_uncompressed_size(&[u8]) -> core::result::Result<(usize, &[u8]), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::x25519_diffie_hellman(&[u8], &[u8]) -> core::result::Result<[u8; 32], veilid_core_optimized::Error>
+pub fn veilid_core_optimized::xchacha20_apply_keystream(&[u8], &[u8], &mut [u8]) -> core::result::Result<(), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::xchacha20_apply_keystream_b2b(&[u8], &[u8], &[u8], &mut [u8]) -> core::result::Result<(), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::xchacha20poly1305_decrypt_in_place(&[u8], &[u8], &[u8], &mut dyn veilid_core_optimized::AeadBuffer) -> core::result::Result<(), veilid_core_optimized::Error>
+pub fn veilid_core_optimized::xchacha20poly1305_encrypt_in_place(&[u8], &[u8], &[u8], &mut dyn veilid_core_optimized::AeadBuffer) -> core::result::Result<(), veilid_core_optimized::Error>
+pub type veilid_core_optimized::FillBytes<'a> = &'a mut dyn core::ops::function::FnMut(&mut [u8])

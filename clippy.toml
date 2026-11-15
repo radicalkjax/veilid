@@ -1,0 +1,23 @@
+future-size-threshold = 8192
+array-size-threshold = 8192
+stack-size-threshold = 200000
+
+# Tier 0 of the census gates: policy expressible as "this path may not be used".
+# `[workspace.lints.clippy] all = deny` is already in force, so every entry here is a
+# hard compile-time failure. The per-site exemption is
+# `#[expect(clippy::disallowed_methods, reason = "...")]` - a declaration with a stated
+# reason, which is what makes this a census rather than a ban.
+
+disallowed-methods = [
+    { path = "std::thread::sleep", reason = "blocks the executor; use veilid-tools sleep" },
+    { path = "std::time::Instant::now", reason = "use Timestamp::now" },
+    { path = "std::time::SystemTime::now", reason = "use Timestamp::now" },
+    { path = "tokio::spawn", reason = "use veilid-tools spawn, which names the task" },
+    { path = "async_std::task::spawn", reason = "use veilid-tools spawn, which names the task" },
+]
+
+disallowed-macros = [
+    { path = "std::dbg", reason = "debugging leftover; use veilid_log!" },
+    { path = "std::println", reason = "use veilid_log! so output honors log facilities" },
+    { path = "std::eprintln", reason = "use veilid_log! so output honors log facilities" },
+]

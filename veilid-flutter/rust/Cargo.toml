@@ -1,0 +1,115 @@
+[package]
+# --- Bumpversion match - do not reorder
+name = "veilid-flutter"
+version = "0.5.8"
+# ---
+description = "Flutter/Dart bindings for Veilid"
+resolver = "2"
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+# Cargo derives this from the package name; native_toolchain_rust 1.0.6 reads
+# it out of the manifest and fails the build hook when it is not written down
+name = "veilid_flutter"
+crate-type = ["cdylib", "staticlib", "rlib"]
+path = "src/lib.rs"
+
+[features]
+default = ["rt-tokio", "veilid-core/default"]
+default-wasm = ["veilid-core/default-wasm"]
+debug-api = ["veilid-core/debug-api"]
+stats = ["veilid-core/stats"]
+crypto-test = ["rt-tokio", "veilid-core/crypto-test"]
+
+# Run against the in-process mock instead of the network. Mutually exclusive with the
+# (non-default) stats feature. Self-contained feature sets:
+#   cargo build -p veilid-flutter --no-default-features --features mock-api
+#   cargo build -p veilid-flutter --no-default-features --features mock-api-wasm --target wasm32-unknown-unknown
+mock-api = ["rt-tokio", "veilid-core/mock-api", "veilid-core/default-tokio"]
+mock-api-wasm = ["default-wasm", "veilid-core/mock-api", "debug-api"]
+rt-async-std = ["veilid-core/rt-async-std", "async-std"]
+rt-tokio = ["veilid-core/rt-tokio", "tokio"]
+# Dense veilid-core spans for the always-compiled FlameLayer (FLAME=1), the
+# same coverage veilid-server's `flame` feature gives it
+flame = ["veilid-core/instrument"]
+debug-locks = ["veilid-core/debug-locks"]
+enable-protocol-wss = ["veilid-core/enable-protocol-wss"]
+footgun-nodeid-target = ["veilid-core/footgun-nodeid-target"]
+opentelemetry = [
+    "rt-tokio",
+    "dep:opentelemetry",
+    "opentelemetry_sdk/rt-tokio",
+    "opentelemetry-otlp/grpc-tonic",
+    "opentelemetry-otlp/trace",
+    "veilid-core/instrument",
+]
+
+[dependencies]
+veilid-core = { path = "../../veilid-core", default-features = false, features = [
+    "json-camel-case",
+    "app-lifecycle",
+] }
+tracing = { version = "0.1.41", features = ["log", "attributes"] }
+tracing-subscriber = { version = "0.3.23", features = ["time"] }
+parking_lot = "0.12.5"
+serde_json = "1.0.149"
+serde = "1.0.228"
+cfg-if = "1.0.4"
+data-encoding = { version = "2.9.1" }
+tracing-flame = "0.2.0"
+
+# Dependencies for native builds only
+# This does not build for WASM but we still separate the dependencies for the Cargo.lock feature unification
+# Linux, Windows, Mac, iOS, Android
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dependencies]
+tracing-opentelemetry = "0.32.1"
+
+opentelemetry = { version = "0.31.0", optional = true }
+opentelemetry-otlp = { version = "0.31.0", default-features = false, optional = true }
+opentelemetry_sdk = { version = "0.31.0", optional = true }
+opentelemetry-semantic-conventions = { version = "0.31.0", optional = true }
+
+async-std = { version = "1.13.2", features = ["unstable"], optional = true }
+tokio = { version = "1.50.0", optional = true }
+# zero-copy off: a failed post must not run rust finalizers inline on the posting thread
+allo-isolate = { version = "0.1.27", default-features = false }
+ffi-support = "0.4.4"
+lazy_static = "1.5.0"
+hostname = "0.4.2"
+# No local-offset: unused, chrono supplies the local offset in dart_ffi.rs
+time = "0.3.47"
+chrono = "0.4.40"
+
+# Dependencies for Android builds only
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.22.4"
+paranoid-android = "0.2.2"
+# Keeps logd's blocking writes off worker threads - see android_log_writer in dart_ffi.rs
+tracing-appender = "0.2.4"
+
+# Dependencies for iOS builds only
+[target.'cfg(target_os = "ios")'.dependencies]
+# None currently
+
+# Dependencies for WASM builds only (dart-flavored wasm-bindgen bindings)
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+js-sys = "0.3.83"
+wasm-bindgen = "0.2.121"
+wasm-bindgen-futures = "=0.4.71"
+wasm-bindgen-derive = "0.3.0"
+console_error_panic_hook = "0.1.7"
+send_wrapper = "0.6.0"
+futures-util = { version = "0.3.32" }
+gloo-utils = { version = "0.3.0", features = ["serde"] }
+lazy_static = "1.5.0"
+
+[lints]
+workspace = true
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2.191"

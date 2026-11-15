@@ -1,0 +1,5 @@
+# ast-grep project config for the census gates. See scripts/update_census.sh.
+# Kept at the repo root because that is where `ast-grep scan` looks by default, so an
+# ad-hoc scan works with no arguments; the rules themselves live under scripts/.
+ruleDirs:
+  - scripts/census/rules

@@ -1,0 +1,85 @@
+id: panic-census
+language: rust
+severity: error
+message: "panic-family macro with no // PANIC-CENSUS: declaration"
+note: |
+  A panic in production code is a crash the caller cannot handle, so the default is a logged
+  error return. What is left is the set that cannot be one, and each says which case it is:
+
+      // PANIC-CENSUS: infallible serde cannot fail for these derive types
+      panic!("...");
+
+  Verbs, all of which take a justification after them:
+    crash-test      the panic IS the feature (debug_die, --panic)
+    infallible      the condition is impossible or unsupported, and the fn cannot return
+    provably-dead   type coercion or a match arm the compiler cannot see is unreachable
+    debug-only      a debug-build assertion; release logs instead
+    api-shape       returning an error here would need a signature change with no caller
+
+  debug_assert! is deliberately out of scope: it is the DESTINATION for a true invariant,
+  not something to declare. todo! is out for a different reason - it marks code not written
+  yet, which the compiler already tracks.
+files:
+  - "veilid-core-optimized/src/**"
+  - "veilid-core/src/**"
+  - "veilid-tools/src/**"
+  - "veilid-flutter/rust/src/**"
+ignores:
+  # veilid's tests are `pub fn` in tests_*/ directories, not #[cfg(test)] modules, so the
+  # cfg(test) exclusion below does not see them. An assert in a test is the test.
+  - "**/tests/**"
+  - "**/tests_*/**"
+  - "**/test_*.rs"
+
+utils:
+  census-marker:
+    kind: line_comment
+    regex: '^//\s*PANIC-CENSUS:\s*(crash-test|infallible|provably-dead|debug-only|api-shape)\s+\S'
+  is-comment:
+    any:
+      - kind: line_comment
+      - kind: block_comment
+  # Walks back through a run of comments, so a multi-line justification still counts
+  declared:
+    follows:
+      matches: census-marker
+      stopBy:
+        not:
+          matches: is-comment
+  in-test-module:
+    any:
+      - inside:
+          kind: mod_item
+          stopBy: end
+          follows:
+            kind: attribute_item
+            regex: 'cfg\(test\)'
+            stopBy: end
+      # A bare #[test] fn at module level is in neither a cfg(test) mod nor a tests/ path
+      - inside:
+          kind: function_item
+          stopBy: end
+          follows:
+            kind: attribute_item
+            regex: '^#\[(tokio::|async_std::|wasm_bindgen_)?test'
+            stopBy: end
+  is-panic-family:
+    has:
+      field: macro
+      regex: '^(panic|unreachable|assert|assert_eq|assert_ne)$'
+
+rule:
+  kind: macro_invocation
+  matches: is-panic-family
+  not:
+    any:
+      - matches: declared
+      # ...or above the statement holding it. Bounded at the enclosing block so a
+      # declaration covers its own statement however deeply the macro is nested inside it
+      # (`nr.map(|_| unreachable!())` is a closure inside a call inside a return), and
+      # cannot reach up to serve a whole function.
+      - inside:
+          stopBy:
+            kind: block
+          matches: declared
+      - matches: in-test-module

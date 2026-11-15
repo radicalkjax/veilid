@@ -1,0 +1,165 @@
+use crate::*;
+use async_std::io::Read as AsyncRead;
+use async_std::io::Write as AsyncWrite;
+use async_std::os::unix::net::{Incoming, UnixListener, UnixStream};
+use futures_util::AsyncRead as FuturesAsyncRead;
+use futures_util::AsyncWrite as FuturesAsyncWrite;
+use futures_util::Stream;
+use std::path::PathBuf;
+use std::{io, path::Path};
+
+/////////////////////////////////////////////////////////////
+
+/// A bidirectional IPC connection over a unix domain socket (async-std backend).
+pub struct IpcStream {
+    internal: UnixStream,
+}
+
+impl IpcStream {
+    /// Connect to an IPC endpoint at the given socket path.
+    ///
+    /// Blocks until the unix socket connect completes.
+    ///
+    /// Errors with the underlying connect failure: `NotFound` if no socket exists at `path`, `ConnectionRefused` if nothing is listening, `PermissionDenied` if the socket is not accessible.
+    pub async fn connect<P: AsRef<Path>>(path: P) -> io::Result<IpcStream> {
+        Ok(IpcStream {
+            internal: UnixStream::connect(path.as_ref()).await?,
+        })
+    }
+}
+
+impl FuturesAsyncRead for IpcStream {
+    fn poll_read(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+        buf: &mut [u8],
+    ) -> std::task::Poll<io::Result<usize>> {
+        <UnixStream as AsyncRead>::poll_read(std::pin::Pin::new(&mut self.internal), cx, buf)
+    }
+}
+
+impl FuturesAsyncWrite for IpcStream {
+    fn poll_write(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+        buf: &[u8],
+    ) -> std::task::Poll<io::Result<usize>> {
+        <UnixStream as AsyncWrite>::poll_write(std::pin::Pin::new(&mut self.internal), cx, buf)
+    }
+
+    fn poll_flush(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<io::Result<()>> {
+        <UnixStream as AsyncWrite>::poll_flush(std::pin::Pin::new(&mut self.internal), cx)
+    }
+
+    fn poll_close(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<io::Result<()>> {
+        <UnixStream as AsyncWrite>::poll_close(std::pin::Pin::new(&mut self.internal), cx)
+    }
+}
+
+/////////////////////////////////////////////////////////////
+
+/// A stream of incoming IPC connections, yielding an [IpcStream] per accept.
+/// Removes the socket file on drop.
+pub struct IpcIncoming<'a> {
+    path: PathBuf,
+    internal: Incoming<'a>,
+}
+
+impl Drop for IpcIncoming<'_> {
+    fn drop(&mut self) {
+        // Clean up IPC path
+        if let Err(e) = std::fs::remove_file(&self.path) {
+            warn!("Unable to remove IPC socket: {}", e);
+        }
+    }
+}
+
+impl Stream for IpcIncoming<'_> {
+    type Item = io::Result<IpcStream>;
+
+    fn poll_next(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<Option<Self::Item>> {
+        match <Incoming as Stream>::poll_next(std::pin::Pin::new(&mut self.internal), cx) {
+            std::task::Poll::Ready(ro) => {
+                std::task::Poll::Ready(ro.map(|rr| rr.map(|s| IpcStream { internal: s })))
+            }
+            std::task::Poll::Pending => std::task::Poll::Pending,
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////
+
+/// Listens for incoming IPC connections on a unix domain socket, removing the
+/// socket file on drop.
+pub struct IpcListener {
+    path: Option<PathBuf>,
+    internal: Option<Arc<UnixListener>>,
+}
+
+impl IpcListener {
+    /// Creates a new `IpcListener` bound to the specified path.
+    ///
+    /// The returned listener (or the [`IpcIncoming`] taken from it) removes the socket file when dropped.
+    ///
+    /// Errors with the underlying bind failure: `AddrInUse` if a socket already exists at `path` (stale sockets are not cleaned up), `PermissionDenied` if the directory is not writable.
+    pub async fn bind<P: AsRef<Path>>(path: P) -> io::Result<Self> {
+        Ok(Self {
+            path: Some(path.as_ref().to_path_buf()),
+            internal: Some(Arc::new(UnixListener::bind(path.as_ref()).await?)),
+        })
+    }
+
+    /// Accepts a new incoming connection to this listener.
+    ///
+    /// The returned future blocks until a peer connects. Errors `NotConnected` once [`IpcListener::incoming`] has consumed the listener, otherwise propagates the io error from the underlying socket accept.
+    #[must_use]
+    pub fn accept(&self) -> PinBoxFuture<'_, io::Result<IpcStream>> {
+        if self.path.is_none() {
+            return Box::pin(std::future::ready(Err(io::Error::from(
+                io::ErrorKind::NotConnected,
+            ))));
+        }
+        let this = IpcListener {
+            path: self.path.clone(),
+            internal: self.internal.clone(),
+        };
+        Box::pin(async move {
+            Ok(IpcStream {
+                internal: this.internal.as_ref().unwrap_or_log().accept().await?.0,
+            })
+        })
+    }
+
+    /// Returns a stream of incoming connections.
+    ///
+    /// Moves the socket-file cleanup to the returned [`IpcIncoming`]; a second call errors `NotConnected`.
+    pub fn incoming(&mut self) -> io::Result<IpcIncoming<'_>> {
+        if self.path.is_none() {
+            return Err(io::Error::from(io::ErrorKind::NotConnected));
+        }
+        Ok(IpcIncoming {
+            path: self.path.take().unwrap_or_log(),
+            internal: self.internal.as_ref().unwrap_or_log().incoming(),
+        })
+    }
+}
+
+impl Drop for IpcListener {
+    fn drop(&mut self) {
+        // Clean up IPC path
+        if let Some(path) = &self.path {
+            if let Err(e) = std::fs::remove_file(path) {
+                warn!("Unable to remove IPC socket: {}", e);
+            }
+        }
+    }
+}

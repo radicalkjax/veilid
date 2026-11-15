@@ -1,0 +1,29 @@
+name: veilid_test
+description: A library for testing Veilid applications
+version: 0.1.0
+publish_to: none
+# repository: https://gitlab.com/veilid/dart_veilid_test
+
+environment:
+  sdk: ">=3.10.0 <4.0.0"
+
+resolution: workspace
+
+# Add regular dependencies here.
+dependencies:
+  async_tools: ^0.1.19
+  path: ^1.9.0
+  web: ^1.1.1
+  veilid:
+    path: ../..
+  # For the unit fixture, which mocks a platform channel and registers test
+  # hooks. This package already depends on veilid, a Flutter plugin, so it was
+  # never usable outside Flutter.
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  test: ^1.30.0

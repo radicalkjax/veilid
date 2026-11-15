@@ -1,0 +1,5 @@
+/usr/bin/veilid-server          --      gen_context(system_u:object_r:veilid_server_exec_t,s0)
+
+/etc/veilid-server(/.*)?                gen_context(system_u:object_r:veilid_server_conf_t,s0)
+
+/var/db/veilid-server(/.*)?             gen_context(system_u:object_r:veilid_server_var_lib_t,s0)

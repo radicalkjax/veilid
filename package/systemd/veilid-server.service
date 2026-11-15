@@ -1,0 +1,44 @@
+# /etc/systemd/system/veilid-server.service
+
+[Unit]
+Description=Veilid Headless Node
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=RUST_BACKTRACE=1
+ExecStart=/usr/bin/veilid-server -c /etc/veilid-server/veilid-server.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+WorkingDirectory=/
+User=veilid
+Group=veilid
+UMask=0002
+
+CapabilityBoundingSet=
+SystemCallFilter=@system-service
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+PrivateUsers=true
+ProtectHome=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectSystem=strict
+ReadWritePaths=/var/db/veilid-server
+ConfigurationDirectory=veilid-server
+
+RestrictRealtime=true
+SystemCallArchitectures=native
+LockPersonality=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target

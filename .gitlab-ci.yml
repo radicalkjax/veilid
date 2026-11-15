@@ -1,0 +1,723 @@
+include:
+  - local: .gitlab/ci/common.yml
+
+###########################################################################
+# Stages
+
+stages:
+  - tools
+  - prepare
+  - test
+  - build_packages
+  - distribute
+  - release
+  - cleanup
+  - failed
+
+###########################################################################
+# Common YAML fragments
+
+# Rules for running tests
+# Runs on merge requests and events that cause update to merge requests (like pushing to a branch with an open merge request)
+# Only runs if the crates, the Cargo files, or the build itself (CI config, Earthfile, scripts,
+# pinned tool versions) changed. A push to the default branch runs the same gate. A manual run
+# of a branch (Run pipeline in the web UI) has no diff base, so everything runs. Tags are
+# excluded: a tag pipeline is a release.
+.branch_test_rules: &branch_test_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+    changes:
+      - veilid-*/**/*
+      - "**/*[Cc]argo*"
+      - .gitlab-ci.yml
+      - .gitlab/**/*
+      - Earthfile
+      - .earthlyignore
+      - .dagger/**/*
+      - dev-setup/**/*
+      - scripts/**/*
+      - clippy.toml
+      - sgconfig.yml
+    when: on_success
+  - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH
+    when: on_success
+  # Do not run any other pipeline types
+  - when: never
+
+# Rules for running formatting checks
+.branch_format_rules: &branch_format_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+    changes:
+      - veilid-*/**/*.rs # Should fire when rust source files are changed
+      - "**/*[Cc]argo*"
+      - scripts/_check_format_rust.sh
+      - .gitlab-ci.yml
+      - .gitlab/**/*
+    when: on_success
+  - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH
+    when: on_success
+  # Do not run any other pipeline types
+  - when: never
+
+# Rules for the Python gates (black, mypy): the sources wherever they live, the project files
+# and the scripts that run them
+.branch_python_rules: &branch_python_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+    changes:
+      - "**/*.py"
+      - veilid-python/**/*
+      - scripts/**/*
+      - .gitlab-ci.yml
+      - .gitlab/**/*
+    when: on_success
+  - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH
+    when: on_success
+  # Do not run any other pipeline types
+  - when: never
+
+# Rules for the TypeScript format gate (prettier)
+.branch_typescript_rules: &branch_typescript_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+    changes:
+      - veilid-wasm/**/*
+      - scripts/**/*
+      - .gitlab-ci.yml
+      - .gitlab/**/*
+    when: on_success
+  - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH
+    when: on_success
+  # Do not run any other pipeline types
+  - when: never
+
+# Common unit test base
+.unit_test:
+  # Large by default: most users of this template are compile-bound. The three that are not
+  # (census, readme-sync, dart-format do no rust compilation) drop back to medium individually.
+  extends: .base_large
+  variables:
+    earthly_target: test-all
+  stage: test
+  # A superseded pipeline should hand its runners back rather than finish a lint nobody reads.
+  interruptible: true
+  # Stage order alone would make every test wait for the whole prepare stage. These are the only
+  # real dependencies: the tool images, and the crate cache when this lockfile has one.
+  needs:
+    - job: build_images
+      optional: true
+  before_script:
+    - !reference [.earthly_setup, script]
+    # Degrade to downloading crates rather than failing on a missing image. The child pipeline's
+    # crate_cache job should have published this tag, so a miss here means that job was skipped
+    # or failed -- worth a slower build, not a failed one.
+    - |
+      CRATE_CACHE_TAG=$(sh scripts/cache_tags.sh crate)
+      if docker manifest inspect "$CI_REGISTRY_IMAGE/crate-cache:$CRATE_CACHE_TAG" > /dev/null 2>&1; then
+        crate_cache_args="--CRATE_CACHE_TAG=$CRATE_CACHE_TAG"
+        echo "Using crate cache: crate-cache:$CRATE_CACHE_TAG"
+      else
+        crate_cache_args=""
+        echo "No crate-cache:$CRATE_CACHE_TAG published; crates download during the build"
+      fi
+  script:
+    - earthly --use-inline-cache +$earthly_target --TOOLS=container --TOOLS_IMAGE=$CI_REGISTRY_IMAGE $project_args $crate_cache_args
+  rules:
+    - *branch_test_rules
+
+###########################################################################
+# Jobs
+
+format_rust:
+  extends: .runner_small
+  stage: test
+  # Pinned to RUST_VERSION: unpinned `rust:slim` tracks stable (1.98.1 at the time of writing)
+  # while everything else builds with 1.92.0, and rustfmt's output does change between releases --
+  # so the gate could disagree with the local check_all.sh run, which pins the same version.
+  # check_all.sh fails if this literal drifts from .dagger/versions.env.
+  # DELIBERATE EXCEPTION to "test jobs do not install software": no image avoids it. Every
+  # upstream rust image uses --profile minimal (checked: 1.92.0 and 1.92.0-slim both lack rustfmt)
+  # and our own tool-rust installs `-c clippy` only. Using tool-rust here would pull 1757MB rather
+  # than 318MB to skip a ~5MB component on a job that finishes in under a minute.
+  image: rust:1.92.0-slim
+  before_script:
+    - rustup component add rustfmt
+
+  script:
+    - ./scripts/_check_format_rust.sh
+
+  rules:
+    - *branch_format_rules
+
+# The Python and TypeScript halves of the format gate, and mypy. Source-only, so each runs on the
+# smallest upstream image with its interpreter, pinned by tag like the format_rust job; the tools
+# themselves come from veilid-python/uv.lock and veilid-wasm/tests/package-lock.json. eslint reads
+# types generated from the wasm crate, so it is an earthly job below (test_lint_typescript).
+format_python:
+  extends: .runner_small
+  stage: test
+  image: astral/uv:0.13.1-python3.12-trixie-slim
+  script:
+    - ./scripts/_check_format_python.sh
+  rules:
+    - *branch_python_rules
+
+lint_python:
+  extends: .runner_small
+  stage: test
+  image: astral/uv:0.13.1-python3.12-trixie-slim
+  script:
+    - ./scripts/_lint_python.sh
+  rules:
+    - *branch_python_rules
+
+format_typescript:
+  extends: .runner_small
+  stage: test
+  image: node:22.23.3-slim
+  script:
+    - (cd veilid-wasm/tests && npm ci --no-audit --no-fund)
+    - ./scripts/_check_format_typescript.sh
+  rules:
+    - *branch_typescript_rules
+
+# Which build images are missing, decided in a curl-only container: no docker, no docker-in-docker
+# service, no earthly. The registry v2 API answers 200/404 for a tag given only a JWT, so this is
+# the disqualifier — on a warm pipeline it is the single cheap job that runs before the tests,
+# instead of a chain of earthly jobs each costing ~110s of startup to discover there is nothing
+# to do.
+plan_images:
+  extends: .runner_small
+  stage: tools
+  # curl ships in the image and busybox supplies the sh/sed/sha256sum the scripts need, so this
+  # job installs nothing at run time. entrypoint cleared: the image's own is curl.
+  image:
+    name: alpine/curl:latest
+    entrypoint: [""]
+  interruptible: true
+  script:
+    - sh scripts/ci/plan_images.sh images.env
+  artifacts:
+    reports:
+      dotenv: images.env
+  rules:
+    - *branch_test_rules
+
+# Build only what plan_images found missing, in dependency waves (see .gitlab/ci/images.yml).
+# A trigger job runs on no runner at all, so a fully cached pipeline pays nothing here beyond the
+# child's own no-op job.
+build_images:
+  stage: tools
+  needs: [plan_images]
+  trigger:
+    include:
+      - local: .gitlab/ci/images.yml
+    strategy: depend
+  variables:
+    BUILD_DEPS_BASE: $BUILD_DEPS_BASE
+    BUILD_TOOL_FLUTTER: $BUILD_TOOL_FLUTTER
+    BUILD_TOOL_RUST: $BUILD_TOOL_RUST
+    BUILD_TOOL_ZIG: $BUILD_TOOL_ZIG
+    BUILD_TOOL_BINARYEN: $BUILD_TOOL_BINARYEN
+    BUILD_TOOL_CARGO_BINS: $BUILD_TOOL_CARGO_BINS
+    BUILD_TOOL_ASTGREP: $BUILD_TOOL_ASTGREP
+    BUILD_TOOL_ZIGBUILD: $BUILD_TOOL_ZIGBUILD
+    BUILD_DEPS_LINUX: $BUILD_DEPS_LINUX
+    BUILD_DEPS_FLUTTER: $BUILD_DEPS_FLUTTER
+    BUILD_DEPS_FLUTTER_RUST: $BUILD_DEPS_FLUTTER_RUST
+    BUILD_DEPS_XWIN: $BUILD_DEPS_XWIN
+    BUILD_CRATE_CACHE: $BUILD_CRATE_CACHE
+  rules:
+    - *branch_test_rules
+
+# Keep the 3 most recent tags in each tool-* repository and in crate-cache. The project-wide
+# cleanup policy cannot express this: it matches tag names across every repository and its keep_n
+# is a fixed set of values with no 3 in it. The bulk tag delete API takes an arbitrary keep_n one
+# repository at a time, so this walks them individually. crate-cache accumulates one tag per
+# distinct Cargo.lock and would otherwise grow without limit. The tag the build currently asks
+# for is kept whatever its age, so a revert to an older lockfile or pinned version still finds
+# its image.
+#
+# Needs REGISTRY_CLEANUP_TOKEN (CI/CD variable): a project access token with api scope and at
+# least the Maintainer role. CI_JOB_TOKEN cannot delete registry tags. Without it this no-ops.
+registry_cleanup:
+  # curl and jq only; no earthly, no dind.
+  extends: .runner_small
+  image: alpine:latest
+  stage: cleanup
+  script:
+    - apk update && apk add curl jq
+    - |
+      if [ -z "${REGISTRY_CLEANUP_TOKEN:-}" ]; then
+        echo "REGISTRY_CLEANUP_TOKEN is not set; skipping registry cleanup."
+        exit 0
+      fi
+    - |
+      api="$CI_API_V4_URL/projects/$CI_PROJECT_ID/registry/repositories"
+      curl -sSf --header "PRIVATE-TOKEN: $REGISTRY_CLEANUP_TOKEN" "$api?per_page=100" \
+        | jq -r '.[] | select((.name | startswith("tool-")) or .name == "crate-cache" or .name == "deps-linux" or .name == "deps-flutter" or .name == "deps-flutter-rust" or .name == "deps-xwin" or .name == "earthly-buildkitd") | "\(.id) \(.name)"' > /tmp/cache_repos.txt
+      if [ ! -s /tmp/cache_repos.txt ]; then
+        echo "no tool-*, deps-linux or crate-cache repositories in the registry; nothing to clean."
+        exit 0
+      fi
+      while read -r id name; do
+        # The tag this build asks for, kept whatever its age; dots escaped for the re2 regex
+        case "$name" in
+          crate-cache) keep=$(sh scripts/cache_tags.sh crate) ;;
+          deps-linux)  keep=$(sh scripts/tool_tags.sh deps-linux) ;;
+          deps-flutter) keep=$(sh scripts/tool_tags.sh deps-flutter) ;;
+          deps-flutter-rust) keep=$(sh scripts/tool_tags.sh deps-flutter-rust) ;;
+          deps-xwin)   keep=$(sh scripts/tool_tags.sh deps-xwin) ;;
+          earthly-buildkitd) keep="v$(. .dagger/versions.env && echo $EARTHLY_VERSION)-.*" ;;
+          *)           keep=$(sh scripts/tool_tags.sh "${name#tool-}") ;;
+        esac
+        keep=$(printf '%s' "$keep" | sed 's/[.]/\\./g')
+        have=$(curl -sSf --header "PRIVATE-TOKEN: $REGISTRY_CLEANUP_TOKEN" "$api/$id/tags?per_page=100" | jq 'length')
+        echo "$name: $have tags, keeping 3 most recent plus ^$keep\$"
+        q="name_regex_delete=$(jq -rn '".*" | @uri')&keep_n=3&name_regex_keep=$(jq -rn --arg v "^$keep\$" '$v | @uri')"
+        curl -sS --fail-with-body --request DELETE \
+          --header "PRIVATE-TOKEN: $REGISTRY_CLEANUP_TOKEN" "$api/$id/tags?$q" || exit 1
+        echo
+      done < /tmp/cache_repos.txt
+  rules:
+    # Maintenance, not part of a code pipeline: the scheduled run, or by hand from the web UI.
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "web"
+      when: manual
+    - when: never
+
+test_msrv_all:
+  extends: .unit_test
+  variables:
+    earthly_target: test-msrv-all
+
+test_census:
+  extends: .unit_test
+  # No rust compilation here, so the extra cores would go unused.
+  tags: [saas-linux-medium-amd64]
+  variables:
+    earthly_target: test-census
+
+test_dart_format:
+  extends: .unit_test
+  # No rust compilation here, so the extra cores would go unused.
+  tags: [saas-linux-medium-amd64]
+  variables:
+    earthly_target: test-dart-format
+
+test_readme_sync:
+  extends: .unit_test
+  # No rust compilation here, so the extra cores would go unused.
+  tags: [saas-linux-medium-amd64]
+  variables:
+    earthly_target: test-readme-sync
+
+# eslint over the wasm test harness and example; type-aware, so it builds the wasm package first.
+test_lint_typescript:
+  extends: .unit_test
+  variables:
+    earthly_target: test-lint-typescript
+
+# test_check_wasm_builds_dart:
+#   extends: .unit_test
+#   variables:
+#     earthly_target: test-check-wasm-builds-dart
+
+# test_check_wasm_builds_js:
+#   extends: .unit_test
+#   variables:
+#     earthly_target: test-check-wasm-builds-js
+
+test_clippy_wasm32_unknown_unknown:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-wasm32-unknown-unknown
+
+test_clippy_x86_64_pc_windows_gnu:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-x86-64-pc-windows-gnu
+
+test_clippy_aarch64_apple_darwin:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-aarch64-apple-darwin
+
+test_clippy_x86_64_unknown_linux_gnu:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-x86-64-unknown-linux-gnu
+
+test_clippy_x86_64_unknown_linux_gnu_async_std:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-x86-64-unknown-linux-gnu-async-std
+
+test_clippy_mock_api:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-mock-api
+
+test_clippy_optional_features:
+  extends: .unit_test
+  variables:
+    earthly_target: test-clippy-optional-features
+
+# test_build_docs:
+#   extends: .unit_test
+#   variables:
+#     earthly_target: test-build-docs
+
+test_unit_tests_all:
+  extends: .unit_test
+  variables:
+    earthly_target: test-unit-tests-all
+
+# veilid-flutter end to end against the in-process mock, headless on flutter-tester.
+# Installs the versions.env-pinned Flutter SDK in the image (+deps-flutter).
+test_flutter_integration:
+  extends: .unit_test
+  variables:
+    earthly_target: test-flutter-integration
+
+semgrep:
+  # A Docker image with Semgrep installed.
+  # Small: 157s and nowhere near the critical path (test_unit_tests_all is 901s), so extra cores
+  # would buy pipeline time nothing.
+  extends: .runner_small
+  image: semgrep/semgrep
+
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH
+
+  variables:
+    # The one job that genuinely needs git history: `semgrep ci` is diff-aware and resolves a
+    # baseline ref to scan only what changed. Under the pipeline-wide GIT_DEPTH: 1 it cannot find
+    # one, and `|| true` below would hide it scanning nothing -- a quiet coverage hole in a
+    # security gate rather than a failure. 0 means a full clone.
+    GIT_DEPTH: 0
+
+    # Connect to Semgrep AppSec Platform through your SEMGREP_APP_TOKEN.
+    # Generate a token from Semgrep AppSec Platform > Settings
+    # and add it as a variable in your GitLab CI/CD project settings.
+    SEMGREP_APP_TOKEN: $SEMGREP_APP_TOKEN
+
+    # Upload findings to GitLab SAST Dashboard:
+    SEMGREP_GITLAB_JSON: "1"
+
+  # Other optional settings in the `variables` block:
+
+  # Receive inline MR comments (requires Semgrep AppSec Platform account)
+  # Setup instructions:
+  # https://semgrep.dev/docs/semgrep-appsec-platform/gitlab-mr-comments
+  #   GITLAB_TOKEN: $PAT
+
+  # Run the "semgrep ci" command on the command line of the docker image and send findings
+  # to GitLab SAST.
+  script: semgrep ci --gitlab-sast > gl-sast-report.json || true
+  allow_failure: true
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+
+# The prebuilt veilid-flutter library for Windows x64, which a Windows app build bundles through the
+# hook's prebuilt tier instead of compiling it (veilid-flutter/hook/prebuilt.dart). Cross-built
+# with clang-cl and lld-link (+deps-xwin) against the MSVC CRT and Windows SDK, which xwin fetches
+# under Microsoft's license (https://go.microsoft.com/fwlink/?LinkId=2086102), accepted by the
+# Veilid Foundation.
+# Published per commit with the job token, keeping the newest seven untagged versions
+# (scripts/ci/publish_prebuilt.sh); the prune needs the token's ADMIN_PACKAGES permission.
+prebuilt_flutter_windows_x64:
+  extends: .base_large
+  stage: build_packages
+  needs:
+    - job: build_images
+      optional: true
+  script:
+    - !reference [.earthly_setup, script]
+    - earthly --use-inline-cache +prebuilt-flutter-windows-x64 --TOOLS=container --TOOLS_IMAGE=$CI_REGISTRY_IMAGE $project_args --COMMIT=$CI_COMMIT_SHA --BUILD_HOST="$CI_RUNNER_DESCRIPTION"
+    - apk add curl jq
+    - sh scripts/ci/publish_prebuilt.sh target/prebuilt/flutter-windows-x64
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+# Actual release -- triggered by pushing a new version tag
+
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "running release_job"
+  release: # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
+    tag_name: "$CI_COMMIT_TAG"
+    description: "$CI_COMMIT_TAG"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+create_build_machine:
+  stage: prepare
+  tags:
+    - build-orchestration
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --create-build-machine
+  artifacts:
+    paths:
+      - scripts/cicd-python/config.json
+    expire_in: 6 hours
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+package_linux:
+  stage: build_packages
+  timeout: 120m
+  tags:
+    - build-amd64-deb
+  script:
+    - earthly bootstrap
+    - earthly +package-linux
+  artifacts:
+    paths:
+      - target/packages/*
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+build_repositories:
+  stage: distribute
+  tags:
+    - build-orchestration
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/Dockerfile ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/repobuild.sh ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/generate-stable-release.sh ~
+    - bash scripts/cicd/build-orchestration/distribute-stable-packages.sh
+  dependencies:
+    - package_linux
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+publish_crates:
+  stage: distribute
+  needs:
+    - build_repositories
+  tags:
+    - build-amd64-deb
+  script:
+    - cargo publish -p veilid-tools --dry-run
+    - cargo publish -p veilid-tools
+    - cargo publish -p veilid-core-optimized --dry-run
+    - cargo publish -p veilid-core-optimized
+    - cargo publish -p veilid-core --dry-run
+    - cargo publish -p veilid-core
+    - cargo publish -p veilid-remote-api --dry-run
+    - cargo publish -p veilid-remote-api
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+publish_python:
+  stage: distribute
+  needs:
+    - build_repositories
+  tags:
+    - build-amd64-deb
+  script:
+    - uv --directory veilid-python build
+    - uv --directory veilid-python publish
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+delete_build_machines:
+  stage: cleanup
+  tags:
+    - build-orchestration
+  dependencies:
+    - create_build_machine
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+
+# Dryrun release -- triggered by changes in .gitlab-ci.yml, CICD scripts, or Earthfile
+
+dryrun_create_build_machine:
+  stage: prepare
+  tags:
+    - build-orchestration
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --create-build-machine
+  artifacts:
+    paths:
+      - scripts/cicd-python/config.json
+    expire_in: 6 hours
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_package_linux:
+  stage: build_packages
+  tags:
+    - build-amd64-deb
+  script:
+    - earthly bootstrap
+    - earthly +package-linux
+  artifacts:
+    paths:
+      - target/packages/*
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_publish_crates:
+  stage: build_packages
+  needs:
+    - dryrun_package_linux
+  tags:
+    - build-amd64-deb
+  script:
+    - vlt login
+    - vlt run --command="cargo publish -p veilid-tools --dry-run"
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_publish_python:
+  stage: build_packages
+  needs:
+    - dryrun_package_linux
+  tags:
+    - build-amd64-deb
+  script:
+    - uv --directory veilid-python build
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_build_repositories:
+  stage: distribute
+  tags:
+    - build-orchestration
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/Dockerfile ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/repobuild.sh ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/generate-stable-release.sh ~
+    - bash scripts/cicd/build-orchestration/distribute-stable-packages.sh
+  dependencies:
+    - dryrun_package_linux
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_deploy_repos:
+  stage: distribute
+  needs:
+    - dryrun_build_repositories
+  tags:
+    - repo-server
+  script:
+    - ls -al $HOME/repo.tar
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+dryrun_delete_build_machines:
+  stage: cleanup
+  tags:
+    - build-orchestration
+  dependencies:
+    - dryrun_create_build_machine
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[ci dryrun]/
+
+# Nightly build pipeline
+
+nightly_create_build_machines:
+  stage: prepare
+  tags:
+    - build-orchestration
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --create-build-machine
+  artifacts:
+    paths:
+      - scripts/cicd-python/config.json
+    expire_in: 6 hours
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+nightly_package_linux:
+  stage: build_packages
+  tags:
+    - build-amd64-deb
+  timeout: 120m
+  script:
+    - earthly bootstrap
+    - earthly +package-linux --IS_NIGHTLY="$IS_NIGHTLY"
+  artifacts:
+    paths:
+      - target/packages/*
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+nightly_build_repositories:
+  stage: distribute
+  tags:
+    - build-orchestration
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/Dockerfile ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/rpm-repo-building/repobuild.sh ~/rpm-build-container
+    - cp scripts/cicd/build-orchestration/generate-nightly-release.sh ~
+    - bash scripts/cicd/build-orchestration/distribute-nightly-packages.sh
+  dependencies:
+    - nightly_package_linux
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+nightly_delete_build_machines:
+  stage: cleanup
+  tags:
+    - build-orchestration
+  dependencies:
+    - nightly_create_build_machines
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: $IS_NIGHTLY == "true"
+
+# If any steps fail this will run the build machine tear down scripts. Each is gated to the
+# pipeline that creates its build machine; a failed test pipeline has nothing to tear down.
+
+stable_failed_pipeline_actions:
+  stage: failed
+  tags:
+    - build-orchestration
+  dependencies:
+    - create_build_machine
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /v\d.+/'
+      when: on_failure
+
+nightly_failed_pipeline_actions:
+  stage: failed
+  tags:
+    - build-orchestration
+  dependencies:
+    - nightly_create_build_machines
+  script:
+    - uv --directory scripts/cicd-python sync
+    - uv --directory scripts/cicd-python run veilid_release_utils.py --delete-build-machine
+  rules:
+    - if: $IS_NIGHTLY == "true"
+      when: on_failure

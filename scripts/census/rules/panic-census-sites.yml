@@ -1,0 +1,62 @@
+id: panic-census-sites
+language: rust
+severity: hint
+message: "panic-family macro (census population, not a violation)"
+note: |
+  Counts every panic-family macro panic-census considers, declared or not. Its only job is
+  the empty-sweep backstop: if the matcher silently stops working this count collapses to
+  zero and the census diff catches it.
+files:
+  - "veilid-core-optimized/src/**"
+  - "veilid-core/src/**"
+  - "veilid-tools/src/**"
+  - "veilid-flutter/rust/src/**"
+ignores:
+  # veilid's tests are `pub fn` in tests_*/ directories, not #[cfg(test)] modules, so the
+  # cfg(test) exclusion below does not see them. An assert in a test is the test.
+  - "**/tests/**"
+  - "**/tests_*/**"
+  - "**/test_*.rs"
+
+utils:
+  census-marker:
+    kind: line_comment
+    regex: '^//\s*PANIC-CENSUS:\s*(crash-test|infallible|provably-dead|debug-only|api-shape)\s+\S'
+  is-comment:
+    any:
+      - kind: line_comment
+      - kind: block_comment
+  # Walks back through a run of comments, so a multi-line justification still counts
+  declared:
+    follows:
+      matches: census-marker
+      stopBy:
+        not:
+          matches: is-comment
+  in-test-module:
+    any:
+      - inside:
+          kind: mod_item
+          stopBy: end
+          follows:
+            kind: attribute_item
+            regex: 'cfg\(test\)'
+            stopBy: end
+      # A bare #[test] fn at module level is in neither a cfg(test) mod nor a tests/ path
+      - inside:
+          kind: function_item
+          stopBy: end
+          follows:
+            kind: attribute_item
+            regex: '^#\[(tokio::|async_std::|wasm_bindgen_)?test'
+            stopBy: end
+  is-panic-family:
+    has:
+      field: macro
+      regex: '^(panic|unreachable|assert|assert_eq|assert_ne)$'
+
+rule:
+  kind: macro_invocation
+  matches: is-panic-family
+  not:
+    matches: in-test-module
