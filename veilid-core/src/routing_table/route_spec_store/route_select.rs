@@ -326,7 +326,9 @@ impl RouteSpecStore {
         self.first_available_route_inner(cache, &fallback, route_selection_counter)
     }
 
-    /// Find first matching unpublished route that fits into the selection criteria
+    /// Find first matching pool route (automatic and unpublished) that fits into the selection criteria
+    /// Routes allocated through the API (not automatic) belong to the caller and are used as a
+    /// safety route only when named as `preferred_route`
     /// Don't pick any routes that have failed and haven't been tested yet
     /// Round-robins among top-tier routes to distribute load across safety routes
     #[cfg_attr(
@@ -356,6 +358,7 @@ impl RouteSpecStore {
                     .iter()
                     .any(|x| x.kind() == params.crypto_kind)
                 && !arce.is_published()
+                && arce.is_automatic()
                 && !arce.contains_nodes(&params.avoid_nodes)
             {
                 // snapshot stats (interior mutability) to avoid race conditions and sort instability

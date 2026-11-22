@@ -2,6 +2,7 @@
 
 pub mod test_remote_routes;
 pub mod test_route_drain;
+pub mod test_route_pool;
 
 use super::*;
 use crate::crypto::tests_crypto::*;

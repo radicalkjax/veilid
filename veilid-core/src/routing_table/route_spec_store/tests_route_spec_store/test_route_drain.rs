@@ -6,7 +6,7 @@ use crate::crypto::tests_crypto::*;
 use crate::routing_table::tests_routing_table::*;
 use crate::tests::*;
 
-fn one_hop_params(
+pub(super) fn one_hop_params(
     kind: CryptoKind,
     preferred: Option<AllocatedRouteSetId>,
     sequencing: Sequencing,
@@ -36,6 +36,16 @@ async fn insert_route(
     hop: NodeRef,
     orderings: SequenceOrderingSet,
 ) -> (AllocatedRouteSetId, PublicKey) {
+    insert_route_with(rss, hop, orderings, true).await
+}
+
+/// Insert a one-hop route through `hop`; `automatic == false` is a route the API allocated
+pub(super) async fn insert_route_with(
+    rss: &RouteSpecStore,
+    hop: NodeRef,
+    orderings: SequenceOrderingSet,
+    automatic: bool,
+) -> (AllocatedRouteSetId, PublicKey) {
     let crypto = rss.crypto();
     let vcrypto = crypto
         .get_async(hop.best_node_id().kind())
@@ -53,7 +63,7 @@ async fn insert_route(
         DirectionSet::all(),
         Stability::default(),
         orderings,
-        true,
+        automatic,
     )
     .expect("route set");
     let id = AllocatedRouteSetId::from(fake_route_id());
@@ -68,7 +78,7 @@ async fn insert_route(
     (id, keypair.key())
 }
 
-fn ordered() -> SequenceOrderingSet {
+pub(super) fn ordered() -> SequenceOrderingSet {
     SequenceOrderingSet::only(SequenceOrdering::Ordered)
 }
 
