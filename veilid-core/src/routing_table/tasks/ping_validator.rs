@@ -681,7 +681,7 @@ impl RoutingTable {
     }
 
     /// Build a PingValidationEntry for testing a remote route
-    fn build_remote_route_test_entry(
+    pub(crate) fn build_remote_route_test_entry(
         rss: &RouteSpecStore,
         route_id: &RemoteRouteSetId,
         priority: usize,
@@ -702,6 +702,10 @@ impl RoutingTable {
         };
 
         let route_id_clone: RouteId = route_id.clone().into();
+        // A failure releases the import this entry tested and nothing else: the id of an import of
+        // our own route's blob is also the id of the allocated route, and the generic release
+        // resolves to the allocated route once the import is gone
+        let remote_route_id = route_id.clone();
 
         // Remote routes: single ping, callback just handles success/failure
         Some(PingValidationEntry {
@@ -741,7 +745,7 @@ impl RoutingTable {
                                 veilid_log!(registry debug "Remote route test failed (no response): {:#}", route_id_clone);
                                 routing_table
                                     .route_spec_store()
-                                    .release_route(route_id_clone);
+                                    .release_remote_route_id(remote_route_id);
                             }
                         }
                         Ok(StatusResult::NotSent(nr)) => {

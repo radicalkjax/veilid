@@ -57,7 +57,7 @@ impl RouteSpecStore {
         feature = "instrument",
         instrument(level = "trace", target = "rtab::route", skip_all, fields(__VEILID_LOG_KEY = self.log_key()))
     )]
-    pub(super) fn release_remote_route_id(&self, id: RemoteRouteSetId) -> bool {
+    pub(crate) fn release_remote_route_id(&self, id: RemoteRouteSetId) -> bool {
         self.cache.write().remove_remote_route(id)
     }
 

@@ -82,7 +82,7 @@ pub(super) fn ordered() -> SequenceOrderingSet {
     SequenceOrderingSet::only(SequenceOrdering::Ordered)
 }
 
-fn is_allocated(rss: &RouteSpecStore, id: &AllocatedRouteSetId) -> bool {
+pub(super) fn is_allocated(rss: &RouteSpecStore, id: &AllocatedRouteSetId) -> bool {
     rss.cache.read().get_allocated_route_by_id(id).is_some()
 }
 
