@@ -66,3 +66,34 @@ impl fmt::Display for RemoteRouteSetId {
         write!(f, "{}", f.to_string(&self.0))
     }
 }
+
+/// A route set a route test targets, typed so a test requested for one kind of route set never
+/// runs against the other: an import of our own route's blob shares the allocated route's id, and
+/// a retest of that import must not test the allocated route once the import is gone
+#[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[must_use]
+pub(crate) enum RouteTestTarget {
+    Allocated(AllocatedRouteSetId),
+    Remote(RemoteRouteSetId),
+}
+
+impl From<AllocatedRouteSetId> for RouteTestTarget {
+    fn from(id: AllocatedRouteSetId) -> Self {
+        Self::Allocated(id)
+    }
+}
+
+impl From<RemoteRouteSetId> for RouteTestTarget {
+    fn from(id: RemoteRouteSetId) -> Self {
+        Self::Remote(id)
+    }
+}
+
+impl fmt::Display for RouteTestTarget {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Allocated(id) => write!(f, "allocated {}", id),
+            Self::Remote(id) => write!(f, "remote {}", id),
+        }
+    }
+}

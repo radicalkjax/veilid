@@ -1596,10 +1596,10 @@ impl StorageManager {
         let routing_table = self.routing_table();
         let rss = routing_table.route_spec_store();
         for vcr in value_changed_routes {
-            match rss.get_route_id_for_key(&vcr) {
-                Some(route_id) => {
-                    veilid_log!(self debug "watch route diagnosis: notification route {} allocated as {:#}, requesting test ({})", vcr, route_id, opaque_record_key);
-                    routing_table.request_route_test(route_id);
+            match rss.get_route_test_target_for_key(&vcr) {
+                Some(target) => {
+                    veilid_log!(self debug "watch route diagnosis: notification route {} allocated as {:#}, requesting test ({})", vcr, target, opaque_record_key);
+                    routing_table.request_route_test(target);
                 }
                 None => {
                     let allocated = rss

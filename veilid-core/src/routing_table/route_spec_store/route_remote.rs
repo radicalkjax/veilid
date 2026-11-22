@@ -80,6 +80,26 @@ impl RouteSpecStore {
         None
     }
 
+    /// Get the typed route set a route test of a route's public key targets
+    #[cfg(feature = "verbose-tracing")]
+    pub(crate) fn get_route_test_target_for_key(&self, key: &PublicKey) -> Option<RouteTestTarget> {
+        // Careful with locking order here, we need to lock the content before the cache
+        let content = self.content.read();
+        let cache = self.cache.read();
+
+        // Check for allocated route
+        if let Some(id) = content.get_id_by_key(key) {
+            return Some(RouteTestTarget::Allocated(id.clone()));
+        }
+
+        // Check for remote route
+        if let Some(rrid) = cache.get_remote_route_id_by_key(key) {
+            return Some(RouteTestTarget::Remote(rrid.clone()));
+        }
+
+        None
+    }
+
     /// Check to see if this remote (not ours) private route has seen our current node info yet
     /// This happens when you communicate with a private route without a safety route
     pub fn has_remote_private_route_seen_our_node_info(

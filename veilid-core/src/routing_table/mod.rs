@@ -211,9 +211,9 @@ pub(crate) struct RoutingTable {
     /// Set when peerinfo changed on either side; the cm viability task fires only when set
     cm_viability_dirty: AtomicBool,
     /// Last route-test enqueue time per route, so a lossy network cannot retest it continuously
-    route_test_cooldown: Mutex<BTreeMap<RouteId, Timestamp>>,
+    route_test_cooldown: Mutex<BTreeMap<RouteTestTarget, Timestamp>>,
     /// Routes whose test failures waited out blame suppression, retested past the cooldown after
-    deferred_route_tests: Mutex<BTreeSet<RouteId>>,
+    deferred_route_tests: Mutex<BTreeSet<RouteTestTarget>>,
     /// Ping outcome and queue accounting surfaced through stats
     #[cfg(feature = "stats")]
     ping_stats: Mutex<tasks::ping_stats_accounting::PingStatsAccounting>,

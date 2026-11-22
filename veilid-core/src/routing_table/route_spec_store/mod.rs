@@ -31,7 +31,7 @@ pub(crate) use route_allocate::AllocateRouteParams;
 pub(crate) use route_compile::{CompileRouteParams, CompiledRoute};
 pub(crate) use route_ref::{AllocatedRouteRef, RemoteRouteRef};
 pub(crate) use route_select::{RouteIdAndKeys, RouteSelectParams};
-pub(crate) use route_set_id::{AllocatedRouteSetId, RemoteRouteSetId};
+pub(crate) use route_set_id::{AllocatedRouteSetId, RemoteRouteSetId, RouteTestTarget};
 pub(crate) use route_set_ref::{AllocatedRouteSetRef, RemoteRouteSetRef};
 pub use route_stats::*;
 pub(crate) use route_test::{RoutePingValidationPurpose, RoutePingValidationRequest};

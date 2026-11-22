@@ -1595,11 +1595,11 @@ impl RPCProcessor {
             let is_own_loopback = matches!(&context.destination,
                 Destination::PrivateRoute { private_route, .. } if private_route.public_key == *sr.route_key());
             if !is_own_loopback {
-                let route_id: RouteId = sr.route_set_id().clone().into();
+                let route_id = sr.route_set_id().clone();
                 let cur_ts = Timestamp::now();
                 let enqueued = self
                     .routing_table()
-                    .enqueue_route_tests(cur_ts, vec![route_id.clone()], 0)
+                    .enqueue_route_tests(cur_ts, vec![route_id.clone().into()], 0)
                     .await;
                 if enqueued > 0 {
                     veilid_log!(self debug "scheduling out-of-band route test for {} after %SR timeout", route_id);

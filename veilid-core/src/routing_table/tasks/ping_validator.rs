@@ -469,55 +469,57 @@ impl RoutingTable {
     pub async fn enqueue_route_tests(
         &self,
         cur_ts: Timestamp,
-        route_ids: Vec<RouteId>,
+        targets: Vec<RouteTestTarget>,
         priority: usize,
     ) -> usize {
         let rss = self.route_spec_store();
 
         // Continuous re-testing of a struggling route is churn, not information
-        let route_ids: Vec<RouteId> = {
+        let targets: Vec<RouteTestTarget> = {
             let cooldown = self.timings().route_test_cooldown;
             let mut recent = self.route_test_cooldown.lock();
             recent.retain(|_, ts| cur_ts.duration_since(*ts) < cooldown);
-            route_ids
+            targets
                 .into_iter()
-                .filter(|route_id| {
-                    if recent.contains_key(route_id) {
+                .filter(|target| {
+                    if recent.contains_key(target) {
                         return false;
                     }
-                    recent.insert(route_id.clone(), cur_ts);
+                    recent.insert(target.clone(), cur_ts);
                     true
                 })
                 .collect()
         };
-        let accepted = route_ids.len();
+        let accepted = targets.len();
 
+        // Each target names the kind of route set it tests: a remote target whose import is gone
+        // tests nothing, never the allocated route that shares its id
         let mut entries = Vec::new();
-        for route_id in route_ids {
-            let is_remote = rss.is_route_id_remote(&route_id);
-
-            if is_remote {
-                let rrid = RemoteRouteSetId::from_route_id(route_id.clone());
-                match Self::build_remote_route_test_entry(rss, &rrid, priority) {
-                    Some(entry) => entries.push(entry),
-                    None => {
-                        veilid_log!(self debug "Could not build remote route test for {:#}", route_id);
+        for target in targets {
+            match target {
+                RouteTestTarget::Remote(rrid) => {
+                    match Self::build_remote_route_test_entry(rss, &rrid, priority) {
+                        Some(entry) => entries.push(entry),
+                        None => {
+                            veilid_log!(self debug "Could not build remote route test for {:#}", rrid);
+                        }
                     }
                 }
-            } else {
-                let arsid = AllocatedRouteSetId::from_route_id(route_id);
-                let Some(info) = rss.get_allocated_route_test_info(&arsid) else {
-                    veilid_log!(self debug "Could not build allocated route test for {:#}", arsid);
-                    continue;
-                };
-                let req = RoutePingValidationRequest {
-                    route_id: arsid,
-                    orderings: info.orderings,
-                    purpose: RoutePingValidationPurpose::Test,
-                };
-                let route_entries =
-                    Self::build_route_loopback_ping_validations(rss, cur_ts, &req, priority).await;
-                entries.extend(route_entries);
+                RouteTestTarget::Allocated(arsid) => {
+                    let Some(info) = rss.get_allocated_route_test_info(&arsid) else {
+                        veilid_log!(self debug "Could not build allocated route test for {:#}", arsid);
+                        continue;
+                    };
+                    let req = RoutePingValidationRequest {
+                        route_id: arsid,
+                        orderings: info.orderings,
+                        purpose: RoutePingValidationPurpose::Test,
+                    };
+                    let route_entries =
+                        Self::build_route_loopback_ping_validations(rss, cur_ts, &req, priority)
+                            .await;
+                    entries.extend(route_entries);
+                }
             }
         }
 
@@ -529,20 +531,20 @@ impl RoutingTable {
 
     /// Request a route test that runs as soon as blame is not suppressed, bypassing
     /// the test cooldown
-    pub fn request_route_test(&self, route_id: RouteId) {
-        self.deferred_route_tests.lock().insert(route_id);
+    pub fn request_route_test(&self, target: RouteTestTarget) {
+        self.deferred_route_tests.lock().insert(target);
     }
 
     /// Drain the deferred-test set, clearing each route's test cooldown so the
     /// retest is not swallowed by the interval that deferred it
-    pub fn take_deferred_route_tests(&self) -> Vec<RouteId> {
-        let deferred: Vec<RouteId> = mem::take(&mut *self.deferred_route_tests.lock())
+    pub fn take_deferred_route_tests(&self) -> Vec<RouteTestTarget> {
+        let deferred: Vec<RouteTestTarget> = mem::take(&mut *self.deferred_route_tests.lock())
             .into_iter()
             .collect();
         if !deferred.is_empty() {
             let mut recent = self.route_test_cooldown.lock();
-            for route_id in &deferred {
-                recent.remove(route_id);
+            for target in &deferred {
+                recent.remove(target);
             }
         }
         deferred
@@ -740,7 +742,7 @@ impl RoutingTable {
                                 .blame_suppressed(RoutingDomain::PublicInternet)
                             {
                                 veilid_log!(registry debug "Deferring remote route release (offline/degraded): {:#}", route_id_clone);
-                                routing_table.request_route_test(route_id_clone);
+                                routing_table.request_route_test(remote_route_id.into());
                             } else {
                                 veilid_log!(registry debug "Remote route test failed (no response): {:#}", route_id_clone);
                                 routing_table
@@ -826,7 +828,9 @@ impl RoutingTable {
                         });
                         if offline || deferrals <= MAX_LOOPBACK_FAILURE_DEFERRALS {
                             veilid_log!(registry debug "Deferring route loopback failure (offline/degraded): {:#} ({:#})", route_id, ordering);
-                            routing_table.request_route_test(route_id);
+                            routing_table.request_route_test(
+                                AllocatedRouteSetId::from_route_id(route_id).into(),
+                            );
                             return Vec::new();
                         }
                         veilid_log!(registry debug "Route loopback deferral cap reached, recording failure: {:#} ({:#})", route_id, ordering);

@@ -65,9 +65,10 @@ pub async fn test_all() {
     route_spec_store::tests_route_spec_store::test_route_pool::test_manual_route_is_tested_after_peer_info_change().await;
     route_spec_store::tests_route_spec_store::test_remote_routes::test_remote_route_testing_cadence(
     );
-    route_spec_store::tests_route_spec_store::test_remote_routes::test_failed_remote_test_releases_only_the_import().await;
-    route_spec_store::tests_route_spec_store::test_remote_routes::test_failed_remote_test_after_release_keeps_allocated_route().await;
-    route_spec_store::tests_route_spec_store::test_remote_routes::test_release_of_expired_import_keeps_allocated_route().await;
+    Box::pin(route_spec_store::tests_route_spec_store::test_remote_routes::test_failed_remote_test_releases_only_the_import()).await;
+    Box::pin(route_spec_store::tests_route_spec_store::test_remote_routes::test_failed_remote_test_after_release_keeps_allocated_route()).await;
+    Box::pin(route_spec_store::tests_route_spec_store::test_remote_routes::test_release_of_expired_import_keeps_allocated_route()).await;
+    Box::pin(route_spec_store::tests_route_spec_store::test_remote_routes::test_deferred_retests_target_only_their_own_route_set()).await;
     test_signed_node_info::test_signed_node_info().await;
     test_relay_info::test_relay_info_equivalent();
     #[cfg(not(all(target_arch = "wasm32", target_os = "unknown")))]

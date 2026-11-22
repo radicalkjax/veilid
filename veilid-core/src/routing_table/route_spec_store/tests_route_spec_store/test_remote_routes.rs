@@ -171,3 +171,80 @@ pub async fn test_release_of_expired_import_keeps_allocated_route() {
     }
     mock_registry::terminate(registry).await;
 }
+
+/// Ping validation entries enqueued since the last drain; the mock registry never starts the
+/// processor that would consume them
+fn drain_enqueued(routing_table: &RoutingTable) -> Vec<PingValidationEntry> {
+    let rx = routing_table.ping_validation_receiver.lock();
+    let rx = rx
+        .as_ref()
+        .expect("the ping validation processor is not running");
+    rx.try_iter().flat_map(|batch| batch.entries).collect()
+}
+
+/// Deferred retests are typed. A retest of the allocated route never tests the import of its blob
+/// that shares its id, and a retest of the import, once the app released it, tests nothing and
+/// leaves the allocated route alone. (The mock cannot compile a loopback, so only remote test
+/// entries are observable here.)
+pub async fn test_deferred_retests_target_only_their_own_route_set() {
+    info!("--- test_deferred_retests_target_only_their_own_route_set ---");
+    let registry = mock_registry::init("remote-route-deferred-retest").await;
+    {
+        let routing_table = registry.routing_table();
+        let rss = routing_table.route_spec_store();
+        let hop = seed_nodes(&routing_table, 1).remove(0);
+        let (allocated, key) = insert_route_with(rss, hop.clone(), ordered(), false).await;
+        let import = import_own_route(rss, &allocated, key, &hop, Timestamp::now());
+        let _ = drain_enqueued(&routing_table);
+
+        // A loopback failure of the allocated route deferred under blame suppression
+        routing_table.request_route_test(allocated.clone().into());
+        let deferred = routing_table.take_deferred_route_tests();
+        assert_eq!(
+            deferred,
+            vec![RouteTestTarget::Allocated(allocated.clone())]
+        );
+        routing_table
+            .enqueue_route_tests(Timestamp::now(), deferred, 0)
+            .await;
+        assert!(
+            drain_enqueued(&routing_table).is_empty(),
+            "a retest of the allocated route does not test the import that shares its id"
+        );
+
+        // A test of the import itself is observable
+        routing_table
+            .enqueue_route_tests(Timestamp::now(), vec![import.clone().into()], 0)
+            .await;
+        assert_eq!(
+            drain_enqueued(&routing_table).len(),
+            1,
+            "the import is tested when its own test is asked for"
+        );
+
+        // A failed import test deferred under blame suppression; the app releases the import
+        routing_table.request_route_test(import.clone().into());
+        assert!(
+            rss.release_route(import.clone().into()),
+            "the import is released"
+        );
+        let _ = dead_allocated(rss);
+
+        // Blame lifts
+        let deferred = routing_table.take_deferred_route_tests();
+        assert_eq!(deferred, vec![RouteTestTarget::Remote(import.clone())]);
+        routing_table
+            .enqueue_route_tests(Timestamp::now(), deferred, 0)
+            .await;
+        assert!(
+            drain_enqueued(&routing_table).is_empty(),
+            "a retest of a released import tests nothing"
+        );
+        assert!(is_allocated(rss, &allocated), "the allocated route stays");
+        assert!(
+            !dead_allocated(rss).contains(&allocated),
+            "the allocated route is not reported dead"
+        );
+    }
+    mock_registry::terminate(registry).await;
+}
