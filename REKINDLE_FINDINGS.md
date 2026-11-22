@@ -126,6 +126,54 @@ this is not confirmed.
   "Offline" for more than 15 minutes while traffic was flowing (Rekindle plan RH1r-c, MacA). It was not
   investigated further.
 
+## F7. A destination can stall when every pooled safety route has lost to it
+
+**Status:** observed in Rekindle real-app runs; candidate for an upstream design discussion. Found 2026-11-22 (Rekindle
+research VA2, source at `bc741633`).
+
+- Under symmetric routing an `app_call` picks a reply private route and uses it as the safety route
+  (`rpc_processor/destination.rs:493-521`, `route_compile.rs:436-446`). Selection is per call, among unpublished
+  automatic routes of the exact hop count and ordering (`route_select.rs:346-361`); a route that lost a question to this
+  destination in the current loss epoch ranks last (`:388-437`).
+- When **every** candidate has lost to the destination, selection keeps round-robining over the marked routes
+  (`:428-435`); a new route is allocated only when no candidate matches at all (`:180-200`). The pool target is a
+  constant, `DESIRED_BACKGROUND_SAFETY_ROUTE_COUNT = 4` (`route_spec_store/mod.rs`), not configurable.
+- A route is killed by lost questions only after `ROUTE_LOST_DESTINATIONS_INVALIDATE_THRESHOLD = 5` distinct
+  destinations at full weight, with evidence capped at one failure per destination (`route_stats.rs:137-139`), and any
+  answer on that ordering clears it (`:483-484`). So routes that fail only toward one peer are never killed by that
+  peer's losses.
+- **Observed:** a peer's `app_call`s to a fresh, loopback-healthy private route timed out for ~2.5 min while its calls
+  to another peer succeeded; delivery resumed 35 s after the caller's Veilid released one of its own Ordered safety
+  routes (`lost_dests=11`).
+- **Rekindle's response, Veilid unchanged:** fresh-call retries through its receipted outbox, the peer's route re-read
+  when Veilid releases it, and a visible "unreachable, still trying" state; no sequencing or hop-count switch.
+
+## F8. A failed remote route test blames the peer's route for what may be our own route's loss
+
+**Status:** design note. A failed remote route test releases the imported peer route after one failure
+(`tasks/ping_validator.rs:734-745`). That test selects its safety route the same way as the app's calls (`:692-697`),
+so when our pool is the broken side, the peer's healthy route is released and re-imported repeatedly.
+
+## F9. The death log reports counts, not the evidence that killed the route
+
+**Status:** logging defect, low impact. `death_reason` prints the raw lost-destination count (including zero-weight
+entries) and loopback evidence (`route_stats.rs:352-361`), not the lost-destination evidence that crossed the
+threshold, so `loopback_streak=1 evidence=1.0 lost_dests=11` reads as a loopback death when it wasn't.
+
+## F10. Redirection on the question path is silent
+
+**Status:** observability gap. "Safety route … lost a question to …, compiling another for it" exists only for
+compiles without a reply route (`route_compile.rs:568, 608-618`), i.e. statements; `app_call` redirection happens
+silently in reply-route selection, and the chosen route is visible only with the compile-time `instrument` feature
+(`route_select.rs:80-94`). The lost question is logged at debug as `scheduling out-of-band route test for <id> after
+%SR timeout` (`rpc_processor/mod.rs:1605`) only when a test is enqueued.
+
+## F11. Loss marks are void on any epoch change
+
+**Status:** design note. The loss epoch includes our own peer-info timestamp and the count of online-state changes
+(`types/loss_epoch.rs:5-14, 26-37`), matched by equality at selection (`route_select.rs:391-397`), so any such change
+silently clears every "lost to this destination" mark and a failing route can win selection again.
+
 ---
 
 **Kept for reference:** the patches above stay on `rekindle/v0.5.8-route-pool`, at `e1158844`, `bc741633`,
