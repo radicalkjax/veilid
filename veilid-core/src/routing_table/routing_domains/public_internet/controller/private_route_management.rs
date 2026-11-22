@@ -69,6 +69,8 @@ impl PublicInternetRoutingDomainController {
     /// Allocated routes to test:
     /// * if a route 'needs_testing'
     ///   . all published allocated routes
+    ///   . all routes allocated through the API (not automatic): the caller owns them and we
+    ///   never drop them, so a test is how their death is found and reported
     ///   . routes that have never been tested
     ///   . the fastest 0..N automatic safety routes of safe default length
     ///   . the fastest 0..N automatic safety routes of unsafe default length
@@ -117,8 +119,10 @@ impl PublicInternetRoutingDomainController {
                     return Option::<()>::None;
                 }
                 // If this has been published, always test if we need it
+                // An API route stays caller-owned when a peer info change clears its
+                // published flag, so test it whether or not it is published
                 // Also if the route has never been tested, test it at least once
-                if v.is_published() || stats.last_known_valid_ts().is_none() {
+                if v.is_published() || !v.is_automatic() || stats.last_known_valid_ts().is_none() {
                     must_test_routes.push(k.clone());
                 }
                 // Pool routes of a default length are kept alive per cell

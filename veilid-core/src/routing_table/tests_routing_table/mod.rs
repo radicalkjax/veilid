@@ -62,6 +62,7 @@ pub async fn test_all() {
     route_spec_store::tests_route_spec_store::test_route_pool::test_published_manual_route_stays_out_after_peer_info_change().await;
     route_spec_store::tests_route_spec_store::test_route_pool::test_preferred_manual_route_is_selected().await;
     route_spec_store::tests_route_spec_store::test_route_pool::test_automatic_route_is_selected_beside_manual().await;
+    route_spec_store::tests_route_spec_store::test_route_pool::test_manual_route_is_tested_after_peer_info_change().await;
     route_spec_store::tests_route_spec_store::test_remote_routes::test_remote_route_testing_cadence(
     );
     test_signed_node_info::test_signed_node_info().await;

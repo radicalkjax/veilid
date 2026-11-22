@@ -97,3 +97,52 @@ pub async fn test_automatic_route_is_selected_beside_manual() {
     }
     mock_registry::terminate(registry).await;
 }
+
+/// Routes route management would test now
+fn routes_to_test(routing_table: &RoutingTable, cur_ts: Timestamp) -> Vec<AllocatedRouteSetId> {
+    let rdc = routing_table.get_routing_domain_controller(RoutingDomain::PublicInternet);
+    let controller = rdc
+        .as_any()
+        .downcast_ref::<PublicInternetRoutingDomainController>()
+        .expect("public internet controller");
+    controller.get_allocated_routes_to_test(cur_ts)
+}
+
+/// A peer info change clears the published flag of an API route; route management keeps
+/// testing it, so its death still raises a route change
+pub async fn test_manual_route_is_tested_after_peer_info_change() {
+    info!("--- test_manual_route_is_tested_after_peer_info_change ---");
+    let registry = mock_registry::init("route-pool-tested").await;
+    {
+        let routing_table = registry.routing_table();
+        let rss = routing_table.route_spec_store();
+        let hop = seed_nodes(&routing_table, 1).remove(0);
+        let (manual, key) = insert_route_with(rss, hop, ordered(), false).await;
+        rss.mark_route_published(&manual, true).expect("publish");
+        rss.report_peer_info_changed();
+        assert!(
+            routes_to_test(&routing_table, Timestamp::now()).contains(&manual),
+            "the reset route is tested"
+        );
+
+        // That test passed, long enough ago that the route needs testing again
+        let idle = TimestampDuration::new_ms(ROUTE_MIN_IDLE_TIME_MS as u64 + 1_000);
+        let tested_ts = Timestamp::new(Timestamp::now().as_u64() - idle.as_u64());
+        rss.update_allocated_route_stats(tested_ts, &key, |s| {
+            let _ = s.record_loopback_result(SequenceOrdering::Ordered, true, 1.0, tested_ts);
+            Ok(())
+        });
+        assert!(
+            routes_to_test(&routing_table, Timestamp::now()).contains(&manual),
+            "an API route is tested again after a peer info change"
+        );
+        assert!(
+            rss.cache
+                .read()
+                .get_allocated_route_by_id(&manual)
+                .is_some(),
+            "an API route is never dropped"
+        );
+    }
+    mock_registry::terminate(registry).await;
+}
