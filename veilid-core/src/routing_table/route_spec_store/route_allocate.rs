@@ -445,7 +445,7 @@ impl RouteSpecStore {
         feature = "instrument",
         instrument(level = "trace", target = "rtab::route", skip(self), ret, fields(__VEILID_LOG_KEY = self.log_key()))
     )]
-    pub(super) fn release_allocated_route(&self, id: AllocatedRouteSetId) -> bool {
+    pub(crate) fn release_allocated_route(&self, id: AllocatedRouteSetId) -> bool {
         let released_id = {
             // Careful with locking order here, we need to lock the content before the cache
             let mut content = self.content.write();

@@ -831,11 +831,11 @@ impl VeilidAPI {
                     match Box::pin(rss.test_route(route_id_api.clone())).await? {
                         Some(true) => {}
                         Some(false) => {
-                            rss.release_route(route_id_api.clone());
+                            rss.release_allocated_route(route_id.clone());
                             apibail_try_again!("allocated route failed to test");
                         }
                         None => {
-                            rss.release_route(route_id_api.clone());
+                            rss.release_allocated_route(route_id.clone());
                             apibail_try_again!("allocated route could not be tested");
                         }
                     }
@@ -843,7 +843,7 @@ impl VeilidAPI {
                     let blob = match RouteSpecStore::private_routes_to_blob(&private_routes) {
                         Ok(v) => v,
                         Err(e) => {
-                            rss.release_route(route_id_api);
+                            rss.release_allocated_route(route_id.clone());
                             return Err(e);
                         }
                     };
@@ -902,6 +902,13 @@ impl VeilidAPI {
     /// is unknown, already released, or malformed (unsupported crypto kind or bad length) returns
     /// [VeilidAPIError::InvalidArgument]; errors with [VeilidAPIError::NotInitialized] if the API has
     /// been shut down.
+    ///
+    /// An imported route and an allocated route can share an id: importing the blob of a route
+    /// this node allocated returns that route's id. While Veilid holds the import (expired or
+    /// not), a release releases the import and leaves the allocated route; a second release then
+    /// releases the allocated route. Veilid drops an import only after listing it in
+    /// [VeilidRouteChange::dead_remote_routes]; from then on the id names only the allocated
+    /// route, so an import reported dead must not be released again.
     #[cfg_attr(feature = "instrument", instrument(target = "veilid_api", level = "debug", fields(duration, __VEILID_LOG_KEY = self.log_key()), skip(self), ret))]
     pub fn release_private_route(&self, route_id: RouteId) -> VeilidAPIResult<()> {
         record_duration(|| {

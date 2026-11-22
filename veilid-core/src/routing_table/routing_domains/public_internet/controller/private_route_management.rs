@@ -159,7 +159,7 @@ impl PublicInternetRoutingDomainController {
         // Process dead routes
         for r in expired_routes {
             veilid_log!(self debug "Expired route: {}", r);
-            rss.release_route(r.into());
+            rss.release_allocated_route(r);
         }
 
         // return routes to test
@@ -219,7 +219,7 @@ impl PublicInternetRoutingDomainController {
         });
         let released = pool.len();
         for id in pool {
-            rss.release_route(id.into());
+            rss.release_allocated_route(id);
         }
         // A tick already in flight is skipped by try_tick_now; retry until one of ours starts.
         // The routine runs detached, so wait for the pool count to settle rather than for it.

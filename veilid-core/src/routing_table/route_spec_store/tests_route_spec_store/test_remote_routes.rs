@@ -129,3 +129,45 @@ pub async fn test_failed_remote_test_after_release_keeps_allocated_route() {
     }
     mock_registry::terminate(registry).await;
 }
+
+/// An expired import is still the caller's import: its release releases the import, not the
+/// allocated route that shares its id, and a second release releases the allocated route
+pub async fn test_release_of_expired_import_keeps_allocated_route() {
+    info!("--- test_release_of_expired_import_keeps_allocated_route ---");
+    let registry = mock_registry::init("remote-route-expired-release").await;
+    {
+        let routing_table = registry.routing_table();
+        let rss = routing_table.route_spec_store();
+        let hop = seed_nodes(&routing_table, 1).remove(0);
+        let (allocated, key) = insert_route_with(rss, hop.clone(), ordered(), false).await;
+        let stale = TimestampDuration::new(REMOTE_PRIVATE_ROUTE_CACHE_EXPIRY.as_u64() + 1_000_000);
+        let imported_ts = Timestamp::new(Timestamp::now().as_u64() - stale.as_u64());
+        let import = import_own_route(rss, &allocated, key, &hop, imported_ts);
+        assert!(
+            !rss.is_route_id_remote(&import.clone().into()),
+            "the import has expired"
+        );
+
+        assert!(
+            rss.release_route(import.clone().into()),
+            "the import is released"
+        );
+        assert!(is_allocated(rss, &allocated), "the allocated route stays");
+        assert!(
+            !dead_allocated(rss).contains(&allocated),
+            "the allocated route is not reported dead"
+        );
+
+        assert!(
+            rss.release_route(allocated.clone().into()),
+            "the caller still releases its own route"
+        );
+        assert!(!is_allocated(rss, &allocated));
+        assert!(dead_allocated(rss).contains(&allocated));
+        assert!(
+            !rss.release_route(allocated.into()),
+            "nothing is left to release"
+        );
+    }
+    mock_registry::terminate(registry).await;
+}

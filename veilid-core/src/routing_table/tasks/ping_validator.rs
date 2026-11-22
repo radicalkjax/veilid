@@ -581,7 +581,7 @@ impl RoutingTable {
             Ok(v) => v,
             Err(VeilidAPIError::InvalidTarget { message: _ }) => {
                 veilid_log!(rss debug "Route {:#} is dead (invalid target), releasing", route_id);
-                rss.release_route(route_id.clone().into());
+                rss.release_allocated_route(route_id.clone());
                 return None;
             }
             Err(VeilidAPIError::TryAgain { message: _ }) => return None,

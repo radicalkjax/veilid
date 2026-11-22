@@ -272,18 +272,22 @@ impl RouteSpecStore {
         self.save().await.map_err(VeilidAPIError::internal)
     }
 
-    /// Release an allocated or remote route that is no longer in use
+    /// Release an allocated or remote route that is no longer in use, for a caller that holds an
+    /// untyped id (the API, the debug command). An id can name both: an import of our own route's
+    /// blob has the allocated route's id. An import the remote cache still holds is released
+    /// first, expired or not (an expired import stays in the cache until it is removed or LRUs
+    /// out, and both report it in `dead_remote_routes`); only an id with no import releases the
+    /// allocated route. Code holding a typed id calls `release_allocated_route` or
+    /// `release_remote_route_id`.
     #[cfg_attr(
         feature = "instrument",
         instrument(level = "trace", target = "rtab::route", skip(self), ret, fields(__VEILID_LOG_KEY = self.log_key()))
     )]
     pub fn release_route(&self, id: RouteId) -> bool {
-        let is_remote = self.is_route_id_remote(&id);
-        if is_remote {
-            self.release_remote_route_id(RemoteRouteSetId::from_route_id(id))
-        } else {
-            self.release_allocated_route(AllocatedRouteSetId::from_route_id(id))
+        if self.release_remote_route_id(RemoteRouteSetId::from_route_id(id.clone())) {
+            return true;
         }
+        self.release_allocated_route(AllocatedRouteSetId::from_route_id(id))
     }
 
     /// List all allocated routes with a filter. Filter must not access the route spec store due to locking.
